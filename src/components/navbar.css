@@ -34,6 +34,7 @@
 
 .nav-menu li:hover{
     cursor: pointer;
+    color: brown;
 }
 
 .logo-image{
