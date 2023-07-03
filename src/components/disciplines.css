@@ -1,0 +1,55 @@
+.disciplines{
+    margin: 0 auto;
+    width: 75%;
+    height: 100%;
+}
+
+.disciplines-list{
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0 60px 0;
+}
+
+.sector-list{
+    display: flex;
+    width: 32%;
+    flex: 1 1 1;
+    margin: 0 0 20px 0;
+    border: 1px solid rgba(165, 42, 42, 0.2);
+    transition: all ease .5s;
+}
+
+.sector-list:hover{
+    color: brown;
+    cursor: pointer;
+    border: 1px solid rgba(165, 42, 42, 0.7);
+}
+
+.sector-icon{
+    width:10%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid rgba(128, 128, 128, 0.205);
+    background-color: white;
+}
+
+.sector-icon i{
+    font-size: 40px;
+    color: brown;
+}
+
+.sector-name{
+    width: 90%;
+    padding: 10px;
+    background-color: rgba(165, 42, 42, 0.1);
+    font-weight: 450;
+    display: flex;
+    align-items: center;
+}
+
