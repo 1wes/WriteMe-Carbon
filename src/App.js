@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/navbar';
 import Home from './components/home';
 import Benefits from './components/benefits';
+import Disciplines from './components/disciplines';
 
 const App=()=>{
 
@@ -11,6 +12,7 @@ const App=()=>{
       <Navbar/>
       <Home/>
       <Benefits/>
+      <Disciplines/>
     </React.Fragment>
   )
 }
