@@ -7,7 +7,7 @@ const Logo=()=>{
     return(
         <React.Fragment>
             <Link to={`/`} className="logo-image">
-                <img src={require('../pen.png')} /> <p><span>W</span>rite<span>M</span>e</p>
+                <img src={require('../pen.png')} alt="logo" /> <p><span>W</span>rite<span>M</span>e</p>
             </Link>
         </React.Fragment>
     )
