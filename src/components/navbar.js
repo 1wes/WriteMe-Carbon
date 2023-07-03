@@ -17,7 +17,7 @@ const Navbar=()=>{
 
     return(
         <React.Fragment>
-            <nav className="section">
+            <nav className="section" id="navbar-section">
                 <div className="desktop-nav">
                     <div className="logo">
                         <Logo/>
