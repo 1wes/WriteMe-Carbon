@@ -1,11 +1,11 @@
 .section{
     width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
     position: sticky;
 }
 
 #navbar-section{
     height: 10vh;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
 }
 
 .desktop-nav{
