@@ -8,6 +8,7 @@
     position: sticky;
     top: 0;
     background-color: rgba(245, 245, 245, 0.98);
+    z-index: 1000;
 }
 
 .desktop-nav{
