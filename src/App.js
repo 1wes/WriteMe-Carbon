@@ -6,6 +6,7 @@ import Benefits from './components/benefits';
 import Disciplines from './components/disciplines';
 import Services from './components/services';
 import Contact from './components/contact';
+import Footer from './components/footer';
 
 const App=()=>{
 
@@ -17,6 +18,7 @@ const App=()=>{
       <Disciplines/>
       <Services/>
       <Contact/>
+      <Footer/>
     </React.Fragment>
   )
 }
