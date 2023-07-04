@@ -5,6 +5,7 @@ import Home from './components/home';
 import Benefits from './components/benefits';
 import Disciplines from './components/disciplines';
 import Services from './components/services';
+import Contact from './components/contact';
 
 const App=()=>{
 
@@ -15,6 +16,7 @@ const App=()=>{
       <Benefits/>
       <Disciplines/>
       <Services/>
+      <Contact/>
     </React.Fragment>
   )
 }
