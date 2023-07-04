@@ -1,0 +1,103 @@
+.contact{
+    margin: 0 auto;
+    width: 75%;
+    padding: 40px;
+}
+
+.contact-content{
+    display: flex;
+    height: 100%;
+}
+
+.testimonials{
+    width: 60%;
+    border-right: 1px solid rgba(165, 42, 42, 0.15);
+    padding: 0px 10px;
+}
+
+.contact-form{
+    width: 40%;
+    padding: 0px 10px; 
+}
+
+.testimonials-card{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+
+.testimonial{
+    width: 45%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 0 10px 30px 10px;
+    border-radius: 5px;
+}
+
+.t-image{
+    display: flex;
+    justify-content: center;
+    margin-top: -60px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 2px solid rgba(165, 42, 42, 0.8);
+    margin-bottom: 20px;
+}
+
+.t-image img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    filter: grayscale(100);
+    border-radius: 50%;
+}
+
+.id{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.name{
+    font-weight: bold;
+    color: brown;
+    margin-right: 5px;
+}
+
+.occupation{
+    font-size: 13px;
+    font-weight: 450;
+    margin-left: 5px;
+}
+
+.quote{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.quote div:last-child{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.quote i{
+    color: brown;
+}
+
+.quote-text{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+}
