@@ -2,6 +2,7 @@
     margin: 0 auto;
     width: 75%;
     padding: 40px;
+    height: 100%;
 }
 
 .contact-content{
@@ -12,12 +13,12 @@
 .testimonials{
     width: 60%;
     border-right: 1px solid rgba(165, 42, 42, 0.15);
-    padding: 0px 10px;
+    padding: 0px 45px;
 }
 
 .contact-form{
     width: 40%;
-    padding: 0px 10px; 
+    padding: 0px 45px 50px 45px; 
 }
 
 .testimonials-card{
@@ -100,4 +101,60 @@
     font-weight: 400;
     font-size: 15px;
     line-height: 20px;
+}
+
+.form-section{
+    display: flex;
+    justify-content: flex-start;
+}
+
+form{
+    width: 100%;
+}
+
+label{
+    font-weight: 450;
+    color: brown;
+    font-size: 15px;
+}
+
+label::after{
+    content: '*';
+    color: rgba(255, 0, 0, 0.8);
+}
+
+input, textarea{
+    padding: 10px 10px;
+    border: 1px solid rgba(165, 42, 42, 0);
+    background-color: rgba(165, 42, 42, 0.05);
+    border-radius: 2px;
+    width: 100%;
+    caret-color: brown;
+    font-weight: bold;
+    color:rgba(0, 0, 0, 0.664);
+    transition: all .5 s ease;
+    letter-spacing: .5px;
+}
+
+input:focus, textarea:focus{
+    outline: none;
+    border: 1px solid rgba(165, 42, 42, 0.4);
+}
+
+input::placeholder, textarea::placeholder{
+    color: rgba(0, 0, 0, 0.479);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.form-section div{
+    margin: 6px 0 20px 0;
+}
+
+textarea{
+    resize: none;
+    height: 40px;
+    height: 100px;
+    font-family: -apple-system, blinkmacsystemfont, "segoe ui", roboto, oxygen-sans, ubuntu, cantarell, "helvetica neue", helvetica, arial, sans-serif;   
+    
 }
