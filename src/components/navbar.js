@@ -33,4 +33,7 @@ const Navbar=()=>{
         </React.Fragment>
     )
 }
+export{
+    Logo
+}
 export default Navbar;
