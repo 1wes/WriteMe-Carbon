@@ -1,5 +1,6 @@
 import React from "react";
 import './home.css'
+import { CtaButton } from "./services";
 
 const Home=()=>{
 
@@ -12,6 +13,9 @@ const Home=()=>{
                     ultricies efficitur. Proin eu felis metus. Aenean vestibulum 
                     interdum magna nec vehicula. Sed et tincidunt orci. Morbi molestie ligula at lectus iaculis gravida. Mauris sit amet fermentum purus, vel dapibus magna.</p>
 
+                    <div className="prompt-button">
+                        <CtaButton id={`home-btn`} message={`Write Me a Paper`}/>
+                    </div>
                     <div className="prompt">
                         <div className="scroll-down">
                         </div>

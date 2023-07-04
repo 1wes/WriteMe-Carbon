@@ -33,6 +33,21 @@
     font-weight: 500;
 }
 
+.prompt-button{
+    display: flex;
+    justify-content: flex-start;
+}
+
+#home-btn{
+    background-color: brown;
+    color: whitesmoke;
+    border-radius: 60px;
+}
+
+#home-btn:hover{
+    border-radius: 2px;
+}
+
 .prompt{
     display: flex;
     align-items: center;
