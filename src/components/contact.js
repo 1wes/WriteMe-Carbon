@@ -1,7 +1,8 @@
 import React from 'react';
 import './contact.css';
 import SectionHeader from './heading';
-import {FaQuoteLeft, FaQuoteRight} from 'react-icons/fa'
+import {FaQuoteLeft, FaQuoteRight} from 'react-icons/fa';
+import { CtaButton } from './services';
 
 const Testimonial=({name, occupation, testimony, src})=>{
 
@@ -40,7 +41,7 @@ const Contact=()=>{
 
                     <div className='contact-content'>
                         <div className='testimonials'>
-                            <SectionHeader tagline={`Hear from some of our clients`}/>
+                            <SectionHeader tagline={`Hear from some of our clients.`}/>
                             <div className='testimonials-card'>
                                 <Testimonial name={`John Doe`} occupation={`Research Assistant`} src={require('../testi.jpeg')} testimony={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices 
                                     ullamcorper fringilla. Integer auctor massa id dolor ultricies efficitur. massa id dolor ultricies efficitur. Proin eu felis metus. Aenean vestibulum.`}/>
@@ -49,7 +50,40 @@ const Contact=()=>{
                             </div>
                         </div>
                         <div className='contact-form'>
-                            
+                            <SectionHeader tagline={`Get in touch with us.`}/>
+
+                            <div className='form-section'>
+                                <form> 
+                                    <label>
+                                        Name
+                                    </label>
+                                    <div>
+                                        <input type='text' placeholder='Enter Your Name.' required></input>
+                                    </div>
+
+                                    <label>
+                                        Email
+                                    </label>
+                                    <div>
+                                        <input type='email' placeholder='Enter Your Email.' required></input>
+                                    </div>
+
+                                    <label>
+                                        Subject
+                                    </label>
+                                    <div>
+                                        <input type='text' placeholder='Enter Your Subject.' required></input>
+                                    </div>
+                                    <label>
+                                        Message
+                                    </label>
+                                    <div>
+                                        <textarea type='text' placeholder='Enter Your Message.' required></textarea>
+                                    </div>
+
+                                    <CtaButton message={`Submit`}/>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div> 
