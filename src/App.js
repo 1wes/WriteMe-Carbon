@@ -4,6 +4,7 @@ import Navbar from './components/navbar';
 import Home from './components/home';
 import Benefits from './components/benefits';
 import Disciplines from './components/disciplines';
+import Services from './components/services';
 
 const App=()=>{
 
@@ -13,6 +14,7 @@ const App=()=>{
       <Home/>
       <Benefits/>
       <Disciplines/>
+      <Services/>
     </React.Fragment>
   )
 }
