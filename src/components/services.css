@@ -1,0 +1,76 @@
+#services-section{
+    background-color: white;
+    margin-top: 180px;
+    height: 100%;
+    padding-bottom: 40px;
+}
+
+.services{
+    margin: 0 auto;
+    width: 75%;
+    position: relative;
+    height: 50vh;
+}
+
+.services-card{
+    background-color: white;
+    position: absolute;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+    margin-top: -179px !important;
+    width: 100%;
+    padding-bottom: 40px;
+}
+
+.services-list{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.our-services{
+    width: 30%;
+    padding: 5px;
+}
+
+.our-services li{
+    padding: 0 !important;
+    list-style: none;
+}
+
+.our-services li span i{
+    color: brown;
+    margin-right: 20px;
+}
+
+.service-name{
+    font-weight: 450;
+}
+
+.button{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cta-btn{
+    padding: 15px 25px;
+    background: none;
+    border: 1px solid brown;
+    color: black;
+    font-weight: bold;
+    color: brown;
+    font-size: 15px;
+    letter-spacing: 2px;
+    transition: all .5s ease;
+}
+
+.cta-btn:hover{
+    background-color: brown;
+    color: white;
+    cursor: pointer;
+    border-radius: 35px;
+}
