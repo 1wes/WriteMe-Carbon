@@ -14,6 +14,24 @@ const Logo=()=>{
     )
 }
 
+let MobileNavbar=()=>{
+
+    return(
+        <React.Fragment>
+            <nav className="section" id="mobile-navbar-section">
+                <div className="mobile-nav">
+                    <div className="logo">
+                        <Logo/>
+                    </div>
+                    <div className="mobile-nav-menu">
+                        Menu
+                    </div>
+                </div>
+            </nav>
+        </React.Fragment>
+    )
+}
+
 const Navbar=()=>{
 
     const goToBenefits=()=>{
@@ -52,6 +70,7 @@ const Navbar=()=>{
     )
 }
 export{
-    Logo
+    Logo,
+    MobileNavbar
 }
 export default Navbar;
