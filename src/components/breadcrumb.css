@@ -1,0 +1,29 @@
+.breadcrumbs{
+    margin: 20px 0 40px 0;
+    font-size: 13px;
+    font-weight: 450;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+}
+
+.arrow-right i{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    padding: 0 5px;
+    margin-top: 2px;
+    color: brown;
+}
+
+.active-breadcrumb{
+    text-decoration: none;
+}
+
+.active-breadcrumb{
+    color: rgba(128, 128, 128, 0.9)
+}
+
+.inactive-breadcrumb{
+    color: rgba(0, 0, 255, 0.9);
+}
