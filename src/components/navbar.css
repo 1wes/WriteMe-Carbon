@@ -98,6 +98,7 @@
         display: flex;
         margin: 0 auto;
         width: 95%;
+        position: relative;
     }
 
     .logo{
@@ -128,7 +129,58 @@
 
     .hamburger-menu i{
         color: brown;
-        font-size: 20px;
+        font-size: 30px;
+    }
+
+    .menu{
+        position: fixed;
+        right: 0;
+        background-color: rgba(165, 42, 42, 0.98);
+        z-index: 100;
+        height: 100%;
+        top: 0;
+        width: 0%;
+        transition: all ease 1s;
+        overflow-x: hidden;
+    }
+
+    .show-menu{
+        width: 100%;
+    }
+
+    .dropdown-content{
+        width: 95%;
+        display: block;
+        color: whitesmoke;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .close-btn{
+        height: 10vh;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .close-btn i{
+        font-size: 30px;
+    }
+
+    .menu-items{
+        display: flex;
+        justify-content: flex-end !important;
+        text-align: right;
+    }
+
+    .menu-items div li{
+        list-style: none;
+        margin-bottom: 15px;
+    }
+
+    .link{
+        color: whitesmoke;
+        text-decoration: none;
     }
 
 }
