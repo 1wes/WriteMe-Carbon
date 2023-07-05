@@ -2,7 +2,7 @@ import React from "react";
 import './navbar.css';
 import { Link } from "react-router-dom";
 import { goToSection } from "../utils.js/section";
-import {CgMenuRight} from 'react-icons/cg';
+import {CgMenuRight, CgClose} from 'react-icons/cg';
 
 const Logo=()=>{
 
@@ -17,6 +17,19 @@ const Logo=()=>{
 
 let MobileNavbar=()=>{
 
+    const showMenu=()=>{
+
+        let menu=document.getElementById('dropdown');
+
+        menu.classList.add('show-menu')
+    }
+
+    const closeMenu=()=>{
+        let menu=document.getElementById('dropdown');
+
+        menu.classList.remove('show-menu')
+    }
+
     return(
         <React.Fragment>
             <nav className="section" id="mobile-navbar-section">
@@ -25,7 +38,25 @@ let MobileNavbar=()=>{
                         <Logo/>
                     </div>
                     <div className="mobile-nav-menu">
-                        <span className="hamburger-menu"><i><CgMenuRight/></i></span>
+                        <span className="hamburger-menu" onClick={showMenu} ><i><CgMenuRight/></i></span>
+                    </div>
+                    <div className="menu" id="dropdown">
+                        <div className="dropdown-content">
+                            <span className="close-btn" onClick={closeMenu}><i><CgClose/></i></span>
+                            <div className="menu-items">
+                                <div>
+                                    <Link className="link" to={`/about`}>
+                                        <li>
+                                            About us
+                                        </li>
+                                    </Link>
+                                    <li>Why us</li>
+                                    <li>Disciplines</li>
+                                    <li>Contact us</li>
+                                    <li>Blog</li>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nav>
