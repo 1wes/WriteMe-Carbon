@@ -21,14 +21,42 @@ let MobileNavbar=()=>{
 
         let menu=document.getElementById('dropdown');
 
-        menu.classList.add('show-menu')
+        menu.classList.add('show-menu');
     }
 
     const closeMenu=()=>{
         let menu=document.getElementById('dropdown');
 
-        menu.classList.remove('show-menu')
+        menu.classList.remove('show-menu');
     }
+
+    const goToBenefits=()=>{
+
+        let menu=document.getElementById('dropdown');
+
+        menu.classList.remove('show-menu')
+
+        goToSection('benefits-section');
+    }
+
+    const goToDisciplines=()=>{
+
+        let menu=document.getElementById('dropdown');
+
+        menu.classList.remove('show-menu');
+
+        goToSection('discplines-section');
+    }
+
+    const gotToContact=()=>{
+
+        let menu=document.getElementById('dropdown');
+
+        menu.classList.remove('show-menu')
+
+        goToSection('contact-section');
+    }
+
 
     return(
         <React.Fragment>
@@ -46,13 +74,13 @@ let MobileNavbar=()=>{
                             <div className="menu-items">
                                 <div>
                                     <Link className="link" to={`/about`}>
-                                        <li>
+                                        <li onClick={closeMenu}>
                                             About us
                                         </li>
                                     </Link>
-                                    <li>Why us</li>
-                                    <li>Disciplines</li>
-                                    <li>Contact us</li>
+                                    <li onClick={goToBenefits}>Why us</li>
+                                    <li onClick={goToDisciplines}>Disciplines</li>
+                                    <li onClick={gotToContact}>Contact us</li>
                                     <li>Blog</li>
                                 </div>
                             </div>
