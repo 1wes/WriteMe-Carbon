@@ -1,6 +1,7 @@
 import React from "react";
 import './navbar.css';
 import { Link } from "react-router-dom";
+import { goToSection } from "../utils.js/section";
 
 const Logo=()=>{
 
@@ -15,6 +16,21 @@ const Logo=()=>{
 
 const Navbar=()=>{
 
+    const goToBenefits=()=>{
+
+        goToSection('benefits-section');
+    }
+
+    const goToDisciplines=()=>{
+
+        goToSection('discplines-section');
+    }
+
+    const gotToContact=()=>{
+
+        goToSection('contact-section');
+    }
+
     return(
         <React.Fragment>
             <nav className="section" id="navbar-section">
@@ -23,10 +39,12 @@ const Navbar=()=>{
                         <Logo/>
                     </div>
                     <ul className="nav-menu"> 
-                        <li>About us</li>
-                        <li>Why us</li>
-                        <li>Disciplines</li>
-                        <li>Contact us</li>
+                        <Link className="link" to={`/about`}>
+                            <li>About us</li>
+                        </Link>
+                        <li onClick={goToBenefits}>Why us</li>
+                        <li onClick={goToDisciplines}>Disciplines</li>
+                        <li onClick={gotToContact}>Contact us</li>
                     </ul>
                 </div>
             </nav>
