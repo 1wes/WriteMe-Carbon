@@ -101,21 +101,34 @@
     }
 
     .logo{
-        width: 50%;
+        width: 45%;
         height: 100%;
         background-color: gren;
     }
 
     .mobile-nav-menu{
-        width: 50%;
+        width: 55%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        background-color: maroon;
     }
 
-    .logo-image{
-        background-color: pink;
+    .logo-image img{
+        width: 30%;
     }
+
+    .logo-image p{
+        font-size: 20px;
+    }
+
+    .logo-image p span{
+        font-size: 25px;
+    }
+
+    .hamburger-menu i{
+        color: brown;
+        font-size: 20px;
+    }
+
 }

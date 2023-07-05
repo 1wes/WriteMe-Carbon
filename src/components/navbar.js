@@ -2,6 +2,7 @@ import React from "react";
 import './navbar.css';
 import { Link } from "react-router-dom";
 import { goToSection } from "../utils.js/section";
+import {CgMenuRight} from 'react-icons/cg';
 
 const Logo=()=>{
 
@@ -24,7 +25,7 @@ let MobileNavbar=()=>{
                         <Logo/>
                     </div>
                     <div className="mobile-nav-menu">
-                        Menu
+                        <span className="hamburger-menu"><i><CgMenuRight/></i></span>
                     </div>
                 </div>
             </nav>
