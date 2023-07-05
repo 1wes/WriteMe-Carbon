@@ -89,7 +89,33 @@ h4{
 }
 
 @media only screen and (max-width:480px){
-    #footer-section{
-        display: none;
+
+    .footer{
+        width: 95%;
+    }
+
+    .footer-logo{
+        width: 50%;
+        margin-left: -18px;
+    }
+
+    .footer-content{
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .footer-items{
+        width: 100%;
+    }
+
+    .socials{
+        gap: 15px;
+        padding-left: 0;
+        margin-top: 15px;
+    }
+
+    .popular-services li, .support li{
+        margin-bottom: 15px;
+        padding-left: 8px;
     }
 }
