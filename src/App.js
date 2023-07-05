@@ -7,12 +7,14 @@ import Disciplines from './components/disciplines';
 import Services from './components/services';
 import Contact from './components/contact';
 import Footer from './components/footer';
+import { MobileNavbar } from './components/navbar';
 
 const App=()=>{
 
   return(
     <React.Fragment>
       <Navbar/>
+      <MobileNavbar/>
       <Home/>
       <Benefits/>
       <Disciplines/>
