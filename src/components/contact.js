@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './contact.css';
 import SectionHeader from './heading';
 import {FaQuoteLeft, FaQuoteRight} from 'react-icons/fa';
@@ -10,7 +10,7 @@ const Testimonial=({name, occupation, testimony, src})=>{
         <React.Fragment>
             <div className='testimonial'>
                 <div className='t-image'>
-                    <img src={src} />
+                    <img src={src} alt='client' />
                 </div>
                 <div className='id'>
                     <span className='name'>{name} </span><span> - </span><span className='occupation'>{occupation}.</span>
@@ -33,6 +33,49 @@ const Testimonial=({name, occupation, testimony, src})=>{
 
 const Contact=()=>{
 
+    const [name, setName]=useState('');
+    const [email, setEmail]=useState('');
+    const [subject, setSubject]=useState('');
+    const [message, setMessage]=useState('');
+
+    const handleNameChange=(e=>{
+
+        if(e.target.value!==''){
+            setName(e.target.value);
+        }
+    })
+
+    const handleEmailChange=(e=>{
+
+        if(e.target.value!==''){
+            setEmail(e.target.value);
+        }
+    })
+
+    const handleSubjectChange=(e=>{
+
+        if(e.target.value!==''){
+            setSubject(e.target.value);
+        }
+    })
+
+    const handleMessageChange=(e=>{
+
+        if(e.target.value!==''){
+            setMessage(e.target.value);
+        }
+    })
+
+    const submitForm=(e=>{
+
+        e.preventDefault();
+
+        setName('')
+        setEmail('')
+        setSubject('')
+        setMessage('')
+    })
+
     return(
         <React.Fragment>
             <div className='section' id='contact-section'>
@@ -53,35 +96,35 @@ const Contact=()=>{
                             <SectionHeader tagline={`Get in touch with us.`}/>
 
                             <div className='form-section'>
-                                <form> 
+                                <form onSubmit={submitForm}> 
                                     <label>
                                         Name
                                     </label>
                                     <div>
-                                        <input type='text' placeholder='Enter Your Name.' required></input>
+                                        <input type='text' placeholder='Enter Your Name.' value={name} onChange={handleNameChange} required></input>
                                     </div>
 
                                     <label>
                                         Email
                                     </label>
                                     <div>
-                                        <input type='email' placeholder='Enter Your Email.' required></input>
+                                        <input type='email' placeholder='Enter Your Email.' value={email} onChange={handleEmailChange} required></input>
                                     </div>
 
                                     <label>
                                         Subject
                                     </label>
                                     <div>
-                                        <input type='text' placeholder='Enter Your Subject.' required></input>
+                                        <input type='text' placeholder='Enter Your Subject.' value={subject} onChange={handleSubjectChange} required></input>
                                     </div>
                                     <label>
                                         Message
                                     </label>
                                     <div>
-                                        <textarea type='text' placeholder='Enter Your Message.' required></textarea>
+                                        <textarea type='text' placeholder='Enter Your Message.' value={message} onChange={handleMessageChange} required></textarea>
                                     </div>
 
-                                    <CtaButton message={`Submit`}/>
+                                    <CtaButton type={`submit`} message={`Submit`}/>
                                 </form>
                             </div>
                         </div>
