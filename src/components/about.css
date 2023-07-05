@@ -6,3 +6,10 @@
     margin: 0 auto;
     width: 75%;
 }
+
+@media only screen and (max-width:480px){
+
+    .about{
+        width: 95%;
+    }
+}
