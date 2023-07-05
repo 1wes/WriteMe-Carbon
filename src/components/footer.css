@@ -87,3 +87,9 @@ h4{
 .copyright div span:not(:first-child){
     margin-right: 4px;
 }
+
+@media only screen and (max-width:480px){
+    #footer-section{
+        display: none;
+    }
+}

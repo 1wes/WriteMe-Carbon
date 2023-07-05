@@ -158,3 +158,9 @@ textarea{
     font-family: -apple-system, blinkmacsystemfont, "segoe ui", roboto, oxygen-sans, ubuntu, cantarell, "helvetica neue", helvetica, arial, sans-serif;   
     
 }
+
+@media only screen and (max-width:480px){
+    #contact-section{
+        display: none;
+    }
+}
