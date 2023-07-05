@@ -1,8 +1,13 @@
 import React from "react";
 import './home.css'
 import { CtaButton } from "./services";
+import { goToSection } from "../utils.js/section";
 
 const Home=()=>{
+
+    const goToContact=()=>{
+        goToSection('contact-section');
+    }
 
     return(
         <React.Fragment>
@@ -14,7 +19,7 @@ const Home=()=>{
                     interdum magna nec vehicula. Sed et tincidunt orci. Morbi molestie ligula at lectus iaculis gravida. Mauris sit amet fermentum purus, vel dapibus magna.</p>
 
                     <div className="prompt-button">
-                        <CtaButton id={`home-btn`} message={`Write Me a Paper`}/>
+                        <CtaButton id={`home-btn`} message={`Write Me a Paper`} onClick={goToContact}/>
                     </div>
                     <div className="prompt">
                         <div className="scroll-down">

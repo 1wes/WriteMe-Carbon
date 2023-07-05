@@ -2,6 +2,7 @@ import React from 'react';
 import './services.css';
 import SectionHeader from './heading';
 import { GiFountainPen } from 'react-icons/gi';
+import { goToSection } from '../utils.js/section';
 
 const ServicesList=({service})=>{
 
@@ -15,6 +16,10 @@ const ServicesList=({service})=>{
 }
 
 const ServicesCard=()=>{
+
+    const goToContact=()=>{
+        goToSection('contact-section');
+    }
 
     return(
         <React.Fragment>
@@ -42,18 +47,18 @@ const ServicesCard=()=>{
                     <ServicesList service={`Business Plan`}/>
                 </div>
 
-                <CtaButton message={`Hire One of Our Writers`}/>
+                <CtaButton message={`Hire One of Our Writers`} onClick={goToContact}/>
             </div>
         </React.Fragment>
     )
 }
 
-const CtaButton=({onClick, message, id})=>{
+const CtaButton=({onClick, message, id, type})=>{
 
     return(
         <React.Fragment>
             <div className='button'>
-                <button  id={id} className='cta-btn' onClick={onClick}>
+                <button type={type}  id={id} className='cta-btn' onClick={onClick}>
                     {message}
                 </button>
             </div>
