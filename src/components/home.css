@@ -140,3 +140,13 @@
     }
     
 }
+
+@media only screen and (max-width:375px){
+
+    #home-section{
+        background-position: 0%;
+        background-position-y: 102%;
+        background-position-x: -40%;
+        background-size: 250px 150px;
+    }
+}
