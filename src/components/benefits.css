@@ -29,7 +29,6 @@
     background-color: white;
     transition: all ease 1s;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
-
 }
 
 .list:hover{
@@ -75,7 +74,16 @@
 }
 
 @media only screen and (max-width:480px){
-    #benefits-section{
-        display: none;
+    .benefits{
+        width: 95%;
+    }
+
+    .benefits-list{
+        gap: 18px;
+    }
+
+    .list{
+        width: 90%;
+        padding: 30px 7px;
     }
 }
