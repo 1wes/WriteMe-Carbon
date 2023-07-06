@@ -1,10 +1,84 @@
 #about-section{
-    height: 100vh;
+    height: 100%;
+    padding-bottom: 100px;
 }
 
 .about{
     margin: 0 auto;
     width: 75%;
+}
+
+.about-us{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.our-story{
+    width: 60%;
+    line-height: 28px;
+    font-weight: 450;
+    padding-left: 20px;
+    border-left: 1px solid rgba(165, 42, 42, 0.3);
+}
+
+.analytics{
+    width: 40%;
+    display: flex;
+    font-weight: bold;
+}
+
+.years, .orders{
+    display: flex;
+    font-size: 30px;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    color: brown;
+}
+
+.years{
+    width: 30%;
+}
+
+.orders{
+    width: 70%;
+}
+
+.years span, .orders span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.our-values{
+    margin-top: 50px;
+}
+
+.values{
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.values li{
+    list-style: none;
+    width: 47%;
+    padding: 10px;
+}
+
+.value-header{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.value-text{
+    line-height: 28px;
+    margin-top: 10px;
 }
 
 @media only screen and (max-width:480px){
