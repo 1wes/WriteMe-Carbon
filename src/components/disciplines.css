@@ -57,7 +57,21 @@
 }
 
 @media only screen and (max-width:480px){
-    #discplines-section{
-        display: none;
+    
+    .disciplines{
+        width: 95%;
+    }
+
+    .disciplines-list{
+        gap: 15px;
+    }
+
+    .sector-list{
+        width: 47%;
+        margin: 0 0 10px 0;
+    }
+
+    .sector-icon i{
+        font-size: 30px;
     }
 }
