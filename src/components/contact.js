@@ -89,8 +89,7 @@ const Contact=()=>{
                                 <Testimonial name={`John P.`} occupation={`Research Assistant`} src={require('../testi.jpeg')} testimony={`It has been a pleasure working with the company's writer and I can confidently say that 
                                 his writing skills are exceptional. His versatile style of writing and adaptability to different writing formats has enabled him to consistently produce top notch content that captivates the mind.`}/>
                                 <Testimonial name={`Marylin S.`} occupation={`Banker & Student`} src={require('../testi2.jpeg')} testimony={`Working with the writer has been a great delight as all my writing needs have always been 
-                                fulfilled with superior craftsmanship. The writer has a great mastery in different writing formats thus delivering exactly what is required by guidelines and rubric. Additionally, he is also very creative and
-                                resourceful.`}/>
+                                fulfilled with superior craftsmanship. The writer has a great mastery in different writing formats thus delivering exactly what is required by guidelines and rubric. Additionally, he is also very creative.`}/>
                             </div>
                         </div>
                         <div className='contact-form'>
