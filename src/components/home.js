@@ -13,10 +13,9 @@ const Home=()=>{
         <React.Fragment>
             <div className="section" id="home-section">
                 <div className="home">
-                    <p className="punchline">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, <span>adipisci</span> velit.</p>
-                    <p className="tagline">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices ullamcorper fringilla. Integer auctor massa id dolor 
-                    ultricies efficitur. Proin eu felis metus. Aenean vestibulum 
-                    interdum magna nec vehicula. Sed et tincidunt orci. Morbi molestie ligula at lectus iaculis gravida. Mauris sit amet fermentum purus, vel dapibus magna.</p>
+                    <p className="punchline">Are you <span>exhausted</span> with your academic workload? </p>
+                    <p className="tagline">Well, worry no more. Our academic experts will help out. We deliver well-written, 
+                        plagiarism and AI-free papers within the shortest time possible. Do not hesitate to reach out to us! </p>
 
                     <div className="prompt-button">
                         <CtaButton id={`home-btn`} message={`Write Me a Paper`} onClick={goToContact}/>
