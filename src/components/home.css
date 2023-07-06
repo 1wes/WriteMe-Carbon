@@ -94,6 +94,50 @@
 
 @media only screen and (max-width:480px){
     #home-section{
-        display: none;
+        background-position: -50%;
+        background-position-y: 102%;
+        background-size: 300px 200px;
     }
+
+    .home{
+        width: 95%;
+        height: 100%;
+    }
+
+    .punchline, .tagline{
+        width: 100%;
+    }
+
+    .punchline{
+        font-size: 40px;
+        line-height:50px;
+    }
+
+    .prompt-button{
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    #home-btn{
+        border-radius: 60px;
+        padding: 12;
+    }
+
+    .prompt{
+        margin-top: 80px;
+    }
+
+    .scroll-down{
+        width: 40px;
+        height: 60px;
+    }
+
+    @keyframes scrollDown{
+        to{
+            opacity: 0;
+            top: 45px;
+        }
+    }
+    
 }
