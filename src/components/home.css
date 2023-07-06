@@ -108,6 +108,10 @@
         width: 100%;
     }
 
+    .tagline{
+        margin-top: -15px;
+    }
+
     .punchline{
         font-size: 40px;
         line-height:50px;
@@ -116,16 +120,11 @@
     .prompt-button{
         display: flex;
         justify-content: center;
-        margin-top: 30px;
     }
 
     #home-btn{
         border-radius: 60px;
         padding: 12;
-    }
-
-    .prompt{
-        margin-top: 80px;
     }
 
     .scroll-down{
