@@ -64,6 +64,7 @@
 
     .disciplines-list{
         gap: 15px;
+        justify-content: flex-start;
     }
 
     .sector-list{
