@@ -151,16 +151,46 @@ input::placeholder, textarea::placeholder{
     margin: 6px 0 20px 0;
 }
 
+.form-section div:last-child{
+    margin-top: 50px;
+}
+
 textarea{
     resize: none;
-    height: 40px;
     height: 100px;
     font-family: -apple-system, blinkmacsystemfont, "segoe ui", roboto, oxygen-sans, ubuntu, cantarell, "helvetica neue", helvetica, arial, sans-serif;   
     
 }
 
 @media only screen and (max-width:480px){
-    #contact-section{
-        display: none;
+
+    .contact{
+        width: 95%;
+        padding: 0 0 40px 0;
+    }
+
+    .contact-content{
+        flex-direction: column;
+    }
+
+    .testimonials{
+        width: 100%;
+        border-right: none;
+        padding: 0;
+    }
+
+    .contact-form{
+        width: 100%;
+        padding: 0 !important;
+    }
+
+    .testimonials-card{
+        gap: 10px;
+    }
+
+    .form-section div{
+        display: flex;
+        flex-direction: row !important;
+        width: 100%;
     }
 }
