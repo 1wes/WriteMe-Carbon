@@ -141,7 +141,7 @@
     
 }
 
-@media only screen and (min-width:375px){
+@media only screen and (max-width:375px){
 
     #home-section{
         background-position: 0%;
@@ -151,12 +151,12 @@
     }
 }
 
-@media only screen and (min-width:376px){
+@media only screen and (min-width:376px) and (max-width:480px){
 
     #home-section{
         background-position-x: -30%;
     }
-
+    
     .punchline{
         margin-top: 40%;
     }
