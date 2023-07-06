@@ -18,7 +18,7 @@ const ServicesList=({service})=>{
 const ServicesCard=()=>{
 
     const goToContact=()=>{
-        goToSection('contact-section');
+        goToSection('contact-form-section');
     }
 
     return(

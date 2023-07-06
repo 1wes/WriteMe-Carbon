@@ -84,15 +84,19 @@ const Contact=()=>{
 
                     <div className='contact-content'>
                         <div className='testimonials'>
-                            <SectionHeader tagline={`Hear from some of our clients.`}/>
+                            <SectionHeader tagline={`First, hear from some of our clients.`}/>
                             <div className='testimonials-card'>
-                                <Testimonial name={`John P.`} occupation={`Research Assistant`} src={require('../testi.jpeg')} testimony={`It has been a pleasure working with the company's writer and I can confidently say that 
-                                his writing skills are exceptional. His versatile style of writing and adaptability to different writing formats has enabled him to consistently produce top notch content that captivates the mind.`}/>
-                                <Testimonial name={`Marylin S.`} occupation={`Banker & Student`} src={require('../testi2.jpeg')} testimony={`Working with the writer has been a great delight as all my writing needs have always been 
-                                fulfilled with superior craftsmanship. The writer has a great mastery in different writing formats thus delivering exactly what is required by guidelines and rubric. Additionally, he is also very creative.`}/>
+                                <Testimonial name={`John P.`} occupation={`Research Assistant`} src={require('../testi.jpeg')} testimony={`It has
+                                 been a pleasure working with the company's writers and I can confidently say that 
+                                their writing skills are exceptional. their versatile styles of writing and adaptability to different writing formats 
+                                have enabled them to consistently produce top notch content that captivates the mind.`}/>
+                                <Testimonial name={`Marylin S.`} occupation={`Banker & Student`} src={require('../testi2.jpeg')} testimony={`Working with the writers has
+                                 been a great delight as all my writing needs have always been 
+                                fulfilled with superior craftsmanship. They have a great mastery in different writing formats thus delivering exactly what is required by
+                                 guidelines and rubric. Additionally, they are also very creative.`}/>
                             </div>
                         </div>
-                        <div className='contact-form'>
+                        <div className='contact-form' id='contact-form-section'>
                             <SectionHeader tagline={`Get in touch with us.`}/>
 
                             <div className='form-section'>

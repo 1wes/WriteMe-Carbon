@@ -6,7 +6,7 @@ import { goToSection } from "../utils.js/section";
 const Home=()=>{
 
     const goToContact=()=>{
-        goToSection('contact-section');
+        goToSection('contact-form-section');
     }
 
     return(

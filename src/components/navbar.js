@@ -54,7 +54,7 @@ let MobileNavbar=()=>{
 
         menu.classList.remove('show-menu')
 
-        goToSection('contact-section');
+        goToSection('contact-form-section');
     }
 
 
@@ -106,7 +106,7 @@ const Navbar=()=>{
 
     const gotToContact=()=>{
 
-        goToSection('contact-section');
+        goToSection('contact-form-section');
     }
 
     return(
