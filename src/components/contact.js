@@ -88,7 +88,7 @@ const Contact=()=>{
                             <div className='testimonials-card'>
                                 <Testimonial name={`John Doe`} occupation={`Research Assistant`} src={require('../testi.jpeg')} testimony={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices 
                                     ullamcorper fringilla. Integer auctor massa id dolor ultricies efficitur. massa id dolor ultricies efficitur. Proin eu felis metus. Aenean vestibulum.`}/>
-                                <Testimonial name={`Jane Doe`} occupation={`Banker`} src={require('../testi2.jpeg')} testimony={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices 
+                                <Testimonial name={`Jane Doe`} occupation={`Banker & Student`} src={require('../testi2.jpeg')} testimony={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices 
                                     ullamcorper fringilla. Integer auctor massa id dolor ultricies efficitur. massa id dolor ultricies efficitur. Proin eu felis metus. Aenean vestibulum.`}/>
                             </div>
                         </div>
