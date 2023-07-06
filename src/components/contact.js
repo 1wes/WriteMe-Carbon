@@ -86,10 +86,11 @@ const Contact=()=>{
                         <div className='testimonials'>
                             <SectionHeader tagline={`Hear from some of our clients.`}/>
                             <div className='testimonials-card'>
-                                <Testimonial name={`John Doe`} occupation={`Research Assistant`} src={require('../testi.jpeg')} testimony={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices 
-                                    ullamcorper fringilla. Integer auctor massa id dolor ultricies efficitur. massa id dolor ultricies efficitur. Proin eu felis metus. Aenean vestibulum.`}/>
-                                <Testimonial name={`Jane Doe`} occupation={`Banker & Student`} src={require('../testi2.jpeg')} testimony={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices 
-                                    ullamcorper fringilla. Integer auctor massa id dolor ultricies efficitur. massa id dolor ultricies efficitur. Proin eu felis metus. Aenean vestibulum.`}/>
+                                <Testimonial name={`John P.`} occupation={`Research Assistant`} src={require('../testi.jpeg')} testimony={`It has been a pleasure working with the company's writer and I can confidently say that 
+                                his writing skills are exceptional. His versatile style of writing and adaptability to different writing formats has enabled him to consistently produce top notch content that captivates the mind.`}/>
+                                <Testimonial name={`Marylin S.`} occupation={`Banker & Student`} src={require('../testi2.jpeg')} testimony={`Working with the writer has been a great delight as all my writing needs have always been 
+                                fulfilled with superior craftsmanship. The writer has a great mastery in different writing formats thus delivering exactly what is required by guidelines and rubric. Additionally, he is also very creative and
+                                resourceful.`}/>
                             </div>
                         </div>
                         <div className='contact-form'>
