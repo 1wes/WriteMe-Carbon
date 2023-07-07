@@ -27,7 +27,7 @@ const About=()=>{
                             </div>
                             <div className="analytics">
                                 <span className="years">6+ <span>Years</span></span>
-                                <span className="orders">1800+ <span>Successful orders</span></span>
+                                <span className="orders">4,800+ <span>Successful orders</span></span>
                             </div>
                         </div>
 
@@ -41,8 +41,6 @@ const About=()=>{
                                         approaches to solve any problem, as difficult as it might be. 
                                      </div>
                                 </li>
-                                <li></li>
-                                <li></li>
                                 <li>
                                 <span className="value-header">Efficiency</span>
                                     <div className="value-text">Academic writing requires high levels of efficiency. Our reliable experts will deliver high-quality 
@@ -55,8 +53,6 @@ const About=()=>{
                                          expectations. 
                                      </div>
                                 </li>
-                                <li></li>
-                                <li></li>
                                 <li>
                                     <span className="value-header">Loyalty</span>
                                     <div className="value-text">We will have your back any time you need

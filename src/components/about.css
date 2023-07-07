@@ -58,9 +58,9 @@
 
 .values{
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
     display: flex;
-    gap: 10px;
+    gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -69,6 +69,14 @@
     list-style: none;
     width: 47%;
     padding: 10px;
+    background-color: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+    transition: all ease 1s;
+}
+
+.values li:hover{
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 29px 0px;
 }
 
 .value-header{
@@ -85,5 +93,26 @@
 
     .about{
         width: 95%;
+    }
+
+    .analytics{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .years span, .orders span{
+        font-size: 20px;
+    }
+
+    .values{
+        width: 100%;
+        gap: 10px;
+    }
+
+    .values li{
+        width: 42%;
     }
 }
