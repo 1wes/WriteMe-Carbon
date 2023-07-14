@@ -93,7 +93,7 @@ const Contact=()=>{
                                 <Testimonial name={`Marylin S.`} occupation={`Banker`} src={require('../testi2.jpeg')} testimony={`Working with the writers has
                                  been a great delight as all my writing needs have always been 
                                 fulfilled with superior craftsmanship. They have a great mastery in different writing formats thus delivering exactly what is required by
-                                 guidelines and rubric. Additionally, they are also very creative. I was impressed.`}/>
+                                 guidelines and rubric. Additionally, they are also very creative.`}/>
                             </div>
                         </div>
                         <div className='contact-form' id='contact-form-section'>
