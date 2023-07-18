@@ -4,6 +4,7 @@ import { Logo } from './navbar';
 import {BsTwitter, BsLinkedin} from 'react-icons/bs';
 import {FaInstagramSquare, FaFacebook} from 'react-icons/fa';
 import {AiOutlineCopyright} from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const Footer=()=>{
 
@@ -24,7 +25,9 @@ const Footer=()=>{
                         <div className='footer-items'>
                             <div className='support'>
                                 <h4>Support</h4>
-                                <li>FAQ</li>
+                                <Link className='footer-link' to={`/faq`}>
+                                    <li>FAQ</li>
+                                </Link>
                                 <li>Contact Us</li>
                             </div>
                         </div>

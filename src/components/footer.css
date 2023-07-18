@@ -63,6 +63,11 @@ h4{
     color: brown;
 }
 
+.footer-link{
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+}
+
 .copyright{
     display: flex;
     align-items: center;
