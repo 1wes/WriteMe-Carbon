@@ -1,0 +1,49 @@
+.faq-breadcrumb{
+    margin:0 auto;
+    width: 75%;
+}
+
+.search-bar{
+    height: 30vh;
+    background-color: rgba(165, 42, 42, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.search-bar form{
+    margin: 0 auto;
+    width: 40%;
+}
+
+.search-bar form div {
+    display: flex;
+}
+
+.search-bar form div input{
+    background-color: white;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.search-bar-submit{
+    background-color: brown;
+    border: none;
+    padding: 0 25px;
+    color: whitesmoke;
+    font-weight: bold;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    transition: all ease 1s;
+}
+
+.search-bar-submit:hover{
+    cursor: pointer;
+    color: white;
+}
+
+.faq{
+    margin: 0 auto;
+    width: 75%;
+    height: 100vh;
+}
