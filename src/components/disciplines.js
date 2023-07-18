@@ -9,6 +9,7 @@ import {ImLibrary} from 'react-icons/im';
 import {PiHeartbeat} from 'react-icons/pi';
 import {AiOutlineDesktop, AiOutlinePieChart} from 'react-icons/ai'
 import {BsPeopleFill} from 'react-icons/bs';
+import {BiCodeAlt} from 'react-icons/bi';
 
 
 let Sectors=({icon, name})=>{
@@ -41,6 +42,7 @@ const Disciplines=()=>{
                         <Sectors name={`Law`} icon={<GoLaw/>}/>
                         <Sectors name={`Technology`} icon={<AiOutlineDesktop/>}/>
                         <Sectors name={`Science`} icon={<MdOutlineScience/>}/>
+                        <Sectors name={`Programming`} icon={<BiCodeAlt/>}/>
                         <Sectors name={`Education`} icon={<GiGraduateCap/>}/>
                         <Sectors name={`Finance`} icon={<GiMoneyStack/>}/>
                         <Sectors name={`Sports`} icon={<MdSportsFootball/>}/>
