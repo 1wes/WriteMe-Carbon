@@ -81,7 +81,16 @@ let MobileNavbar=()=>{
                                     <li onClick={goToBenefits}>Why us</li>
                                     <li onClick={goToDisciplines}>Disciplines</li>
                                     <li onClick={gotToContact}>Contact us</li>
-                                    <li>Blog</li>
+                                    <Link className="link" to={`/`}>
+                                        <li onClick={closeMenu}>
+                                            Blog
+                                        </li>
+                                    </Link>
+                                    <Link className="link" to={`/faq`}>
+                                        <li onClick={closeMenu}>
+                                            FAQ
+                                        </li>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -123,6 +132,12 @@ const Navbar=()=>{
                         <li onClick={goToBenefits}>Why us</li>
                         <li onClick={goToDisciplines}>Disciplines</li>
                         <li onClick={gotToContact}>Contact us</li>
+                        <Link className="link" to={``}>
+                            <li>Blog</li>
+                        </Link>
+                        <Link className="link" to={`/faq`}>
+                            <li>FAQ</li>
+                        </Link>
                     </ul>
                 </div>
             </nav>
