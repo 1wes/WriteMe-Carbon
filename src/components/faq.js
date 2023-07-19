@@ -6,7 +6,9 @@ import { FAQBreadcrumb } from "./breadcrumb";
 import SectionHeader from "./heading";
 import Footer from "./footer";
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material";
-import { BiChevronDown } from 'react-icons/bi'
+import { BiChevronDown, BiMailSend } from 'react-icons/bi';
+import { Link } from "react-router-dom";
+import { BsFacebook } from "react-icons/bs";
 
 const AccordionComponent=({question, answer, expanded, onChange})=>{
 
@@ -52,6 +54,45 @@ const FAQ=()=>{
             setSearchQuery(e.target.value);
         }
     })
+
+    const Support=()=>{
+
+        return(
+            <React.Fragment>
+                <div className="section" id="support-section">
+                    <div className="support-contact">
+                        <SectionHeader heading={`Did not find what you were looking for?`}tagline={`Get in touch with our support team and we will have 
+                        your issue sorted within no time.`} />
+                        <div className="support-mail-phone">
+                            <SupportContacts icon={<BiMailSend/>} header={`Mail our support team`} details={`Get in direct contact with one of our support agents through email.`}
+                            to={`mailto:support@writeme.com`} contact={`support@writeme.com`} />
+                            <SupportContacts icon={<BsFacebook/>} header={`Let's chat on social media`} details={`Contact us via Facebook and we shall answer all your questions and provide adequate assistance.`}
+                            to={``} contact={`Write_Me`}/>
+                        </div>
+                    </div>
+                </div>
+            </React.Fragment>
+        )
+    }
+
+    const SupportContacts=({icon, header, details, to, contact})=>{
+
+        return(
+            <React.Fragment>
+                <div className="support-channels">
+                    <div className="support-icon">
+                        <i>{icon}</i>
+                    </div>
+                    <h3>
+                        {header}
+                    </h3>
+                    <p className="support-details">{details}</p>
+
+                    <Link className="support-link" to={to}>{contact}</Link>
+                </div>
+            </React.Fragment>
+        )
+    }
 
     return(
         <React.Fragment>
@@ -100,6 +141,7 @@ const FAQ=()=>{
                     </div>
                 </div>
             </div>
+            <Support/>
             <Footer/>
         </React.Fragment>
     )
