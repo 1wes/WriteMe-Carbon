@@ -1,4 +1,4 @@
-.faq-breadcrumb{
+.faq-breadcrumb, .support-contact{
     margin:0 auto;
     width: 75%;
 }
@@ -45,7 +45,7 @@
 .faq{
     margin: 0 auto;
     width: 75%;
-    padding-top: 50px;
+    padding:50px 0 70px 0
 }
 
 .faq-cards{
@@ -72,4 +72,50 @@
 .faq-icon{
     color: brown;
     font-size: 20px;
+}
+
+#support-section{
+    background-color: white;
+    padding: 0 0 50px 0;
+}
+
+.support-contact{
+    height: 100%;
+}
+
+.support-mail-phone{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.support-channels{
+    width: 35%;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.support-icon i{
+    color: brown;
+    font-size: 40px;
+}
+
+.support-details{
+    line-height: 28px;
+    text-align: center;
+    margin: 0 !important;
+    border-bottom: 1px solid rgba(165, 42, 42, 0.3);
+    padding-bottom: 20px;
+}
+
+.support-link{
+    color: brown;
+    margin: 30px 0 0 0;
+    font-weight: bold;
+    text-decoration: none;
 }
