@@ -4,7 +4,6 @@ import SectionHeader from "./heading";
 import {FaRegMoneyBillAlt} from 'react-icons/fa';
 import {BsGraphUpArrow} from 'react-icons/bs';
 import {MdSupportAgent, MdPrivacyTip, MdPlagiarism} from 'react-icons/md';
-import {FaRobot} from 'react-icons/fa';
 import {BsGraphDownArrow} from 'react-icons/bs';
 import {TbRobotOff} from 'react-icons/tb';
 
