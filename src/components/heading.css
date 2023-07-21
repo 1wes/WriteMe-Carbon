@@ -11,4 +11,5 @@
 .header p{
     font-weight: 450;
     color: rgba(0, 0, 0, 0.73);
+    line-height: 26px;
 }
