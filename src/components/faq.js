@@ -9,6 +9,7 @@ import { Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/
 import { BiChevronDown, BiMailSend } from 'react-icons/bi';
 import { Link } from "react-router-dom";
 import { BsFacebook } from "react-icons/bs";
+import { CtaButton } from "./services";
 
 const AccordionComponent=({question, answer, expanded, onChange})=>{
 
@@ -75,6 +76,7 @@ const FAQ=()=>{
 
     const [searchQuery, setSearchQuery]=useState('');
     const [expanded, setExpanded]=useState(false);
+    const [showMore, setShowMore]=useState(false);
 
     const closeAccordion=(panel)=>(event, isExpanded)=>{
         setExpanded(isExpanded ? panel : false)
@@ -93,6 +95,16 @@ const FAQ=()=>{
             setSearchQuery(e.target.value);
         }
     })
+
+    const toggleQuestionsShown=()=>{
+
+        let moreQuestions= document.getElementById('more-questions');
+
+        setShowMore(!showMore)
+
+        moreQuestions.classList.toggle('show-questions')
+
+    }
 
     return(
         <React.Fragment>
@@ -126,7 +138,7 @@ const FAQ=()=>{
                             <AccordionComponent expanded={expanded==='panel9'} onChange={closeAccordion('panel9')} question={`How do i make an order`} answer={`Just fill in the contact form and we'll be in touch`}/>
                             <AccordionComponent expanded={expanded==='panel10'} onChange={closeAccordion('panel10')} question={`How do i make an order`} answer={`Just fill in the contact form and we'll be in touch`}/>
                         </div>
-                        <div className="questions">
+                        <div className="questions" id="more-questions">
                             <AccordionComponent expanded={expanded==='panel11'} onChange={closeAccordion('panel11')} question={`How do i make an order`} answer={`Just fill in the contact form and we'll be in touch`}/>
                             <AccordionComponent expanded={expanded==='panel12'} onChange={closeAccordion('panel12')} question={`How do i make an order`} answer={`Just fill in the contact form and we'll be in touch`}/>
                             <AccordionComponent expanded={expanded==='panel13'} onChange={closeAccordion('panel13')} question={`How do i make an order`} answer={`Just fill in the contact form and we'll be in touch`}/>
@@ -138,6 +150,9 @@ const FAQ=()=>{
                             <AccordionComponent expanded={expanded==='panel19'} onChange={closeAccordion('panel19')} question={`How do i make an order`} answer={`Just fill in the contact form and we'll be in touch`}/>
                             <AccordionComponent expanded={expanded==='panel20'} onChange={closeAccordion('panel20')} question={`How do i make an order`} answer={`Just fill in the contact form and we'll be in touch`}/>
                         </div>
+                        <CtaButton id="show-more" onClick={toggleQuestionsShown}>
+                            {showMore?"Show less":"Show more"}
+                        </CtaButton>
                     </div>
                 </div>
             </div>
