@@ -122,6 +122,10 @@ h3{
     text-align: center;
 }
 
+#show-more{
+    display: none;
+}
+
 @media only screen and (max-width:480px){
 
     .faq-breadcrumb, .support-contact, .faq{
@@ -146,5 +150,23 @@ h3{
 
     .support-channels{
         width: 100%;
+    }
+
+    #show-more{
+        display: block;
+        background-color: brown;
+        border-radius: 30px;
+        color: white;
+    }
+
+    .faq-cards .questions:nth-child(2){
+        display: none;
+        transition: all ease 1s !important;
+        opacity: 0;
+    }
+
+    .show-questions{
+        display: flex !important; 
+        opacity: 1 !important;
     }
 }
