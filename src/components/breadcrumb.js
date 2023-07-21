@@ -10,10 +10,10 @@ const FAQBreadcrumb=()=>{
     return(
         <React.Fragment>
             <div className="breadcrumbs">
-                <Link to={`/`} className={location.pathname=='/'?"active-breadcrumb":"inactive-breadcrumb"}>
+                <Link to={`/`} className={location.pathname==='/'?"active-breadcrumb":"inactive-breadcrumb"}>
                     home
                 </Link><span className="arrow-right"><i><IoIosArrowForward/></i></span>
-                <Link to={``} className={location.pathname=='/faq'?"active-breadcrumb":"inactive-breadcrumb"}>
+                <Link to={``} className={location.pathname==='/faq'?"active-breadcrumb":"inactive-breadcrumb"}>
                     faq
                 </Link>
             </div>
@@ -28,10 +28,10 @@ const Breadcrumbs=()=>{
     return(
         <React.Fragment>
             <div className="breadcrumbs">
-                <Link to={`/`} className={location.pathname=='/'?"active-breadcrumb":"inactive-breadcrumb"}>
+                <Link to={`/`} className={location.pathname==='/'?"active-breadcrumb":"inactive-breadcrumb"}>
                     home
                 </Link><span className="arrow-right"><i><IoIosArrowForward/></i></span>
-                <Link to={``} className={location.pathname=='/about'?"active-breadcrumb":"inactive-breadcrumb"}>
+                <Link to={``} className={location.pathname==='/about'?"active-breadcrumb":"inactive-breadcrumb"}>
                     about us
                 </Link>
 
