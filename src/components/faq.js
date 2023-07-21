@@ -64,7 +64,7 @@ const FAQ=()=>{
                         <SectionHeader heading={`Did not find what you were looking for?`}tagline={`Get in touch with our support team and we will have 
                         your issue sorted within no time.`} />
                         <div className="support-mail-phone">
-                            <SupportContacts icon={<BiMailSend/>} header={`Mail our support team`} details={`Get in direct contact with one of our support agents through email.`}
+                            <SupportContacts icon={<BiMailSend/>} header={`Mail us`} details={`Get in direct contact with one of our support agents through email.`}
                             to={`mailto:support@writeme.com`} contact={`support@writeme.com`} />
                             <SupportContacts icon={<BsFacebook/>} header={`Let's chat on social media`} details={`Contact us via Facebook and we shall answer all your questions and provide adequate assistance.`}
                             to={``} contact={`Write_Me`}/>
