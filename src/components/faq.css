@@ -1,4 +1,4 @@
-.faq-breadcrumb, .support-contact{
+.faq-breadcrumb, .support-contact, .faq{
     margin:0 auto;
     width: 75%;
 }
@@ -43,8 +43,6 @@
 }
 
 .faq{
-    margin: 0 auto;
-    width: 75%;
     padding:50px 0 70px 0
 }
 
@@ -118,4 +116,35 @@
     margin: 30px 0 0 0;
     font-weight: bold;
     text-decoration: none;
+}
+
+h3{
+    text-align: center;
+}
+
+@media only screen and (max-width:480px){
+
+    .faq-breadcrumb, .support-contact, .faq{
+        width: 95%;
+    }
+
+    .search-bar form{
+        width: 95%;
+    }
+
+    .faq-cards{
+        gap: 10px;
+    }
+
+    .questions{
+        width: 100%;
+    }
+
+    .support-mail-phone{
+        gap: 40px;
+    }
+
+    .support-channels{
+        width: 100%;
+    }
 }
