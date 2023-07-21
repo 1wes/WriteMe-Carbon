@@ -53,13 +53,14 @@ const ServicesCard=()=>{
     )
 }
 
-const CtaButton=({onClick, message, id, type})=>{
+const CtaButton=({onClick, message, id, type, children})=>{
 
     return(
         <React.Fragment>
             <div className='button'>
                 <button type={type}  id={id} className='cta-btn' onClick={onClick}>
                     {message}
+                    {children}
                 </button>
             </div>
         </React.Fragment>
