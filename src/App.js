@@ -8,6 +8,7 @@ import Services from './components/services';
 import Contact from './components/contact';
 import Footer from './components/footer';
 import { MobileNavbar } from './components/navbar';
+import Bloglist from './components/bloglist';
 
 const App=()=>{
 
@@ -20,6 +21,7 @@ const App=()=>{
       <Disciplines/>
       <Services/>
       <Contact/>
+      <Bloglist/>
       <Footer/>
     </React.Fragment>
   )
