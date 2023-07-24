@@ -142,8 +142,13 @@ h3{
         width: 95%;
     }
 
+    .faq{
+        padding: 25px 0 35px 0;
+    }
+
     .faq-cards{
         gap: 0px;
+        margin-top: 25px;
     }
 
     .questions{
