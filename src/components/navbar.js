@@ -52,9 +52,18 @@ let MobileNavbar=()=>{
 
         let menu=document.getElementById('dropdown');
 
-        menu.classList.remove('show-menu')
+        menu.classList.remove('show-menu');
 
         goToSection('contact-form-section');
+    }
+
+    const goToBloglist=()=>{
+
+        let menu=document.getElementById('dropdown');
+
+        menu.classList.remove('show-menu');
+
+        goToSection('bloglist-section')
     }
 
 
@@ -81,11 +90,9 @@ let MobileNavbar=()=>{
                                     <li onClick={goToBenefits}>Why us</li>
                                     <li onClick={goToDisciplines}>Disciplines</li>
                                     <li onClick={gotToContact}>Contact us</li>
-                                    <Link className="link" to={`/`}>
-                                        <li onClick={closeMenu}>
-                                            Blog
-                                        </li>
-                                    </Link>
+                                    <li onClick={goToBloglist}>
+                                        Blog
+                                    </li>
                                     <Link className="link" to={`/faq`}>
                                         <li onClick={closeMenu}>
                                             FAQ
@@ -118,6 +125,11 @@ const Navbar=()=>{
         goToSection('contact-form-section');
     }
 
+    const goToBloglist=()=>{
+
+        goToSection('bloglist-section');
+    }
+
     return(
         <React.Fragment>
             <nav className="section" id="navbar-section">
@@ -132,9 +144,7 @@ const Navbar=()=>{
                         <li onClick={goToBenefits}>Why us</li>
                         <li onClick={goToDisciplines}>Disciplines</li>
                         <li onClick={gotToContact}>Contact us</li>
-                        <Link className="link" to={``}>
-                            <li>Blog</li>
-                        </Link>
+                        <li onClick={goToBloglist}>Blog</li>
                         <Link className="link" to={`/faq`}>
                             <li>FAQ</li>
                         </Link>
