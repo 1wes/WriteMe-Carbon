@@ -1,6 +1,7 @@
 #bloglist-section{
     background-color: white;
-    height: 100vh;
+    height: 100%;
+    padding-bottom: 70px;
 }
 
 .bloglist{
