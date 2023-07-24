@@ -90,12 +90,18 @@
 
 .support-channels{
     width: 35%;
-    background-color: whitesmoke;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+    transition: all ease 1s;
+}
+
+.support-channels:hover{
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
 }
 
 .support-icon i{
@@ -137,7 +143,7 @@ h3{
     }
 
     .faq-cards{
-        gap: 10px;
+        gap: 0px;
     }
 
     .questions{
@@ -168,5 +174,9 @@ h3{
     .show-questions{
         display: flex !important; 
         opacity: 1 !important;
+    }
+
+    .accordion{
+        margin-bottom: 10px;
     }
 }
