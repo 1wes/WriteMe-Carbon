@@ -22,7 +22,7 @@ const NewerContent=()=>{
             <div className='new-content-card'>
                 <div className='blog-content-card'>
                     <div className='blog-image'>
-                        <img src={require('../testi2.jpeg')} />
+                        <img src={require('../blog.jpeg')} alt='blog-cover' />
                         <div className='date-posted'>
                             May 31st, 2023
                         </div>
@@ -55,7 +55,28 @@ const OlderContent=()=>{
 
     return(
         <React.Fragment>
-            <div>
+            <div className='old-content-card'>
+                <div className='hr-blog-content-card'>
+                    <div className='blog-image' id='hr-blog-image'>
+                        <img src={require('../blog.jpeg')} alt='blog-cover'/>
+                        <div className='date-posted'>
+                            May 31st, 2023
+                        </div>
+                    </div>
+                    <div className='hr-blog-details'>
+                        <h3 className='hr-bloglist-header'>
+                            <Link id='bloglist-link'>
+                                Why are many people opting for APA?
+                            </Link>
+                        </h3>
+
+                        <p className='hr-bloglist-details'>
+                        We are determined to ensure that our clients
+                         are highly satisfied and will get value for 
+                         their money.
+                        </p>
+                    </div>
+                </div>
             </div>
         </React.Fragment>
     )
@@ -74,6 +95,8 @@ const Bloglist=()=>{
                             <NewerContent/> 
                         </div>
                         <div className='older-content'>
+                            <OlderContent/>
+                            <OlderContent/>
                             <OlderContent/>
                         </div>
                     </div>
