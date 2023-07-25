@@ -1,6 +1,6 @@
 import React from 'react';
 import './blogpost.css';
-import Navbar from './navbar';
+import Navbar, { MobileNavbar } from './navbar';
 import Footer from './footer';
 import { BlogBreadcrumb } from './breadcrumb';
 import { CiCamera } from 'react-icons/ci';
@@ -53,6 +53,7 @@ const Blogpost=()=>{
     return(
         <React.Fragment>
             <Navbar/>
+            <MobileNavbar/>
             <main className='section' id='blogpost-section'>
                 <section className='blogpost'>
                     <BlogBreadcrumb title={`Why many people prefer APA`} />
