@@ -110,7 +110,7 @@ article::first-letter{
     }
 
     .blog-metadata{
-        font-size: 17px;
+        font-size: 15px;
     }
 
     .blog-metadata p:not(:last-child)::after{
