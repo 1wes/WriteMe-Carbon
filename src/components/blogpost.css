@@ -101,13 +101,16 @@ article::first-letter{
     }
 
     .blog-tagline{
-        font-size: 20px;
+        font-size: 18px;
         line-height: 28px;
     }
 
     .author{
-        font-size: 14px;
         align-items: center;
+    }
+
+    .blog-metadata{
+        font-size: 17px;
     }
 
     .blog-metadata p:not(:last-child)::after{
