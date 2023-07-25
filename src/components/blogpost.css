@@ -116,6 +116,10 @@ article::first-letter{
         margin: 0 5px;
     }
 
+    .blog-article{
+        font-size: 15px;
+    }
+
     .blog-cover img{
         border-radius: 7px;
     }

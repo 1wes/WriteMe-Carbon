@@ -74,4 +74,8 @@
     .sector-icon i{
         font-size: 30px;
     }
+
+    .sector-name{
+        font-size: 15px;
+    }
 }
