@@ -162,5 +162,22 @@
     line-height: 22px;
 }
 
+@media only screen and (max-width:768px){
 
+    .bloglist{
+        width: 95%;
+    }
+
+    .newer-content{
+        width: 100%;
+    }
+    .older-content{
+        width: 100%;
+        gap: 20px;
+    }
+
+    .new-content-card{
+        width: 100%;
+    }
+}
 
