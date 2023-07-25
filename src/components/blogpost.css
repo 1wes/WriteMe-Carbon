@@ -121,6 +121,7 @@ article::first-letter{
 
     .blog-article{
         font-size: 17px;
+        line-height: 28px;
     }
 
     .blog-cover img{
