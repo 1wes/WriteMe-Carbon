@@ -25,6 +25,7 @@
 
 .blog-metadata{
     display: flex;
+    align-items: center;
 }
 
 .author{
@@ -82,4 +83,41 @@ article::first-letter{
     line-height: 0.9;
     margin: 0 10px 0 -10px;
     left: 0 !important;
+}
+
+@media only screen and (max-width:480px){
+
+    .blogpost{
+        width: 95%;
+    }
+
+    .blog-layout{
+        width: 100%;
+    }
+
+    .blog-title{
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .blog-tagline{
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .author{
+        font-size: 14px;
+        align-items: center;
+    }
+
+    .blog-metadata p:not(:last-child)::after{
+        height: 6px;
+        width: 6px;
+        margin: 0 5px;
+    }
+
+    .blog-cover img{
+        border-radius: 7px;
+    }
+
 }
