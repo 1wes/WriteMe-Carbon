@@ -120,4 +120,13 @@ article::first-letter{
         border-radius: 7px;
     }
 
+    .blog-article{
+        line-height: 30px;
+        font-size: 19px;
+    }
+
+    article::first-letter{
+        line-height: 0.8;
+    }
+
 }
