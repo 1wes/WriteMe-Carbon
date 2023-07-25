@@ -40,7 +40,7 @@ const NewerContent=()=>{
                         </p>
 
                         <div> 
-                            <Link className='read-more' onMouseOver={changeIcon} onMouseOut={removeIcon} >
+                            <Link to={`/blog/12`} className='read-more' onMouseOver={changeIcon} onMouseOut={removeIcon} >
                                 Read More <i>{longArrow?<BsArrowRight/>:<BiChevronRight/>}</i>
                             </Link>
                         </div>
@@ -65,7 +65,7 @@ const OlderContent=()=>{
                     </div>
                     <div className='hr-blog-details'>
                         <h3 className='hr-bloglist-header'>
-                            <Link id='bloglist-link'>
+                            <Link to={`/blog/3`} id='bloglist-link'>
                                 Why are many people opting for APA?
                             </Link>
                         </h3>
