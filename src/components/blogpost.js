@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './blogpost.css';
 import Navbar, { MobileNavbar } from './navbar';
 import Footer from './footer';
 import { BlogBreadcrumb } from './breadcrumb';
 import { CiCamera } from 'react-icons/ci';
+import { useLocation } from 'react-router-dom';
 
 const BlogLayout=()=>{
 
@@ -50,13 +51,27 @@ const BlogLayout=()=>{
 
 const Blogpost=()=>{
 
+    const [queryParam, setQueryParam]=useState(null);
+
+    const location=useLocation();
+
+    useEffect(()=>{
+
+        const blogUrl=location.pathname.split("/")[2]
+
+        const escapedUrl=blogUrl.replace(/%20/g, ' ');
+
+        setQueryParam(escapedUrl);
+    
+    },[])
+
     return(
         <React.Fragment>
             <Navbar/>
             <MobileNavbar/>
             <main className='section' id='blogpost-section'>
                 <section className='blogpost'>
-                    <BlogBreadcrumb title={`Why many people prefer APA`} />
+                    <BlogBreadcrumb title={queryParam} />
                     <BlogLayout/>
                 </section>
             </main>
