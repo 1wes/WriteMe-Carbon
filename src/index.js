@@ -14,7 +14,7 @@ root.render(
       <Route path='/' element={<App/>}></Route>
       <Route path='/about' element={<About/>}></Route>
       <Route path='/faq' element={<FAQ/>}/>
-      <Route path='/blog/:id' element={<Blogpost/>}></Route>
+      <Route path='/blog/:slug' element={<Blogpost/>}></Route>
     </Routes>
   </HashRouter>
 );
