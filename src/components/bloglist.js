@@ -14,7 +14,7 @@ const butter=Butter(API);
 
 const fetcher=url=>axios.get(url).then(res=>res.data.data);
 
-const NewerContent=({src,alt,published, title, summary })=>{
+const NewerContent=({src,alt,published, title, summary, link })=>{
 
     const [longArrow, setLongArrow]=useState(false);
 
@@ -46,7 +46,7 @@ const NewerContent=({src,alt,published, title, summary })=>{
                         </p>
 
                         <div> 
-                            <Link to={`/blog/12`} className='read-more' onMouseOver={changeIcon} onMouseOut={removeIcon} >
+                            <Link to={link} className='read-more' onMouseOver={changeIcon} onMouseOut={removeIcon} >
                                 Read More <i>{longArrow?<BsArrowRight/>:<BiChevronRight/>}</i>
                             </Link>
                         </div>
@@ -94,6 +94,8 @@ const Bloglist=()=>{
 
     const blogPosts=data;
 
+    console.log(blogPosts);
+
     return(
         <React.Fragment>
             <section className='section' id='bloglist-section'>
@@ -104,7 +106,8 @@ const Bloglist=()=>{
                             {
                                 blogPosts?blogPosts.map((post)=>{
                                     return(
-                                        <NewerContent key={post.slug} title={post.title} summary={post.summary} published={post.published.split("T")[0]} alt={post.featured_image_alt} src={post.featured_image} />
+                                        <NewerContent key={post.slug} title={post.title} summary={post.summary} published={post.published.split("T")[0]} alt={post.featured_image_alt}
+                                         src={post.featured_image} link={`/blog/${post.title}`} />
                                     )
                                 }):<NewerContent/>
                             }
