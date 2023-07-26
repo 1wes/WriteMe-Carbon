@@ -1,11 +1,20 @@
-import React , {useState} from 'react';
+import React , {useEffect, useState} from 'react';
 import './bloglist.css';
 import SectionHeader from "./heading";
 import {BiChevronRight} from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import {BsArrowRight} from 'react-icons/bs';
+import axios from 'axios';
+import useSWR from 'swr';
+import Butter from 'buttercms';
 
-const NewerContent=()=>{
+const API=process.env.REACT_APP_BLOG_API_KEY;
+
+const butter=Butter(API);
+
+const fetcher=url=>axios.get(url).then(res=>res.data.data);
+
+const NewerContent=({src,alt,published, title, summary })=>{
 
     const [longArrow, setLongArrow]=useState(false);
 
@@ -22,21 +31,18 @@ const NewerContent=()=>{
             <div className='new-content-card'>
                 <div className='blog-content-card'>
                     <div className='blog-image'>
-                        <img src={require('../blog.jpeg')} alt='blog-cover' />
+                        <img src={src} alt={alt} />
                         <div className='date-posted'>
-                            May 31st, 2023
+                            {published}
                         </div>
                     </div>
                     <div className='blog-details'>
                         <h2 className='bloglist-header'>
-                            Learn how to write Awesome papers
+                            {title}
                         </h2>
 
                         <p className='bloglist-details'>
-                        We are determined to ensure that our clients are 
-                        highly satisfied and will get value for their money. 
-                        We allow for revisions and chargebacks when clients 
-                        are unsatisfied with the services offered.
+                            {summary}
                         </p>
 
                         <div> 
@@ -84,6 +90,12 @@ const OlderContent=()=>{
 
 const Bloglist=()=>{
 
+    const {isLoading,data}=useSWR(`https://api.buttercms.com/v2/posts?auth_token=${API}` ,fetcher);
+
+    const blogPosts=data;
+
+    console.log(blogPosts)
+
     return(
         <React.Fragment>
             <section className='section' id='bloglist-section'>
@@ -91,8 +103,13 @@ const Bloglist=()=>{
                     <SectionHeader heading={`Latest News`} />
                     <div className='bloglist-content'>
                         <div className='newer-content'>
-                            <NewerContent/>
-                            <NewerContent/> 
+                            {
+                                blogPosts?blogPosts.map((post)=>{
+                                    return(
+                                        <NewerContent key={post.slug} title={post.title} summary={post.summary} published={post.published} alt={post.featured_image_alt} src={post.featured_image} />
+                                    )
+                                }):console.log("nothing")
+                            }
                         </div>
                         <div className='older-content'>
                             <OlderContent/>
