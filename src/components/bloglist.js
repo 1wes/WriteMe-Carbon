@@ -94,8 +94,6 @@ const Bloglist=()=>{
 
     const blogPosts=data;
 
-    console.log(blogPosts)
-
     return(
         <React.Fragment>
             <section className='section' id='bloglist-section'>
@@ -106,9 +104,9 @@ const Bloglist=()=>{
                             {
                                 blogPosts?blogPosts.map((post)=>{
                                     return(
-                                        <NewerContent key={post.slug} title={post.title} summary={post.summary} published={post.published} alt={post.featured_image_alt} src={post.featured_image} />
+                                        <NewerContent key={post.slug} title={post.title} summary={post.summary} published={post.published.split("T")[0]} alt={post.featured_image_alt} src={post.featured_image} />
                                     )
-                                }):console.log("nothing")
+                                }):<NewerContent/>
                             }
                         </div>
                         <div className='older-content'>
