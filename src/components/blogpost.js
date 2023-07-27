@@ -1,49 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './blogpost.css';
 import Navbar, { MobileNavbar } from './navbar';
 import Footer from './footer';
 import { BlogBreadcrumb } from './breadcrumb';
 import { CiCamera } from 'react-icons/ci';
 import { useLocation } from 'react-router-dom';
+import useSWR from 'swr';
+import axios from 'axios';
 
-const BlogLayout=()=>{
+const fetcher=url=>axios.get(url).then(res=>res.data.data);
+
+const API=process.env.REACT_APP_BLOG_API_KEY;
+
+const BlogLayout=({title, tagline, author, time, date, body, src, alt})=>{
 
     return(
         <React.Fragment>
             <section className='blog-layout'>
                 <h1 className='blog-title'>
-                    What to do about your traction slide when you don't have revenue yet
+                    {title}
                 </h1>
 
                 <h3 className='blog-tagline'>
-                    Your traction slide needs to describe the risk you've designed out of the business
+                    {tagline}
                 </h3>
                 <div className='blog-metadata'>
-                    <p className='author'>Kevin McSereti</p>
-                    <p>14:23 GMT +3</p>
-                    <p>Fri, Jul 26, 2023</p>
+                    <p className='author'>{author}</p>
+                    <p>{time}</p>
+                    <p>{date}</p>
                 </div>
                 <div className='blog-cover'>
-                    <img src={require('../blog.jpeg')} alt='blog-topic' />
+                    <img src={src} alt={alt} />
                 </div>
-                <p className='image-credit'><i><CiCamera/></i><span> Image credits </span>: Personal Album</p>
-                <article className='blog-article'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-                 anim id est laborum
-                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-                 totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae 
-                 dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-                 sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam 
-                 est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi 
-                 tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
-                  nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? 
-                  Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-                   vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                </article>
+                <p className='image-credit'><i><CiCamera/></i><span> Image credits </span>: via ButterCMS</p>
+                <article className='blog-article' dangerouslySetInnerHTML={{__html:body}} />
             </section>
         </React.Fragment>
     )
@@ -51,28 +41,30 @@ const BlogLayout=()=>{
 
 const Blogpost=()=>{
 
-    const [queryParam, setQueryParam]=useState(null);
-
     const location=useLocation();
 
-    useEffect(()=>{
+    const slug=location.pathname.split("/")[2];    
 
-        const blogUrl=location.pathname.split("/")[2]
+    console.log(slug)
 
-        const escapedUrl=blogUrl.replace(/%20/g, ' ');
+    const {data}=useSWR(`https://api.buttercms.com/v2/posts/${slug}/?auth_token=${API}`, fetcher);
 
-        setQueryParam(escapedUrl);
-    
-    },[])
+    const post=data;
 
+    console.log(post)
     return(
         <React.Fragment>
             <Navbar/>
             <MobileNavbar/>
             <main className='section' id='blogpost-section'>
                 <section className='blogpost'>
-                    <BlogBreadcrumb title={queryParam} />
-                    <BlogLayout/>
+                    {
+                        post?<BlogBreadcrumb title={post.title}/>:<BlogBreadcrumb/>
+                    }
+                    {
+                        post?<BlogLayout title={post.title} tagline={post.meta_description} author={post.author.first_name+""+post.author.last_name} time={post.published.split("T")[1]}
+                        date={post.published.split("T")[0]} alt={post.featured_image_alt} src={post.featured_image} body={post.body}/>:<BlogLayout/>
+                    }
                 </section>
             </main>
             <Footer/>
