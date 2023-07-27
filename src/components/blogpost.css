@@ -167,7 +167,7 @@ article img{
 
 .author-bio{
     border-bottom: 1px solid rgba(165, 42, 42, 0.205);
-    padding-bottom: 20px;
+    padding-bottom: 30px;
     line-height: 24px;
 }
 
@@ -231,6 +231,10 @@ article img{
         height: 80px;
         width: 80px;
         margin-top: -11%;
+    }
+
+    a.author-bio{
+        padding-bottom: 20px;
     }
 
     .cover span:first-child, .bio-holder{
