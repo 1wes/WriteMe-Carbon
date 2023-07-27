@@ -1,4 +1,4 @@
-import React , {useEffect, useState} from 'react';
+import React , { useState } from 'react';
 import './bloglist.css';
 import SectionHeader from "./heading";
 import {BiChevronRight} from 'react-icons/bi';
@@ -6,11 +6,8 @@ import { Link } from 'react-router-dom';
 import {BsArrowRight} from 'react-icons/bs';
 import axios from 'axios';
 import useSWR from 'swr';
-import Butter from 'buttercms';
 
 const API=process.env.REACT_APP_BLOG_API_KEY;
-
-const butter=Butter(API);
 
 const fetcher=url=>axios.get(url).then(res=>res.data.data);
 
@@ -90,7 +87,7 @@ const OlderContent=()=>{
 
 const Bloglist=()=>{
 
-    const {isLoading,data}=useSWR(`https://api.buttercms.com/v2/posts?auth_token=${API}` ,fetcher);
+    const {data}=useSWR(`https://api.buttercms.com/v2/posts?auth_token=${API}` ,fetcher);
 
     const blogPosts=data;
 
