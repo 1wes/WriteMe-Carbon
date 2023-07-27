@@ -54,29 +54,27 @@ const NewerContent=({src,alt,published, title, summary, link })=>{
     )
 }
 
-const OlderContent=()=>{
+const OlderContent=({date, link, title, summary, image, alt})=>{
 
     return(
         <React.Fragment>
             <div className='old-content-card'>
                 <div className='hr-blog-content-card'>
                     <div className='blog-image' id='hr-blog-image'>
-                        <img src={require('../blog.jpeg')} alt='blog-cover'/>
+                        <img src={image} alt={alt}/>
                         <div className='date-posted'>
-                            May 31st, 2023
+                            {date}
                         </div>
                     </div>
                     <div className='hr-blog-details'>
                         <h3 className='hr-bloglist-header'>
-                            <Link to={`/blog/3`} id='bloglist-link'>
-                                Why are many people opting for APA?
+                            <Link to={link} id='bloglist-link'>
+                                {title}
                             </Link>
                         </h3>
 
                         <p className='hr-bloglist-details'>
-                        We are determined to ensure that our clients
-                         are highly satisfied and will get value for 
-                         their money.
+                            {summary}
                         </p>
                     </div>
                 </div>
@@ -101,16 +99,22 @@ const Bloglist=()=>{
                             {
                                 blogPosts?blogPosts.slice(0, 2).map((post)=>{
                                     return(
-                                        <NewerContent key={post.slug} title={post.title} summary={post.summary} published={post.published.split("T")[0]} alt={post.featured_image_alt}
+                                        <NewerContent key={post.slug} title={post.title} summary={post.summary.substring(0, 322)+"..."} published={post.published.split("T")[0]} 
+                                        alt={post.featured_image_alt}
                                          src={post.featured_image} link={`/blog/${post.slug}`} />
                                     )
                                 }):<NewerContent/>
                             }
                         </div>
                         <div className='older-content'>
-                            <OlderContent/>
-                            <OlderContent/>
-                            <OlderContent/>
+                            {
+                                blogPosts?blogPosts.slice(2, blogPosts.length).map((post)=>{
+                                    return(
+                                        <OlderContent key={post.slug} title={post.title} image={post.featured_image} link={`/blog/${post.slug}`} date={post.published.split("T")[0]}
+                                        alt={post.featured_image_alt} summary={post.summary.substring(0, 110)+"..."} />
+                                    )
+                                }):<OlderContent/>
+                            }
                         </div>
                     </div>
                 </div>
