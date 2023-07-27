@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import './bloglist.css';
 import SectionHeader from "./heading";
 import {BiChevronRight} from 'react-icons/bi';
@@ -99,7 +99,7 @@ const Bloglist=()=>{
                     <div className='bloglist-content'>
                         <div className='newer-content'>
                             {
-                                blogPosts?blogPosts.map((post)=>{
+                                blogPosts?blogPosts.slice(0, 2).map((post)=>{
                                     return(
                                         <NewerContent key={post.slug} title={post.title} summary={post.summary} published={post.published.split("T")[0]} alt={post.featured_image_alt}
                                          src={post.featured_image} link={`/blog/${post.slug}`} />
