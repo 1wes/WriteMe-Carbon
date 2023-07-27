@@ -85,7 +85,7 @@ article::first-letter{
     left: 0 !important;
 }
 
-img{
+article img{
     border-radius: 10px;
     height: auto;
     width: 100%;
