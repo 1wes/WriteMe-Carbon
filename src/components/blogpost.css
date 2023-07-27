@@ -85,6 +85,13 @@ article::first-letter{
     left: 0 !important;
 }
 
+img{
+    border-radius: 10px;
+    height: auto;
+    width: 100%;
+    text-align: left;
+}
+
 @media only screen and (max-width:480px){
 
     .blogpost{
@@ -124,7 +131,7 @@ article::first-letter{
         line-height: 28px;
     }
 
-    .blog-cover img{
+    .blog-cover img, img{
         border-radius: 7px;
     }
 
