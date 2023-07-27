@@ -49,8 +49,10 @@ const BlogLayout=({title, tagline, author, time, date, body, src, alt,tags, auth
                             <div className='bio'>
                                 <span className='title'>{authorTitle}</span>
                                 <p className='author-bio'>{bio}</p>
-                                <CtaButton message={`Hire me`} />
                             </div>
+                        </div>
+                        <div className='prompt-btn'>
+                            <CtaButton id={`profile-btn`} message={`Hire me`} />
                         </div>
                 </div>
             </section>
