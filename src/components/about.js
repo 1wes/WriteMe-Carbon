@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useLayoutEffect} from "react";
 import './about.css';
 import Navbar from "./navbar";
 import Footer from "./footer";
@@ -7,6 +7,10 @@ import { MobileNavbar } from "./navbar";
 import SectionHeader from "./heading";
 
 const About=()=>{
+
+    useLayoutEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
 
     return(
         <React.Fragment>

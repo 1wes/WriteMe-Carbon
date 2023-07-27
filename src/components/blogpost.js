@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import './blogpost.css';
 import Navbar, { MobileNavbar } from './navbar';
 import Footer from './footer';
@@ -80,6 +80,10 @@ const Blogpost=()=>{
     const {data}=useSWR(`https://api.buttercms.com/v2/posts/${slug}/?auth_token=${API}`, fetcher);
 
     const post=data;
+    
+    useLayoutEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
 
     return(
         <React.Fragment>

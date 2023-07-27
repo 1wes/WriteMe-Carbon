@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useLayoutEffect} from "react";
 import './faq.css';
 import Navbar from "./navbar";
 import { MobileNavbar } from "./navbar";
@@ -77,6 +77,10 @@ const FAQ=()=>{
     const [searchQuery, setSearchQuery]=useState('');
     const [expanded, setExpanded]=useState(false);
     const [showMore, setShowMore]=useState(false);
+
+    useLayoutEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
 
     const closeAccordion=(panel)=>(event, isExpanded)=>{
         setExpanded(isExpanded ? panel : false)
