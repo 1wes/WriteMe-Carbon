@@ -215,7 +215,7 @@ article img{
         line-height: 28px;
     }
 
-    .blog-cover img, img{
+    .blog-cover img, article img{
         border-radius: 7px;
     }
 
