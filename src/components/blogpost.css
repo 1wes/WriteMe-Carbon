@@ -167,8 +167,8 @@ article img{
 
 .author-bio{
     border-bottom: 1px solid rgba(165, 42, 42, 0.205);
-    padding-bottom: 30px;
-    line-height: 26px;
+    padding-bottom: 20px;
+    line-height: 24px;
 }
 
 .title{
@@ -239,6 +239,10 @@ article img{
 
     .author-profile-name, .bio{
         width: 72%;
+    }
+
+    .prompt-btn{
+        margin-top: -25px;
     }
 
 }
