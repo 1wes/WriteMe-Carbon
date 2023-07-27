@@ -89,7 +89,84 @@ img{
     border-radius: 10px;
     height: auto;
     width: 100%;
-    text-align: left;
+}
+
+.tags{
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.tags span{
+    background-color: rgba(165, 42, 42, 0.2);
+    padding: 10px;
+    color: brown;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.author-profile{
+    background-color: white;
+    margin: 50px 0;
+}
+
+.cover{
+    background-color: rgba(165, 42, 42, 0.2);
+    height: 10vh;
+    padding: 20px 20px 5px 20px;
+    display: flex;
+}
+
+.author-details{
+    height: 100%;
+    padding: 20px;
+    position: relative;
+    display: flex;
+}
+
+.author-details img{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    margin-top: -5.5%;
+    outline: 3px solid white;
+    display: flex;
+}
+
+.cover span:first-child{
+    width: 13%;
+}
+
+.author-profile-name{
+    width: 87%;
+    font-weight: bold;
+    display: flex;
+    align-items:end;
+    font-size: 20px;
+    color: brown;
+}
+
+.bio-holder{
+    width: 13%;
+    height: 100%;
+}
+
+.bio{
+    width: 87%;
+}
+
+.author-bio{
+    border-bottom: 1px solid rgba(165, 42, 42, 0.205);
+    padding-bottom: 28px;
+}
+
+.title{
+    font-size: 16px;
+    font-weight: 500;
 }
 
 @media only screen and (max-width:480px){
@@ -123,7 +200,7 @@ img{
     .blog-metadata p:not(:last-child)::after{
         height: 6px;
         width: 6px;
-        margin: 0 5px;
+        margin: 0 10px;
     }
 
     .blog-article{
