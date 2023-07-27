@@ -75,13 +75,10 @@ const Blogpost=()=>{
 
     const slug=location.pathname.split("/")[2];    
 
-    console.log(slug)
-
     const {data}=useSWR(`https://api.buttercms.com/v2/posts/${slug}/?auth_token=${API}`, fetcher);
 
     const post=data;
 
-    console.log(post)
     return(
         <React.Fragment>
             <Navbar/>
@@ -93,7 +90,7 @@ const Blogpost=()=>{
                     }
                     {
                         post?<BlogLayout title={post.title} tagline={post.meta_description} author={`${post.author.first_name} ${post.author.last_name}`}
-                         time={post.published.split("T")[1]} tags={post.tags.map((tag)=>{return(<Tags tagName={tag.name} />)})} authorTitle={post.author.title}
+                         time={post.published.split("T")[1]} tags={post.tags.map((tag)=>{return(<Tags key={tag.slug} tagName={tag.name} />)})} authorTitle={post.author.title}
                          authorName={`${post.author.first_name} ${post.author.last_name}`} bio={post.author.bio} avatar={post.author.profile_image}
                         date={post.published.split("T")[0]} alt={post.featured_image_alt} src={post.featured_image} body={post.body}/>:<BlogLayout/>
                     }

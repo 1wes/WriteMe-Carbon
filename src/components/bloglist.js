@@ -91,8 +91,6 @@ const Bloglist=()=>{
 
     const blogPosts=data;
 
-    console.log(blogPosts);
-
     return(
         <React.Fragment>
             <section className='section' id='bloglist-section'>
