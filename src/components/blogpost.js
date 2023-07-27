@@ -62,7 +62,7 @@ const Blogpost=()=>{
                         post?<BlogBreadcrumb title={post.title}/>:<BlogBreadcrumb/>
                     }
                     {
-                        post?<BlogLayout title={post.title} tagline={post.meta_description} author={post.author.first_name+""+post.author.last_name} time={post.published.split("T")[1]}
+                        post?<BlogLayout title={post.title} tagline={post.meta_description} author={`${post.author.first_name} ${post.author.last_name}`} time={post.published.split("T")[1]}
                         date={post.published.split("T")[0]} alt={post.featured_image_alt} src={post.featured_image} body={post.body}/>:<BlogLayout/>
                     }
                 </section>
