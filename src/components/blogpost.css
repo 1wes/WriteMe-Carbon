@@ -109,6 +109,8 @@ img{
 .author-profile{
     background-color: white;
     margin: 50px 0;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .cover{
@@ -162,6 +164,7 @@ img{
 .author-bio{
     border-bottom: 1px solid rgba(165, 42, 42, 0.205);
     padding-bottom: 28px;
+    line-height: 26px;
 }
 
 .title{
@@ -214,6 +217,24 @@ img{
 
     article::first-letter{
         line-height: 0.8;
+    }
+
+    .author-details{
+        padding: 10px;
+    }
+
+    .author-details img{
+        height: 80px;
+        width: 80px;
+        margin-top: -11%;
+    }
+
+    .cover span:first-child, .bio-holder{
+        width: 28%;
+    }
+
+    .author-profile-name, .bio{
+        width: 72%;
     }
 
 }
