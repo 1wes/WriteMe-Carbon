@@ -181,3 +181,26 @@
     }
 }
 
+@media only screen and (max-width:375px){
+
+    .read-more{
+        width: 100%;
+        align-items: center;
+    }
+
+    .read-more i{
+        margin-top: 1.4px;
+    }
+
+    #hr-blog-image{
+        width: 30%;
+    }
+
+    #hr-blog-details{
+        width: 70%;
+    }
+
+    .hr-blog-content-card{
+        height: 180px;
+    }
+}
