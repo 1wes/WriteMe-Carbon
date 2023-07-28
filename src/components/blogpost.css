@@ -151,7 +151,7 @@ article img{
     width: 87%;
     font-weight: bold;
     display: flex;
-    align-items:end;
+    align-items:flex-end;
     font-size: 20px;
     color: brown;
 }
