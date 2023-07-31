@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 import {BsArrowRight} from 'react-icons/bs';
 import axios from 'axios';
 import useSWR from 'swr';
-import Loader from './loader';
-import { NewContentLoader } from './loader';
+import  OldContentLoader,{ NewContentLoader } from './loader';
 
 const API=process.env.REACT_APP_BLOG_API_KEY;
 
@@ -115,7 +114,7 @@ const Bloglist=()=>{
                                         <OlderContent key={post.slug} title={post.title} image={post.featured_image} link={`/blog/${post.slug}`} date={post.published.split("T")[0]}
                                         alt={post.featured_image_alt} summary={post.summary.substring(0, 110)+"..."} />
                                     )
-                                }):<Loader/>
+                                }):<OldContentLoader/>
                             }
                         </div>
                     </div>
