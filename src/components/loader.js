@@ -28,9 +28,9 @@ const Paragraph=()=>{
     
     return(
         <React.Fragment>
-            <p className='paragraph'>
+            <div className='paragraph'>
                 <PlaceHolderAnimation/>
-            </p>
+            </div>
         </React.Fragment>
     )
 }
@@ -79,12 +79,12 @@ const OlderContentPlaceHolder=()=>{
                             <PlaceHolderHeader/>
                         </h3>
 
-                        <p className='hr-bloglist-details'>
+                        <div className='hr-bloglist-details' id='hr-details-holder'>
                             <Paragraph/>
                             <Paragraph/>
                             <Paragraph/>
                             <Paragraph/>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>

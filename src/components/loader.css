@@ -9,6 +9,24 @@
 
 #placeholder-header{
     height: 20px;
+    margin: 0 0 20px 0;
+}
+
+#placeholder-paragraph{
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+#placeholder-paragraph .paragraph:last-child{
+    margin: 0px 0 20px 0;
+}
+
+
+#hr-details-holder{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .newer-content-loader{
