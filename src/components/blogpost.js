@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 import useSWR from 'swr';
 import axios from 'axios';
 import { CtaButton } from './services';
+import { BlogPostLoader } from './loader';
 
 const fetcher=url=>axios.get(url).then(res=>res.data.data);
 
@@ -98,7 +99,7 @@ const Blogpost=()=>{
                         post?<BlogLayout title={post.title} tagline={post.meta_description} author={`${post.author.first_name} ${post.author.last_name}`}
                          time={post.published.split("T")[1]} tags={post.tags.map((tag)=>{return(<Tags key={tag.slug} tagName={tag.name} />)})} authorTitle={post.author.title}
                          authorName={`${post.author.first_name} ${post.author.last_name}`} bio={post.author.bio} avatar={post.author.profile_image}
-                        date={post.published.split("T")[0]} alt={post.featured_image_alt} src={post.featured_image} body={post.body}/>:<BlogLayout/>
+                        date={post.published.split("T")[0]} alt={post.featured_image_alt} src={post.featured_image} body={post.body}/>:<BlogPostLoader/>
                     }
                 </section>
             </main>
