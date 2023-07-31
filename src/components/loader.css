@@ -74,6 +74,44 @@
     animation: loading ease 1.5s infinite;
 }
 
+#metadata-placeholder{
+    margin-top: 30px;
+    width: 100%;
+    gap: 10px;
+}
+
+.metadata{
+    width: 10%;
+}
+
+#article-placeholder{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.placeholder-tags{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.placeholder-tags .p-tags{
+    width: 8%;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+}
+
+.p-image{
+    background-color: whitesmoke;
+}
+
+#placeholder-bio{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
 @keyframes loading{
 
     0%{

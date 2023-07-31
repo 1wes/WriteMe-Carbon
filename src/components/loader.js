@@ -1,5 +1,8 @@
 import React from 'react';
 import './loader.css';
+import { CtaButton } from './services';
+import { CiCamera } from 'react-icons/ci';
+import { Tags } from './blogpost';
 
 const PlaceHolderAnimation=()=>{
 
@@ -116,7 +119,70 @@ const OldContentLoader=()=>{
         </React.Fragment>
     )
 }
+
+const BlogPostLoader=()=>{
+
+    return(
+        <React.Fragment>
+            <section className='blog-layout'>
+                <h1 className='blog-title'>
+                    <PlaceHolderHeader/>
+                    <PlaceHolderHeader/>
+                </h1>
+
+                <h3 className='blog-tagline'>
+                    <Paragraph/>
+                </h3>
+                <div className='blog-metadata' id='metadata-placeholder' >
+                    <div className='metadata'><Paragraph/></div>
+                    <div className='metadata'><Paragraph/></div>
+                    <div className='metadata'><Paragraph/></div>
+                </div>
+                <div className='blog-cover'>
+                    <img src={require('../placeholder.png')} alt={`placeholder`} />
+                </div>
+                <p className='image-credit'><i><CiCamera/></i><span> Image credits </span>: via ButterCMS</p>
+                <article className='blog-article' id='article-placeholder'>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <br/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <br/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                    <Paragraph/>
+                </article>
+                <div className='placeholder-tags'>
+                    <div className='p-tags'>
+                        <PlaceHolderHeader/>
+                    </div>
+                    <div className='p-tags'>
+                        <PlaceHolderHeader/>
+                    </div>
+                    <div className='p-tags'>
+                        <PlaceHolderHeader/>
+                    </div>
+                </div>
+            </section>
+        </React.Fragment>
+    )
+}
 export{
     NewContentLoader,
+    BlogPostLoader
 }
 export default OldContentLoader;
