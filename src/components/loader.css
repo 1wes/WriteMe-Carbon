@@ -1,0 +1,53 @@
+.content-placeholder{
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#placeholder-card{
+    background-color: whitesmoke;
+}
+
+#placeholder-header{
+    height: 20px;
+}
+
+.newer-content-loader{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.paragraph, #placeholder-link{
+    height: 12px;
+}
+
+.p-wrapper{
+    position: relative;
+    background-color: rgb(211, 211, 211);
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    border-radius: 5px;
+}
+
+.p-content{
+    position: absolute;
+    height: 100%;
+    width: 20%;
+    z-index: 101;
+    left: 0;
+    background-image: linear-gradient(to left, rgba(251,251,251, .05), rgba(251,251,251, .3), rgba(251,251,251, .6),
+     rgba(251,251,251, .3), rgba(251,251,251, .05));
+    animation: loading ease 1.5s infinite;
+}
+
+@keyframes loading{
+
+    0%{
+        left: 0;
+    }
+
+    100%{
+        left: 80%;
+    }
+}
