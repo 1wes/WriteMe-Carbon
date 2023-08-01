@@ -20,7 +20,7 @@ const Testimonial=({name, occupation, testimony, src})=>{
                         <i><FaQuoteLeft/></i>
                     </div>
                     <div className='quote-text'>
-                        {testimony}
+                        {testimony.substring(0, 400)}
                     </div> 
                     <div>
                         <i><FaQuoteRight/></i>
