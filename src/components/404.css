@@ -1,0 +1,53 @@
+#not-found-section{
+    height: 100vh;
+}
+
+.not-found{
+    margin:0 auto;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-direction: column;
+    height: 100%;
+}
+
+.not-found p, .not-found h1{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.not-found-punchline{
+    font-size: 40px;
+    color: brown;
+}
+
+.not-found-tagline{
+    margin: 0 auto;
+    width: 55%;
+    text-align: center;
+    line-height: 30px;
+}
+
+.highlight{
+    color: brown;
+}
+
+.redirection-links{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.notfound-links{
+    background-color: rgba(165, 42, 42, 0.5);
+    color: brown;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.notfound-links .link{
+    color: brown;
+}
