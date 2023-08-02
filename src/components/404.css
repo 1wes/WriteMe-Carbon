@@ -51,3 +51,23 @@
 .notfound-links .link{
     color: brown;
 }
+
+@media only screen and (max-width:480px){
+
+    .not-found{
+        width: 95%;
+        gap: 20px;
+    }
+
+    .not-found-tagline{
+        width:100%
+    }
+
+    .redirection-links{
+        gap: 20px;
+    }
+
+    .not-found-links{
+        padding: 15px;
+    }
+}
