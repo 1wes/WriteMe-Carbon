@@ -9,6 +9,7 @@ import Contact from './components/contact';
 import Footer from './components/footer';
 import { MobileNavbar } from './components/navbar';
 import Bloglist from './components/bloglist';
+import HowItWorks from './components/how-it-works';
 
 const App=()=>{
 
@@ -20,6 +21,7 @@ const App=()=>{
       <Benefits/>
       <Disciplines/>
       <Services/>
+      <HowItWorks/>
       <Contact/>
       <Bloglist/>
       <Footer/>
