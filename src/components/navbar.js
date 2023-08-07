@@ -4,6 +4,20 @@ import { Link } from "react-router-dom";
 import { goToSection } from "../utils.js/section";
 import {CgMenuRight, CgClose} from 'react-icons/cg';
 
+const NavButton=()=>{
+
+    return(
+
+        <React.Fragment>
+            <Link to={`/submit-assignment`}>
+                <button className="navbar-button">
+                    Submit Assignment
+                </button>
+            </Link>
+        </React.Fragment>
+    )
+}
+
 const Logo=()=>{
 
     return(
@@ -98,6 +112,9 @@ let MobileNavbar=()=>{
                                             FAQ
                                         </li>
                                     </Link>
+                                    <li>
+                                        <NavButton/>
+                                    </li>
                                 </div>
                             </div>
                         </div>
@@ -148,6 +165,9 @@ const Navbar=()=>{
                         <Link className="link" to={`/faq`}>
                             <li>FAQ</li>
                         </Link>
+                        <li>
+                            <NavButton/>
+                        </li>
                     </ul>
                 </div>
             </nav>
