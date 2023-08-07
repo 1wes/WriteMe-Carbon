@@ -18,7 +18,7 @@ const Home=()=>{
                         plagiarism and AI-free papers within the shortest time possible. Do not hesitate to reach out to us! </p>
 
                     <div className="prompt-button">
-                        <CtaButton id={`home-btn`} message={`Write Me a Paper`} onClick={goToContact}/>
+                        <CtaButton message={`Write Me a Paper`} onClick={goToContact}/>
                     </div>
                     <div className="prompt">
                         <div className="scroll-down">

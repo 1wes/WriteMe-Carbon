@@ -60,8 +60,8 @@
     font-weight: bold;
     color: brown;
     font-size: 15px;
-    letter-spacing: 2px;
     transition: all .5s ease;
+    border-radius: 5px;
 }
 
 .cta-btn:hover{
