@@ -42,6 +42,25 @@ const BlogBreadcrumb=({title})=>{
     )
 }
 
+const OrderBreadcrumb=()=>{
+
+    const location=useLocation();
+
+    return(
+
+        <React.Fragment>
+            <div className="breadcrumbs">
+                <Link to={`/`} className={location.pathname==='/'?"active-breadcrumb":"inactive-breadcrumb"}>
+                    home
+                </Link><span className="arrow-right"><i><IoIosArrowForward/></i></span>
+                <Link to={``} className={location.pathname==='/submit-assignment'?"active-breadcrumb":"inactive-breadcrumb"}>
+                    submit assignment
+                </Link>
+            </div>
+        </React.Fragment>
+    )
+}
+
 const Breadcrumbs=()=>{
 
     const location=useLocation();
@@ -55,13 +74,13 @@ const Breadcrumbs=()=>{
                 <Link to={``} className={location.pathname==='/about'?"active-breadcrumb":"inactive-breadcrumb"}>
                     about us
                 </Link>
-
             </div>
         </React.Fragment>
     )
 }
 export{
     FAQBreadcrumb,
-    BlogBreadcrumb
+    BlogBreadcrumb,
+    OrderBreadcrumb
 }
 export default Breadcrumbs;
