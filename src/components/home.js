@@ -2,12 +2,9 @@ import React from "react";
 import './home.css'
 import { CtaButton } from "./services";
 import { goToSection } from "../utils.js/section";
+import { Link } from "react-router-dom";
 
 const Home=()=>{
-
-    const goToContact=()=>{
-        goToSection('contact-form-section');
-    }
 
     return(
         <React.Fragment>
@@ -18,7 +15,9 @@ const Home=()=>{
                         plagiarism and AI-free papers within the shortest time possible. Do not hesitate to reach out to us! </p>
 
                     <div className="prompt-button">
-                        <CtaButton message={`Write Me a Paper`} onClick={goToContact}/>
+                        <Link className="link-button" to={`/submit-assignment`}>
+                            <CtaButton message={`Write Me a Paper`}/>
+                        </Link>
                     </div>
                     <div className="prompt">
                         <div className="scroll-down">
