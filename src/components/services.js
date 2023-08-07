@@ -46,8 +46,6 @@ const ServicesCard=()=>{
                     <ServicesList service={`Annotated Bibliography`}/>
                     <ServicesList service={`Business Plan`}/>
                 </div>
-
-                <CtaButton message={`Hire One of Our Writers`} onClick={goToContact}/>
             </div>
         </React.Fragment>
     )
