@@ -1,7 +1,6 @@
 import React from "react";
 import './home.css'
 import { CtaButton } from "./services";
-import { goToSection } from "../utils.js/section";
 import { Link } from "react-router-dom";
 
 const Home=()=>{
