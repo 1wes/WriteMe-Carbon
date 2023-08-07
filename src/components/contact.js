@@ -80,7 +80,7 @@ const Contact=()=>{
         <React.Fragment>
             <div className='section' id='contact-section'>
                 <div className='contact'>
-                    <SectionHeader heading={`Work With Us`} tagline={`Fill in the submission form below to get a Quote on your work and connect directly with our writers.`}/>
+                    <SectionHeader heading={`Contact Us`} tagline={`Fill in the submission form below to get a Quote on your work and connect directly with our writers.`}/>
 
                     <div className='contact-content'>
                         <div className='testimonials'>
