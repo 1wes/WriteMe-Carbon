@@ -9,6 +9,7 @@
     top: 0;
     background-color: rgba(245, 245, 245, 0.98);
     z-index: 100000000;
+
 }
 
 #mobile-navbar-section{
@@ -35,6 +36,7 @@
     justify-content: flex-end;
     padding: 0 !important;
     gap: 20px;
+    align-items: center;
 }
 
 .nav-menu li{
@@ -75,6 +77,22 @@
 
 .logo-image p span{
     font-size: 30px;
+}
+
+.navbar-button{
+    padding: 10px;
+    color: whitesmoke;
+    font-weight: bold;
+    background-color: brown;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: all ease 0.5s;
+}
+
+.navbar-button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
 }
 
 @media only screen and (max-width:480px){
@@ -182,6 +200,11 @@
     .link{
         color: whitesmoke;
         text-decoration: none;
+    }
+
+    .navbar-button{
+        background-color: whitesmoke;
+        color: brown;
     }
 
 }
