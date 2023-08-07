@@ -1,3 +1,7 @@
+#contact-section{
+    background-color: white;
+}
+
 .contact{
     margin: 0 auto;
     width: 75%;
@@ -31,7 +35,7 @@
 
 .testimonial{
     width: 45%;
-    background-color: white;
+    background-color: whitesmoke;
     display: flex;
     flex-direction: column;
     align-items: center;
