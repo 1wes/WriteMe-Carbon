@@ -99,11 +99,10 @@
     gap: 30px;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-bottom: 50px;
 }
 
-.assignment-details{
-    border-bottom: 1px solid rgba(165, 42, 42, 0.2);
+.personal-info{
+    padding-bottom: 30px;
 }
 
 .input-group{
@@ -192,7 +191,4 @@ input[type=number] {
         width: 100%;
     }
 
-    .legend{
-        margin-top: -20px;
-    }
 }
