@@ -56,8 +56,8 @@ const SubmissionForm=()=>{
                         Subject
                     </label>
                     <div>
-                        <select name="subject" required>
-                            <option disabled selected hidden></option>
+                        <select name="subject" defaultValue={``} required>
+                            <option disabled value={``} hidden></option>
                             <option value="Engineering">Engineering</option>
                             <option value="Engineering">Programming</option>
                             <option value="Engineering">History</option>
@@ -70,8 +70,8 @@ const SubmissionForm=()=>{
                         Grade Level
                     </label>
                     <div>
-                        <select name="grade-level" required>
-                            <option disabled selected hidden></option>
+                        <select name="grade-level" defaultValue={``} required>
+                            <option disabled value={``} hidden></option>
                             <option value="K12" >K12</option>
                             <option value="Undergraduate" >Undergraduate</option>
                             <option value="Postgraduate" >Postgraduate</option>
