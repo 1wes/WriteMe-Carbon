@@ -122,7 +122,7 @@ label{
     font-size: 15px;
 }
 
-label::after{
+label.required::after{
     content: '*';
     color: rgba(255, 0, 0, 0.8);
 }
@@ -138,6 +138,7 @@ input, textarea{
     color:rgba(0, 0, 0, 0.664);
     transition: all .5 s ease;
     letter-spacing: .5px;
+    border: 1px solid rgba(165, 42, 42, 0.1);
 }
 
 input:focus, textarea:focus{

@@ -101,27 +101,27 @@ const Contact=()=>{
 
                             <div className='form-section'>
                                 <form onSubmit={submitForm}> 
-                                    <label>
+                                    <label className='required'>
                                         Name
                                     </label>
                                     <div>
                                         <input type='text' placeholder='Enter Your Name.' value={name} onChange={handleNameChange} required></input>
                                     </div>
 
-                                    <label>
+                                    <label className='required'>
                                         Email
                                     </label>
                                     <div>
                                         <input type='email' placeholder='Enter Your Email.' value={email} onChange={handleEmailChange} required></input>
                                     </div>
 
-                                    <label>
+                                    <label className='required'>
                                         Subject
                                     </label>
                                     <div>
                                         <input type='text' placeholder='Enter Your Subject.' value={subject} onChange={handleSubjectChange} required></input>
                                     </div>
-                                    <label>
+                                    <label className='required'>
                                         Message
                                     </label>
                                     <div>
