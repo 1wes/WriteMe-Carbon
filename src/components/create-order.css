@@ -93,4 +93,15 @@
     .create-order{
         width: 95%;
     }
+
+    .step-info{
+        display: flex;
+        align-items: center;
+        line-height: 20px;
+        padding: 8px 0;
+    }
+    
+    .steps-breadcrumb .step-info:first-child{
+        padding-left: 10px;
+    }
 }
