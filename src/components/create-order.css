@@ -152,6 +152,16 @@ input[type=number] {
   --moz-appearance: textfield;
 }
 
+.legend{
+    color: purple;
+    font-size: 12px;
+}
+
+.legend span{
+    color: red;
+    font-size: 14px;
+}
+
 @media only screen and (max-width:480px){
 
     .create-order{
