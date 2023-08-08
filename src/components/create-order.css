@@ -184,11 +184,11 @@ input[type=number] {
     }
 
     .assignment-details, .personal-info{
-        gap: 30px;
+        gap: 20px;
     }
 
     .input-group{
-        gap: 12px;
+        gap: 10px;
         width: 100%;
     }
 
