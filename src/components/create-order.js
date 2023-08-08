@@ -20,6 +20,15 @@ const StepsBreadcrumb=()=>{
     )
 }
 
+const FormLegend=()=>{
+
+    return(
+        <>
+            <div className="legend"> <span>*</span> indicates required field</div>
+        </>
+    )
+}
+
 const SubmissionForm=()=>{
 
     const handleWheel=e=>{
@@ -140,6 +149,7 @@ const SubmissionForm=()=>{
                         </div>
                     </div>
                 </div>
+                <FormLegend/>
                 <CtaButton type={`submit`} message={`Submit Assignment`} />
             </form>
         </React.Fragment>
@@ -167,5 +177,8 @@ const CreateOrder=()=>{
             <Footer/>
         </React.Fragment>
     )
+}
+export{
+    FormLegend
 }
 export default CreateOrder;
