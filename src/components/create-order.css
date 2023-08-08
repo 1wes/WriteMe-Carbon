@@ -102,7 +102,6 @@
     padding-bottom: 50px;
 }
 
-
 .assignment-details{
     border-bottom: 1px solid rgba(165, 42, 42, 0.2);
 }
@@ -171,11 +170,29 @@ input[type=number] {
     .step-info{
         display: flex;
         align-items: center;
-        line-height: 20px;
+        line-height: 14px;
         padding: 8px 0;
+        font-size: 12px;
     }
     
     .steps-breadcrumb .step-info:first-child{
         padding-left: 10px;
+    }
+
+    .assignment-form{
+        margin-top: 60px !important;
+    }
+
+    .assignment-details, .personal-info{
+        gap: 30px;
+    }
+
+    .input-group{
+        gap: 12px;
+        width: 100%;
+    }
+
+    .legend{
+        margin-top: -20px;
     }
 }
