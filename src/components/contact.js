@@ -3,6 +3,7 @@ import './contact.css';
 import SectionHeader from './heading';
 import {FaQuoteLeft, FaQuoteRight} from 'react-icons/fa';
 import { CtaButton } from './services';
+import { FormLegend } from './create-order';
 
 const Testimonial=({name, occupation, testimony, src})=>{
 
@@ -127,7 +128,7 @@ const Contact=()=>{
                                     <div>
                                         <textarea type='text' placeholder='Enter Your Message.' value={message} onChange={handleMessageChange} required></textarea>
                                     </div>
-
+                                    <FormLegend/>
                                     <CtaButton type={`submit`} message={`Submit`}/>
                                 </form>
                             </div>
