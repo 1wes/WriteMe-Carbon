@@ -49,7 +49,7 @@ const SubmissionForm=()=>{
 
         <React.Fragment>
             <form className="assignment-form" onSubmit={submitAssignment}>
-            <SectionHeader heading={`Assignment Requirements`} />
+            <SectionHeader tagline={`Fill in your assignment requirements`} />
                 <div className="assignment-details">
                 <div className="input-group">
                     <label className="required">
@@ -122,7 +122,7 @@ const SubmissionForm=()=>{
                     </div>
                 </div>
                 </div>
-                <SectionHeader heading={`Personal Information`} />
+                <SectionHeader tagline={`Enter your information to enable us to reply to you`} />
                 <div className="personal-info">
                     <div className="input-group">
                         <label className="required">
