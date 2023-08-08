@@ -1,7 +1,7 @@
 .create-order{
     margin: 0 auto;
     width: 75%;
-    height: 100vh;
+    height: 100%;
 }
 
 .steps-breadcrumb{
@@ -86,6 +86,70 @@
 .breadcrumb-link{
     text-decoration: none;
     color: whitesmoke;
+}
+
+.assignment-form{
+    margin-top: 100px !important;
+    padding-bottom: 100px;
+}
+
+.assignment-details, .personal-info{
+    width: 100% !important;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 50px;
+}
+
+
+.assignment-details{
+    border-bottom: 1px solid rgba(165, 42, 42, 0.2);
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 48%;
+}
+
+.input-group div{
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+}
+
+select > option:disabled{
+    color: rgba(0, 0, 0, 0.479) !important;
+}
+
+input[type="file"]{
+    padding: 7px;
+}
+
+.add-file{
+    color: purple;
+    cursor: pointer;
+}
+
+.extra-file{
+    display: none;
+    transition: all ease 1s;
+}
+
+.show-extra-file{
+    display: flex;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  --moz-appearance: textfield;
 }
 
 @media only screen and (max-width:480px){
