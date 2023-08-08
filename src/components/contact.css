@@ -127,8 +127,8 @@ label.required::after{
     color: rgba(255, 0, 0, 0.8);
 }
 
-input, textarea{
-    padding: 10px 10px;
+input, textarea, select{
+    padding: 10px;
     border: 1px solid rgba(165, 42, 42, 0);
     background-color: rgba(165, 42, 42, 0.05);
     border-radius: 2px;
@@ -141,12 +141,12 @@ input, textarea{
     border: 1px solid rgba(165, 42, 42, 0.1);
 }
 
-input:focus, textarea:focus{
+input:focus, textarea:focus, select:focus{
     outline: none;
     border: 1px solid rgba(165, 42, 42, 0.4);
 }
 
-input::placeholder, textarea::placeholder{
+input::placeholder, textarea::placeholder, select::placeholder{
     color: rgba(0, 0, 0, 0.479);
     font-weight: bold;
     font-size: 12px;
