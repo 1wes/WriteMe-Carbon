@@ -12,7 +12,7 @@ const StepsBreadcrumb=()=>{
             <div className="steps-breadcrumb">
                 <div className="step-info">Submit assignment</div>
                 <div className="step-info"><Link className='breadcrumb-link' to={`#`}>Get a quote and pay</Link></div>
-                <div className="step-info">Receive completed work </div>
+                <div className="step-info">Receive your work</div>
             </div>
         </React.Fragment>
     )
