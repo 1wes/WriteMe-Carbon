@@ -150,9 +150,10 @@ input[type=number] {
   --moz-appearance: textfield;
 }
 
-.legend{
+.legend, .form-alerts{
     color: purple;
     font-size: 12px;
+    line-height: 15px;
 }
 
 .legend span{
