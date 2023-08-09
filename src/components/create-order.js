@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useReducer } from "react";
 import './create-order.css';
 import Navbar,{ MobileNavbar } from "./navbar";
 import { OrderBreadcrumb } from "./breadcrumb";
@@ -29,7 +29,182 @@ const FormLegend=()=>{
     )
 }
 
+const reducer=(state, action)=>{
+
+    switch(action.type){
+
+        case "newSubject":{
+            return{
+                subject:action.newSubject,
+                gradeLevel:state.gradeLevel,
+                file:state.file,
+                instructions:state.instructions,
+                pagesOrwords:state.pagesOrwords,
+                amount:state.amount,
+                deadline:state.deadline,
+                name:state.name,
+                email:state.email,
+                phone:state.phone
+
+            }
+        }
+
+        case "newGradeLevel":{
+            return{
+                gradeLevel:action.newGrade,
+                subject:state.subject,
+                file:state.file,
+                instructions:state.instructions,
+                pagesOrwords:state.pagesOrwords,
+                amount:state.amount,
+                deadline:state.deadline,
+                name:state.name,
+                email:state.email,
+                phone:state.phone
+            }
+        }
+
+        case "newFile":{
+            return{
+                file:action.newFile,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions,
+                pagesOrwords:state.pagesOrwords,
+                amount:state.amount,
+                deadline:state.deadline,
+                name:state.name,
+                email:state.email,
+                phone:state.phone
+            }
+        }
+
+        case "newInstructions":{
+            return{
+                instructions:action.newInstructions,
+                pagesOrwords:state.pagesOrwords,
+                amount:state.amount,
+                deadline:state.deadline,
+                name:state.name,
+                email:state.email,
+                phone:state.phone,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject
+            }
+        }
+
+        case "newPagesOrWords":{
+            return{
+                pagesOrwords:action.newPages,
+                amount:state.amount,
+                deadline:state.deadline,
+                name:state.name,
+                email:state.email,
+                phone:state.phone,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions
+            }
+        }
+
+        case "newAmount":{
+            return{
+                amount:action.newAmount,
+                pagesOrwords:state.pagesOrwords,
+                deadline:state.deadline,
+                name:state.name,
+                email:state.email,
+                phone:state.phone,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions
+            }
+        }
+
+        case "newDeadline":{
+            return{
+                deadline:action.newDeadline,
+                amount:state.amount,
+                pagesOrwords:state.pagesOrwords,
+                name:state.name,
+                email:state.email,
+                phone:state.phone,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions
+            }
+        }
+
+        case "newName":{
+            return{
+                name:action.newName,
+                deadline:state.deadline,
+                amount:state.amount,
+                pagesOrwords:state.pagesOrwords,
+                email:state.email,
+                phone:state.phone,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions
+            }
+        }
+
+        case "newEmail":{
+            return{
+                email:action.newEmail,
+                name:state.name,
+                deadline:state.deadline,
+                amount:state.amount,
+                pagesOrwords:state.pagesOrwords,
+                phone:state.phone,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions
+            }
+        }
+
+        case "newPhone":{
+            return{
+                phone:action.newPhone,
+                email:state.email,
+                name:state.name,
+                deadline:state.deadline,
+                amount:state.amount,
+                pagesOrwords:state.pagesOrwords,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions
+            }
+        }
+
+        default:
+    }
+
+}
+
 const SubmissionForm=()=>{
+
+    const initialState={
+        subject:"",
+        gradeLevel:"",
+        file:"",
+        instructions:"",
+        pagesOrwords:"",
+        amount:"",
+        deadline:"",
+        name:"",
+        email:"",
+        phone:""
+    }
+
+    const [state, dispatch]=useReducer(reducer, initialState)
 
     const handleWheel=e=>{
 
@@ -38,11 +213,95 @@ const SubmissionForm=()=>{
         e.stopPropagation();
     }
 
+    const handleSubjectChange=(e)=>{
+
+        dispatch({
+            type:"newSubject",
+            newSubject:e.target.value
+        })
+    }
+
+    const handleGradeChange=(e)=>{
+
+        dispatch({
+            type:"newGradeLevel",
+            newGrade:e.target.value
+        })
+    }
+
+    const handleFileChange=(event)=>{
+
+        const fileName=event.target.files[0].name;
+
+        dispatch({
+            type:"newFile",
+            newFile:fileName
+        })
+    }
+
+    const handleInstructionChange=(e)=>{
+
+        dispatch({
+            type:"newInstructions",
+            newInstructions:e.target.value
+        })
+    }
+
+    const handlePagesChange=(e)=>{
+
+        dispatch({
+            type:"newPagesOrWords",
+            newPages:e.target.value
+        })
+    }
+
+    const handleAmountChange=(e)=>{
+
+        dispatch({
+            type:"newAmount",
+            newAmount:e.target.value
+        })
+    }
+
+    const handleDeadlineChange=(e)=>{
+
+        dispatch({
+            type:"newDeadline",
+            newDeadline:e.target.value
+        })
+    }
+
+    const handleNameChange=(e)=>{
+
+        dispatch({
+            type:"newName",
+            newName:e.target.value
+        })
+    }
+
+    const handleEmailChange=(e)=>{
+
+        dispatch({
+            type:"newEmail",
+            newEmail:e.target.value
+        })
+    }
+
+    const handlePhoneChange=(e)=>{
+
+        dispatch({
+            type:"newPhone",
+            newPhone:e.target.value
+        })
+    }
+
     const submitAssignment=(e=>{
 
         e.preventDefault();
 
-        alert("pushed")
+        // const formData=new FormData();
+
+        alert(JSON.stringify(state));
     })
 
     return(
@@ -56,12 +315,12 @@ const SubmissionForm=()=>{
                         Subject
                     </label>
                     <div>
-                        <select name="subject" defaultValue={``} required>
+                        <select name="subject" value={state.subject} onChange={handleSubjectChange} required>
                             <option disabled value={``} hidden></option>
                             <option value="Engineering">Engineering</option>
-                            <option value="Engineering">Programming</option>
-                            <option value="Engineering">History</option>
-                            <option value="Engineering">Main</option>
+                            <option value="programming">Programming</option>
+                            <option value="History">History</option>
+                            <option value="Sports">Sports</option>
                         </select>
                     </div>
                 </div>
@@ -70,7 +329,7 @@ const SubmissionForm=()=>{
                         Grade Level
                     </label>
                     <div>
-                        <select name="grade-level" defaultValue={``} required>
+                        <select name="grade-level" value={state.gradeLevel} onChange={handleGradeChange} required>
                             <option disabled value={``} hidden></option>
                             <option value="K12" >K12</option>
                             <option value="Undergraduate" >Undergraduate</option>
@@ -84,7 +343,7 @@ const SubmissionForm=()=>{
                         Attach file
                     </label>
                     <div>
-                        <input  type="file" placeholder="add file" ></input>
+                        <input  type="file" onChange={handleFileChange} placeholder="add file"></input>
                     </div>
                 </div>
                 <div className="input-group">
@@ -92,7 +351,7 @@ const SubmissionForm=()=>{
                         Instructions
                     </label>
                     <div>
-                        <textarea required></textarea>
+                        <textarea value={state.instructions} onChange={handleInstructionChange} required></textarea>
                     </div>
                 </div>
                 <div className="input-group">
@@ -100,7 +359,7 @@ const SubmissionForm=()=>{
                         Number of Pages/Words
                     </label>
                     <div>
-                        <input type="number" onWheel={handleWheel}></input>
+                        <input type="number" value={state.pagesOrwords} onChange={handlePagesChange} onWheel={handleWheel}></input>
                     </div>
                 </div>
 
@@ -109,7 +368,7 @@ const SubmissionForm=()=>{
                         Expected Amount (USD)
                     </label>
                     <div>
-                        <input type="number" onWheel={handleWheel}></input>
+                        <input type="number" value={state.amount} onChange={handleAmountChange} onWheel={handleWheel}></input>
                     </div>
                 </div>
 
@@ -118,7 +377,7 @@ const SubmissionForm=()=>{
                         Deadline
                     </label>
                     <div>
-                        <input type="date"></input>
+                        <input type="date" value={state.deadline} onChange={handleDeadlineChange} ></input>
                     </div>
                 </div>
                 </div>
@@ -129,7 +388,7 @@ const SubmissionForm=()=>{
                             Name
                         </label>
                         <div>
-                            <input type="text" required></input>
+                            <input type="text" value={state.name} onChange={handleNameChange} required></input>
                         </div>
                     </div>
                     <div className="input-group">
@@ -137,7 +396,7 @@ const SubmissionForm=()=>{
                             Email
                         </label>
                         <div>
-                            <input type="email" required></input>
+                            <input type="email" value={state.email} onChange={handleEmailChange} required></input>
                         </div>
                     </div>
                     <div className="input-group">
@@ -145,7 +404,7 @@ const SubmissionForm=()=>{
                             Phone Number
                         </label>
                         <div>
-                            <input type="tel"></input>
+                            <input type="tel" value={state.phone} onChange={handlePhoneChange}></input>
                         </div>
                     </div>
                 </div>
