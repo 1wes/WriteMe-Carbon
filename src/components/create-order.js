@@ -240,7 +240,7 @@ const SubmissionForm=()=>{
 
     const handleFileChange=(e)=>{
 
-        const fileName=e.target.files[0].name;
+        const fileName=e.target.files[0];
 
         dispatch({
             type:"newFile",
@@ -307,10 +307,8 @@ const SubmissionForm=()=>{
     const submitAssignment=(e=>{
 
         e.preventDefault();
-
-        // const formData=new FormData();
-
-        alert(JSON.stringify(state));
+        
+        alert(state.file.name);
     })
 
     return(
@@ -352,7 +350,7 @@ const SubmissionForm=()=>{
                         Attach file
                     </label>
                     <div>
-                        <input  type="file" onChange={handleFileChange} placeholder="add file"></input>
+                        <input type="file" onChange={handleFileChange} placeholder="add file" multiple></input>
                     </div>
                     <FormAlerts message={`supports only common image, document, video, and audio formats.`} />
                 </div>
