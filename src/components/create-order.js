@@ -29,6 +29,15 @@ const FormLegend=()=>{
     )
 }
 
+const FormAlerts=({message})=>{
+
+    return(
+        <>
+            <div className="form-alerts" >{message}</div>
+        </>
+    )
+}
+
 const reducer=(state, action)=>{
 
     switch(action.type){
@@ -229,9 +238,9 @@ const SubmissionForm=()=>{
         })
     }
 
-    const handleFileChange=(event)=>{
+    const handleFileChange=(e)=>{
 
-        const fileName=event.target.files[0].name;
+        const fileName=e.target.files[0].name;
 
         dispatch({
             type:"newFile",
@@ -345,6 +354,7 @@ const SubmissionForm=()=>{
                     <div>
                         <input  type="file" onChange={handleFileChange} placeholder="add file"></input>
                     </div>
+                    <FormAlerts message={`supports only common image, document, video, and audio formats.`} />
                 </div>
                 <div className="input-group">
                     <label className="required">
