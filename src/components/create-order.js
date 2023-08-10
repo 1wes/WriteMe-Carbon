@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useReducer } from "react";
+import React, { useLayoutEffect, useReducer, useState } from "react";
 import './create-order.css';
 import Navbar,{ MobileNavbar } from "./navbar";
 import { OrderBreadcrumb } from "./breadcrumb";
@@ -38,6 +38,15 @@ const FormAlerts=({message})=>{
     )
 }
 
+const Error=({errorMessage})=>{
+
+    return(
+        <>
+            <div className="error-message">{errorMessage}</div>
+        </>
+    )
+}
+
 const reducer=(state, action)=>{
 
     switch(action.type){
@@ -51,6 +60,7 @@ const reducer=(state, action)=>{
                 pagesOrwords:state.pagesOrwords,
                 amount:state.amount,
                 deadline:state.deadline,
+                time:state.time,
                 name:state.name,
                 email:state.email,
                 phone:state.phone
@@ -67,6 +77,7 @@ const reducer=(state, action)=>{
                 pagesOrwords:state.pagesOrwords,
                 amount:state.amount,
                 deadline:state.deadline,
+                time:state.time,
                 name:state.name,
                 email:state.email,
                 phone:state.phone
@@ -82,6 +93,7 @@ const reducer=(state, action)=>{
                 pagesOrwords:state.pagesOrwords,
                 amount:state.amount,
                 deadline:state.deadline,
+                time:state.time,
                 name:state.name,
                 email:state.email,
                 phone:state.phone
@@ -96,6 +108,7 @@ const reducer=(state, action)=>{
                 deadline:state.deadline,
                 name:state.name,
                 email:state.email,
+                time:state.time,
                 phone:state.phone,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
@@ -108,6 +121,7 @@ const reducer=(state, action)=>{
                 pagesOrwords:action.newPages,
                 amount:state.amount,
                 deadline:state.deadline,
+                time:state.time,
                 name:state.name,
                 email:state.email,
                 phone:state.phone,
@@ -123,6 +137,7 @@ const reducer=(state, action)=>{
                 amount:action.newAmount,
                 pagesOrwords:state.pagesOrwords,
                 deadline:state.deadline,
+                time:state.time,
                 name:state.name,
                 email:state.email,
                 phone:state.phone,
@@ -144,6 +159,23 @@ const reducer=(state, action)=>{
                 file:state.file,
                 gradeLevel:state.gradeLevel,
                 subject:state.subject,
+                instructions:state.instructions,
+                time:state.time,
+            }
+        }
+
+        case "newTime":{
+            return{
+                time:action.newTime,
+                email:state.email,
+                name:state.name,
+                deadline:state.deadline,
+                amount:state.amount,
+                pagesOrwords:state.pagesOrwords,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                phone:state.phone,
                 instructions:state.instructions
             }
         }
@@ -152,6 +184,7 @@ const reducer=(state, action)=>{
             return{
                 name:action.newName,
                 deadline:state.deadline,
+                time:state.time,
                 amount:state.amount,
                 pagesOrwords:state.pagesOrwords,
                 email:state.email,
@@ -168,6 +201,7 @@ const reducer=(state, action)=>{
                 email:action.newEmail,
                 name:state.name,
                 deadline:state.deadline,
+                time:state.time,
                 amount:state.amount,
                 pagesOrwords:state.pagesOrwords,
                 phone:state.phone,
@@ -184,6 +218,7 @@ const reducer=(state, action)=>{
                 email:state.email,
                 name:state.name,
                 deadline:state.deadline,
+                time:state.time,
                 amount:state.amount,
                 pagesOrwords:state.pagesOrwords,
                 file:state.file,
@@ -210,10 +245,14 @@ const SubmissionForm=()=>{
         deadline:"",
         name:"",
         email:"",
-        phone:""
+        phone:"",
+        time:""
     }
 
-    const [state, dispatch]=useReducer(reducer, initialState)
+    const [error, setError]=useState(false);
+    const [errorMessage, setErrorMessage]=useState('');
+
+    const [state, dispatch]=useReducer(reducer, initialState);
 
     const handleWheel=e=>{
 
@@ -274,9 +313,35 @@ const SubmissionForm=()=>{
 
     const handleDeadlineChange=(e)=>{
 
+        const checkDate=()=>{
+
+            const deadline=new Date(e.target.value).valueOf();
+
+            const currentDate=new Date().valueOf();
+
+            return deadline>currentDate;
+        }
+
+        const isValid=checkDate();
+
+        if(isValid){
+            setError(false);
+
+            dispatch({
+                type:"newDeadline",
+                newDeadline:e.target.value
+            })
+        }else{
+            setError(!error);
+            setErrorMessage("deadline cannot be in the past !!");
+        }
+    }
+
+    const handleTimeChange=(e)=>{
+
         dispatch({
-            type:"newDeadline",
-            newDeadline:e.target.value
+            type:"newTime",
+            newTime:e.target.value
         })
     }
 
@@ -304,11 +369,30 @@ const SubmissionForm=()=>{
         })
     }
 
+    let errorAlert;
+    
+    if(error){
+        errorAlert=(
+            <Error errorMessage={errorMessage} />
+        )
+    }
+
     const submitAssignment=(e=>{
 
         e.preventDefault();
+
+        let assignmentDetails= new FormData();
+
+        assignmentDetails.append("name", "Wesley");
+
+        for (var key in state){
+            assignmentDetails.append(key, state[key])
+        }
         
-        alert(state.file.name);
+
+        for(var details of assignmentDetails.values()){
+            console.log(details);
+        }
     })
 
     return(
@@ -382,10 +466,20 @@ const SubmissionForm=()=>{
 
                 <div className="input-group">
                     <label className="required">
-                        Deadline
+                        Deadline Date
                     </label>
                     <div>
-                        <input type="date" value={state.deadline} onChange={handleDeadlineChange} ></input>
+                        <input type="date" value={state.deadline} onChange={handleDeadlineChange} required></input>
+                    </div>
+                    {errorAlert}
+                </div>
+
+                <div className="input-group">
+                    <label className="required">
+                        Deadline Time
+                    </label>
+                    <div>
+                        <input type="time" value={state.time} onChange={handleTimeChange}  required></input>
                     </div>
                 </div>
                 </div>
