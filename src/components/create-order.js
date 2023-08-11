@@ -6,6 +6,8 @@ import Footer from "./footer";
 import { Link } from "react-router-dom";
 import SectionHeader from "./heading";
 import { CtaButton } from "./services";
+import axios from "axios";
+import Countries from '../utils.js/countries.json';
 
 const StepsBreadcrumb=()=>{
 
@@ -63,6 +65,7 @@ const reducer=(state, action)=>{
                 time:state.time,
                 name:state.name,
                 email:state.email,
+                code:state.code,
                 phone:state.phone
 
             }
@@ -80,6 +83,7 @@ const reducer=(state, action)=>{
                 time:state.time,
                 name:state.name,
                 email:state.email,
+                code:state.code,
                 phone:state.phone
             }
         }
@@ -96,6 +100,7 @@ const reducer=(state, action)=>{
                 time:state.time,
                 name:state.name,
                 email:state.email,
+                code:state.code,
                 phone:state.phone
             }
         }
@@ -109,6 +114,7 @@ const reducer=(state, action)=>{
                 name:state.name,
                 email:state.email,
                 time:state.time,
+                code:state.code,
                 phone:state.phone,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
@@ -124,6 +130,7 @@ const reducer=(state, action)=>{
                 time:state.time,
                 name:state.name,
                 email:state.email,
+                code:state.code,
                 phone:state.phone,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
@@ -140,6 +147,7 @@ const reducer=(state, action)=>{
                 time:state.time,
                 name:state.name,
                 email:state.email,
+                code:state.code,
                 phone:state.phone,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
@@ -155,6 +163,7 @@ const reducer=(state, action)=>{
                 pagesOrwords:state.pagesOrwords,
                 name:state.name,
                 email:state.email,
+                code:state.code,
                 phone:state.phone,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
@@ -175,6 +184,7 @@ const reducer=(state, action)=>{
                 file:state.file,
                 gradeLevel:state.gradeLevel,
                 subject:state.subject,
+                code:state.code,
                 phone:state.phone,
                 instructions:state.instructions
             }
@@ -188,6 +198,7 @@ const reducer=(state, action)=>{
                 amount:state.amount,
                 pagesOrwords:state.pagesOrwords,
                 email:state.email,
+                code:state.code,
                 phone:state.phone,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
@@ -204,7 +215,25 @@ const reducer=(state, action)=>{
                 time:state.time,
                 amount:state.amount,
                 pagesOrwords:state.pagesOrwords,
+                code:state.code,
                 phone:state.phone,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions
+            }
+        }
+
+        case "newCode":{
+            return{
+                code:action.newCode,
+                phone:state.phone,
+                email:state.email,
+                name:state.name,
+                deadline:state.deadline,
+                time:state.time,
+                amount:state.amount,
+                pagesOrwords:state.pagesOrwords,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
                 subject:state.subject,
@@ -216,6 +245,7 @@ const reducer=(state, action)=>{
             return{
                 phone:action.newPhone,
                 email:state.email,
+                code:state.code,
                 name:state.name,
                 deadline:state.deadline,
                 time:state.time,
@@ -245,12 +275,14 @@ const SubmissionForm=()=>{
         deadline:"",
         name:"",
         email:"",
+        code:"",
         phone:"",
         time:""
     }
 
     const [error, setError]=useState(false);
-    const [errorMessage, setErrorMessage]=useState('');
+    const [DeadlineErrorMessage, setDeadlineErrorMessage]=useState('');
+    const [PhoneErrorMessage, sePhoneErrorMessage]=useState('');
 
     const [state, dispatch]=useReducer(reducer, initialState);
 
@@ -333,7 +365,7 @@ const SubmissionForm=()=>{
             })
         }else{
             setError(!error);
-            setErrorMessage("deadline cannot be in the past !!");
+            setDeadlineErrorMessage("deadline cannot be in the past !!");
         }
     }
 
@@ -361,21 +393,59 @@ const SubmissionForm=()=>{
         })
     }
 
-    const handlePhoneChange=(e)=>{
+    const handleCodeChange=(e)=>{
+
+        console.log(e.target.value);
 
         dispatch({
-            type:"newPhone",
-            newPhone:e.target.value
+            type:"newCode",
+            newCode:e.target.value
         })
     }
 
-    let errorAlert;
-    
-    if(error){
-        errorAlert=(
-            <Error errorMessage={errorMessage} />
+    const handlePhoneChange=(e)=>{
+
+        const phoneNumber=e.target.value;
+
+        const checkPhoneNumber=()=>{
+
+            return isNaN(phoneNumber);
+        }
+
+        const isANumber=checkPhoneNumber();
+
+        console.log(isANumber);
+
+        dispatch({
+            type:"newPhone",
+            newPhone:phoneNumber
+        })
+    }
+
+    let DeadlineErrorAlert;
+    let PhoneErrorAlert;
+
+    let countryCode=Countries.map(code=>{
+        return <option key={code.code} value={code.dial_code}>{`${code.emoji} ${code.name}`}</option>
+    })
+
+    let phoneConfirmation;
+
+    if(state.code!==''){
+        phoneConfirmation=(
+            <div className="phone-confirmation">Your phone number is <span>{state.code}</span> <span>{state.phone}</span></div>
         )
     }
+
+    if(error){
+        DeadlineErrorAlert=(
+            <Error errorMessage={DeadlineErrorMessage} />
+        )
+
+        PhoneErrorAlert=(
+            <Error errorMessage={``} />
+        )
+    } 
 
     const submitAssignment=(e=>{
 
@@ -389,10 +459,15 @@ const SubmissionForm=()=>{
             assignmentDetails.append(key, state[key])
         }
         
-
-        for(var details of assignmentDetails.values()){
-            console.log(details);
-        }
+        // axios.post("url", assignmentDetails, {
+        //     headers:{
+        //         "Content-Type":"multipart/form-data"
+        //     }
+        // }).then(res=>{
+        //     console.log(res)
+        // }).catch(err=>{
+        //     console.log(err);
+        // });
     })
 
     return(
@@ -486,7 +561,7 @@ const SubmissionForm=()=>{
                     <div>
                         <input type="date" value={state.deadline} onChange={handleDeadlineChange} required></input>
                     </div>
-                    {errorAlert}
+                    {DeadlineErrorAlert}
                 </div>
 
                 <div className="input-group">
@@ -520,9 +595,14 @@ const SubmissionForm=()=>{
                         <label>
                             Phone Number
                         </label>
-                        <div>
-                            <input type="tel" value={state.phone} onChange={handlePhoneChange}></input>
+                        <div className="code-and-phone">
+                            <select value={state.code} onChange={handleCodeChange}  className="code">
+                                <option value={``} hidden disabled >🇦🇫 Afghanistan</option>
+                                {countryCode}
+                            </select>
+                            <input className="phone-number" type="number" onWheel={handleWheel} value={state.phone} onChange={handlePhoneChange}></input>
                         </div>
+                        {phoneConfirmation}
                     </div>
                 </div>
                 <FormLegend/>
