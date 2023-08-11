@@ -150,10 +150,16 @@ input[type=number] {
   --moz-appearance: textfield;
 }
 
-.legend, .form-alerts, .error-message{
+.legend, .form-alerts, .error-message, .phone-confirmation{
     color: purple;
     font-size: 12px;
     line-height: 15px;
+}
+
+.phone-confirmation span{
+    color: brown;
+    font-size: 14px;
+    margin-left: 2px;
 }
 
 .error-message{
