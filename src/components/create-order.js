@@ -408,10 +408,24 @@ const SubmissionForm=()=>{
                     <div>
                         <select name="subject" value={state.subject} onChange={handleSubjectChange} required>
                             <option disabled value={``} hidden></option>
-                            <option value="Engineering">Engineering</option>
-                            <option value="programming">Programming</option>
                             <option value="History">History</option>
                             <option value="Sports">Sports</option>
+                            <option value="programming">Programming</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Psychology">Psychology</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Lifestyle and wellness">Lifestyle & Wellness </option>
+                            <option value="Business">Business</option>
+                            <option value="Law">Law</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Science">Science</option>
+                            <option value="Education">Education</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Sociology">Sociology</option>
+                            <option value="Humanities">Humanities</option>
+                            <option value="Language">Language</option>
+                            <option value="Art">Art</option>
                         </select>
                     </div>
                 </div>
@@ -422,10 +436,11 @@ const SubmissionForm=()=>{
                     <div>
                         <select name="grade-level" value={state.gradeLevel} onChange={handleGradeChange} required>
                             <option disabled value={``} hidden></option>
-                            <option value="K12" >K12</option>
-                            <option value="Undergraduate" >Undergraduate</option>
-                            <option value="Postgraduate" >Postgraduate</option>
-                            <option value="Doctorate" >Doctorate</option>
+                            <option value="K-12" >K-12</option>
+                            <option value="College">College</option>
+                            <option value="Undergraduate">Undergraduate</option>
+                            <option value="Postgraduate">Postgraduate</option>
+                            <option value="Doctorate">Doctorate</option>
                         </select>
                     </div>
                 </div>
