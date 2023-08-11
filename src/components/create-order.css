@@ -165,6 +165,14 @@ input[type=number] {
     font-size: 14px;
 }
 
+.code{
+    width: 20%;
+}
+
+.phone-number{
+    width: 80%;
+}
+
 @media only screen and (max-width:480px){
 
     .create-order{
@@ -195,5 +203,14 @@ input[type=number] {
         gap: 10px;
         width: 100%;
     }
+
+    .code{
+        width: 30%;
+    }
+    
+    .phone-number{
+        width: 70%;
+    }
+    
 
 }
