@@ -26,7 +26,7 @@ const FormLegend=()=>{
 
     return(
         <>
-            <div className="legend"> <span>*</span> indicates required field</div>
+            <div className="legend"> <span>*</span> indicates mandatory field</div>
         </>
     )
 }
@@ -282,7 +282,6 @@ const SubmissionForm=()=>{
 
     const [error, setError]=useState(false);
     const [DeadlineErrorMessage, setDeadlineErrorMessage]=useState('');
-    const [PhoneErrorMessage, sePhoneErrorMessage]=useState('');
 
     const [state, dispatch]=useReducer(reducer, initialState);
 
@@ -395,8 +394,6 @@ const SubmissionForm=()=>{
 
     const handleCodeChange=(e)=>{
 
-        console.log(e.target.value);
-
         dispatch({
             type:"newCode",
             newCode:e.target.value
@@ -405,25 +402,13 @@ const SubmissionForm=()=>{
 
     const handlePhoneChange=(e)=>{
 
-        const phoneNumber=e.target.value;
-
-        const checkPhoneNumber=()=>{
-
-            return isNaN(phoneNumber);
-        }
-
-        const isANumber=checkPhoneNumber();
-
-        console.log(isANumber);
-
         dispatch({
             type:"newPhone",
-            newPhone:phoneNumber
+            newPhone:e.target.value
         })
     }
 
     let DeadlineErrorAlert;
-    let PhoneErrorAlert;
 
     let countryCode=Countries.map(code=>{
         return <option key={code.code} value={code.dial_code}>{`${code.emoji} ${code.name}`}</option>
@@ -440,10 +425,6 @@ const SubmissionForm=()=>{
     if(error){
         DeadlineErrorAlert=(
             <Error errorMessage={DeadlineErrorMessage} />
-        )
-
-        PhoneErrorAlert=(
-            <Error errorMessage={``} />
         )
     } 
 
