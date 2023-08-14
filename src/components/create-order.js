@@ -411,7 +411,7 @@ const SubmissionForm=()=>{
     let DeadlineErrorAlert;
 
     let countryCode=Countries.map(code=>{
-        return <option key={code.code} value={code.dial_code}>{`${code.emoji} ${code.name}`}</option>
+        return <option key={code.code} value={code.dial_code}>{` ${code.emoji} ${code.name} (${code.dial_code})`}</option>
     })
 
     let phoneConfirmation;
