@@ -24,6 +24,10 @@ const NewerContent=({src,alt,published, title, summary, link })=>{
         setLongArrow(false)
     }
 
+    let arrow;
+
+    arrow=longArrow?(<BsArrowRight/>):(<BiChevronRight/>);
+
     return(
         <React.Fragment>
             <div className='new-content-card'>
@@ -45,7 +49,7 @@ const NewerContent=({src,alt,published, title, summary, link })=>{
 
                         <div> 
                             <Link to={link} className='read-more' onMouseOver={changeIcon} onMouseOut={removeIcon} >
-                                Read More <i>{longArrow?<BsArrowRight/>:<BiChevronRight/>}</i>
+                                Read More <i>{arrow}</i>
                             </Link>
                         </div>
                     </div>
@@ -90,6 +94,22 @@ const Bloglist=()=>{
 
     const blogPosts=data;
 
+    let newerContent;
+    let oldContent;
+
+    newerContent=blogPosts?blogPosts.slice(0, 2).map((post)=>{
+        return(
+            <NewerContent key={post.slug} title={post.title} summary={post.summary.substring(0, 322)+"..."} published={post.published.split("T")[0]} 
+             alt={post.featured_image_alt}
+             src={post.featured_image} link={`/blog/${post.slug}`} />)}):(<NewContentLoader/>)
+
+    oldContent=blogPosts?blogPosts.slice(2, blogPosts.length).map((post)=>{
+        return(
+            <OlderContent key={post.slug} title={post.title} image={post.featured_image} link={`/blog/${post.slug}`} date={post.published.split("T")[0]}
+            alt={post.featured_image_alt} summary={post.summary.substring(0, 110)+"..."} />
+        )
+    }):(<OldContentLoader/>)
+
     return(
         <React.Fragment>
             <section className='section' id='bloglist-section'>
@@ -98,23 +118,12 @@ const Bloglist=()=>{
                     <div className='bloglist-content'>
                         <div className='newer-content'>
                             {
-                                blogPosts?blogPosts.slice(0, 2).map((post)=>{
-                                    return(
-                                        <NewerContent key={post.slug} title={post.title} summary={post.summary.substring(0, 322)+"..."} published={post.published.split("T")[0]} 
-                                        alt={post.featured_image_alt}
-                                         src={post.featured_image} link={`/blog/${post.slug}`} />
-                                    )
-                                }):<NewContentLoader/>
+                                newerContent
                             }
                         </div>
                         <div className='older-content'>
                             {
-                                blogPosts?blogPosts.slice(2, blogPosts.length).map((post)=>{
-                                    return(
-                                        <OlderContent key={post.slug} title={post.title} image={post.featured_image} link={`/blog/${post.slug}`} date={post.published.split("T")[0]}
-                                        alt={post.featured_image_alt} summary={post.summary.substring(0, 110)+"..."} />
-                                    )
-                                }):<OldContentLoader/>
+                                oldContent
                             }
                         </div>
                     </div>
