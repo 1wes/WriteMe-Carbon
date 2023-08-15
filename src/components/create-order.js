@@ -482,6 +482,7 @@ const SubmissionForm=()=>{
                             <option value="Humanities">Humanities</option>
                             <option value="Language">Language</option>
                             <option value="Art">Art</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                 </div>
