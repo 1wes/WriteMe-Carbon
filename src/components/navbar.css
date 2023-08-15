@@ -90,9 +90,21 @@
     transition: all ease 0.5s;
 }
 
+#login-cta{
+    background: none;
+    color: brown;
+    border: 1px solid brown;
+}
+
 .navbar-button:hover{
     cursor: pointer;
     transform: scale(1.05);
+}
+
+#login-cta:hover{
+    transform: none;
+    background-color: brown;
+    color: white;
 }
 
 @media only screen and (max-width:480px){
