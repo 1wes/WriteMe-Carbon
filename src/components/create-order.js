@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useReducer, useState } from "react";
+import React, { useLayoutEffect, useReducer, useState, useEffect } from "react";
 import './create-order.css';
 import Navbar,{ MobileNavbar } from "./navbar";
 import { OrderBreadcrumb } from "./breadcrumb";
@@ -597,6 +597,12 @@ const CreateOrder=()=>{
 
     useLayoutEffect(()=>{
         window.scrollTo(0, 0);
+    },[]);
+
+    useEffect(()=>{
+        let submitCtaBtn=document.getElementById('submit-cta');
+
+        submitCtaBtn.classList.add('hide-assignment-btn')
     },[]);
 
     return(
