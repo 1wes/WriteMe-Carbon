@@ -492,7 +492,7 @@ const SubmissionForm=()=>{
                     <div>
                         <select name="grade-level" value={state.gradeLevel} onChange={handleGradeChange} required>
                             <option disabled value={``} hidden></option>
-                            <option value="K-12" >K-12</option>
+                            <option value="K-12" >School</option>
                             <option value="College">College</option>
                             <option value="Undergraduate">Undergraduate</option>
                             <option value="Postgraduate">Postgraduate</option>
