@@ -9,7 +9,7 @@ const NavButton=()=>{
     return(
 
         <React.Fragment>
-            <Link to={`/submit-assignment`}>
+            <Link to={`/submit-assignment`} id='submit-cta'>
                 <button className="navbar-button">
                     Submit Assignment
                 </button>
