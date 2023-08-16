@@ -1,0 +1,52 @@
+#signup-section{
+    height: 100vh;
+    padding-bottom: 50px;
+}
+
+.signup{
+    margin:0 auto;
+    width:75%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.signup-form{
+    height: 50vh;
+    margin: 0 auto;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+.reg-text{
+    width:60%;
+    height:100%;
+    background-image: url('../signup.png');
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.reg-form{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100%;
+}
+
+.signup-form .input-group{
+    width: 100%;
+}
+
+@media only screen and (max-width:480px){
+
+    .signup{
+        width: 95%;
+    }
+}
+
