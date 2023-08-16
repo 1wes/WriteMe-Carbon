@@ -1,10 +1,10 @@
-import React , {useReducer} from "react";
+import React , {useReducer, useState} from "react";
 import './signup.css';
 import axios from "axios";
 import Countries from '../utils.js/countries.json';
 import Footer from './footer';
 import {CtaButton} from './services';
-import { FormAlerts, Error, FormLegend } from "./create-order";
+import { Error, FormLegend } from "./create-order";
 
 const reducer=(state, action)=>{
 
@@ -112,6 +112,8 @@ const RegistrationForm=()=>{
 
     const [state, dispatch]=useReducer(reducer, initialState);
 
+    const [match, setMatch]=useState(true);
+
     let countryCode=Countries.map(code=>{
         return <option key={code.code} value={code.dial_code}>{` ${code.emoji} ${code.name} (${code.dial_code})`}</option>
     })
@@ -173,17 +175,42 @@ const RegistrationForm=()=>{
 
     const handleConfirmationChange=(e)=>{
 
+        let password=e.target.value;
+
+        if(password!==state.password){
+            setMatch(false)
+        }else{
+            setMatch(true)
+        }
+
         dispatch({
             type:"newConfirmPassword",
             newConfirmPassword:e.target.value
         })
     }
 
+    let phoneConfirmation;
+    let passwordAlert;
+
+    if(state.dialCode!==''){
+        phoneConfirmation=(
+            <div className="phone-confirmation">Your phone number is <span>{state.dialCode}</span> <span>{state.phoneNumber}</span></div>
+        )
+    }
+
+    if(!match){
+        passwordAlert=(
+            <Error errorMessage={`The passwords do not match !!`} />
+        )
+    }
+
     const handleSubmit=(e)=>{
 
         e.preventDefault();
-        
-        alert(JSON.stringify(state));
+
+        if(match){
+            alert(JSON.stringify(state));
+        }
     }
 
     return(
@@ -219,6 +246,7 @@ const RegistrationForm=()=>{
                     <input className="phone-number" type="number" onChange={handlePhoneChange} onWheel={handleWheel} ></input>
                     </div>
                 </div>
+                {phoneConfirmation}
                 <div className="input-group">
                     <label className="required">Password</label>
                     <div>
@@ -231,6 +259,7 @@ const RegistrationForm=()=>{
                         <input type="password" value={state.confirmPassword} onChange={handleConfirmationChange} required></input>
                     </div>
                 </div>
+                {passwordAlert}
                 <FormLegend/>
                 <CtaButton type={`submit`} message={`Sign Up`} />
             </form>
