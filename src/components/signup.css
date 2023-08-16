@@ -18,7 +18,7 @@
     width: 90%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 17px;
     height: 100%;
 }
 
@@ -41,6 +41,10 @@
 
 .signup-form .input-group{
     width: 100%;
+}
+
+.signup-header{
+    text-align: center;
 }
 
 @media only screen and (max-width:480px){
