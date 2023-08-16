@@ -623,6 +623,8 @@ const CreateOrder=()=>{
     )
 }
 export{
-    FormLegend
+    FormLegend,
+    FormAlerts,
+    Error
 }
 export default CreateOrder;
