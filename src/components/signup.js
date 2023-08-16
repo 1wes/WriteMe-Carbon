@@ -209,7 +209,11 @@ const RegistrationForm=()=>{
         e.preventDefault();
 
         if(match){
-            alert(JSON.stringify(state));
+            axios.post("/api/user/register", state).then(res=>{
+                console.log(res.data)
+            }).catch(err=>{
+                console.log(err);
+            });
         }
     }
 
