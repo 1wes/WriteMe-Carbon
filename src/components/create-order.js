@@ -31,11 +31,11 @@ const FormLegend=()=>{
     )
 }
 
-const FormAlerts=({message})=>{
+const FormAlerts=({message, children})=>{
 
     return(
         <>
-            <div className="form-alerts" >{message}</div>
+            <div className="form-alerts" >{message}{children}</div>
         </>
     )
 }
