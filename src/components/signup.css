@@ -1,6 +1,6 @@
 #signup-section{
     height: 100vh;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
 }
 
 .signup{
@@ -20,6 +20,8 @@
     flex-direction: column;
     gap: 17px;
     height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+    padding: 20px 20px 0 20px;
 }
 
 .reg-text{
@@ -28,6 +30,7 @@
     background-image: url('../signup.png');
     background-repeat: no-repeat;
     background-position: 50%;
+    background-position-x: 60%;
 }
 
 .reg-form{
@@ -37,6 +40,28 @@
     align-items: center !important;
     justify-content: center !important;
     height: 100%;
+    padding: 0 !important;
+}
+
+.reg-text{
+    display: flex;
+    align-items: center;
+}
+
+.reg-text h3{
+    color: rgba(165, 42, 42, 0.5);
+    font-size: 40px;
+    width: 38%;
+    text-align: left;
+    line-height: 55px;
+}
+
+.reg-text h3 span{
+    color: brown;
+}
+
+#submit-btn{
+    margin: -20px 0 0 0;
 }
 
 .signup-form .input-group{
@@ -45,6 +70,8 @@
 
 .signup-header{
     text-align: center;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 @media only screen and (max-width:480px){
