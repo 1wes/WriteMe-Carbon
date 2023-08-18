@@ -220,6 +220,7 @@ const RegistrationForm=()=>{
     return(
         <React.Fragment>
             <form className="signup-form" onSubmit={handleSubmit}>
+                <h4 className="signup-header">Sign up to WriteMe </h4>
                 <div className="input-group">
                     <label className="required">First name</label>
                     <div>
@@ -265,7 +266,7 @@ const RegistrationForm=()=>{
                 </div>
                 {passwordAlert}
                 <FormLegend/>
-                <CtaButton type={`submit`} message={`Sign Up`} />
+                <CtaButton type={`submit`} message={`Sign Up`} id={`submit-btn`} />
             </form>
         </React.Fragment>
     )
@@ -278,10 +279,11 @@ const SignUp=()=>{
         <React.Fragment>
             <section className="section" id='signup-section'>
                 <div className="signup">
-                    <div className="reg-text"></div>
+                    <div className="reg-text">
+                        <h3>Create your <span>free</span> account in seconds.</h3>
+                    </div>
                     <div className="reg-form">
                         <div className="form-wrapper">
-                            <h4 className="signup-header">Sign Up </h4>
                             <RegistrationForm/>
                         </div>
                     </div>
