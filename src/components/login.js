@@ -1,29 +1,58 @@
-import React from "react";
+import React, {useState} from "react";
 import './login.css';
 import Footer from './footer';
 import {Logo} from './navbar';
 import { FormAlerts } from "./create-order";
 import { Link } from "react-router-dom";
 import { CtaButton } from "./services";
+import axios from "axios";
 
 const LoginForm=()=>{
 
+    const [email, setEmail]=useState('');
+    const [password, setPassword]=useState('');
+    const [error, setError]=useState(false);
+
+    const handleEmailChange=(e)=>{
+        setEmail(e.target.value)
+    }
+
+    const handlePasswordChange=(e)=>{
+        setPassword(e.target.value)
+    }
+
+    const handleSubmit=(e)=>{
+
+        e.preventDefault();
+
+        const loginInfo={
+            email:email, 
+            password:password
+        }
+
+        axios.post("/api/user/login", loginInfo).then(res=>{
+            console.log(res.data)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+
     return(
         <React.Fragment>
-            <form className="login-form" >
+            <form className="login-form" onSubmit={handleSubmit}>
                 <div className="form-heading">
                     <div className="login-logo"><Logo/></div>
                 </div>
                 <div className="input-group"> 
                     <label>Email</label>
                     <div>
-                        <input type="email" placeholder="user@example.com" ></input>
+                        <input type="email" value={email} onChange={handleEmailChange} placeholder="user@example.com" required></input>
                     </div>
                 </div>
                 <div className="input-group"> 
                     <label>Password</label>
                     <div>
-                        <input type="password" placeholder="Enter your password" ></input>
+                        <input type="password" value={password} onChange={handlePasswordChange} placeholder="Enter your password" required></input>
                     </div>
                 </div>
                 <div className="prompts">
