@@ -147,7 +147,7 @@ input:focus, textarea:focus, select:focus{
 }
 
 input::placeholder, textarea::placeholder, select::placeholder{
-    color: rgba(0, 0, 0, 0.479);
+    color: rgba(0, 0, 0, 0.25);
     font-weight: bold;
     font-size: 12px;
 }
