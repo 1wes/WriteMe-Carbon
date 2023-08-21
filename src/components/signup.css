@@ -62,6 +62,8 @@
 
 #submit-btn{
     margin: -20px 0 0 0;
+    background-color: brown;
+    color: whitesmoke;
 }
 
 .signup-form .input-group{
