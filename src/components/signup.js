@@ -4,7 +4,8 @@ import axios from "axios";
 import Countries from '../utils.js/countries.json';
 import Footer from './footer';
 import {CtaButton} from './services';
-import { Error, FormLegend } from "./create-order";
+import { Error, FormAlerts, FormLegend } from "./create-order";
+import { Link } from "react-router-dom";
 
 const reducer=(state, action)=>{
 
@@ -265,7 +266,11 @@ const RegistrationForm=()=>{
                     </div>
                 </div>
                 {passwordAlert}
-                <FormLegend/>
+                <FormAlerts message={`Already have an account? `}>
+                    <Link to={`/login`}>
+                        Log in
+                    </Link>
+                </FormAlerts>
                 <CtaButton type={`submit`} message={`Sign Up`} id={`submit-btn`} />
             </form>
         </React.Fragment>
