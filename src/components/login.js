@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useLayoutEffect} from "react";
 import './login.css';
 import Footer from './footer';
 import {Logo} from './navbar';
@@ -72,6 +72,11 @@ const LoginForm=()=>{
 }
 
 const Login=()=>{
+
+    useLayoutEffect(()=>{
+
+        window.scrollTo(0, 0);
+    })
 
     return(
         <React.Fragment>
