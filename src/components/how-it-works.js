@@ -46,7 +46,7 @@ const HowItWorks=()=>{
                         <StepsCard stepIcon={<VscFeedback/>} stepName={`4. Provide Feedback`} 
                             details={`Provide us with feedback on the solution provided, and we will iteratively act on it until you are satisfied with the final solution.`} />
                     </div>
-                    <Link className='link-button' to={`/submit-assignment`}>
+                    <Link className='link-button' to={`/login`}>
                         <CtaButton message={`Submit Assignment`} id={`submit-link`} />
                     </Link>
                 </div>
