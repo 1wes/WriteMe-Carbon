@@ -1,5 +1,9 @@
 #login-section{
     height: 100vh;
+    background-image: url('../login.png');
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    background-position-x: 10%;
 }
 
 .login{
@@ -19,6 +23,7 @@
     width:30%;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
     padding: 20px;
+    background-color: whitesmoke;
 }
 
 .login-form .input-group{
