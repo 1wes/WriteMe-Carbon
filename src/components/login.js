@@ -5,7 +5,7 @@ import {Logo} from './navbar';
 import { FormAlerts } from "./create-order";
 import { Link } from "react-router-dom";
 import { CtaButton } from "./services";
-import axios from "axios";
+import axios from "../utils.js/axios";
 
 const LoginForm=()=>{
 
@@ -41,7 +41,11 @@ const LoginForm=()=>{
         <React.Fragment>
             <form className="login-form" onSubmit={handleSubmit}>
                 <div className="form-heading">
-                    <div className="login-logo"><Logo/></div>
+                    <div className="login-logo">
+                        <div>
+                            <Logo/>
+                        </div>
+                    </div>
                 </div>
                 <div className="input-group"> 
                     <label>Email</label>

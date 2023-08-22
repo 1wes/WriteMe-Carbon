@@ -47,15 +47,18 @@
 }
 
 .login-logo{
-    background-color: rgba(165, 42, 42, 0.05);
     display: flex;
     justify-content: center !important;
     align-items: center !important;
     width: 100%;
 }
 
+.login-logo div{
+    width: 50%;
+}
+
 .login-logo img{
-    width:17%;
+    width:30%;
     margin: 0 !important;
 }
 
