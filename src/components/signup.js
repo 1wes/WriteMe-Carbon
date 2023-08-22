@@ -1,4 +1,4 @@
-import React , {useReducer, useState} from "react";
+import React , {useReducer, useState, useLayoutEffect} from "react";
 import './signup.css';
 import axios from "axios";
 import Countries from '../utils.js/countries.json';
@@ -279,6 +279,9 @@ const RegistrationForm=()=>{
 
 const SignUp=()=>{
 
+    useLayoutEffect(()=>{
+        window.scrollTo(0, 0);
+    },[]);
 
     return(
         <React.Fragment>
