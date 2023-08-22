@@ -3,15 +3,18 @@ import './login.css';
 import Footer from './footer';
 import {Logo} from './navbar';
 import { FormAlerts } from "./create-order";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { CtaButton } from "./services";
 import axios from "../utils.js/axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm=()=>{
 
     const [email, setEmail]=useState('');
     const [password, setPassword]=useState('');
     const [error, setError]=useState(false);
+
+    const navigate=useNavigate();
 
     const handleEmailChange=(e)=>{
         setEmail(e.target.value)
@@ -31,7 +34,7 @@ const LoginForm=()=>{
         }
 
         axios.post("/api/user/login", loginInfo).then(res=>{
-            console.log(res.data)
+            navigate("/profile");
         }).catch(err=>{
             console.log(err)
         })
