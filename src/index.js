@@ -10,6 +10,7 @@ import NotFound from './components/404';
 import CreateOrder from './components/create-order';
 import SignUp from './components/signup';
 import Login from './components/login';
+import UserProfile from './components/profile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
       <Route path='/submit-assignment' element={<CreateOrder/>} ></Route>
       <Route path='register' element={<SignUp/>} ></Route>
       <Route path='/login' element={<Login/>}></Route>
+      <Route path='/profile' element={<UserProfile/>} ></Route>
       <Route path='*' element={<NotFound/>} ></Route>
     </Routes>
   </HashRouter>
