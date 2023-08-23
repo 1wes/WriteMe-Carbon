@@ -6,6 +6,7 @@ import { FormAlerts, Error } from "./create-order";
 import { Link, useNavigate } from "react-router-dom";
 import { CtaButton } from "./services";
 import axios from "../utils.js/axios";
+import ForgotPassword from "./forgot-password";
 
 const LoginForm=()=>{
 
@@ -97,7 +98,7 @@ const LoginForm=()=>{
                         </FormAlerts>
                     </div>
                     <div>
-                        <Link className="link">Forgot password?</Link>
+                        <Link to={'/forgot-password'} className="link">Forgot password?</Link>
                     </div>
                 </div>
                 <CtaButton type={`submit`} id={`login-btn`} message={`Log in `} />
