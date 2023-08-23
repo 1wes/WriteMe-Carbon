@@ -43,8 +43,6 @@ const LoginForm=()=>{
         }).catch(err=>{
 
             setError(true);
-
-            console.log(err)
         })
     }
 
