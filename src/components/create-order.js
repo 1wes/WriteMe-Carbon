@@ -6,7 +6,6 @@ import Footer from "./footer";
 import { Link } from "react-router-dom";
 import SectionHeader from "./heading";
 import { CtaButton } from "./services";
-import axios from "axios";
 import Countries from '../utils.js/countries.json';
 
 const StepsBreadcrumb=()=>{
@@ -40,11 +39,11 @@ const FormAlerts=({message, children})=>{
     )
 }
 
-const Error=({errorMessage})=>{
+const Error=({errorMessage, id})=>{
 
     return(
         <>
-            <div className="error-message">{errorMessage}</div>
+            <div className="error-message" id={id}>{errorMessage}</div>
         </>
     )
 }
