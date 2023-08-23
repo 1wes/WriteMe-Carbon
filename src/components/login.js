@@ -1,12 +1,11 @@
-import React, {useState, useLayoutEffect} from "react";
+import React, {useState, useLayoutEffect, useEffect} from "react";
 import './login.css';
 import Footer from './footer';
 import {Logo} from './navbar';
-import { FormAlerts } from "./create-order";
-import { Link, Navigate } from "react-router-dom";
+import { FormAlerts, Error } from "./create-order";
+import { Link, useNavigate } from "react-router-dom";
 import { CtaButton } from "./services";
 import axios from "../utils.js/axios";
-import { useNavigate } from "react-router-dom";
 
 const LoginForm=()=>{
 
@@ -34,15 +33,37 @@ const LoginForm=()=>{
         }
 
         axios.post("/api/user/login", loginInfo).then(res=>{
+
+            setError(false);
+
             navigate("/profile");
         }).catch(err=>{
+
+            setError(true);
+
             console.log(err)
         })
     }
 
+    const loginError=error?(
+        <Error id={`login-error`} errorMessage={`Incorrect email or password. Please check and try again.`} />
+    ):"";
+
+    useEffect(()=>{
+        if(error){
+            const loginForm=document.getElementById("user-login-form");
+    
+            loginForm.classList.add("login-animation")
+        }else{
+            const loginForm=document.getElementById("user-login-form");
+    
+            loginForm.classList.remove("login-animation")
+        }
+    },[error]);
+
     return(
         <React.Fragment>
-            <form className="login-form" onSubmit={handleSubmit}>
+            <form className="login-form" id="user-login-form" onSubmit={handleSubmit}>
                 <div className="form-heading">
                     <div className="login-logo">
                         <div>
@@ -50,6 +71,7 @@ const LoginForm=()=>{
                         </div>
                     </div>
                 </div>
+                {loginError}
                 <div className="input-group"> 
                     <label>Email</label>
                     <div>
