@@ -32,6 +32,9 @@ const LoginForm=()=>{
             password:password
         }
 
+        setEmail('');
+        setPassword('');
+
         axios.post("/api/user/login", loginInfo).then(res=>{
 
             setError(false);
@@ -61,6 +64,11 @@ const LoginForm=()=>{
         }
     },[error]);
 
+    const removeError=()=>{
+
+        setError(false);
+    }
+
     return(
         <React.Fragment>
             <form className="login-form" id="user-login-form" onSubmit={handleSubmit}>
@@ -75,13 +83,13 @@ const LoginForm=()=>{
                 <div className="input-group"> 
                     <label>Email</label>
                     <div>
-                        <input type="email" value={email} onChange={handleEmailChange} placeholder="user@example.com" required></input>
+                        <input type="email" value={email} onChange={handleEmailChange} onFocus={removeError} placeholder="user@example.com" required></input>
                     </div>
                 </div>
                 <div className="input-group"> 
                     <label>Password</label>
                     <div>
-                        <input type="password" value={password} onChange={handlePasswordChange} placeholder="Enter your password" required></input>
+                        <input type="password" value={password} onChange={handlePasswordChange} onFocus={removeError} placeholder="Enter your password" required></input>
                     </div>
                 </div>
                 <div className="prompts">
