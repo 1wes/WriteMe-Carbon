@@ -13,7 +13,7 @@
 }
 
 .signup-form{
-    height: 50vh;
+    height: 100%;
     margin: 0 auto;
     width: 90%;
     display: flex;
@@ -80,6 +80,41 @@
 
     .signup{
         width: 95%;
+        flex-direction: column;
     }
+
+    #signup-section{
+        height: 100%;
+    }
+
+    .signup-form{
+        width: 100%;
+    }
+
+    .reg-text{
+        width:100%;
+        background-position: 50%;
+        background-position-x: 1%;
+    }
+
+    .form-wrapper{
+        display: flex;
+        width: 100%;
+    }
+
+    .reg-form{
+        width: 100%;
+    }
+
+    #submit-btn{
+        margin: -20px 0 20px 0;
+    }
+
+    .reg-text h3{
+        color: rgba(165, 42, 42, 0.7);
+        width: 50%;
+        line-height: 50px;
+    }
+
 }
 
