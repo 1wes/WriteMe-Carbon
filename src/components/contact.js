@@ -129,7 +129,7 @@ const Contact=()=>{
                                         <textarea type='text' placeholder='Enter Your Message.' value={message} onChange={handleMessageChange} required></textarea>
                                     </div>
                                     <FormLegend/>
-                                    <CtaButton type={`submit`} message={`Submit`}/>
+                                    <CtaButton type={`submit`} message={`Submit`} id='contact-form-submit' />
                                 </form>
                             </div>
                         </div>
