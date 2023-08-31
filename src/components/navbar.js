@@ -3,6 +3,8 @@ import './navbar.css';
 import { Link } from "react-router-dom";
 import { goToSection } from "../utils.js/section";
 import {CgMenuRight, CgClose} from 'react-icons/cg';
+import { BsPerson } from 'react-icons/bs';
+import { IoLogInOutline} from 'react-icons/io5';
 
 const SignButton=()=>{
 
@@ -102,6 +104,14 @@ let MobileNavbar=()=>{
                     <div className="logo">
                         <Logo/>
                     </div>
+                    <div className="nav-cta">
+                        <Link className="nav-cta-link" to={`/register`} >
+                            <span><i><BsPerson/></i></span>Signup
+                        </Link>
+                        <Link className="nav-cta-link" to={`/login`}>
+                            <span><i><IoLogInOutline/></i></span>Login
+                        </Link>
+                    </div>
                     <div className="mobile-nav-menu">
                         <span className="hamburger-menu" onClick={showMenu} ><i><CgMenuRight/></i></span>
                     </div>
@@ -126,12 +136,6 @@ let MobileNavbar=()=>{
                                             FAQ
                                         </li>
                                     </Link>
-                                    <li>
-                                        <LogInButton/>
-                                    </li>
-                                    <li>
-                                        <SignButton/>
-                                    </li>
                                 </div>
                             </div>
                         </div>
