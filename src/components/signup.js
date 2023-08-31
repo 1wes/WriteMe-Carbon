@@ -4,7 +4,7 @@ import axios from "axios";
 import Countries from '../utils.js/countries.json';
 import Footer from './footer';
 import {CtaButton} from './services';
-import { Error, FormAlerts, FormLegend } from "./create-order";
+import { Error, FormAlerts } from "./create-order";
 import { Link } from "react-router-dom";
 
 const reducer=(state, action)=>{
@@ -114,6 +114,7 @@ const RegistrationForm=()=>{
     const [state, dispatch]=useReducer(reducer, initialState);
 
     const [match, setMatch]=useState(true);
+    const [emailError, setEmailError]=useState(false);
 
     let countryCode=Countries.map(code=>{
         return <option key={code.code} value={code.dial_code}>{` ${code.emoji} ${code.name} (${code.dial_code})`}</option>
@@ -190,8 +191,13 @@ const RegistrationForm=()=>{
         })
     }
 
+    const removeError=()=>{
+        setEmailError(false);
+    }
+
     let phoneConfirmation;
     let passwordAlert;
+    let duplicateEmail;
 
     if(state.dialCode!==''){
         phoneConfirmation=(
@@ -205,6 +211,12 @@ const RegistrationForm=()=>{
         )
     }
 
+    if(emailError){
+        duplicateEmail=(
+            <Error errorMessage={`Email is already registered !`} />
+        )
+    }
+
     const handleSubmit=(e)=>{
 
         e.preventDefault();
@@ -213,7 +225,9 @@ const RegistrationForm=()=>{
             axios.post("/api/user/register", state).then(res=>{
                 console.log(res.data)
             }).catch(err=>{
-                console.log(err);
+                if(err.response.status===403){
+                    setEmailError(true);
+                }
             });
         }
     }
@@ -237,9 +251,10 @@ const RegistrationForm=()=>{
                 <div className="input-group">
                     <label className="required">Email</label>
                     <div>
-                        <input type="email" value={state.email} onChange={handleEmailChange} required ></input>
+                        <input type="email" value={state.email} onChange={handleEmailChange} onFocus={removeError} required ></input>
                     </div>
                 </div>
+                {duplicateEmail}
                 <div className="input-group">
                     <label>
                         Phone Number
