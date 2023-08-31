@@ -151,7 +151,7 @@ input, textarea, select{
 
 input:focus, textarea:focus, select:focus{
     outline: none;
-    border: 1px solid rgba(165, 42, 42, 0.6);
+    border: 1px solid rgba(165, 42, 42, 0.4);
 }
 
 input::placeholder, textarea::placeholder, select::placeholder{
