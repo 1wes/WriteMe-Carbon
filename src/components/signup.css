@@ -64,6 +64,7 @@
     margin: -20px 0 0 0;
     background-color: brown;
     color: whitesmoke;
+    width: 100%;
 }
 
 .signup-form .input-group{
