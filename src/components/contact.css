@@ -5,7 +5,7 @@
 .contact{
     margin: 0 auto;
     width: 75%;
-    padding: 40px;
+    padding: 40px 0 40px 0;
     height: 100%;
 }
 
@@ -22,7 +22,7 @@
 
 .contact-form{
     width: 40%;
-    padding: 0px 45px 50px 45px; 
+    padding: 0px 0px 50px 45px;
 }
 
 .testimonials-card{
@@ -110,10 +110,16 @@
 .form-section{
     display: flex;
     justify-content: flex-start;
+    width: 100%;
 }
 
 form{
     width: 100%;
+}
+
+.form-section form div{
+    width: 100%;
+    display: flex;
 }
 
 label{
@@ -130,7 +136,7 @@ label.required::after{
 input, textarea, select{
     padding: 10px;
     border: 1px solid rgba(165, 42, 42, 0);
-    background-color: rgba(165, 42, 42, 0.05);
+    background: transparent;
     border-radius: 2px;
     width: 100%;
     caret-color: brown;
@@ -168,6 +174,16 @@ textarea{
     height: 100px;
     font-family: -apple-system, blinkmacsystemfont, "segoe ui", roboto, oxygen-sans, ubuntu, cantarell, "helvetica neue", helvetica, arial, sans-serif;   
     
+}
+
+.contact-submit-btn{
+    width: 100%;
+}
+
+#contact-form-submit{
+    width: 100%;
+    background-color: brown;
+    color: white;
 }
 
 @media only screen and (max-width:480px){
