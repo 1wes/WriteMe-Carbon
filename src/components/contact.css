@@ -135,7 +135,6 @@ label.required::after{
 
 input, textarea, select{
     padding: 10px;
-    border: 1px solid rgba(165, 42, 42, 0);
     background: transparent;
     border-radius: 2px;
     width: 100%;
@@ -152,7 +151,7 @@ input, textarea, select{
 
 input:focus, textarea:focus, select:focus{
     outline: none;
-    border: 1px solid rgba(165, 42, 42, 0.4);
+    border: 1px solid rgba(165, 42, 42, 0.6);
 }
 
 input::placeholder, textarea::placeholder, select::placeholder{
@@ -216,5 +215,9 @@ textarea{
         display: flex;
         flex-direction: row !important;
         width: 100%;
+    }
+
+    input, textarea, select{
+        border: 1px solid rgba(165, 42, 42, 0.2);
     }
 }
