@@ -138,12 +138,41 @@
         margin-left: -13px;
     }
 
+    .nav-cta{
+        width: 45%;
+        display: flex;
+        align-items: center;
+        justify-content:space-around;
+        gap: 5px;
+    }
+
+    .nav-cta-link{
+        color: black;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+    }
+
+    .nav-cta-link span{
+        margin-top: 3px;
+    }
+
+    .nav-cta-link span i{
+        font-size: 16px;
+        height: 100%;
+    }
+
     .mobile-nav-menu{
-        width: 55%;
+        width: 10%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: flex-end;
+    }
+
+    .mobile-nav-menu span{
+        margin-top: 8px;
     }
 
     .logo-image img{
@@ -213,10 +242,4 @@
         color: whitesmoke;
         text-decoration: none;
     }
-
-    .navbar-button{
-        background-color: whitesmoke;
-        color: brown;
-    }
-
 }
