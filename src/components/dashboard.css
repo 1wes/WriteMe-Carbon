@@ -1,0 +1,51 @@
+.dashboard-nav{
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(165, 42, 42, 0.2);
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo{
+    width: 80%;
+}
+
+.dash-nav-content{
+    margin: 0 auto;
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-menu{
+    list-style: none;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 20%;
+}
+
+.dashboard{
+    margin: 0 auto;
+    width: 75%;
+    padding: 50px;
+}
+
+.user-profile-icon i{
+    margin-right: 5px;
+}
+
+.profile-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all ease 1s;
+}
+
+.profile-section:hover{
+    cursor: pointer;
+}
+
+.dropdown-icon i{
+    display: flex;
+    align-items: flex-end;
+    color: black;
+}
