@@ -40,7 +40,7 @@ const LoginForm=()=>{
 
             setError(false);
 
-            navigate("/profile");
+            navigate("/user-dashboard");
         }).catch(err=>{
 
             setError(true);
