@@ -9,6 +9,10 @@ import { TbLogout } from 'react-icons/tb';
 import { IoNotificationsOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import checkToken from '../utils.js/check-token';
+import SectionHeader from './heading';
+import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
+import { GiSandsOfTime } from 'react-icons/gi';
+import { ImCancelCircle } from 'react-icons/im';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -54,6 +58,19 @@ const DashboardNavbar=({userName, onClick})=>{
     )
 }
 
+const Metrics=({title, icon, number})=>{
+
+    return(
+        <Fragment>
+            <div className='metric-details'>
+                <span className='metric-title'>{title}</span>
+                <span className='metric-icon'><i>{icon}</i></span>
+                <span className='metric-number'>{number}</span>
+            </div>
+        </Fragment>
+    )
+}
+
 const Dashboard=()=>{
 
     const [userDetails, setUserDetails]=useState();
@@ -66,7 +83,7 @@ const Dashboard=()=>{
     const userNames=data
 
     useEffect(()=>{
-        
+
         setUserDetails(userNames);
 
         checkToken().then(res=>{
@@ -95,7 +112,17 @@ const Dashboard=()=>{
             <section className='section' id='dashboard-section'>
                 <DashboardNavbar userName={userDetails} onClick={logOutUser}/>
                 <div className='dashboard'>
-
+                    <section className='overview'>
+                        <div className='overview-header'>
+                            <SectionHeader heading={`Overview`} />
+                        </div>
+                        <div className='overview-metrics'>
+                            <Metrics title={`All Orders`} icon={<BsFileEarmarkBarGraph/>} number={`0`} />
+                            <Metrics title={`Completed Orders`} icon={<BsFileEarmarkCheck/>} number={`0`}  />
+                            <Metrics title={`Active Orders`} icon={<GiSandsOfTime/>} number={`0`} />
+                            <Metrics title={`Cancelled Orders`} icon={<ImCancelCircle/>} number={`0`} />
+                        </div>
+                    </section>
                 </div>
             </section>
         </React.Fragment>
