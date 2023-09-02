@@ -7,10 +7,11 @@ import { BsChevronDown } from 'react-icons/bs';
 import { MdOutlineManageAccounts } from 'react-icons/md';
 import { TbLogout } from 'react-icons/tb';
 import { IoNotificationsOutline } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
-const DashboardNavbar=({userName})=>{
+const DashboardNavbar=({userName, onClick})=>{
 
     const showDropdownMenu=()=>{
 
@@ -42,7 +43,7 @@ const DashboardNavbar=({userName})=>{
                             <ul>
                                 <li className='dropdown-item'><span className='item-icon'><i><MdOutlineManageAccounts/></i></span> Account settings</li>
                                 <li className='dropdown-item'><span className='item-icon' ><i><IoNotificationsOutline/></i></span>Notifications</li>
-                                <li className='dropdown-item'><span className='item-icon'><i><TbLogout/></i></span> Sign out</li>
+                                <li className='dropdown-item' onClick={onClick}><span className='item-icon'><i><TbLogout/></i></span> Sign out</li>
                             </ul>
                         </div>
                     </ul>
@@ -55,6 +56,9 @@ const DashboardNavbar=({userName})=>{
 const Dashboard=()=>{
 
     const [userDetails, setUserDetails]=useState();
+    const [loggedIn, setloggedIn]=useState(true);
+
+    const navigate=useNavigate();
 
     const {data}=useSWR(`/api/user/user-details`, fetcher);
 
@@ -62,12 +66,24 @@ const Dashboard=()=>{
 
     useEffect(()=>{
         setUserDetails(userNames);
-    },[userNames])
+    },[userNames]);
+
+    const logOutUser=()=>{
+
+        axios.get("/api/user/logout").then(res=>{
+
+            setloggedIn(false);
+
+        }).catch(err=>{
+            console.log(err);
+        });
+    }
 
     return(
         <React.Fragment>
+            {!loggedIn && navigate("/login")}
             <section className='section' id='dashboard-section'>
-                <DashboardNavbar userName={userDetails}/>
+                <DashboardNavbar userName={userDetails} onClick={logOutUser}/>
                 <div className='dashboard'>
 
                 </div>
