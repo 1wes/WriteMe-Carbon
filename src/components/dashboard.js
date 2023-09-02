@@ -8,6 +8,7 @@ import { MdOutlineManageAccounts } from 'react-icons/md';
 import { TbLogout } from 'react-icons/tb';
 import { IoNotificationsOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
+import checkToken from '../utils.js/check-token';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -65,23 +66,32 @@ const Dashboard=()=>{
     const userNames=data
 
     useEffect(()=>{
+        
         setUserDetails(userNames);
+
+        checkToken().then(res=>{
+            setloggedIn(true);
+        }).catch(err=>{
+            setloggedIn(false);
+        });
+
     },[userNames]);
 
     const logOutUser=()=>{
 
         axios.get("/api/user/logout").then(res=>{
 
-            setloggedIn(false);
+            navigate("/login");
 
         }).catch(err=>{
             console.log(err);
         });
     }
 
+    {!loggedIn && navigate("/login")}
+
     return(
         <React.Fragment>
-            {!loggedIn && navigate("/login")}
             <section className='section' id='dashboard-section'>
                 <DashboardNavbar userName={userDetails} onClick={logOutUser}/>
                 <div className='dashboard'>
