@@ -114,7 +114,7 @@ const Dashboard=()=>{
             navigate("/login");
 
         }).catch(err=>{
-            console.log(err);
+            setloggedIn(false);
         });
     }
 
