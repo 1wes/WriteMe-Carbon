@@ -2,7 +2,7 @@ import React, {Fragment, useState, useEffect} from 'react';
 import './dashboard.css';
 import useSWR from 'swr';
 import axios from '../utils.js/axios';
-import { FiUser } from 'react-icons/fi'
+import { BiUser } from 'react-icons/bi'
 import { BsChevronDown } from 'react-icons/bs';
 import { MdOutlineManageAccounts } from 'react-icons/md';
 import { TbLogout } from 'react-icons/tb';
@@ -13,6 +13,7 @@ import SectionHeader from './heading';
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
 import { ImCancelCircle } from 'react-icons/im';
+import { FiPlus } from 'react-icons/fi';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -37,7 +38,7 @@ const DashboardNavbar=({userName, onClick})=>{
                     <ul className='profile-menu'>
                         <li className='profile-section' onClick={showDropdownMenu}>
                             <span className='user-profile-icon'>
-                                <i><FiUser/></i>
+                                <i><BiUser/></i>
                                 <span className='username'>{userName}</span>
                             </span>
                             <span className='dropdown-icon' >
@@ -67,6 +68,18 @@ const Metrics=({title, icon, number})=>{
                 <span className='metric-icon'><i>{icon}</i></span>
                 <span className='metric-number'>{number}</span>
             </div>
+        </Fragment>
+    )
+}
+
+const NewOrderButton=()=>{
+
+    return (
+        <Fragment>
+            <button type='button' className='add-button'>
+                <span>New Order</span>
+                <span className='button-icon'><i><FiPlus/></i></span>
+            </button>
         </Fragment>
     )
 }
@@ -121,6 +134,16 @@ const Dashboard=()=>{
                             <Metrics title={`Completed Orders`} icon={<BsFileEarmarkCheck/>} number={`0`}  />
                             <Metrics title={`Active Orders`} icon={<GiSandsOfTime/>} number={`0`} />
                             <Metrics title={`Cancelled Orders`} icon={<ImCancelCircle/>} number={`0`} />
+                        </div>
+                    </section>
+                    <section className='create-order-section'>
+                        <div className='overview-header'>
+                            <SectionHeader heading={`Create New Order`} />
+                        </div>
+                        <div className='add-order'>
+                            <div className='btn'>
+                                <NewOrderButton/>
+                            </div>
                         </div>
                     </section>
                 </div>
