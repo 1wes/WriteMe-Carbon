@@ -21,6 +21,7 @@
     padding: 0 !important;
     margin: 0 !important;
     width: 20%;
+    position: relative;
 }
 
 .dashboard{
@@ -48,4 +49,60 @@
     display: flex;
     align-items: flex-end;
     color: black;
+}
+
+.profile-dropdown{
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    border-radius: 5px;
+    outline: 1px solid rgba(165, 42, 42, 0.2);
+    background-color: whitesmoke;
+    z-index: 1000;
+    display: none;
+    transition: all ease 1s;
+}
+
+ul{
+    list-style: none;
+    padding: 5px 0;
+}
+
+.dropdown-item{
+    padding: 11px 5px;
+    transition: all ease 1s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-item:hover{
+    background-color: rgba(165, 42, 42, 0.2);
+    cursor: pointer;
+}
+
+.item-icon{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.dropdown-item span i {
+    color: brown;
+    margin-top: 3px;
+}
+
+.show-profile-dropdown{
+    display: block;
+}
+
+#down-icon{
+    transform: all ease .5s
+}
+
+.rotate-icon{
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
