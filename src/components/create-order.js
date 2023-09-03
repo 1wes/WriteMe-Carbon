@@ -1,25 +1,6 @@
-import React, { useLayoutEffect, useReducer, useState, useEffect } from "react";
+import React, { useReducer, useState } from "react";
 import './create-order.css';
-import Navbar,{ MobileNavbar } from "./navbar";
-import { OrderBreadcrumb } from "./breadcrumb";
-import Footer from "./footer";
-import { Link } from "react-router-dom";
-import SectionHeader from "./heading";
 import { CtaButton } from "./services";
-import Countries from '../utils.js/countries.json';
-
-const StepsBreadcrumb=()=>{
-
-    return(
-        <React.Fragment>
-            <div className="steps-breadcrumb">
-                <div className="step-info">Submit assignment</div>
-                <div className="step-info"><Link className='breadcrumb-link' to={`#`}>Get a quote and pay</Link></div>
-                <div className="step-info">Receive your work</div>
-            </div>
-        </React.Fragment>
-    )
-}
 
 const FormLegend=()=>{
 
@@ -62,11 +43,6 @@ const reducer=(state, action)=>{
                 amount:state.amount,
                 deadline:state.deadline,
                 time:state.time,
-                name:state.name,
-                email:state.email,
-                code:state.code,
-                phone:state.phone
-
             }
         }
 
@@ -80,10 +56,6 @@ const reducer=(state, action)=>{
                 amount:state.amount,
                 deadline:state.deadline,
                 time:state.time,
-                name:state.name,
-                email:state.email,
-                code:state.code,
-                phone:state.phone
             }
         }
 
@@ -97,10 +69,6 @@ const reducer=(state, action)=>{
                 amount:state.amount,
                 deadline:state.deadline,
                 time:state.time,
-                name:state.name,
-                email:state.email,
-                code:state.code,
-                phone:state.phone
             }
         }
 
@@ -110,11 +78,7 @@ const reducer=(state, action)=>{
                 pagesOrwords:state.pagesOrwords,
                 amount:state.amount,
                 deadline:state.deadline,
-                name:state.name,
-                email:state.email,
                 time:state.time,
-                code:state.code,
-                phone:state.phone,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
                 subject:state.subject
@@ -127,10 +91,6 @@ const reducer=(state, action)=>{
                 amount:state.amount,
                 deadline:state.deadline,
                 time:state.time,
-                name:state.name,
-                email:state.email,
-                code:state.code,
-                phone:state.phone,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
                 subject:state.subject,
@@ -144,10 +104,6 @@ const reducer=(state, action)=>{
                 pagesOrwords:state.pagesOrwords,
                 deadline:state.deadline,
                 time:state.time,
-                name:state.name,
-                email:state.email,
-                code:state.code,
-                phone:state.phone,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
                 subject:state.subject,
@@ -160,10 +116,6 @@ const reducer=(state, action)=>{
                 deadline:action.newDeadline,
                 amount:state.amount,
                 pagesOrwords:state.pagesOrwords,
-                name:state.name,
-                email:state.email,
-                code:state.code,
-                phone:state.phone,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
                 subject:state.subject,
@@ -175,79 +127,7 @@ const reducer=(state, action)=>{
         case "newTime":{
             return{
                 time:action.newTime,
-                email:state.email,
-                name:state.name,
                 deadline:state.deadline,
-                amount:state.amount,
-                pagesOrwords:state.pagesOrwords,
-                file:state.file,
-                gradeLevel:state.gradeLevel,
-                subject:state.subject,
-                code:state.code,
-                phone:state.phone,
-                instructions:state.instructions
-            }
-        }
-
-        case "newName":{
-            return{
-                name:action.newName,
-                deadline:state.deadline,
-                time:state.time,
-                amount:state.amount,
-                pagesOrwords:state.pagesOrwords,
-                email:state.email,
-                code:state.code,
-                phone:state.phone,
-                file:state.file,
-                gradeLevel:state.gradeLevel,
-                subject:state.subject,
-                instructions:state.instructions
-            }
-        }
-
-        case "newEmail":{
-            return{
-                email:action.newEmail,
-                name:state.name,
-                deadline:state.deadline,
-                time:state.time,
-                amount:state.amount,
-                pagesOrwords:state.pagesOrwords,
-                code:state.code,
-                phone:state.phone,
-                file:state.file,
-                gradeLevel:state.gradeLevel,
-                subject:state.subject,
-                instructions:state.instructions
-            }
-        }
-
-        case "newCode":{
-            return{
-                code:action.newCode,
-                phone:state.phone,
-                email:state.email,
-                name:state.name,
-                deadline:state.deadline,
-                time:state.time,
-                amount:state.amount,
-                pagesOrwords:state.pagesOrwords,
-                file:state.file,
-                gradeLevel:state.gradeLevel,
-                subject:state.subject,
-                instructions:state.instructions
-            }
-        }
-
-        case "newPhone":{
-            return{
-                phone:action.newPhone,
-                email:state.email,
-                code:state.code,
-                name:state.name,
-                deadline:state.deadline,
-                time:state.time,
                 amount:state.amount,
                 pagesOrwords:state.pagesOrwords,
                 file:state.file,
@@ -375,51 +255,7 @@ const SubmissionForm=()=>{
         })
     }
 
-    const handleNameChange=(e)=>{
-
-        dispatch({
-            type:"newName",
-            newName:e.target.value
-        })
-    }
-
-    const handleEmailChange=(e)=>{
-
-        dispatch({
-            type:"newEmail",
-            newEmail:e.target.value
-        })
-    }
-
-    const handleCodeChange=(e)=>{
-
-        dispatch({
-            type:"newCode",
-            newCode:e.target.value
-        })
-    }
-
-    const handlePhoneChange=(e)=>{
-
-        dispatch({
-            type:"newPhone",
-            newPhone:e.target.value
-        })
-    }
-
     let DeadlineErrorAlert;
-
-    let countryCode=Countries.map(code=>{
-        return <option key={code.code} value={code.dial_code}>{` ${code.emoji} ${code.name} (${code.dial_code})`}</option>
-    })
-
-    let phoneConfirmation;
-
-    if(state.code!==''){
-        phoneConfirmation=(
-            <div className="phone-confirmation">Your phone number is <span>{state.code}</span> <span>{state.phone}</span></div>
-        )
-    }
 
     if(error){
         DeadlineErrorAlert=(
@@ -438,6 +274,8 @@ const SubmissionForm=()=>{
         for (var key in state){
             assignmentDetails.append(key, state[key])
         }
+
+        alert(JSON.stringify(state));
         
         // axios.post("url", assignmentDetails, {
         //     headers:{
@@ -454,7 +292,6 @@ const SubmissionForm=()=>{
 
         <React.Fragment>
             <form className="assignment-form" onSubmit={submitAssignment}>
-            <SectionHeader tagline={`Fill in your assignment requirements`} />
                 <div className="assignment-details">
                 <div className="input-group">
                     <label className="required">
@@ -554,38 +391,6 @@ const SubmissionForm=()=>{
                     </div>
                 </div>
                 </div>
-                <SectionHeader tagline={`Enter your information to enable us to reply to you`} />
-                <div className="personal-info">
-                    <div className="input-group">
-                        <label className="required">
-                            Name
-                        </label>
-                        <div>
-                            <input type="text" value={state.name} onChange={handleNameChange} required></input>
-                        </div>
-                    </div>
-                    <div className="input-group">
-                        <label className="required">
-                            Email
-                        </label>
-                        <div>
-                            <input type="email" value={state.email} onChange={handleEmailChange} required></input>
-                        </div>
-                    </div>
-                    <div className="input-group">
-                        <label>
-                            Phone Number
-                        </label>
-                        <div className="code-and-phone">
-                            <select value={state.code} onChange={handleCodeChange}  className="code">
-                                <option value={``} hidden disabled >🇦🇫 Afghanistan</option>
-                                {countryCode}
-                            </select>
-                            <input className="phone-number" type="number" onWheel={handleWheel} value={state.phone} onChange={handlePhoneChange}></input>
-                        </div>
-                        {phoneConfirmation}
-                    </div>
-                </div>
                 <FormLegend/>
                 <CtaButton type={`submit`} message={`Submit Assignment`} />
             </form>
@@ -593,37 +398,9 @@ const SubmissionForm=()=>{
     )
 }
 
-const CreateOrder=()=>{
-
-    useLayoutEffect(()=>{
-        window.scrollTo(0, 0);
-    },[]);
-
-    useEffect(()=>{
-        let submitCtaBtn=document.getElementById('submit-cta');
-
-        submitCtaBtn.classList.add('hide-assignment-btn')
-    },[]);
-
-    return(
-
-        <React.Fragment>
-            <Navbar/>
-            <MobileNavbar/>
-            <section className="section" id="create-order-section">
-                <div className="create-order">
-                    <OrderBreadcrumb/>
-                    <StepsBreadcrumb/>
-                    <SubmissionForm/>
-                </div>
-            </section>
-            <Footer/>
-        </React.Fragment>
-    )
-}
 export{
-    FormLegend,
-    FormAlerts,
-    Error
+    FormLegend, 
+    Error,
+    FormAlerts
 }
-export default CreateOrder;
+export default SubmissionForm;
