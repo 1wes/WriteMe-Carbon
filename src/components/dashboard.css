@@ -70,22 +70,24 @@
 
 ul{
     list-style: none;
-    padding: 5px 0;
+    padding: 5px;
 }
 
 .dropdown-item{
     padding: 11px 5px;
-    transition: all ease 1s;
+    transition: all ease .3s;
     display: flex;
     align-items: center;
     gap: 10px;
     font-size: 14px;
     font-weight: 400;
+    border-radius: 5px;
 }
 
 .dropdown-item:hover{
     background-color: rgba(165, 42, 42, 0.1);
     cursor: pointer;
+    color: brown;
 }
 
 .item-icon{
@@ -213,7 +215,7 @@ ul{
 }
 
 .add-button{
-    width: 25% !important;
+    width: 50%;
     padding: 15px;
     color: brown;
     border: none;
@@ -230,4 +232,43 @@ ul{
 .add-button:hover{
     cursor: pointer;
     background-image: linear-gradient(to right, rgb(148, 148, 255), rgb(106, 106, 253), rgb(32, 32, 255));
+}
+
+.search-form{
+    width: 100%;
+}
+
+.search-form .input-group{
+    width: 50%;
+}
+
+.orders-table{
+    margin-top: 40px;
+    width: 100%;
+}
+
+th{
+    text-transform:uppercase;
+    font-size: 14px;
+    color: rgba(128, 128, 128, 0.8);
+}
+
+th, td{
+    text-align: left;
+    padding: 15px 5px;
+}
+
+td{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+table{
+    border-spacing: 0;
+}
+
+#dash-header{
+    color: black;
+    text-transform: uppercase;
+    font-size: 14px;
 }
