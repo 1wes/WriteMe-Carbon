@@ -1,99 +1,12 @@
-.create-order{
-    margin: 0 auto;
-    width: 75%;
-    height: 100%;
-}
-
-.steps-breadcrumb{
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    float: left;
-    border-radius: 5px;
-    width: 100%;
-    color: whitesmoke;
-}
-
-.step-info{
-    width: 33.33%;
-    position: relative;
-    display: block;
-    float: left;
-    padding: 20px 0px 20px 5px;
-    font-weight: 500;
-    transition: all ease 1s;
-}
-
-.step-info:hover{
-    cursor: pointer;
-}
-
-.step-info::after{
-    content: " "; 
-    display: block; 
-    width: 0; 
-    height: 0;
-    border-top: 50px solid transparent;
-    border-bottom: 50px solid transparent;
-    border-left: 30px solid rgba(165, 42, 42, 0.404);
-    position: absolute;
-    top: 50%;
-    margin-top: -50px; 
-    left: 100%;
-    z-index: 2; 
-}
-
-.step-info::before{
-    content: " "; 
-    display: block; 
-    width: 0; 
-    height: 0;
-    border-top: 50px solid transparent;       
-    border-bottom: 50px solid transparent;
-    border-left: 32px solid whitesmoke;
-    position: absolute;
-    top: 50%;
-    margin-top: -50px; 
-    left: 100%;
-    z-index: 1; 
-}
-
-.steps-breadcrumb .step-info:not(:first-child){
-    padding-left: 40px;
-}
-
-.steps-breadcrumb .step-info:first-child{
-    background-color: rgba(165, 42, 42, 0.8);
-    padding-left: 14px;
-}
-
-.steps-breadcrumb .step-info:first-child::after{
-    border-left-color: rgba(165, 42, 42, 0.8);
-}
-
-.steps-breadcrumb .step-info:nth-child(2){
-    background-color: rgba(165, 42, 42, 0.6);
-}
-
-.steps-breadcrumb .step-info:nth-child(2)::after{
-    border-left-color: rgba(165, 42, 42, 0.6);
-}
-
-.steps-breadcrumb .step-info:last-child{
-    background-color: rgba(165, 42, 42, 0.4);
-}
-
-.breadcrumb-link{
-    text-decoration: none;
-    color: whitesmoke;
-}
-
 .assignment-form{
-    margin-top: 100px !important;
+    margin-top: 50px !important;
     padding-bottom: 100px;
+    padding: 20px 10px;
+    border: 1px solid rgba(165, 42, 42, 0.205);
+    border-radius: 5px;
 }
 
-.assignment-details, .personal-info{
+.assignment-details{
     width: 100% !important;
     display: flex;
     gap: 30px;
@@ -101,8 +14,8 @@
     justify-content: space-between;
 }
 
-.personal-info{
-    padding-bottom: 30px;
+.assignment-form label{
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .input-group{
