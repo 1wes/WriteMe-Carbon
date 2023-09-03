@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, {Fragment, useState, useEffect, Children} from 'react';
 import './dashboard.css';
 import useSWR from 'swr';
 import axios from '../utils.js/axios';
@@ -16,6 +16,17 @@ import { ImCancelCircle } from 'react-icons/im';
 import { FiPlus } from 'react-icons/fi';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
+
+const DashSectionHeaders=({heading})=>{
+
+    return(
+        <Fragment>
+            <div className='overview-header'>
+                <SectionHeader id={`dash-header`} heading={heading} />
+            </div>
+        </Fragment>
+    )
+}
 
 const DashboardNavbar=({userName, onClick})=>{
 
@@ -77,9 +88,31 @@ const NewOrderButton=()=>{
     return (
         <Fragment>
             <button type='button' className='add-button'>
-                <span>New Order</span>
+                <span>Create New Order</span>
                 <span className='button-icon'><i><FiPlus/></i></span>
             </button>
+        </Fragment>
+    )
+}
+
+const OrdersTable=({Children})=>{
+
+    return(
+        <Fragment>
+            <table className='orders-table'>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Due in</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Children}
+                </tbody>
+            </table>                        
         </Fragment>
     )
 }
@@ -126,9 +159,7 @@ const Dashboard=()=>{
                 <DashboardNavbar userName={userDetails} onClick={logOutUser}/>
                 <div className='dashboard'>
                     <section className='overview'>
-                        <div className='overview-header'>
-                            <SectionHeader heading={`Overview`} />
-                        </div>
+                        <DashSectionHeaders heading={`Overview`} />
                         <div className='overview-metrics'>
                             <Metrics title={`All Orders`} icon={<BsFileEarmarkBarGraph/>} number={`0`} />
                             <Metrics title={`Completed Orders`} icon={<BsFileEarmarkCheck/>} number={`0`}  />
@@ -137,14 +168,25 @@ const Dashboard=()=>{
                         </div>
                     </section>
                     <section className='create-order-section'>
-                        <div className='overview-header'>
-                            <SectionHeader heading={`Create New Order`} />
-                        </div>
+                        <DashSectionHeaders heading={`New Order`} />
                         <div className='add-order'>
                             <div className='btn'>
                                 <NewOrderButton/>
                             </div>
                         </div>
+                    </section>
+                    <section className='all-orders'>
+                        <DashSectionHeaders heading={`All Orders`} />
+                        <div>
+                            <form className='search-form'>
+                                <div className='input-group'>
+                                    <input type='search' placeholder='Search orders' ></input>
+                                </div>
+                            </form>
+                        </div>
+                        <OrdersTable>
+
+                        </OrdersTable>
                     </section>
                 </div>
             </section>
