@@ -45,7 +45,7 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
     return(
 
         <React.Fragment>
-            <form className="assignment-form" onSubmit={onSubmit}>
+            <form className="assignment-form" encType="multipart/form-data" onSubmit={onSubmit}>
                 <div className="assignment-details">
                 <div className="input-group">
                     <label className="required">
