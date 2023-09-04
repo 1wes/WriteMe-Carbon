@@ -69,6 +69,10 @@ input[type=number] {
     line-height: 15px;
 }
 
+.legend{
+    margin-top: 20px;
+}
+
 .phone-confirmation span{
     color: brown;
     font-size: 14px;
