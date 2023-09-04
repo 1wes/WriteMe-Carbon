@@ -272,3 +272,11 @@ table{
     text-transform: uppercase;
     font-size: 14px;
 }
+
+.new-submission{
+    display: none;
+}
+
+.toggle-form{
+    display: block;
+}
