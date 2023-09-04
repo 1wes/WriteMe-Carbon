@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect, Children} from 'react';
+import React, {Fragment, useState, useEffect, useReducer} from 'react';
 import './dashboard.css';
 import useSWR from 'swr';
 import axios from '../utils.js/axios';
@@ -14,8 +14,122 @@ import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
 import { ImCancelCircle } from 'react-icons/im';
 import { FiPlus } from 'react-icons/fi';
+import SubmissionForm ,{ Error } from './create-order';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
+
+const reducer=(state, action)=>{
+
+    switch(action.type){
+
+        case "newSubject":{
+            return{
+                subject:action.newSubject,
+                gradeLevel:state.gradeLevel,
+                file:state.file,
+                instructions:state.instructions,
+                pagesOrwords:state.pagesOrwords,
+                amount:state.amount,
+                deadline:state.deadline,
+                time:state.time,
+            }
+        }
+
+        case "newGradeLevel":{
+            return{
+                gradeLevel:action.newGrade,
+                subject:state.subject,
+                file:state.file,
+                instructions:state.instructions,
+                pagesOrwords:state.pagesOrwords,
+                amount:state.amount,
+                deadline:state.deadline,
+                time:state.time,
+            }
+        }
+
+        case "newFile":{
+            return{
+                file:action.newFile,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions,
+                pagesOrwords:state.pagesOrwords,
+                amount:state.amount,
+                deadline:state.deadline,
+                time:state.time,
+            }
+        }
+
+        case "newInstructions":{
+            return{
+                instructions:action.newInstructions,
+                pagesOrwords:state.pagesOrwords,
+                amount:state.amount,
+                deadline:state.deadline,
+                time:state.time,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject
+            }
+        }
+
+        case "newPagesOrWords":{
+            return{
+                pagesOrwords:action.newPages,
+                amount:state.amount,
+                deadline:state.deadline,
+                time:state.time,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions
+            }
+        }
+
+        case "newAmount":{
+            return{
+                amount:action.newAmount,
+                pagesOrwords:state.pagesOrwords,
+                deadline:state.deadline,
+                time:state.time,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions
+            }
+        }
+
+        case "newDeadline":{
+            return{
+                deadline:action.newDeadline,
+                amount:state.amount,
+                pagesOrwords:state.pagesOrwords,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions,
+                time:state.time,
+            }
+        }
+
+        case "newTime":{
+            return{
+                time:action.newTime,
+                deadline:state.deadline,
+                amount:state.amount,
+                pagesOrwords:state.pagesOrwords,
+                file:state.file,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                instructions:state.instructions
+            }
+        }
+
+        default:
+    }
+
+}
 
 const DashSectionHeaders=({heading})=>{
 
@@ -83,11 +197,11 @@ const Metrics=({title, icon, number})=>{
     )
 }
 
-const NewOrderButton=()=>{
+const NewOrderButton=({onClick})=>{
 
     return (
         <Fragment>
-            <button type='button' className='add-button'>
+            <button type='button' className='add-button' onClick={onClick} >
                 <span>Create New Order</span>
                 <span className='button-icon'><i><FiPlus/></i></span>
             </button>
@@ -121,10 +235,25 @@ const Dashboard=()=>{
 
     const [userDetails, setUserDetails]=useState();
     const [loggedIn, setloggedIn]=useState(true);
+    const [error, setError]=useState(false);
+    const [DeadlineErrorMessage, setDeadlineErrorMessage]=useState('');
+
+    const initialState={
+        subject:"",
+        gradeLevel:"",
+        file:"",
+        instructions:"",
+        pagesOrwords:"",
+        amount:"",
+        deadline:"",
+        time:""
+    }
+
+    const [state, dispatch]=useReducer(reducer, initialState);
 
     const navigate=useNavigate();
 
-    const {data}=useSWR(`/api/user/user-details`, fetcher);
+    var {data}=useSWR(`/api/user/user-details`, fetcher);
 
     const userNames=data
 
@@ -151,7 +280,128 @@ const Dashboard=()=>{
         });
     }
 
-    {!loggedIn && navigate("/login")}
+    const displayForm=()=>{
+        let form=document.getElementById("assignment-form");
+
+        form.classList.toggle("toggle-form")
+    }
+
+    !loggedIn && navigate("/login");
+
+    let DeadlineErrorAlert;
+
+    if(error){
+        DeadlineErrorAlert=(
+            <Error errorMessage={DeadlineErrorMessage} />
+        )
+    } 
+
+    const handleSubjectChange=(e)=>{
+
+        dispatch({
+            type:"newSubject",
+            newSubject:e.target.value
+        })
+    }
+
+    const handleGradeChange=(e)=>{
+
+        dispatch({
+            type:"newGradeLevel",
+            newGrade:e.target.value
+        })
+    }
+
+    const handleFileChange=(e)=>{
+
+        const fileName=e.target.files[0];
+
+        dispatch({
+            type:"newFile",
+            newFile:fileName
+        })
+    }
+
+    const handleInstructionChange=(e)=>{
+
+        dispatch({
+            type:"newInstructions",
+            newInstructions:e.target.value
+        })
+    }
+
+    const handlePagesChange=(e)=>{
+
+        dispatch({
+            type:"newPagesOrWords",
+            newPages:e.target.value
+        })
+    }
+
+    const handleAmountChange=(e)=>{
+
+        dispatch({
+            type:"newAmount",
+            newAmount:e.target.value
+        })
+    }
+
+    const handleDeadlineChange=(e)=>{
+
+        const checkDate=()=>{
+
+            const deadline=new Date(e.target.value).valueOf();
+
+            const currentDate=new Date().valueOf();
+
+            return deadline>currentDate;
+        }
+
+        const isValid=checkDate();
+
+        if(isValid){
+            setError(false);
+
+            dispatch({
+                type:"newDeadline",
+                newDeadline:e.target.value
+            })
+        }else{
+            setError(!error);
+            setDeadlineErrorMessage("deadline cannot be in the past !!");
+        }
+    }
+
+    const handleTimeChange=(e)=>{
+
+        dispatch({
+            type:"newTime",
+            newTime:e.target.value
+        })
+    }
+
+    const submitAssignment=(e=>{
+
+        e.preventDefault();
+
+        let assignmentDetails= new FormData();
+
+        for (var key in state){
+            assignmentDetails.append(key, state[key])
+        }
+
+        assignmentDetails.append('fileName', state.file.name);
+        
+        axios.post("api/orders/new", assignmentDetails, {
+            headers:{
+                "Content-Type":"multipart/form-data"
+            }
+        }).then(res=>{
+            console.log(res.data)
+        }).catch(err=>{
+            console.log(err);
+        });
+    });
 
     return(
         <React.Fragment>
@@ -171,8 +421,15 @@ const Dashboard=()=>{
                         <DashSectionHeaders heading={`New Order`} />
                         <div className='add-order'>
                             <div className='btn'>
-                                <NewOrderButton/>
+                                <NewOrderButton onClick={displayForm} />
                             </div>
+                        </div>
+                        <div className='new-submission' id='assignment-form'>
+                            <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange} 
+                                onFileChange={handleFileChange} onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange} 
+                                onAmountChange={handleAmountChange} onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} 
+                                subjectValue={state.subject} gradeValue={state.gradeLevel} instructionsValue={state.instructions} pagesOrwordsValue={state.pagesOrwords}
+                                amountValue={state.amount} deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />
                         </div>
                     </section>
                     <section className='all-orders'>
