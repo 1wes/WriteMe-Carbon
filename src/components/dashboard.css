@@ -167,8 +167,12 @@ ul{
     background-color: rgb(248, 157, 158);
 }
 
-.metric-details span{
-    width: 48%;
+.metric-details span:first-child{
+    width: 69%;
+}
+
+.metric-details span:nth-child(2){
+    width: 28%;
 }
 
 .metric-title{
@@ -202,7 +206,7 @@ ul{
 .metric-number{
     font-size: 20px;
     font-weight: 800;
-    padding-top: 20px;
+    padding-top: 25px;
 }
 
 .add-order{
