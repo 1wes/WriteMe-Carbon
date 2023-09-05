@@ -269,7 +269,11 @@ td{
 }
 
 table{
-    border-spacing: 0;
+    border-spacing: 1px;
+}
+
+table tbody tr:nth-child(odd){
+    background-color: rgba(165, 42, 42, 0.035);
 }
 
 #dash-header{
