@@ -209,7 +209,7 @@ const NewOrderButton=({onClick})=>{
     )
 }
 
-const OrdersTable=({Children})=>{
+const OrdersTable=({children})=>{
 
     return(
         <Fragment>
@@ -217,14 +217,14 @@ const OrdersTable=({Children})=>{
                 <thead>
                     <tr>
                         <th>Order ID</th>
-                        <th>Title</th>
+                        <th>Subject</th>
                         <th>Status</th>
-                        <th>Due in</th>
+                        <th>Deadline</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {Children}
+                    {children}
                 </tbody>
             </table>                        
         </Fragment>
@@ -408,6 +408,7 @@ const Dashboard=()=>{
     let complete;
     let cancelled;
     let active;
+    let tableRows
 
     if(userDetails){
         username=userDetails.name;
@@ -415,6 +416,23 @@ const Dashboard=()=>{
         complete=userDetails.completedOrders;
         cancelled=userDetails.cancelledOrders;
         active=userDetails.activeOrders;
+        
+        tableRows=(
+            <Fragment>
+                {userDetails.orders.map((order)=>{
+
+                    return (
+                        <tr key={order.id}>
+                            <td>{`Order-${order.order_id}`}</td>
+                            <td>{order.subject}</td>
+                            <td>{order.status}</td>
+                            <td>{order.date_deadline.split("T")[0]}</td>
+                            <td></td>
+                        </tr>
+                    )
+                })}
+            </Fragment>
+        )
     }
 
     return(
@@ -456,7 +474,7 @@ const Dashboard=()=>{
                             </form>
                         </div>
                         <OrdersTable>
-
+                            {tableRows}
                         </OrdersTable>
                     </section>
                 </div>
