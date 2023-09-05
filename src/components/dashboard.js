@@ -253,13 +253,13 @@ const Dashboard=()=>{
 
     const navigate=useNavigate();
 
-    var {data}=useSWR(`/api/user/user-details`, fetcher);
+    var {data}=useSWR(`/api/orders/all`, fetcher);
 
-    const userNames=data
+    const userInfo=data
 
     useEffect(()=>{
 
-        setUserDetails(userNames);
+        setUserDetails(userInfo);
 
         checkToken().then(res=>{
             setloggedIn(true);
@@ -267,7 +267,7 @@ const Dashboard=()=>{
             setloggedIn(false);
         });
 
-    },[userNames]);
+    },[userInfo]);
 
     const logOutUser=()=>{
 
@@ -294,7 +294,7 @@ const Dashboard=()=>{
         DeadlineErrorAlert=(
             <Error errorMessage={DeadlineErrorMessage} />
         )
-    } 
+    }
 
     const handleSubjectChange=(e)=>{
 
@@ -403,18 +403,32 @@ const Dashboard=()=>{
         });
     });
 
+    let username;
+    let all;
+    let complete;
+    let cancelled;
+    let active;
+
+    if(userDetails){
+        username=userDetails.name;
+        all=userDetails.allOrders;
+        complete=userDetails.completedOrders;
+        cancelled=userDetails.cancelledOrders;
+        active=userDetails.activeOrders;
+    }
+
     return(
         <React.Fragment>
             <section className='section' id='dashboard-section'>
-                <DashboardNavbar userName={userDetails} onClick={logOutUser}/>
+                <DashboardNavbar userName={username} onClick={logOutUser}/>
                 <div className='dashboard'>
                     <section className='overview'>
                         <DashSectionHeaders heading={`Overview`} />
                         <div className='overview-metrics'>
-                            <Metrics title={`All Orders`} icon={<BsFileEarmarkBarGraph/>} number={`0`} />
-                            <Metrics title={`Completed Orders`} icon={<BsFileEarmarkCheck/>} number={`0`}  />
-                            <Metrics title={`Active Orders`} icon={<GiSandsOfTime/>} number={`0`} />
-                            <Metrics title={`Cancelled Orders`} icon={<ImCancelCircle/>} number={`0`} />
+                            <Metrics title={`All Orders`} icon={<BsFileEarmarkBarGraph/>} number={all} />
+                            <Metrics title={`Completed Orders`} icon={<BsFileEarmarkCheck/>} number={complete}  />
+                            <Metrics title={`Active Orders`} icon={<GiSandsOfTime/>} number={active} />
+                            <Metrics title={`Cancelled Orders`} icon={<ImCancelCircle/>} number={cancelled} />
                         </div>
                     </section>
                     <section className='create-order-section'>
