@@ -318,8 +318,8 @@ table tbody tr td:last-child{
 }
 
 #cancel-btn{
-    outline: 1px solid rgb(226,25,27);
-    color: rgb(226,25,27);
+    outline: 1px solid rgb(255, 177, 179);
+    color: rgba(255, 103, 106, 0.589);
 }
 
 #revision-btn:hover{
