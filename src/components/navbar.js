@@ -11,7 +11,7 @@ const SignButton=()=>{
     return(
 
         <React.Fragment>
-            <Link to={`/register`} id='submit-cta'>
+            <Link to={`/register`} id='submit-cta' target="blank">
                 <button className="navbar-button">
                     Sign Up
                 </button>
@@ -25,7 +25,7 @@ const LogInButton=()=>{
     return(
 
         <React.Fragment>
-            <Link to={`login`}>
+            <Link to={`login`} target="blank">
                 <button className="navbar-button" id="login-cta">
                     Log in
                 </button>
@@ -105,10 +105,10 @@ let MobileNavbar=()=>{
                         <Logo/>
                     </div>
                     <div className="nav-cta">
-                        <Link className="nav-cta-link" to={`/register`} >
+                        <Link className="nav-cta-link" to={`/register`} target="blank" >
                             <span><i><BsPerson/></i></span>Signup
                         </Link>
-                        <Link className="nav-cta-link" to={`/login`}>
+                        <Link className="nav-cta-link" to={`/login`} target="blank">
                             <span><i><IoLogInOutline/></i></span>Login
                         </Link>
                     </div>

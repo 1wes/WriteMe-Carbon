@@ -34,7 +34,7 @@ const HowItWorks=()=>{
         <React.Fragment>
             <section className='section' id='how-it-works-section'>
                 <div className='how-it-works'>
-                    <SectionHeader heading={`How it works`} tagline={`Want to post your order? Learn the steps to enable you to do that in less than a two minutes.`} />
+                    <SectionHeader heading={`How it works`} tagline={`Want to post your order? Learn the steps to enable you to do that in less than two minutes.`} />
 
                     <div className='steps'>
                         <StepsCard stepIcon={<MdAssignmentAdd/>} stepName={`1. Submit Your Assignment.`} 
@@ -46,7 +46,7 @@ const HowItWorks=()=>{
                         <StepsCard stepIcon={<VscFeedback/>} stepName={`4. Provide Feedback`} 
                             details={`Provide us with feedback on the solution provided, and we will iteratively act on it until you are satisfied with the final solution.`} />
                     </div>
-                    <Link className='link-button' to={`/login`}>
+                    <Link className='link-button' to={`/login`} target='blank'>
                         <CtaButton message={`Submit Assignment`} id={`submit-link`} />
                     </Link>
                 </div>

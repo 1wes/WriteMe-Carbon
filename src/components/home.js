@@ -14,7 +14,7 @@ const Home=()=>{
                         plagiarism and AI-free papers within the shortest time possible. Do not hesitate to reach out to us! </p>
 
                     <div className="prompt-button">
-                        <Link className="link-button" to={`/login`}>
+                        <Link className="link-button" to={`/login`} target="blank">
                             <CtaButton message={`Write Me a Paper`}/>
                         </Link>
                     </div>
