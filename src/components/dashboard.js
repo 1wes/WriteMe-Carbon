@@ -231,6 +231,15 @@ const OrdersTable=({children})=>{
     )
 }
 
+const GenericCtaButton=({id, onClick, message})=>{
+
+    return(
+        <button className='generic-cta-btn' type='button' id={id} onClick={onClick}>
+            {message}
+        </button>
+    )
+}
+
 const Dashboard=()=>{
 
     const [userDetails, setUserDetails]=useState();
@@ -427,7 +436,14 @@ const Dashboard=()=>{
                             <td>{order.subject}</td>
                             <td>{order.status}</td>
                             <td>{order.date_deadline.split("T")[0]}</td>
-                            <td></td>
+                            <td>
+                                <GenericCtaButton id={`revision-btn`} onClick={()=>{
+
+                                }} message={`Order Revision`}/>
+                                <GenericCtaButton id={`cancel-btn`} onClick={()=>{
+                                    
+                                }} message={`Cancel Order`}/>
+                            </td>
                         </tr>
                     )
                 })}
