@@ -272,8 +272,17 @@ table{
     border-spacing: 1px;
 }
 
+table tbody tr{
+    padding: 0 !important   ;
+}
+
 table tbody tr:nth-child(odd){
     background-color: rgba(165, 42, 42, 0.035);
+}
+
+table tbody tr td:last-child{
+    display: flex;
+    justify-content: space-between;
 }
 
 #dash-header{
@@ -288,4 +297,37 @@ table tbody tr:nth-child(odd){
 
 .toggle-form{
     display: block;
+}
+
+.generic-cta-btn{
+    padding: 5px;
+    border: none;
+    background-color: none;
+    background: none;
+    border-radius: 3px;
+    transition: all ease .5s;
+}
+
+.generic-cta-btn:hover{
+    cursor: pointer;
+}
+
+#revision-btn{
+    outline: 1px solid rgb(255, 212, 137);
+    color: rgb(255, 193, 87);
+}
+
+#cancel-btn{
+    outline: 1px solid rgb(226,25,27);
+    color: rgb(226,25,27);
+}
+
+#revision-btn:hover{
+    background-color: rgb(255, 193, 87);
+    color: white;
+}
+
+#cancel-btn:hover{
+    background-color: rgb(226,25,27);
+    color: white;
 }
