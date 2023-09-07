@@ -406,7 +406,10 @@ const Dashboard=()=>{
                 "Content-Type":"multipart/form-data"
             }
         }).then(res=>{
-            console.log(res.data)
+
+            let form=document.getElementById("assignment-form");
+
+            form.classList.remove("toggle-form");            
         }).catch(err=>{
             console.log(err);
         });
@@ -417,7 +420,8 @@ const Dashboard=()=>{
     let complete;
     let cancelled;
     let active;
-    let tableRows
+    let tableRows;
+    let noOrders;
 
     if(userDetails){
         username=userDetails.name;
@@ -428,7 +432,9 @@ const Dashboard=()=>{
         
         tableRows=(
             <Fragment>
-                {userDetails.orders.map((order)=>{
+                {
+
+                userDetails.orders.length===0?"":userDetails.orders.map((order)=>{
 
                     return (
                         <tr key={order.id}>
@@ -446,9 +452,15 @@ const Dashboard=()=>{
                             </td>
                         </tr>
                     )
-                })}
+                })
+                }
             </Fragment>
         )
+
+        noOrders=userDetails.orders.length===0?(
+            <span className='no-orders'>You have not submitted any assignments yet. Click on Create New Order to submit.
+             Once you do, they will appear here.</span>
+        ):""
     }
 
     return(
@@ -492,6 +504,7 @@ const Dashboard=()=>{
                         <OrdersTable>
                             {tableRows}
                         </OrdersTable>
+                        {noOrders}
                     </section>
                 </div>
             </section>
