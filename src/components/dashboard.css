@@ -331,3 +331,16 @@ table tbody tr td:last-child{
     background-color: rgb(226,25,27);
     color: white;
 }
+
+.no-orders{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 20px;
+    font-size: 14px;
+    padding: 20px 0 0 0;
+    color: rgba(128, 128, 128, 0.8);
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
