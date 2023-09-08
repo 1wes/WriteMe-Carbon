@@ -526,8 +526,8 @@ const Dashboard=()=>{
         )
 
         noOrders=userDetails.orders.length===0?(
-            <span className='no-orders'>You have not submitted any assignments yet. Click on Create New Order to submit.
-             Once you do, they will appear here.</span>
+            <span className='no-orders'><p>You have not submitted any assignments yet. Click on <b className="highlight">Create New Order </b>to submit.
+            Once you do, they will appear here.</p></span>
         ):""
     }
 
@@ -547,34 +547,38 @@ const Dashboard=()=>{
                     </section>
                     <section className='create-order-section'>
                         <DashSectionHeaders heading={`New Order`} />
-                        <div className='add-order'>
-                            <div className='btn'>
-                                <NewOrderButton onClick={displayForm} />
+                        <div className="new-order">
+                            <div className='add-order'>
+                                <div className='btn'>
+                                    <NewOrderButton onClick={displayForm} />
+                                </div>
                             </div>
-                        </div>
-                        <div className='new-submission' id='assignment-form'>
-                            <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
-                                onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} 
-                                onFileChange={handleFileChange} onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange} 
-                                onAmountChange={handleAmountChange} onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} 
-                                subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style} 
-                                instructionsValue={state.instructions}pagesOrwordsValue={state.pagesOrwords} amountValue={state.amount} 
-                                deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />
+                            <div className='new-submission' id='assignment-form'>
+                                <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
+                                    onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} 
+                                    onFileChange={handleFileChange} onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange} 
+                                    onAmountChange={handleAmountChange} onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} 
+                                    subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style} 
+                                    instructionsValue={state.instructions}pagesOrwordsValue={state.pagesOrwords} amountValue={state.amount} 
+                                    deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />
+                            </div>
                         </div>
                     </section>
                     <section className='all-orders'>
                         <DashSectionHeaders heading={`All Orders`} />
-                        <div>
-                            <form className='search-form'>
-                                <div className='input-group'>
-                                    <input type='search' placeholder='Search orders' ></input>
-                                </div>
-                            </form>
+                        <div className='orders-wrapper'>
+                            <div>
+                                <form className='search-form'>
+                                    <div className='input-group'>
+                                        <input type='search' placeholder='Search orders' ></input>
+                                    </div>
+                                </form>
+                            </div>
+                            <OrdersTable>
+                                {tableRows}
+                            </OrdersTable>
+                            {noOrders}
                         </div>
-                        <OrdersTable>
-                            {tableRows}
-                        </OrdersTable>
-                        {noOrders}
                     </section>
                 </div>
             </section>
