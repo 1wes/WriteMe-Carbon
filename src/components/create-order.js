@@ -77,7 +77,8 @@ const TextArea=({value, onChange})=>{
 
 
 const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGradeChange, onFileChange, instructionsValue, onInstructionChange,
-    pagesOrwordsValue, onPagesChange, amountValue, onAmountChange, deadlineValue, onDeadlineChange,timeValue, onTimeChange, deadlineErrorAlert })=>{
+    pagesOrwordsValue, onPagesChange, amountValue, onAmountChange, deadlineValue, onDeadlineChange,timeValue, onTimeChange, deadlineErrorAlert,
+    styleValue, onStyleChange, sourcesValue, onSourcesChange})=>{
 
 
     const handleWheel=e=>{
@@ -132,11 +133,8 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
                             <option value="Doctorate">Doctorate</option>
                         </Select>
                     </FormControl>
-                    <FormControl label={`Number of Sources`} labelClassName={`required`}>
-                        <Input type={`number`} onWheel={handleWheel}  />
-                    </FormControl>
                     <FormControl label={`Reference Style`} labelClassName={`required`}>
-                        <Select name={`reference-style`}>
+                        <Select name={`reference-style`} value={styleValue} onChange={onStyleChange} >
                             <option disabled value={``} hidden></option>
                             <option value={`APA-7th`}>APA-7th Edition</option>
                             <option value={`APA-6th`}>APA-6th Edition</option>
@@ -149,6 +147,9 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
                             <option value={`Any`}>Any</option>
                             <option value={`None`}>None</option>
                         </Select>
+                    </FormControl>
+                    <FormControl label={`Number of Sources`} labelClassName={`required`}>
+                        <Input type={`number`} onWheel={handleWheel} value={sourcesValue} onChange={onSourcesChange}  />
                     </FormControl>
                     <FormControl label={`Attach File`}>
                         <Input type={`file`} onChange={onFileChange} placeholder={`add file`} multiple/>
