@@ -26,6 +26,8 @@ const reducer=(state, action)=>{
             return{
                 subject:action.newSubject,
                 gradeLevel:state.gradeLevel,
+                style:state.style,
+                sources:state.sources,
                 file:state.file,
                 instructions:state.instructions,
                 pagesOrwords:state.pagesOrwords,
@@ -38,6 +40,38 @@ const reducer=(state, action)=>{
         case "newGradeLevel":{
             return{
                 gradeLevel:action.newGrade,
+                subject:state.subject,
+                style:state.style,
+                sources:state.sources,
+                file:state.file,
+                instructions:state.instructions,
+                pagesOrwords:state.pagesOrwords,
+                amount:state.amount,
+                deadline:state.deadline,
+                time:state.time,
+            }
+        }
+
+        case "newStyle":{
+            return{
+                style:action.newStyle,
+                sources:state.sources,
+                gradeLevel:state.gradeLevel,
+                subject:state.subject,
+                file:state.file,
+                instructions:state.instructions,
+                pagesOrwords:state.pagesOrwords,
+                amount:state.amount,
+                deadline:state.deadline,
+                time:state.time,
+            }
+        }
+
+        case "newSources":{
+            return{
+                sources:action.newSources,
+                style:state.style,
+                gradeLevel:state.gradeLevel,
                 subject:state.subject,
                 file:state.file,
                 instructions:state.instructions,
@@ -53,6 +87,9 @@ const reducer=(state, action)=>{
                 file:action.newFile,
                 gradeLevel:state.gradeLevel,
                 subject:state.subject,
+                style:state.style,
+                sources:state.sources,
+                subject:state.subject,
                 instructions:state.instructions,
                 pagesOrwords:state.pagesOrwords,
                 amount:state.amount,
@@ -65,6 +102,9 @@ const reducer=(state, action)=>{
             return{
                 instructions:action.newInstructions,
                 pagesOrwords:state.pagesOrwords,
+                subject:state.subject,
+                style:state.style,
+                sources:state.sources,
                 amount:state.amount,
                 deadline:state.deadline,
                 time:state.time,
@@ -78,6 +118,9 @@ const reducer=(state, action)=>{
             return{
                 pagesOrwords:action.newPages,
                 amount:state.amount,
+                subject:state.subject,
+                style:state.style,
+                sources:state.sources,
                 deadline:state.deadline,
                 time:state.time,
                 file:state.file,
@@ -91,6 +134,9 @@ const reducer=(state, action)=>{
             return{
                 amount:action.newAmount,
                 pagesOrwords:state.pagesOrwords,
+                subject:state.subject,
+                style:state.style,
+                sources:state.sources,
                 deadline:state.deadline,
                 time:state.time,
                 file:state.file,
@@ -104,6 +150,9 @@ const reducer=(state, action)=>{
             return{
                 deadline:action.newDeadline,
                 amount:state.amount,
+                subject:state.subject,
+                style:state.style,
+                sources:state.sources,
                 pagesOrwords:state.pagesOrwords,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
@@ -117,6 +166,9 @@ const reducer=(state, action)=>{
             return{
                 time:action.newTime,
                 deadline:state.deadline,
+                subject:state.subject,
+                style:state.style,
+                sources:state.sources,
                 amount:state.amount,
                 pagesOrwords:state.pagesOrwords,
                 file:state.file,
@@ -250,12 +302,14 @@ const Dashboard=()=>{
     const initialState={
         subject:"",
         gradeLevel:"",
+        style:"",
+        sources:"",
         file:"",
         instructions:"",
         pagesOrwords:"",
         amount:"",
         deadline:"",
-        time:""
+        time:"",
     }
 
     const [state, dispatch]=useReducer(reducer, initialState);
@@ -318,6 +372,20 @@ const Dashboard=()=>{
         dispatch({
             type:"newGradeLevel",
             newGrade:e.target.value
+        })
+    }
+
+    const handleStyleChange=(e)=>{
+        dispatch({
+            type:"newStyle",
+            newStyle:e.target.value
+        })
+    }
+
+    const handleSourcesChange=(e)=>{
+        dispatch({
+            type:"newSources",
+            newSources:e.target.value
         })
     }
 
@@ -485,11 +553,13 @@ const Dashboard=()=>{
                             </div>
                         </div>
                         <div className='new-submission' id='assignment-form'>
-                            <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange} 
+                            <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
+                                onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} 
                                 onFileChange={handleFileChange} onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange} 
                                 onAmountChange={handleAmountChange} onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} 
-                                subjectValue={state.subject} gradeValue={state.gradeLevel} instructionsValue={state.instructions} pagesOrwordsValue={state.pagesOrwords}
-                                amountValue={state.amount} deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />
+                                subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style} 
+                                instructionsValue={state.instructions}pagesOrwordsValue={state.pagesOrwords} amountValue={state.amount} 
+                                deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />
                         </div>
                     </section>
                     <section className='all-orders'>
