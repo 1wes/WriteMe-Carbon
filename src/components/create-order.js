@@ -47,9 +47,11 @@ const Select=({name, value, onChange, children})=>{
 
     return(
         <Fragment>
-            <select name={name} value={value} onChange={onChange} required>
-                {children}
-            </select>
+            <div>
+                <select name={name} value={value} onChange={onChange} required>
+                    {children}
+                </select>
+            </div>
         </Fragment>
     )
 }
