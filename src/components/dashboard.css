@@ -1,6 +1,6 @@
 .dashboard-nav{
     padding: 25px 0;
-    border-bottom: 1px solid rgba(165, 42, 42, 0.2);
+    border-bottom: 1px solid rgba(165, 42, 42, 0.1);
     display: flex;
     align-items: center;
 }
@@ -58,10 +58,10 @@
 
 .profile-dropdown{
     position: absolute;
-    top: 40px;
+    top: 43px;
     width: 100%;
     border-radius: 5px;
-    outline: 1px solid rgba(165, 42, 42, 0.2);
+    outline: 1px solid rgba(165, 42, 42, 0.1);
     background-color: whitesmoke;
     z-index: 1000;
     display: none;
@@ -135,6 +135,9 @@ ul{
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;
+    border:1px solid rgba(165, 42, 42, 0.1);
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .metric-details{
@@ -209,10 +212,22 @@ ul{
     padding-top: 25px;
 }
 
+.new-order{
+    border:1px solid rgba(165, 42, 42, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
 .add-order{
     display: flex;
     justify-content: flex-start;
     width: 100%;
+}
+
+.orders-wrapper{
+    border:1px solid rgba(165, 42, 42, 0.1);
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .btn{
@@ -343,4 +358,8 @@ table tbody tr td:last-child{
     width: 50%;
     margin: 0 auto;
     text-align: center;
+}
+
+.highlight{
+    color: rgba(165, 42, 42, 0.8);
 }
