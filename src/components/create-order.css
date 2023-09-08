@@ -1,15 +1,12 @@
 .assignment-form{
     margin-top: 50px !important;
-    padding-bottom: 100px;
-    padding: 20px 10px;
-    border: 1px solid rgba(165, 42, 42, 0.205);
     border-radius: 5px;
 }
 
 .assignment-details{
     width: 100% !important;
     display: flex;
-    gap: 30px;
+    gap: 20px;
     flex-wrap: wrap;
     justify-content: space-between;
 }
