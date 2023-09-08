@@ -11,10 +11,6 @@
     justify-content: space-between;
 }
 
-.assignment-form label{
-    color: rgba(0, 0, 0, 0.7);
-}
-
 .input-group{
     display: flex;
     flex-direction: column;
@@ -61,7 +57,7 @@ input[type=number] {
 }
 
 .legend, .form-alerts, .error-message, .phone-confirmation{
-    color: purple;
+    color: rgba(128, 128, 128, 0.8);
     font-size: 12px;
     line-height: 15px;
 }
