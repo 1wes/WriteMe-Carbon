@@ -16,6 +16,7 @@ import { ImCancelCircle } from 'react-icons/im';
 import { FiPlus } from 'react-icons/fi';
 import SubmissionForm ,{ Error } from './create-order';
 import { Logo } from './navbar';
+import { Select } from './create-order';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -289,11 +290,19 @@ const GenericCtaButton=({id, onClick, message})=>{
 
 const Dashboard=()=>{
 
-    const [userDetails, setUserDetails]=useState();
+    const [userName, setUserName]=useState();
+    const [allOrders, setAllOrders]=useState();
+    const [activeOrders, setActiveOrders]=useState();
+    const [completedOrders, setCompletedOrders]=useState();
+    const [cancelledOrders, setCancelledOrders]=useState();
+    const [orders, setOrders]=useState();
     const [loggedIn, setloggedIn]=useState(true);
     const [error, setError]=useState(false);
     const [DeadlineErrorMessage, setDeadlineErrorMessage]=useState('');
     const [searchQuery, setSearchQuery]=useState("");
+    const [statusQuery, setStatusQuery]=useState('');
+    const [sortQuery, setSortQuery]=useState('');
+    const [filterMessage, setFilterMessage]=useState("")
 
     const initialState={
         subject:"",
@@ -317,8 +326,17 @@ const Dashboard=()=>{
     const userInfo=data
 
     useEffect(()=>{
+        if(userInfo){
 
-        setUserDetails(userInfo);
+        let{name, activeOrders, allOrders, cancelledOrders, completedOrders, orders}=userInfo;
+
+        setUserName(name)
+        setActiveOrders(activeOrders)
+        setAllOrders(allOrders)
+        setCancelledOrders(cancelledOrders)
+        setCompletedOrders(completedOrders)
+        setOrders(orders);
+        }
 
         checkToken().then(res=>{
             setloggedIn(true);
@@ -455,9 +473,46 @@ const Dashboard=()=>{
 
     const handleSearch=(e)=>{
 
-            const lowercaseQuery=e.target.value.toLowerCase();
+            setSearchQuery(e.target.value);
+    }
 
-            setSearchQuery(lowercaseQuery);
+    const handleStatusFilter=(e)=>{
+
+        setStatusQuery(e.target.value);
+        
+        if(userInfo&&userInfo.orders.length!==0){
+            
+            const filterStatus=(status)=>{
+
+                return userInfo.orders.filter((orders)=>{
+
+                    return orders.status==status;
+                })
+            }
+
+            const foundOrders=filterStatus(e.target.value);
+
+            if(foundOrders.length>0){
+                setFilterMessage("");
+
+                setOrders(foundOrders)
+            }else{
+                setOrders([]);
+                setFilterMessage("No orders found for this filter")
+            }
+
+        }
+
+        if(e.target.value=="All"){
+            setFilterMessage("");
+
+            setOrders(userInfo.orders);
+        }
+    }
+
+    const handleSortingFilter=(e)=>{
+
+        setSortQuery(e.target.value);
     }
 
     const submitAssignment=(e=>{
@@ -494,22 +549,23 @@ const Dashboard=()=>{
     let tableRows;
     let noOrders;
 
-    if(userDetails){
-        username=userDetails.name;
-        all=userDetails.allOrders;
-        complete=userDetails.completedOrders;
-        cancelled=userDetails.cancelledOrders;
-        active=userDetails.activeOrders;
+    if(orders){
+        username=userName;
+        all=allOrders;
+        complete=completedOrders;
+        cancelled=cancelledOrders;
+        active=activeOrders;
         
         tableRows=(
             <Fragment>
                 {
-                userDetails.orders.length===0?"":userDetails.orders.filter((orders)=>{
+                orders.length===0?"":orders.filter((orders)=>{
                     if(searchQuery===""){
                         return orders
                     }else{
-                        return orders.subject.toLowerCase().includes(searchQuery);
+                        return orders.subject.toLowerCase().includes(searchQuery.toLowerCase());
                     }
+
                 }).map((order)=>{
 
                     return (
@@ -533,10 +589,10 @@ const Dashboard=()=>{
             </Fragment>
         )
 
-        noOrders=userDetails.orders.length===0?(
-            <span className='no-orders'><p>You have not submitted any assignments yet. Click on <b className="highlight">Create New Order </b>to submit.
-            Once you do, they will appear here.</p></span>
-        ):""
+        noOrders=orders.length===0?
+            filterMessage==""?(<span className='no-orders'><p>You have not submitted any assignments yet. Click on <b className="highlight">Create New Order </b>to submit.
+            Once you do, they will appear here.</p></span>):<span className='no-orders'>{filterMessage}</span>
+        :""
     }
 
     return(
@@ -575,12 +631,26 @@ const Dashboard=()=>{
                     <section className='all-orders'>
                         <DashSectionHeaders heading={`All Orders`} />
                         <div className='orders-wrapper'>
-                            <div>
+                            <div className='search-section'>
                                 <form className='search-form'>
                                     <div className='input-group'>
                                         <input type='text' value={searchQuery} onChange={handleSearch} placeholder='Search orders by subject'></input>
                                     </div>
                                 </form>
+                                <div className="filters"> 
+                                    <Select value={statusQuery} name={`status-filter`} onChange={handleStatusFilter} >
+                                        <option value={``} hidden disabled>Filter by status</option>
+                                        <option value={`Active`}>Active</option>
+                                        <option value={`Completed`}>Completed</option>
+                                        <option value={`Cancelled`}>Cancelled</option>
+                                        <option value={`All`}>All</option>
+                                    </Select>
+                                    <Select value={sortQuery} name={`deadline-sort-filter`} onChange={handleSortingFilter}>
+                                        <option value={``} hidden disabled>Filter by deadline</option>
+                                        <option value={`Ascending`}>Ascending</option>
+                                        <option value={`Descending`}>Descending</option>
+                                    </Select>
+                                </div>
                             </div>
                             <OrdersTable>
                                 {tableRows}
