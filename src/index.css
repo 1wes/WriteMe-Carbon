@@ -8,6 +8,11 @@ body {
   color: rgba(0, 0, 0, 0.8);
 }
 
+button{
+  font-family: -apple-system, blinkmacsystemfont, "segoe ui", roboto, oxygen-sans, ubuntu, cantarell,
+  "helvetica neue", helvetica, arial, sans-serif; 
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
