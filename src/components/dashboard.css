@@ -1,5 +1,4 @@
 .dashboard-nav{
-    /* padding: 25px 0; */
     border-bottom: 1px solid rgba(165, 42, 42, 0.1);
     display: flex;
     align-items: center;
@@ -383,4 +382,22 @@ table tbody tr td:last-child{
     display:flex;
     justify-content:flex-end;
     gap:20px;
+}
+
+.clear-filters{
+    border:none;
+    padding: 12.9px 8px;
+    display: flex;
+    align-items: center;
+    gap:10px;
+    font-size: 13px;
+    font-weight: 400;
+    color: brown;
+    transition: all ease .5s;
+    border-radius: 3px;  
+}
+
+.clear-filters:hover{
+    background-color: rgb(253, 141, 141);
+    cursor: pointer;
 }
