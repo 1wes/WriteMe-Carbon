@@ -293,6 +293,7 @@ const Dashboard=()=>{
     const [loggedIn, setloggedIn]=useState(true);
     const [error, setError]=useState(false);
     const [DeadlineErrorMessage, setDeadlineErrorMessage]=useState('');
+    const [searchQuery, setSearchQuery]=useState("");
 
     const initialState={
         subject:"",
@@ -452,6 +453,13 @@ const Dashboard=()=>{
         })
     }
 
+    const handleSearch=(e)=>{
+
+            const lowercaseQuery=e.target.value.toLowerCase();
+
+            setSearchQuery(lowercaseQuery);
+    }
+
     const submitAssignment=(e=>{
 
         e.preventDefault();
@@ -496,8 +504,13 @@ const Dashboard=()=>{
         tableRows=(
             <Fragment>
                 {
-
-                userDetails.orders.length===0?"":userDetails.orders.map((order)=>{
+                userDetails.orders.length===0?"":userDetails.orders.filter((orders)=>{
+                    if(searchQuery===""){
+                        return orders
+                    }else{
+                        return orders.subject.toLowerCase().includes(searchQuery);
+                    }
+                }).map((order)=>{
 
                     return (
                         <tr key={order.id}>
@@ -565,7 +578,7 @@ const Dashboard=()=>{
                             <div>
                                 <form className='search-form'>
                                     <div className='input-group'>
-                                        <input type='search' placeholder='Search orders' ></input>
+                                        <input type='text' value={searchQuery} onChange={handleSearch} placeholder='Search orders by subject'></input>
                                     </div>
                                 </form>
                             </div>
