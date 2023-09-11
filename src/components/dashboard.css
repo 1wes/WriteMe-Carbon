@@ -1,5 +1,5 @@
 .dashboard-nav{
-    padding: 25px 0;
+    /* padding: 25px 0; */
     border-bottom: 1px solid rgba(165, 42, 42, 0.1);
     display: flex;
     align-items: center;
@@ -9,11 +9,17 @@
     width: 80%;
 }
 
+.nav-logo img{
+    width:5%;
+    margin-left: -13px;
+}
+
 .dash-nav-content{
     margin: 0 auto;
     width: 75%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .user-profile-icon{

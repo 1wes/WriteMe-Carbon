@@ -15,6 +15,7 @@ import { GiSandsOfTime } from 'react-icons/gi';
 import { ImCancelCircle } from 'react-icons/im';
 import { FiPlus } from 'react-icons/fi';
 import SubmissionForm ,{ Error } from './create-order';
+import { Logo } from './navbar';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -89,7 +90,6 @@ const reducer=(state, action)=>{
                 subject:state.subject,
                 style:state.style,
                 sources:state.sources,
-                subject:state.subject,
                 instructions:state.instructions,
                 pagesOrwords:state.pagesOrwords,
                 amount:state.amount,
@@ -110,7 +110,6 @@ const reducer=(state, action)=>{
                 time:state.time,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
-                subject:state.subject
             }
         }
 
@@ -125,7 +124,6 @@ const reducer=(state, action)=>{
                 time:state.time,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
-                subject:state.subject,
                 instructions:state.instructions
             }
         }
@@ -141,7 +139,6 @@ const reducer=(state, action)=>{
                 time:state.time,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
-                subject:state.subject,
                 instructions:state.instructions
             }
         }
@@ -156,7 +153,6 @@ const reducer=(state, action)=>{
                 pagesOrwords:state.pagesOrwords,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
-                subject:state.subject,
                 instructions:state.instructions,
                 time:state.time,
             }
@@ -173,7 +169,6 @@ const reducer=(state, action)=>{
                 pagesOrwords:state.pagesOrwords,
                 file:state.file,
                 gradeLevel:state.gradeLevel,
-                subject:state.subject,
                 instructions:state.instructions
             }
         }
@@ -210,7 +205,7 @@ const DashboardNavbar=({userName, onClick})=>{
             <nav className='dashboard-nav'>
                 <div className='dash-nav-content'>
                     <div className='nav-logo'>
-                        WriteMe
+                        <Logo/>
                     </div>
                     <ul className='profile-menu'>
                         <li className='profile-section' onClick={showDropdownMenu}>
