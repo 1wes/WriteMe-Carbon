@@ -17,6 +17,7 @@ import { FiPlus } from 'react-icons/fi';
 import SubmissionForm ,{ Error } from './create-order';
 import { Logo } from './navbar';
 import { Select } from './create-order';
+import {LuFilterX} from 'react-icons/lu';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -650,6 +651,11 @@ const Dashboard=()=>{
                                         <option value={`Ascending`}>Ascending</option>
                                         <option value={`Descending`}>Descending</option>
                                     </Select>
+                                    <div>
+                                        <button className='clear-filters'>
+                                            <LuFilterX/><span>Clear Filters</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <OrdersTable>
