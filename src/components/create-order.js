@@ -184,6 +184,7 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
 export{
     FormLegend, 
     Error,
-    FormAlerts
+    FormAlerts,
+    Select
 }
 export default SubmissionForm;
