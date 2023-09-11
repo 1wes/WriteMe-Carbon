@@ -261,11 +261,13 @@ ul{
 }
 
 .search-form{
-    width: 100%;
+    width: 50%;
 }
 
 .search-form .input-group{
-    width: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
 .orders-table{
@@ -368,4 +370,17 @@ table tbody tr td:last-child{
 
 .highlight{
     color: rgba(165, 42, 42, 0.8);
+}
+
+.search-section{
+    display: flex;
+    gap:20px;
+    justify-content: space-between;
+}
+
+.filters{
+    width:48%;
+    display:flex;
+    justify-content:flex-end;
+    gap:20px;
 }
