@@ -1,7 +1,9 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import './paginate.css';
 
 const PageNumbers=({paginate, ordersPerPage, totalOrders})=>{
+
+    const [index, setIndex]=useState();
 
     const pageNumber=[];
 
@@ -10,10 +12,19 @@ const PageNumbers=({paginate, ordersPerPage, totalOrders})=>{
         pageNumber.push(number)
     }
 
+    const changeClass=(id)=>{
+
+        setIndex(id);
+    }
+
     const displayedNumber=pageNumber.map((number)=>{
 
         return(
-            <li key={number} onClick={()=>{paginate(number)}} className='number' >
+            <li key={number} className={index===number?"active-page":null} onClick={()=>{
+
+                changeClass(number);
+
+                paginate(number)}} >
                 {number}
             </li>
         )
