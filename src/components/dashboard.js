@@ -20,6 +20,7 @@ import { Select } from './create-order';
 import {LuFilterX} from 'react-icons/lu';
 import Modal from './modal';
 import toggleModal from '../utils.js/toggle-modal';
+import PageNumbers from './paginate';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -255,6 +256,9 @@ const Dashboard=()=>{
     const [sortQuery, setSortQuery]=useState('');
     const [filterMessage, setFilterMessage]=useState("");
     const [modal, setModal]=useState(false);
+    const [currentPage, setCurrentPage]=useState(1);
+    const [ordersPerPage]=useState(2);
+
 
     const [state, dispatch]=useReducer(reducer, initialState);
 
@@ -267,14 +271,21 @@ const Dashboard=()=>{
     useEffect(()=>{
         if(userInfo){
 
-        let{name, activeOrders, allOrders, cancelledOrders, completedOrders, orders}=userInfo;
+            let{name, activeOrders, allOrders, cancelledOrders, completedOrders, orders}=userInfo;
 
-        setUserName(name)
-        setActiveOrders(activeOrders)
-        setAllOrders(allOrders)
-        setCancelledOrders(cancelledOrders)
-        setCompletedOrders(completedOrders)
-        setOrders(orders);
+            setUserName(name)
+            setActiveOrders(activeOrders)
+            setAllOrders(allOrders)
+            setCancelledOrders(cancelledOrders)
+            setCompletedOrders(completedOrders)
+
+            const lastOrderIndex=currentPage*ordersPerPage;
+
+            const firstOrderIndex=lastOrderIndex-ordersPerPage;
+    
+            const currentOrders=orders.slice(firstOrderIndex, lastOrderIndex);
+    
+            setOrders(currentOrders);
         }
 
         checkToken().then(res=>{
@@ -283,9 +294,9 @@ const Dashboard=()=>{
             setloggedIn(false);
         });
 
-        toggleModal(modal)
+        toggleModal(modal);
 
-    },[userInfo, modal]);
+    },[userInfo, modal, currentPage, ordersPerPage]);
 
     const logOutUser=()=>{
 
@@ -525,6 +536,10 @@ const Dashboard=()=>{
         });
     });
 
+    const paginate=(pageNumber)=>{
+        setCurrentPage(pageNumber);
+    }
+
     let username;
     let all;
     let complete;
@@ -532,6 +547,7 @@ const Dashboard=()=>{
     let active;
     let tableRows;
     let noOrders;
+    let pages;
 
     if(orders){
         username=userName;
@@ -576,7 +592,11 @@ const Dashboard=()=>{
         noOrders=orders.length===0?
             filterMessage===""?(<span className='no-orders'><p>You have not submitted any assignments yet. Click on <b className="highlight">Create New Order </b>to submit.
             Once you do, they will appear here.</p></span>):<span className='no-orders'>{filterMessage}</span>
-        :""
+        :"";
+
+        pages=orders.length===0?"":(
+            <PageNumbers paginate={paginate} ordersPerPage={ordersPerPage} totalOrders={userInfo.orders.length} />
+        )
     }
 
     return(
@@ -645,6 +665,7 @@ const Dashboard=()=>{
                                 {tableRows}
                             </OrdersTable>
                             {noOrders}
+                            {pages}
                         </div>
                     </section>
                 </div>
