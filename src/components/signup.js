@@ -1,11 +1,13 @@
-import React , {useReducer, useState, useLayoutEffect} from "react";
+import React , {useReducer, useState, useLayoutEffect, useEffect} from "react";
 import './signup.css';
 import axios from "axios";
 import Countries from '../utils.js/countries.json';
 import Footer from './footer';
 import {CtaButton} from './services';
 import { Error, FormAlerts } from "./create-order";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Modal from "./modal";
+import toggleModal from "../utils.js/toggle-modal";
 
 const reducer=(state, action)=>{
 
@@ -115,6 +117,15 @@ const RegistrationForm=()=>{
 
     const [match, setMatch]=useState(true);
     const [emailError, setEmailError]=useState(false);
+    const [modal, setModal]=useState(false);
+
+    const navigate=useNavigate();
+
+    useEffect(()=>{
+
+        toggleModal(modal);
+
+    }, [modal])
 
     let countryCode=Countries.map(code=>{
         return <option key={code.code} value={code.dial_code}>{` ${code.emoji} ${code.name} (${code.dial_code})`}</option>
@@ -195,6 +206,12 @@ const RegistrationForm=()=>{
         setEmailError(false);
     }
 
+    const closeModal=()=>{
+        setModal(false);
+
+        navigate("/login");
+    }
+
     let phoneConfirmation;
     let passwordAlert;
     let duplicateEmail;
@@ -223,7 +240,7 @@ const RegistrationForm=()=>{
 
         if(match){
             axios.post("/api/user/register", state).then(res=>{
-                console.log(res.data)
+                setModal(true)
             }).catch(err=>{
                 if(err.response.status===403){
                     setEmailError(true);
@@ -288,6 +305,9 @@ const RegistrationForm=()=>{
                 </FormAlerts>
                 <CtaButton type={`submit`} message={`Sign Up`} id={`submit-btn`} />
             </form>
+            <Modal onClick={closeModal} mainMessage={`Success`} supportingMessage={
+                `Account created successfully. You can proceed to log in now.`
+            }/>
         </React.Fragment>
     )
 }
