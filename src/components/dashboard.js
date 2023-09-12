@@ -514,6 +514,27 @@ const Dashboard=()=>{
     const handleSortingFilter=(e)=>{
 
         setSortQuery(e.target.value);
+
+        switch(e.target.value){
+
+            case "Ascending":
+                const ascendingOrder=orders.sort((a, b)=>{
+
+                    return new Date(a.date_deadline)-new Date(b.date_deadline);
+                });
+
+                setOrders(ascendingOrder)
+
+                break;
+
+            case "Descending":
+                const descendingOrder=orders.sort((a, b)=>{
+
+                    return new Date(b.date_deadline)-new Date(a.date_deadline);
+                });
+
+                setOrders(descendingOrder);
+        }
     }
 
     const submitAssignment=(e=>{
