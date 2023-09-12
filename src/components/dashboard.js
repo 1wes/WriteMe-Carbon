@@ -18,8 +18,23 @@ import SubmissionForm ,{ Error } from './create-order';
 import { Logo } from './navbar';
 import { Select } from './create-order';
 import {LuFilterX} from 'react-icons/lu';
+import Modal from './modal';
+import toggleModal from '../utils.js/toggle-modal';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
+
+const initialState={
+    subject:"",
+    gradeLevel:"",
+    style:"",
+    sources:"",
+    file:"",
+    instructions:"",
+    pagesOrwords:"",
+    amount:"",
+    deadline:"",
+    time:"",
+}
 
 const reducer=(state, action)=>{
 
@@ -27,153 +42,88 @@ const reducer=(state, action)=>{
 
         case "newSubject":{
             return{
+                ...state,
                 subject:action.newSubject,
-                gradeLevel:state.gradeLevel,
-                style:state.style,
-                sources:state.sources,
-                file:state.file,
-                instructions:state.instructions,
-                pagesOrwords:state.pagesOrwords,
-                amount:state.amount,
-                deadline:state.deadline,
-                time:state.time,
+
             }
         }
 
         case "newGradeLevel":{
             return{
+                ...state,
                 gradeLevel:action.newGrade,
-                subject:state.subject,
-                style:state.style,
-                sources:state.sources,
-                file:state.file,
-                instructions:state.instructions,
-                pagesOrwords:state.pagesOrwords,
-                amount:state.amount,
-                deadline:state.deadline,
-                time:state.time,
             }
         }
 
         case "newStyle":{
             return{
+                ...state,
                 style:action.newStyle,
-                sources:state.sources,
-                gradeLevel:state.gradeLevel,
-                subject:state.subject,
-                file:state.file,
-                instructions:state.instructions,
-                pagesOrwords:state.pagesOrwords,
-                amount:state.amount,
-                deadline:state.deadline,
-                time:state.time,
             }
         }
 
         case "newSources":{
             return{
+                ...state,
                 sources:action.newSources,
-                style:state.style,
-                gradeLevel:state.gradeLevel,
-                subject:state.subject,
-                file:state.file,
-                instructions:state.instructions,
-                pagesOrwords:state.pagesOrwords,
-                amount:state.amount,
-                deadline:state.deadline,
-                time:state.time,
             }
         }
 
         case "newFile":{
             return{
+                ...state,
                 file:action.newFile,
-                gradeLevel:state.gradeLevel,
-                subject:state.subject,
-                style:state.style,
-                sources:state.sources,
-                instructions:state.instructions,
-                pagesOrwords:state.pagesOrwords,
-                amount:state.amount,
-                deadline:state.deadline,
-                time:state.time,
             }
         }
 
         case "newInstructions":{
             return{
+                ...state,
                 instructions:action.newInstructions,
-                pagesOrwords:state.pagesOrwords,
-                subject:state.subject,
-                style:state.style,
-                sources:state.sources,
-                amount:state.amount,
-                deadline:state.deadline,
-                time:state.time,
-                file:state.file,
-                gradeLevel:state.gradeLevel,
             }
         }
 
         case "newPagesOrWords":{
             return{
+                ...state,
                 pagesOrwords:action.newPages,
-                amount:state.amount,
-                subject:state.subject,
-                style:state.style,
-                sources:state.sources,
-                deadline:state.deadline,
-                time:state.time,
-                file:state.file,
-                gradeLevel:state.gradeLevel,
-                instructions:state.instructions
             }
         }
 
         case "newAmount":{
             return{
+                ...state,
                 amount:action.newAmount,
-                pagesOrwords:state.pagesOrwords,
-                subject:state.subject,
-                style:state.style,
-                sources:state.sources,
-                deadline:state.deadline,
-                time:state.time,
-                file:state.file,
-                gradeLevel:state.gradeLevel,
-                instructions:state.instructions
             }
         }
 
         case "newDeadline":{
             return{
+                ...state,
                 deadline:action.newDeadline,
-                amount:state.amount,
-                subject:state.subject,
-                style:state.style,
-                sources:state.sources,
-                pagesOrwords:state.pagesOrwords,
-                file:state.file,
-                gradeLevel:state.gradeLevel,
-                instructions:state.instructions,
-                time:state.time,
             }
         }
 
         case "newTime":{
             return{
+                ...state,
                 time:action.newTime,
-                deadline:state.deadline,
-                subject:state.subject,
-                style:state.style,
-                sources:state.sources,
-                amount:state.amount,
-                pagesOrwords:state.pagesOrwords,
-                file:state.file,
-                gradeLevel:state.gradeLevel,
-                instructions:state.instructions
             }
         }
+
+        case "clearForm":
+            return{
+                subject:"",
+                gradeLevel:"",
+                style:"",
+                sources:"",
+                file:"",
+                instructions:"",
+                pagesOrwords:"",
+                amount:"",
+                deadline:"",
+                time:"",
+            }
 
         default:
     }
@@ -303,20 +253,8 @@ const Dashboard=()=>{
     const [searchQuery, setSearchQuery]=useState("");
     const [statusQuery, setStatusQuery]=useState('');
     const [sortQuery, setSortQuery]=useState('');
-    const [filterMessage, setFilterMessage]=useState("")
-
-    const initialState={
-        subject:"",
-        gradeLevel:"",
-        style:"",
-        sources:"",
-        file:"",
-        instructions:"",
-        pagesOrwords:"",
-        amount:"",
-        deadline:"",
-        time:"",
-    }
+    const [filterMessage, setFilterMessage]=useState("");
+    const [modal, setModal]=useState(false);
 
     const [state, dispatch]=useReducer(reducer, initialState);
 
@@ -345,7 +283,9 @@ const Dashboard=()=>{
             setloggedIn(false);
         });
 
-    },[userInfo]);
+        toggleModal(modal)
+
+    },[userInfo, modal]);
 
     const logOutUser=()=>{
 
@@ -487,7 +427,7 @@ const Dashboard=()=>{
 
                 return userInfo.orders.filter((orders)=>{
 
-                    return orders.status==status;
+                    return orders.status===status;
                 })
             }
 
@@ -504,7 +444,7 @@ const Dashboard=()=>{
 
         }
 
-        if(e.target.value=="All"){
+        if(e.target.value==="All"){
             setFilterMessage("");
 
             setOrders(userInfo.orders);
@@ -534,7 +474,16 @@ const Dashboard=()=>{
                 });
 
                 setOrders(descendingOrder);
+
+                break;
+
+            default:
         }
+    }
+
+    const closeModal=()=>{
+
+        setModal(false);
     }
 
     const clearFilters=()=>{
@@ -562,7 +511,13 @@ const Dashboard=()=>{
             }
         }).then(res=>{
 
+            dispatch({
+                type:"clearForm"
+            })
+
             let form=document.getElementById("assignment-form");
+
+            setModal(true);
 
             form.classList.remove("toggle-form");            
         }).catch(err=>{
@@ -619,7 +574,7 @@ const Dashboard=()=>{
         )
 
         noOrders=orders.length===0?
-            filterMessage==""?(<span className='no-orders'><p>You have not submitted any assignments yet. Click on <b className="highlight">Create New Order </b>to submit.
+            filterMessage===""?(<span className='no-orders'><p>You have not submitted any assignments yet. Click on <b className="highlight">Create New Order </b>to submit.
             Once you do, they will appear here.</p></span>):<span className='no-orders'>{filterMessage}</span>
         :""
     }
@@ -693,6 +648,8 @@ const Dashboard=()=>{
                         </div>
                     </section>
                 </div>
+                <Modal mainMessage={`Success`} supportingMessage={`Your assignment has been submitted successfully. You will be 
+                updated on its progress.`} onClick={closeModal} />
             </section>
         </React.Fragment>
     )
