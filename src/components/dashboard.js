@@ -537,6 +537,13 @@ const Dashboard=()=>{
         }
     }
 
+    const clearFilters=()=>{
+        setFilterMessage("");
+        setStatusQuery("");
+        setSortQuery("");
+        setOrders(userInfo.orders)
+    }
+
     const submitAssignment=(e=>{
 
         e.preventDefault();
@@ -673,7 +680,7 @@ const Dashboard=()=>{
                                         <option value={`Descending`}>Descending</option>
                                     </Select>
                                     <div>
-                                        <button className='clear-filters'>
+                                        <button className='clear-filters' type='button' onClick={clearFilters}>
                                             <LuFilterX/><span>Clear Filters</span>
                                         </button>
                                     </div>
