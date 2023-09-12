@@ -3,7 +3,7 @@ import './paginate.css';
 
 const PageNumbers=({paginate, ordersPerPage, totalOrders})=>{
 
-    const [index, setIndex]=useState();
+    const [index, setIndex]=useState(1);
 
     const pageNumber=[];
 
