@@ -1,0 +1,20 @@
+.page-number-list{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.number{
+    background: rgba(204, 204, 204, 0.2);
+    padding: 5px 15px;
+    border-radius: 3px;
+    transition: all ease .5s;
+}
+
+.number:hover{
+    cursor: pointer;
+    background-color: rgba(165, 42, 42, 0.1);
+    color: brown;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+}
