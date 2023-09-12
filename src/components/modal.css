@@ -1,0 +1,79 @@
+#modal-wrap{
+    display: none;
+}
+
+.show-modal{
+    display: block;
+}
+
+.modal-contents{
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    gap: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+}
+
+.success-icon{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgb(134,208,58);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -45px;
+}
+
+.success{
+    color: white;
+    font-size: 50px;
+}
+
+.modal h2{
+    padding: 0 !important;
+    margin: 0 !important;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.modal p{
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: center;
+    font-size: 14px;
+    line-height: 25px;
+}
+
+.modal button{
+    border: none;
+    padding: 10px 8px;
+    color: white;
+    background-color: rgb(134,208,58);
+    border-radius: 5px;
+    width: 100%;
+    transition: all ease .5s;
+}
+
+.modal button:hover{
+    cursor: pointer;
+    background-color: rgb(122, 206, 38);
+}
