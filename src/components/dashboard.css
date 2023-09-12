@@ -401,3 +401,11 @@ table tbody tr td:last-child{
     background-color: rgb(253, 141, 141);
     cursor: pointer;
 }
+
+.pagination-legend{
+    display: flex;
+    justify-content: center;
+    color: gray;
+    font-weight: 400;
+    font-size: 13px;
+}
