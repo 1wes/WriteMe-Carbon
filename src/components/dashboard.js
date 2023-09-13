@@ -607,7 +607,7 @@ const Dashboard=()=>{
     let firstIndex=lastIndex-ordersPerPage;
 
     const revisionForm=(
-        <ModalForm id={`rev-modal-form`} formLabel={`Please provide revision details`} message={`Revise Work`} value={revision}
+        <ModalForm id={`rev-modal-form`} formLabel={`Please provide revision details`} message={`Request Revision`} value={revision}
          onChange={handleRevision} onSubmit={submitRevision} closeModal={closeModalForm} />
     )
 
