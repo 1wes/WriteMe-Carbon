@@ -21,6 +21,7 @@ import {LuFilterX} from 'react-icons/lu';
 import Modal from './modal';
 import toggleModal from '../utils.js/toggle-modal';
 import PageNumbers from './paginate';
+import { ModalForm } from './modal';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -258,6 +259,10 @@ const Dashboard=()=>{
     const [modal, setModal]=useState(false);
     const [currentPage, setCurrentPage]=useState(1);
     const [ordersPerPage]=useState(2);
+    const [revision, setRevision]=useState("");
+    const [orderId, setOrderId]=useState(null);
+    const [create, setCreate]=useState(false);
+    const [revise, setRevise]=useState(false);
 
 
     const [state, dispatch]=useReducer(reducer, initialState);
@@ -294,9 +299,11 @@ const Dashboard=()=>{
             setloggedIn(false);
         });
 
-        toggleModal(modal);
+        if(revise || create){
+            toggleModal(modal);
+        }
 
-    },[userInfo, modal, currentPage, ordersPerPage]);
+    },[userInfo, modal, currentPage, ordersPerPage, revise, create]);
 
     const logOutUser=()=>{
 
@@ -495,6 +502,8 @@ const Dashboard=()=>{
     const closeModal=()=>{
 
         setModal(false);
+        setCreate(false);
+        setRevise(false);
     }
 
     const clearFilters=()=>{
@@ -502,6 +511,50 @@ const Dashboard=()=>{
         setStatusQuery("");
         setSortQuery("");
         setOrders(userInfo.orders)
+    }
+
+    const closeModalForm=()=>{
+
+        setOrderId(null);
+        setRevision("");
+
+        document.getElementById("rev-modal-form").style.display="none";
+    }
+
+    const handleRevision=(e)=>{
+
+        if(e.target.value!==""){
+            setRevision(e.target.value)
+        }
+    }
+
+    const submitRevision=(e)=>{
+
+        e.preventDefault();
+
+        const revisionDetails={
+            orderId:orderId,
+            modificationType:"Revision",
+            modificationReason:revision
+        }
+
+        axios.post("api/orders/modify-order", revisionDetails).then(res=>{
+
+            closeModalForm();
+
+            setModal(true);
+            setRevise(true);
+
+            return(
+                <Modal mainMessage={`Success`} supportingMessage={`Your revision request has been 
+                successfully submitted.`}/>
+            )
+
+        }).catch(err=>{
+
+            console.log(err);
+        })
+
     }
 
     const submitAssignment=(e=>{
@@ -530,6 +583,8 @@ const Dashboard=()=>{
 
             setModal(true);
 
+            setCreate(true);
+
             form.classList.remove("toggle-form");            
         }).catch(err=>{
             console.log(err);
@@ -550,6 +605,20 @@ const Dashboard=()=>{
     let pages;
     let lastIndex=currentPage*ordersPerPage;
     let firstIndex=lastIndex-ordersPerPage;
+
+    const revisionForm=(
+        <ModalForm id={`rev-modal-form`} formLabel={`Please provide revision details`} message={`Revise Work`} value={revision}
+         onChange={handleRevision} onSubmit={submitRevision} closeModal={closeModalForm} />
+    )
+
+    const submitAssignmentModal=(
+        <Modal mainMessage={`Success`} supportingMessage={`Your assignment has been submitted successfully. You will be 
+        updated on its progress.`} onClick={closeModal} />
+    );
+
+    const submitRevisionModal=(
+        <Modal mainMessage={`Success`} supportingMessage={`Your revision request has been successfully sent.`} onClick={closeModal} />
+    )
 
     if(orders){
         username=userName;
@@ -579,6 +648,9 @@ const Dashboard=()=>{
                             <td>
                                 <GenericCtaButton id={`revision-btn`} onClick={()=>{
 
+                                    setOrderId(order.order_id);
+
+                                    document.getElementById("rev-modal-form").style.display="block";
                                 }} message={`Order Revision`}/>
                                 <GenericCtaButton id={`cancel-btn`} onClick={()=>{
                                     
@@ -671,11 +743,12 @@ const Dashboard=()=>{
                             </OrdersTable>
                             {noOrders}
                             {pages}
+                            {revisionForm}
                         </div>
                     </section>
                 </div>
-                <Modal mainMessage={`Success`} supportingMessage={`Your assignment has been submitted successfully. You will be 
-                updated on its progress.`} onClick={closeModal} />
+                {revise && submitRevisionModal}
+                {create && submitAssignmentModal}
             </section>
         </React.Fragment>
     )
