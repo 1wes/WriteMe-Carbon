@@ -182,6 +182,8 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
 }
 
 export{
+    FormControl,
+    TextArea,
     FormLegend, 
     Error,
     FormAlerts,
