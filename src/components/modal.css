@@ -77,3 +77,28 @@
     cursor: pointer;
     background-color: rgb(122, 206, 38);
 }
+
+.modal .input-group{
+    width: 100%;
+}
+
+#form-modal-button{
+    background-color: brown;
+    width: 100% !important;
+    margin-top: -15px;
+}
+
+.modal-form-btn{
+    width: 100%;
+}
+
+#rev-modal-form{
+    display: none;
+}
+
+#modal-cancel-btn{
+    outline: 1px solid brown;
+    margin-top: -15px;
+    background: none;
+    color: brown;
+}
