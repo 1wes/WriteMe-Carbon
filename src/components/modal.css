@@ -92,7 +92,7 @@
     width: 100%;
 }
 
-#rev-modal-form{
+#rev-modal-form, #cancel-modal-form{
     display: none;
 }
 
