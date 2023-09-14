@@ -258,13 +258,11 @@ const Dashboard=()=>{
     const [filterMessage, setFilterMessage]=useState("");
     const [modal, setModal]=useState(false);
     const [currentPage, setCurrentPage]=useState(1);
-    const [ordersPerPage]=useState(2);
+    const [ordersPerPage]=useState(10);
     const [revision, setRevision]=useState();
-    const [cancel, setCancel]=useState();
     const [orderId, setOrderId]=useState();
     const [create, setCreate]=useState(false);
     const [revise, setRevise]=useState(false);
-    const [cancellation,setCancellation]=useState(false);
 
     const [state, dispatch]=useReducer(reducer, initialState);
 
@@ -300,11 +298,11 @@ const Dashboard=()=>{
             setloggedIn(false);
         });
 
-        if(revise || create || cancellation){
+        if(revise || create){
             toggleModal(modal);
         }
 
-    },[userInfo, modal, currentPage, ordersPerPage, revise, create, cancellation]);
+    },[userInfo, modal, currentPage, ordersPerPage, revise, create]);
 
     const logOutUser=()=>{
 
@@ -518,10 +516,8 @@ const Dashboard=()=>{
 
         setOrderId(null);
         setRevision("");
-        setCancel("");
 
         document.getElementById("rev-modal-form").style.display="none";
-        document.getElementById("cancel-modal-form").style.display="none";
     }
 
     const handleRevision=(e)=>{
@@ -529,11 +525,6 @@ const Dashboard=()=>{
         if(e.target.value!==""){
             setRevision(e.target.value)
         }
-    }
-
-    const handleCancellation=(e)=>{
-
-        setCancel(e.target.value)
     }
 
     const submitRevision=(e)=>{
@@ -557,27 +548,6 @@ const Dashboard=()=>{
 
             console.log(err);
         })
-    }
-
-    const submitCancellation=(e)=>{
-
-        e.preventDefault();
-
-        const cancellationDetails={
-            orderId:orderId,
-            modificationReason:cancel
-        }
-
-        axios.post("api/orders/cancel-order", cancellationDetails).then(res=>{
-            
-            closeModalForm();
-
-            setModal(true);
-            setCancellation(true);
-        }).catch(err=>{
-            console.log(err);
-        })
-
     }
 
     const submitAssignment=(e=>{
@@ -634,11 +604,6 @@ const Dashboard=()=>{
          onChange={handleRevision} onSubmit={submitRevision} closeModal={closeModalForm} />
     )
 
-    const cancelForm=(
-        <ModalForm id={`cancel-modal-form`} formLabel={`Why do you want to cancel this order?`} message={`Cancel Order`} value={cancel} 
-        onChange={handleCancellation} onSubmit={submitCancellation} closeModal={closeModalForm} />
-    )
-
     const submitAssignmentModal=(
         <Modal mainMessage={`Success`} supportingMessage={`Your assignment has been submitted successfully. You will be 
         updated on its progress.`} onClick={closeModal} />
@@ -646,10 +611,6 @@ const Dashboard=()=>{
 
     const submitRevisionModal=(
         <Modal mainMessage={`Success`} supportingMessage={`Your revision request has been successfully sent.`} onClick={closeModal} />
-    )
-
-    const submitCancellationModal=(
-        <Modal mainMessage={`Success`} supportingMessage={`Your request to cancel this order has been successfully sent.`} onClick={closeModal} />
     )
 
     if(orders){
@@ -684,11 +645,6 @@ const Dashboard=()=>{
 
                                     document.getElementById("rev-modal-form").style.display="block";
                                 }} message={`Order Revision`}/>
-                                <GenericCtaButton id={`cancel-btn`} onClick={()=>{
-                                    setOrderId(order.order_id);
-
-                                    document.getElementById("cancel-modal-form").style.display="block";
-                                }} message={`Cancel Order`}/>
                             </td>
                         </tr>
                     )
@@ -778,13 +734,11 @@ const Dashboard=()=>{
                             {noOrders}
                             {pages}
                             {revisionForm}
-                            {cancelForm}
                         </div>
                     </section>
                 </div>
                 {revise && submitRevisionModal}
                 {create && submitAssignmentModal}
-                {cancellation && submitCancellationModal}
             </section>
         </React.Fragment>
     )
