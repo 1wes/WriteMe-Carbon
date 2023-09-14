@@ -521,10 +521,8 @@ const Dashboard=()=>{
     }
 
     const handleRevision=(e)=>{
-
-        if(e.target.value!==""){
-            setRevision(e.target.value)
-        }
+        
+        setRevision(e.target.value)
     }
 
     const submitRevision=(e)=>{
