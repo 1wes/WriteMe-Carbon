@@ -149,26 +149,6 @@ let MobileNavbar=()=>{
 
 const Navbar=()=>{
 
-    const goToBenefits=()=>{
-
-        goToSection('benefits-section');
-    }
-
-    const goToDisciplines=()=>{
-
-        goToSection('discplines-section');
-    }
-
-    const gotToContact=()=>{
-
-        goToSection('contact-form-section');
-    }
-
-    const goToBloglist=()=>{
-
-        goToSection('bloglist-section');
-    }
-
     return(
         <React.Fragment>
             <nav className="section" id="navbar-section">
