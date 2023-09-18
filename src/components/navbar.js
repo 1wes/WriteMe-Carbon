@@ -5,6 +5,7 @@ import { goToSection } from "../utils.js/section";
 import {CgMenuRight, CgClose} from 'react-icons/cg';
 import { BsPerson } from 'react-icons/bs';
 import { IoLogInOutline} from 'react-icons/io5';
+import { HashLink as Jumplink } from "react-router-hash-link";
 
 const SignButton=()=>{
 
@@ -179,10 +180,18 @@ const Navbar=()=>{
                         <Link className="link" to={`/about`}>
                             <li>About us</li>
                         </Link>
-                        <li onClick={goToBenefits}>Why us</li>
-                        <li onClick={goToDisciplines}>Disciplines</li>
-                        <li onClick={gotToContact}>Contact us</li>
-                        <li onClick={goToBloglist}>Blog</li>
+                        <Jumplink className="link" to={'/#benefits-section'}>
+                            <li>Why us</li>
+                        </Jumplink>
+                        <Jumplink className="link" to={`/#discplines-section`}>
+                            <li>Disciplines</li>
+                        </Jumplink>
+                        <Jumplink className="link" to={`/#contact-section`}>
+                            <li>Contact us</li>
+                        </Jumplink>
+                        <Jumplink className="link" to={`/#bloglist-section`}>
+                            <li>Blog</li>
+                        </Jumplink>
                         <Link className="link" to={`/faq`}>
                             <li>FAQ</li>
                         </Link>
