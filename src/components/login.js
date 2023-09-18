@@ -40,7 +40,12 @@ const LoginForm=()=>{
 
             setError(false);
 
-            navigate("/user-dashboard");
+            if(res.data.code==200){
+
+                const role=res.data.role;
+
+                role==='user'?navigate("/user-dashboard"):navigate("/admin-dashboard");
+            }
         }).catch(err=>{
 
             setError(true);
