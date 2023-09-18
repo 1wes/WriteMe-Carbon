@@ -741,4 +741,10 @@ const Dashboard=()=>{
         </React.Fragment>
     )
 }
+export{
+    DashSectionHeaders,
+    DashboardNavbar,
+    Metrics, 
+    OrdersTable
+}
 export default Dashboard;
