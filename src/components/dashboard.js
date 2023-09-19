@@ -558,7 +558,9 @@ const Dashboard=()=>{
             assignmentDetails.append(key, state[key])
         }
 
-        assignmentDetails.append('fileName', state.file.name);
+        if(state.file!==""){
+            assignmentDetails.append('fileName', state.file.name);
+        }
         
         axios.post("api/orders/new", assignmentDetails, {
             headers:{
