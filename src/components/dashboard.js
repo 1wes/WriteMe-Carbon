@@ -241,6 +241,40 @@ const GenericCtaButton=({id, onClick, message})=>{
     )
 }
 
+const Search=({searchValue, onSearchChange, statusValue, onStatusChange, sortValue, onSortChange, onClearClick})=>{
+
+    return(
+        <Fragment>
+            <div className='search-section'>
+                <form className='search-form'>
+                    <div className='input-group'>
+                        <input type='text' value={searchValue} onChange={onSearchChange} placeholder='Search orders by subject'></input>
+                    </div>
+                </form>
+                <div className="filters"> 
+                    <Select value={statusValue} name={`status-filter`} onChange={onStatusChange} >
+                        <option value={``} hidden disabled>Filter by status</option>
+                        <option value={`Active`}>Active</option>
+                        <option value={`Completed`}>Completed</option>
+                        <option value={`Cancelled`}>Cancelled</option>
+                        <option value={`All`}>All</option>
+                    </Select>
+                    <Select value={sortValue} name={`deadline-sort-filter`} onChange={onSortChange}>
+                        <option value={``} hidden disabled>Filter by deadline</option>
+                        <option value={`Ascending`}>Ascending</option>
+                        <option value={`Descending`}>Descending</option>
+                    </Select>
+                    <div>
+                        <button className='clear-filters' type='button' onClick={onClearClick}>
+                            <LuFilterX/><span>Clear Filters</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </Fragment>
+    )
+}
+
 const Dashboard=()=>{
 
     const [userName, setUserName]=useState();
@@ -672,11 +706,11 @@ const Dashboard=()=>{
                 <DashboardNavbar userName={username} onClick={logOutUser}/>
                 <div className='dashboard'>
                     <section className='overview'>
-                        <DashSectionHeaders heading={`Overview`} />
+                        <DashSectionHeaders heading={`Overview`}/>
                         <div className='overview-metrics'>
-                            <Metrics title={`All Orders`} icon={<BsFileEarmarkBarGraph/>} number={all} />
-                            <Metrics title={`Completed Orders`} icon={<BsFileEarmarkCheck/>} number={complete}  />
-                            <Metrics title={`Active Orders`} icon={<GiSandsOfTime/>} number={active} />
+                            <Metrics title={`All Orders`} icon={<BsFileEarmarkBarGraph/>} number={all}/>
+                            <Metrics title={`Completed Orders`} icon={<BsFileEarmarkCheck/>} number={complete}/>
+                            <Metrics title={`Active Orders`} icon={<GiSandsOfTime/>} number={active}/>
                             <Metrics title={`Cancelled Orders`} icon={<ImCancelCircle/>} number={cancelled} />
                         </div>
                     </section>
@@ -702,32 +736,9 @@ const Dashboard=()=>{
                     <section className='all-orders'>
                         <DashSectionHeaders heading={`All Orders`} />
                         <div className='orders-wrapper'>
-                            <div className='search-section'>
-                                <form className='search-form'>
-                                    <div className='input-group'>
-                                        <input type='text' value={searchQuery} onChange={handleSearch} placeholder='Search orders by subject'></input>
-                                    </div>
-                                </form>
-                                <div className="filters"> 
-                                    <Select value={statusQuery} name={`status-filter`} onChange={handleStatusFilter} >
-                                        <option value={``} hidden disabled>Filter by status</option>
-                                        <option value={`Active`}>Active</option>
-                                        <option value={`Completed`}>Completed</option>
-                                        <option value={`Cancelled`}>Cancelled</option>
-                                        <option value={`All`}>All</option>
-                                    </Select>
-                                    <Select value={sortQuery} name={`deadline-sort-filter`} onChange={handleSortingFilter}>
-                                        <option value={``} hidden disabled>Filter by deadline</option>
-                                        <option value={`Ascending`}>Ascending</option>
-                                        <option value={`Descending`}>Descending</option>
-                                    </Select>
-                                    <div>
-                                        <button className='clear-filters' type='button' onClick={clearFilters}>
-                                            <LuFilterX/><span>Clear Filters</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            <Search searchValue={searchQuery} onSearchChange={handleSearch} statusValue={statusQuery}
+                             onStatusChange={handleStatusFilter} sortValue={sortQuery} onSortChange={handleSortingFilter}
+                             onClearClick={clearFilters} />
                             <OrdersTable>
                                 {tableRows}
                             </OrdersTable>
@@ -747,6 +758,8 @@ export{
     DashSectionHeaders,
     DashboardNavbar,
     Metrics, 
-    OrdersTable
+    OrdersTable,
+    Search,
+    GenericCtaButton
 }
 export default Dashboard;
