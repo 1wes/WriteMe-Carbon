@@ -8,6 +8,7 @@ import checkToken from '../utils.js/check-token';
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
 import { ImCancelCircle } from 'react-icons/im';
+import PageNumbers from './paginate';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -20,6 +21,8 @@ const Admin=()=>{
     const [completedOrders, setCompletedOrders]=useState(0);
     const [cancelledOrders, setCancelledOrders]=useState(0);
     const [allOrders, setAllOrders]=useState([]);
+    const [currentPage, setCurrentPage]=useState(1);
+    const [ordersPerPage]=useState(10);
 
     const navigate=useNavigate();
 
@@ -37,6 +40,14 @@ const Admin=()=>{
             setCancelledOrders(allCancelledOrders);
             setAllOrders(allOrders);
 
+            const lastOrderIndex=currentPage*ordersPerPage;
+
+            const firstOrderIndex=lastOrderIndex-ordersPerPage;
+    
+            const currentOrders=allOrders.slice(firstOrderIndex, lastOrderIndex);
+    
+            setAllOrders(currentOrders);
+
         }
 
         checkToken().then(res=>{
@@ -45,7 +56,7 @@ const Admin=()=>{
             setLoggedIn(false)
         })
 
-    },[data]);
+    },[data, currentPage, ordersPerPage]);
 
     const logoutUser=()=>{
 
@@ -60,6 +71,8 @@ const Admin=()=>{
     !loggedIn && navigate("/login");
 
     let name;
+    let lastIndex=currentPage*ordersPerPage;
+    let firstIndex=lastIndex-ordersPerPage;
 
     if(adminName){
         name=adminName
@@ -78,6 +91,17 @@ const Admin=()=>{
                 </tr>
             )
         })
+    )
+
+    const paginate=(pageNumber)=>{
+        setCurrentPage(pageNumber);
+    }
+
+    const pages=allOrders.length===0?"":(
+        <Fragment>
+            <PageNumbers paginate={paginate} ordersPerPage={ordersPerPage} totalOrders={data.allOrders.length} />
+            <span className='pagination-legend'>Showing {firstIndex+1}-{lastIndex} of {data.allOrders.length} orders</span>
+        </Fragment>
     )
 
     return(
@@ -101,6 +125,7 @@ const Admin=()=>{
                             <OrdersTable>
                                 {tableRows}
                             </OrdersTable>
+                            {pages}
                         </div>
                     </section>
                 </div>
