@@ -168,7 +168,7 @@ const Admin=()=>{
 
                     return(
                         <tr key={order.id}>
-                            <td> {order.order_id} </td>
+                            <td> {`Order-${order.order_id}`} </td>
                             <td> {order.subject} </td>
                             <td> {order.status} </td>
                             <td> {order.date_deadline.split("T")[0]} </td>
