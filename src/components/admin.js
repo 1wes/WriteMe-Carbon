@@ -193,7 +193,11 @@ const Admin=()=>{
             <PageNumbers paginate={paginate} ordersPerPage={ordersPerPage} totalOrders={data.allOrders.length} />
             <span className='pagination-legend'>Showing {firstIndex+1}-{lastIndex} of {data.allOrders.length} orders</span>
         </Fragment>
-    )
+    );
+
+    const noOrders=allOrders.length===0?
+    filterMessage===""?(<span className='no-orders'><p>No Assignments have been submitted yet.
+    Once they are, they will appear here.</p></span>):<span className='no-orders'>{filterMessage}</span>:"";
 
     return(
         <Fragment>
@@ -219,6 +223,7 @@ const Admin=()=>{
                                 {tableRows}
                             </OrdersTable>
                             {pages}
+                            {noOrders}
                         </div>
                     </section>
                 </div>
