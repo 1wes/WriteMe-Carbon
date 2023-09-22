@@ -26,6 +26,7 @@ const Admin=()=>{
     const [searchQuery, setSearchQuery]=useState("");
     const [statusQuery, setStatusQuery]=useState('');
     const [sortQuery, setSortQuery]=useState('');
+    const [filterMessage, setFilterMessage]=useState("");
 
     const navigate=useNavigate();
 
@@ -77,10 +78,71 @@ const Admin=()=>{
 
     const handleStatus=(e)=>{
         setStatusQuery(e.target.value);
+
+        if(data && data.allOrders.length!==0){
+
+            const filterStatus=(status)=>{
+
+                return data.allOrders.filter((orders)=>{
+
+                    return orders.status===status;
+                })
+            }
+
+            const foundOrders=filterStatus(e.target.value);
+
+            if(foundOrders.length>0){
+                setFilterMessage("");
+
+                setAllOrders(foundOrders)
+            }else{
+                setAllOrders([]);
+                setFilterMessage("No orders found for this filter")
+            }
+
+            if(e.target.value==="All"){
+                setFilterMessage("");
+    
+                setAllOrders(data.allOrders);
+            }
+        }
     }
     
     const handleSort=(e)=>{
         setSortQuery(e.target.value);
+        
+        switch(e.target.value){
+
+            case "Ascending":
+                const ascendingOrder=allOrders.sort((a, b)=>{
+
+                    return new Date(a.date_deadline)-new Date(b.date_deadline);
+                });
+
+                setAllOrders(ascendingOrder)
+
+                break;
+
+            case "Descending":
+                const descendingOrder=allOrders.sort((a, b)=>{
+
+                    return new Date(b.date_deadline)-new Date(a.date_deadline);
+                });
+
+                setAllOrders(descendingOrder);
+
+                break;
+
+            default:
+        }
+    }
+
+    const clearFilters=()=>{
+
+        setFilterMessage("");
+        setStatusQuery("");
+        setSortQuery("");
+        setAllOrders(data.allOrders)
     }
 
     !loggedIn && navigate("/login");
@@ -151,7 +213,8 @@ const Admin=()=>{
                         <DashSectionHeaders heading={`All Orders`} />
                         <div className='orders-wrapper'>
                             <Search searchValue={searchQuery} onSearchChange={handleSearch} statusValue={statusQuery} 
-                            onStatusChange={handleStatus} sortValue={sortQuery} onSortChange={handleSort}/>
+                            onStatusChange={handleStatus} sortValue={sortQuery} onSortChange={handleSort}
+                            onClearClick={clearFilters}  />
                             <OrdersTable>
                                 {tableRows}
                             </OrdersTable>
