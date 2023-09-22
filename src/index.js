@@ -12,6 +12,7 @@ import Login from './components/login';
 import Dashboard from './components/dashboard';
 import ForgotPassword from './components/forgot-password';
 import Admin from './components/admin';
+import ClientOrder from './components/order';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,6 +27,7 @@ root.render(
       <Route path='/user-dashboard' element={<Dashboard/>} ></Route>
       <Route path='/forgot-password' element={<ForgotPassword/>} ></Route>
       <Route path='/admin-dashboard' element={<Admin/>} ></Route>
+      <Route path='/admin/:orderId' element={<ClientOrder/>} ></Route>
       <Route path='*' element={<NotFound/>} ></Route>
     </Routes>
   </HashRouter>
