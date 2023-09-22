@@ -23,6 +23,9 @@ const Admin=()=>{
     const [allOrders, setAllOrders]=useState([]);
     const [currentPage, setCurrentPage]=useState(1);
     const [ordersPerPage]=useState(10);
+    const [searchQuery, setSearchQuery]=useState("");
+    const [statusQuery, setStatusQuery]=useState('');
+    const [sortQuery, setSortQuery]=useState('');
 
     const navigate=useNavigate();
 
@@ -47,7 +50,6 @@ const Admin=()=>{
             const currentOrders=allOrders.slice(firstOrderIndex, lastOrderIndex);
     
             setAllOrders(currentOrders);
-
         }
 
         checkToken().then(res=>{
@@ -68,6 +70,19 @@ const Admin=()=>{
         })
     }
 
+    const handleSearch=(e)=>{
+
+        setSearchQuery(e.target.value);
+    }
+
+    const handleStatus=(e)=>{
+        setStatusQuery(e.target.value);
+    }
+    
+    const handleSort=(e)=>{
+        setSortQuery(e.target.value);
+    }
+
     !loggedIn && navigate("/login");
 
     let name;
@@ -79,18 +94,32 @@ const Admin=()=>{
     }
 
     const tableRows=(
-        allOrders.map((order)=>{
+        <Fragment>
+            {
+                allOrders.length!==0?allOrders.filter((orders)=>{
+                    if(searchQuery===""){
+                        return allOrders
+                    }else{
+                        return orders.subject.toLowerCase().includes(searchQuery.toLowerCase());
+                    }
+                }).map((order)=>{
 
-            return (
-                <tr key={order.order_id}>
-                    <td>{`Order-${order.order_id}`}</td>
-                    <td>{order.subject}</td>
-                    <td>{order.status}</td>
-                    <td>{order.date_deadline.split("T")[0]}</td>
-                    <td><Link className='link'><GenericCtaButton id={`order-link`} message={`View Order`} /></Link></td>
-                </tr>
-            )
-        })
+                    return(
+                        <tr key={order.id}>
+                            <td> {order.order_id} </td>
+                            <td> {order.subject} </td>
+                            <td> {order.status} </td>
+                            <td> {order.date_deadline.split("T")[0]} </td>
+                            <td>
+                                <Link className='link'>
+                                    <GenericCtaButton id={`order-link`} message={`View Order`} />
+                                </Link>
+                            </td>
+                        </tr>
+                    )
+                }):""
+            }
+        </Fragment>
     )
 
     const paginate=(pageNumber)=>{
@@ -121,7 +150,8 @@ const Admin=()=>{
                     <section className='all-orders'>
                         <DashSectionHeaders heading={`All Orders`} />
                         <div className='orders-wrapper'>
-                            <Search/>
+                            <Search searchValue={searchQuery} onSearchChange={handleSearch} statusValue={statusQuery} 
+                            onStatusChange={handleStatus} sortValue={sortQuery} onSortChange={handleSort}/>
                             <OrdersTable>
                                 {tableRows}
                             </OrdersTable>
