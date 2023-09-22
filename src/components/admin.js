@@ -173,7 +173,7 @@ const Admin=()=>{
                             <td> {order.status} </td>
                             <td> {order.date_deadline.split("T")[0]} </td>
                             <td>
-                                <Link className='link'>
+                                <Link to={`/admin/Order-${order.order_id}`} className='link'>
                                     <GenericCtaButton id={`order-link`} message={`View Order`} />
                                 </Link>
                             </td>
