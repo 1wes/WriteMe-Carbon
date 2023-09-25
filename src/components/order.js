@@ -15,6 +15,7 @@ const ClientOrder=()=>{
 
     const [loggedIn, setLoggedIn]=useState(true);
     const [order, setOrder]=useState();
+    const [daysToDeadline, setDaysToDeadline]=useState(0);
 
     const id=useLocation().pathname.split("Order-")[1];
     const navigate=useNavigate();
@@ -23,7 +24,12 @@ const ClientOrder=()=>{
 
     useEffect(()=>{
         if(data){
+            const {date_deadline}=data;
             setOrder(data);
+
+            const days=remainingDays(date_deadline);
+
+            setDaysToDeadline(days);
         }
 
         checkToken().then(res=>{
@@ -31,6 +37,7 @@ const ClientOrder=()=>{
         }).catch(err=>{
             setLoggedIn(false)
         });
+
     },[data]);
 
     const logOutUser=()=>{
@@ -66,13 +73,25 @@ const ClientOrder=()=>{
                                     <li><span className='order-key'>Education Level : </span><span className='order-value'>{order?order.level:""}</span></li>
                                     <li><span className='order-key'>Deadline : </span><span className='order-value'>
                                         </span>{order?order.date_deadline.split("T")[0]:""}
-                                        <span>{` ( ${remainingDays(order?order.date_deadline:new Date(Date.now()))} days remaining )`}</span>
+                                        <span>{` (${daysToDeadline} days remaining )`}</span>
                                     </li>
                                     <li><span className='order-key'>Time : </span><span className='order-value'>{order?order.time_deadline:""}</span></li>
                                     <li><span className='order-key'>Topic : </span><span className='order-value'></span></li>
                                     <li><span className='order-key'>Sources : </span><span className='order-value'>{order?order.sources:""} source(s) required</span></li>
                                     <li><span className='order-key'>Citation Style : </span><span className='order-value'>{order?order.ref_style:""}</span></li>
                                     <li><span className='order-key'>Instructions : </span><span className='order-value'>{order?order.instructions:""}</span></li>
+                                </ul>
+                            </div>
+                            <div className='alerts'>
+                                <ul className='alerts-list'>
+                                    <li>
+                                        <div className='order-key' >Status</div>
+                                        <div className={order?order.status:""} id='status-indicator'></div>
+                                    </li>
+                                    <li>
+                                        <div className='order-key'>Deadline</div>
+                                        <div className={daysToDeadline?daysToDeadline>=5?"safe-deadline":"deadline-warning":""} id='deadline-indicator'></div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
