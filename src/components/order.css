@@ -21,7 +21,7 @@
     font-size: 14px;
 }
 
-.order-specifics ul li:last-child{
+#instruction-details, .attached-files{
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -81,6 +81,12 @@
     background-color: rgb(255, 193, 87);
 }
 
+.download-link{
+    text-decoration: underline;
+    color: rgb(55, 55, 236);
+    cursor: pointer;
+}
+
 @keyframes toggleExpand{
     0%{
         transform: scale(1);
@@ -101,4 +107,10 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+}
+
+.attached-files{
+    border-top: 1px solid rgba(165, 42, 42, 0.1);
+    padding-top: 20px;
+    
 }
