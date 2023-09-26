@@ -8,6 +8,7 @@ import useSWR from 'swr';
 import axios from '../utils.js/axios';
 import checkToken from '../utils.js/check-token';
 import remainingDays from '../utils.js/dates';
+import { CtaButton } from './services';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -159,6 +160,22 @@ const ClientOrder=()=>{
                                         <div className={daysToDeadline?daysToDeadline>=2?"safe-deadline":"deadline-warning":""} id='deadline-indicator'></div>
                                     </li>
                                 </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section className='order-actions'>
+                        <DashSectionHeaders heading={`Order Actions`} />
+                        <div className='order-actions-wrapper'>
+                            <div className='buttons-group'>
+                                <div className='admin-btn'>
+                                    <CtaButton id={`cancel-order-btn`} message={`Cancel Order`}/>
+                                </div>
+                                <div  className='admin-btn'>
+                                    <CtaButton id={`mark-complete-btn`} message={`Mark As Complete`}/>
+                                </div>
+                                <div className='admin-btn'>
+                                    <CtaButton id={`upload-btn`} message={`Upload Finished Work`}/>
+                                </div>
                             </div>
                         </div>
                     </section>
