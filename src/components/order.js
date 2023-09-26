@@ -18,6 +18,7 @@ const ClientOrder=()=>{
     const [daysToDeadline, setDaysToDeadline]=useState(0);
 
     const id=useLocation().pathname.split("Order-")[1];
+
     const navigate=useNavigate();
 
     const {data}=useSWR(`/api/orders/order/${id}`, fetcher);
@@ -30,6 +31,15 @@ const ClientOrder=()=>{
             const days=remainingDays(date_deadline);
 
             setDaysToDeadline(days);
+
+            // console.log(data.attachedFiles[0].data);
+
+            // const blob=new Blob(data.attachedFiles[0].data);
+
+            // console.log(blob);
+
+            // console.log(data)
+
         }
 
         checkToken().then(res=>{
@@ -51,6 +61,61 @@ const ClientOrder=()=>{
     }
 
     !loggedIn && navigate("/login");
+
+    let fileAttachments;
+
+    const downloadFile=()=>{
+
+        if(order.attachedFiles.length>0){
+
+            axios.get(`/api/orders/order/files/${order.attachedFiles[0]}`,{
+                responseType:"blob"
+            }).then(res=>{
+
+                console.log(res.data)
+
+                const fileUrl=window.URL.createObjectURL(
+                    new Blob([res.data])
+                )
+                
+                const link=document.createElement("a");
+
+                link.href=fileUrl;
+
+                link.setAttribute(
+                    "download", 
+                    `${order.attachedFiles[0]}`
+                )
+
+                document.body.appendChild(link);
+
+                link.click();
+
+                window.URL.revokeObjectURL(fileUrl);
+
+                link.parentNode.removeChild(link)
+            }).catch(err=>{
+                console.log(err);
+            })
+        }
+    }
+
+    if(order){
+
+        fileAttachments=(
+            <Fragment>
+                {
+                    order.attachedFiles.length>0?(
+                        <li className='attached-files'><span className='order-key'>{`${order.attachedFiles.length} attached file(s)`}</span>
+                            <span className='download-link' onClick={downloadFile}>
+                                {order.attachedFiles[0]}
+                            </span>
+                        </li>
+                    ):""
+                }
+            </Fragment>
+        )
+    }
 
     return(
         <Fragment>
@@ -79,7 +144,8 @@ const ClientOrder=()=>{
                                     <li><span className='order-key'>Topic : </span><span className='order-value'></span></li>
                                     <li><span className='order-key'>Sources : </span><span className='order-value'>{order?order.sources:""} source(s) required</span></li>
                                     <li><span className='order-key'>Citation Style : </span><span className='order-value'>{order?order.ref_style:""}</span></li>
-                                    <li><span className='order-key'>Instructions : </span><span className='order-value'>{order?order.instructions:""}</span></li>
+                                    <li id='instruction-details'><span className='order-key'>Instructions : </span><span className='order-value'>{order?order.instructions:""}</span></li>
+                                    {fileAttachments}
                                 </ul>
                             </div>
                             <div className='alerts'>
@@ -90,7 +156,7 @@ const ClientOrder=()=>{
                                     </li>
                                     <li>
                                         <div className='order-key'>Deadline</div>
-                                        <div className={daysToDeadline?daysToDeadline>=5?"safe-deadline":"deadline-warning":""} id='deadline-indicator'></div>
+                                        <div className={daysToDeadline?daysToDeadline>=2?"safe-deadline":"deadline-warning":""} id='deadline-indicator'></div>
                                     </li>
                                 </ul>
                             </div>
