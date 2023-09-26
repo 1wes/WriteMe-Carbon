@@ -4,10 +4,13 @@
     padding-bottom: 100px;
 }
 
-.order-details{
+.order-details, .order-actions-wrapper{
     border:1px solid rgba(165, 42, 42, 0.1);
     padding: 10px;
     border-radius: 5px;
+}
+
+.order-details{
     display: flex;
     justify-content: space-between;
 }
@@ -112,5 +115,51 @@
 .attached-files{
     border-top: 1px solid rgba(165, 42, 42, 0.1);
     padding-top: 20px;
-    
+}
+
+.buttons-group{
+    display: flex;
+    gap:20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#cancel-order-btn, #mark-complete-btn, #upload-btn{
+    width: 100%;
+    margin-top: -30px;
+    border: none;
+}
+
+#cancel-order-btn{
+    color: rgb(253, 135, 137);
+    outline: 1px solid rgba(248, 157, 159, 0.8);
+}
+
+#cancel-order-btn:hover{
+    background-color: rgb(221, 82, 85);
+    color: white;
+    outline: none;
+}
+
+#mark-complete-btn{
+    color: rgba(128, 128, 128);
+    background-color: rgba(128, 128, 128, 0.199);
+}
+
+#mark-complete-btn:hover{
+    color: white;
+    background-color: gray;
+}
+
+#upload-btn{
+    color: white;
+    background-color: rgb(33, 204, 64);
+}
+
+#upload-btn:hover{
+    background-color: rgb(18, 163, 45)
+}
+
+.admin-btn{
+    width: 32%;
 }
