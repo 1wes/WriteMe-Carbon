@@ -157,7 +157,8 @@ const ClientOrder=()=>{
                                     </li>
                                     <li>
                                         <div className='order-key'>Deadline</div>
-                                        <div className={daysToDeadline?daysToDeadline>=2?"safe-deadline":"deadline-warning":""} id='deadline-indicator'></div>
+                                        <div className={daysToDeadline?daysToDeadline>=2?"safe-deadline":daysToDeadline>0?"deadline-warning":daysToDeadline<=0?"missed-deadline":"":""}
+                                         id='deadline-indicator'></div>
                                     </li>
                                 </ul>
                             </div>
