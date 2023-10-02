@@ -84,6 +84,14 @@
     background-color: rgb(255, 193, 87);
 }
 
+.missed-deadline{
+    background-color: rgb(226,25,27);
+}
+
+.no-deadline{
+    background-color: yellowgreen;
+}
+
 .download-link{
     text-decoration: underline;
     color: rgb(55, 55, 236);
