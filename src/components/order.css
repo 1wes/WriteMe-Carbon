@@ -171,3 +171,40 @@
 .admin-btn{
     width: 32%;
 }
+
+#cta-warning{
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.error{
+    color: rgb(255, 35, 39);
+    outline: 1px solid rgb(253, 81, 84);
+}
+
+.success{
+    color: rgb(33, 204, 64);
+    outline: 1px solid rgb(33, 204, 64);
+}
+
+.warning-close{
+    text-align: right;
+}
+
+.warning-close i{
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.show-warning{
+    display: block;
+}
+
+.action-warning p{
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 20px;
+}
