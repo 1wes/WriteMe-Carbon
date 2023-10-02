@@ -93,7 +93,20 @@ const ClientOrder=()=>{
         }
     }
 
-    !loggedIn && navigate("/login");
+    const changeOrderStatus=()=>{
+
+        axios.put(`/api/orders/order/update/${order.order_id}`, {status:"Completed"}).then((res)=>{
+
+            setWarning({
+                display:true,
+                message:`Order-${order.order_id} has been marked as complete. You can now send it to the client.`,
+                error:false
+            });
+        }).catch(err=>{
+            console.log(err);
+        })
+
+    }
 
     let fileAttachments;
 
@@ -132,6 +145,8 @@ const ClientOrder=()=>{
             })
         }
     }
+
+    !loggedIn && navigate("/login");
 
     if(order){
 
@@ -224,7 +239,7 @@ const ClientOrder=()=>{
                                     <CtaButton id={`cancel-order-btn`} message={`Cancel Order`}/>
                                 </div>
                                 <div  className='admin-btn'>
-                                    <CtaButton id={`mark-complete-btn`} message={`Mark As Complete`}/>
+                                    <CtaButton id={`mark-complete-btn`} message={`Mark As Complete`} onClick={changeOrderStatus} />
                                 </div>
                                 <div className='admin-btn'>
                                     <CtaButton id={`upload-btn`} message={`Upload Finished Work`} onClick={submitFinishedWork} />
