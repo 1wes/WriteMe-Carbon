@@ -10,6 +10,8 @@ import checkToken from '../utils.js/check-token';
 import remainingDays from '../utils.js/dates';
 import { CtaButton } from './services';
 
+import { MdClose } from 'react-icons/md';
+
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
 const ClientOrder=()=>{
@@ -17,6 +19,11 @@ const ClientOrder=()=>{
     const [loggedIn, setLoggedIn]=useState(true);
     const [order, setOrder]=useState();
     const [daysToDeadline, setDaysToDeadline]=useState(0);
+    const [warning, setWarning]=useState({
+        display:false,
+        error:false,
+        message:""
+    });
 
     const id=useLocation().pathname.split("Order-")[1];
 
@@ -59,6 +66,31 @@ const ClientOrder=()=>{
         }).catch(err=>{
             setLoggedIn(false);
         })
+    }
+
+    const submitFinishedWork=()=>{
+
+        const {status}=order;
+
+        switch(status){
+
+            case 'Active':
+
+                setWarning({
+                    display:true,
+                    message:`This order has not been completed yet, hence cannot be sent to the client. 
+                            If it has been completed, please mark it complete before submitting.`,
+                    error:true
+                });
+
+                break;
+
+            case 'Completed':
+
+                break;
+            
+            default:
+        }
     }
 
     !loggedIn && navigate("/login");
@@ -118,6 +150,25 @@ const ClientOrder=()=>{
         )
     }
 
+    const warningMessage=(
+        <Fragment>
+            <div id='cta-warning' className={warning.error?"error":"success"}>
+                <div className='warning-close'>
+                    <i onClick={()=>{setWarning({
+                        display:false,
+                        message:"",
+                        error:false
+                        })}} >
+                        <MdClose/>
+                    </i>
+                </div>
+                <p>
+                    {warning.message}
+                </p>
+            </div>
+        </Fragment>
+    )
+
     return(
         <Fragment>
             <section className='section'>
@@ -167,6 +218,7 @@ const ClientOrder=()=>{
                     <section className='order-actions'>
                         <DashSectionHeaders heading={`Order Actions`} />
                         <div className='order-actions-wrapper'>
+                            {warning.display&&warningMessage}
                             <div className='buttons-group'>
                                 <div className='admin-btn'>
                                     <CtaButton id={`cancel-order-btn`} message={`Cancel Order`}/>
@@ -175,7 +227,7 @@ const ClientOrder=()=>{
                                     <CtaButton id={`mark-complete-btn`} message={`Mark As Complete`}/>
                                 </div>
                                 <div className='admin-btn'>
-                                    <CtaButton id={`upload-btn`} message={`Upload Finished Work`}/>
+                                    <CtaButton id={`upload-btn`} message={`Upload Finished Work`} onClick={submitFinishedWork} />
                                 </div>
                             </div>
                         </div>
