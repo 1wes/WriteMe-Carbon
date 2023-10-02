@@ -95,17 +95,29 @@ const ClientOrder=()=>{
 
     const changeOrderStatus=()=>{
 
-        axios.put(`/api/orders/order/update/${order.order_id}`, {status:"Completed"}).then((res)=>{
+        let status={order}
+        
+        if(status==="Active"){
+
+            axios.put(`/api/orders/order/update/${order.order_id}`, {status:"Completed"}).then((res)=>{
+
+                setWarning({
+                    display:true,
+                    message:`Order-${order.order_id} has been marked as complete. You can now send it to the client.`,
+                    error:false
+                });
+            }).catch(err=>{
+                console.log(err);
+            })
+        }else{
 
             setWarning({
                 display:true,
-                message:`Order-${order.order_id} has been marked as complete. You can now send it to the client.`,
-                error:false
-            });
-        }).catch(err=>{
-            console.log(err);
-        })
+                message:"This order is already marked as complete. Please send it to the client if you have not done so already.",
+                error:true
+            })
 
+        }
     }
 
     let fileAttachments;
