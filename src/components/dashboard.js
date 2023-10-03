@@ -32,6 +32,7 @@ const initialState={
     sources:"",
     file:"",
     instructions:"",
+    topic:"",
     pagesOrwords:"",
     amount:"",
     deadline:"",
@@ -85,6 +86,13 @@ const reducer=(state, action)=>{
             }
         }
 
+        case "newTopic":{
+            return{
+                ...state,
+                topic:action.newTopic
+            }
+        }
+
         case "newPagesOrWords":{
             return{
                 ...state,
@@ -121,6 +129,7 @@ const reducer=(state, action)=>{
                 sources:"",
                 file:"",
                 instructions:"",
+                topic:"",
                 pagesOrwords:"",
                 amount:"",
                 deadline:"",
@@ -218,7 +227,7 @@ const OrdersTable=({children})=>{
                 <thead>
                     <tr>
                         <th>Order ID</th>
-                        <th>Subject</th>
+                        <th>Topic</th>
                         <th>Status</th>
                         <th>Deadline</th>
                         <th>Actions</th>
@@ -248,7 +257,7 @@ const Search=({searchValue, onSearchChange, statusValue, onStatusChange, sortVal
             <div className='search-section'>
                 <form className='search-form'>
                     <div className='input-group'>
-                        <input type='text' value={searchValue} onChange={onSearchChange} placeholder='Search orders by subject'></input>
+                        <input type='text' value={searchValue} onChange={onSearchChange} placeholder='Search orders by topic'></input>
                     </div>
                 </form>
                 <div className="filters"> 
@@ -411,6 +420,29 @@ const Dashboard=()=>{
             type:"newInstructions",
             newInstructions:e.target.value
         })
+    }
+
+    const handleTopicChange=(e)=>{
+
+        dispatch({
+            type:"newTopic",
+            newTopic:e.target.value
+        })
+    }
+
+    const handleCheckboxChange=(e)=>{
+
+        if(e.target.checked){
+            dispatch({
+                type:"newTopic",
+                newTopic:"Any/Other"
+            })
+        }else{
+            dispatch({
+                type:"newTopic",
+                newTopic:""
+            })
+        }
     }
 
     const handlePagesChange=(e)=>{
@@ -661,7 +693,7 @@ const Dashboard=()=>{
                     if(searchQuery===""){
                         return orders
                     }else{
-                        return orders.subject.toLowerCase().includes(searchQuery.toLowerCase());
+                        return orders.topic.toLowerCase().includes(searchQuery.toLowerCase());
                     }
 
                 }).map((order)=>{
@@ -669,7 +701,7 @@ const Dashboard=()=>{
                     return (
                         <tr key={order.id}>
                             <td>{`Order-${order.order_id}`}</td>
-                            <td>{order.subject}</td>
+                            <td>{order.topic}</td>
                             <td>{order.status}</td>
                             <td>{order.date_deadline.split("T")[0]}</td>
                             <td>
@@ -729,7 +761,8 @@ const Dashboard=()=>{
                                     onAmountChange={handleAmountChange} onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} 
                                     subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style} 
                                     instructionsValue={state.instructions}pagesOrwordsValue={state.pagesOrwords} amountValue={state.amount} 
-                                    deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />
+                                    deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} topicValue={state.topic}
+                                    checkboxValue={state.topic} onTopicChange={handleTopicChange} onCheckBoxChange={handleCheckboxChange} />
                             </div>
                         </div>
                     </section>
