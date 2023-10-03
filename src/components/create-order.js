@@ -43,12 +43,12 @@ const FormControl=({labelClassName, children, label})=>{
     )
 }
 
-const Select=({name, value, onChange, children})=>{
+const Select=({name, value, onChange, children, required})=>{
 
     return(
         <Fragment>
             <div>
-                <select name={name} value={value} onChange={onChange} required>
+                <select name={name} value={value} onChange={onChange} required={required}>
                     {children}
                 </select>
             </div>
@@ -56,12 +56,12 @@ const Select=({name, value, onChange, children})=>{
     )
 }
 
-const Input=({type, onChange, placeholder, onWheel, value})=>{
+const Input=({type, onChange, placeholder, onWheel, value, required})=>{
 
     return(
         <Fragment>
             <div>
-                <input type={type} onChange={onChange} placeholder={placeholder} onWheel={onWheel} value={value} ></input>
+                <input type={type} onChange={onChange} placeholder={placeholder} onWheel={onWheel} value={value} required={required}></input>
             </div>
         </Fragment>
     )
@@ -80,7 +80,7 @@ const TextArea=({value, onChange})=>{
 
 const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGradeChange, onFileChange, instructionsValue, onInstructionChange,
     pagesOrwordsValue, onPagesChange, amountValue, onAmountChange, deadlineValue, onDeadlineChange,timeValue, onTimeChange, deadlineErrorAlert,
-    styleValue, onStyleChange, sourcesValue, onSourcesChange})=>{
+    styleValue, onStyleChange, sourcesValue, onSourcesChange, topicValue, onTopicChange, onCheckBoxChange})=>{
 
 
     const handleWheel=e=>{
@@ -121,12 +121,12 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
             <form className="assignment-form" encType="multipart/form-data" onSubmit={onSubmit}>
                 <div className="assignment-details">
                     <FormControl label={`Subject`} labelClassName={`required`}>
-                        <Select name={`subject`} value={subjectValue} onChange={onSubjectChange}>
+                        <Select name={`subject`} value={subjectValue} onChange={onSubjectChange} required={true}>
                             {subjectOptions}
                         </Select>
                     </FormControl>
                     <FormControl label={`Grade Level`} labelClassName={`required`}>
-                        <Select name={`grade-level`} value={gradeValue} onChange={onGradeChange}>
+                        <Select name={`grade-level`} value={gradeValue} onChange={onGradeChange} required={true}>
                             <option disabled value={``} hidden></option>
                             <option value="School" >School</option>
                             <option value="College">College</option>
@@ -136,7 +136,7 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
                         </Select>
                     </FormControl>
                     <FormControl label={`Reference Style`} labelClassName={`required`}>
-                        <Select name={`reference-style`} value={styleValue} onChange={onStyleChange} >
+                        <Select name={`reference-style`} value={styleValue} onChange={onStyleChange} required={true}>
                             <option disabled value={``} hidden></option>
                             <option value={`APA-7th`}>APA-7th Edition</option>
                             <option value={`APA-6th`}>APA-6th Edition</option>
@@ -151,27 +151,34 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
                         </Select>
                     </FormControl>
                     <FormControl label={`Number of Sources`} labelClassName={`required`}>
-                        <Input type={`number`} onWheel={handleWheel} value={sourcesValue} onChange={onSourcesChange}  />
+                        <Input type={`number`} onWheel={handleWheel} value={sourcesValue} onChange={onSourcesChange} required={true} />
                     </FormControl>
                     <FormControl label={`Attach File`}>
                         <Input type={`file`} onChange={onFileChange} placeholder={`add file`} multiple/>
                         <FormAlerts message={`supports only common image, document, video, and audio formats.`} />
                     </FormControl>
                     <FormControl label={`Instructions`} labelClassName={`required`}>
-                        <TextArea value={instructionsValue} onChange={onInstructionChange}/>
+                        <TextArea value={instructionsValue} onChange={onInstructionChange} required={true} />
+                    </FormControl>
+                    <FormControl label={`Assignment Topic`} labelClassName={'required'}>
+                        <Input type={`text`} value={topicValue} onChange={onTopicChange} required={true}/>
+                        <div className="box-and-text"> 
+                            <input className="checkbox" type="checkbox" onChange={onCheckBoxChange}  ></input>
+                            <span>Use Any or Other.</span>
+                        </div>
                     </FormControl>
                     <FormControl label={`Number of Pages/Words`} labelClassName={`required`}>
-                        <Input type={`number`} value={pagesOrwordsValue} onChange={onPagesChange} onWheel={handleWheel}/>
+                        <Input type={`number`} value={pagesOrwordsValue} onChange={onPagesChange} onWheel={handleWheel} required={true} />
                     </FormControl>
                     <FormControl label={`Expected Amount (USD)`} labelClassName={`required`}>
-                        <Input type={`number`} value={amountValue} onChange={onAmountChange} onWheel={handleWheel} required/>
+                        <Input type={`number`} value={amountValue} onChange={onAmountChange} onWheel={handleWheel} required={true}/>
                     </FormControl>
                     <FormControl label={`Date Deadline`} labelClassName={`required`}>
-                        <Input type={`date`} value={deadlineValue} onChange={onDeadlineChange} required/>
+                        <Input type={`date`} value={deadlineValue} onChange={onDeadlineChange} required={true}/>
                         {deadlineErrorAlert}
                     </FormControl>
                     <FormControl label={`Time Deadline`} labelClassName={`required`}>
-                        <Input type={`time`} value={timeValue} onChange={onTimeChange} required/>
+                        <Input type={`time`} value={timeValue} onChange={onTimeChange} required ={true} />
                     </FormControl>
                 </div>
                 <FormLegend/>
