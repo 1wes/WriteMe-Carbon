@@ -162,14 +162,14 @@ const Admin=()=>{
                     if(searchQuery===""){
                         return allOrders
                     }else{
-                        return orders.subject.toLowerCase().includes(searchQuery.toLowerCase());
+                        return orders.topic.toLowerCase().includes(searchQuery.toLowerCase());
                     }
                 }).map((order)=>{
 
                     return(
                         <tr key={order.id}>
                             <td> {`Order-${order.order_id}`} </td>
-                            <td> {order.subject} </td>
+                            <td> {order.topic} </td>
                             <td> {order.status} </td>
                             <td> {order.date_deadline.split("T")[0]} </td>
                             <td>
