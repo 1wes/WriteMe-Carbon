@@ -30,6 +30,10 @@
     gap: 30px;
 }
 
+#instruction-details .order-value{
+    line-height: 30px;
+}
+
 .order-specifics ul li:first-child .order-value .link{
     color: rgb(152,57,139);
 }
