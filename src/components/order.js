@@ -220,7 +220,7 @@ const ClientOrder=()=>{
                                         <span>{` (${daysToDeadline} days remaining )`}</span>
                                     </li>
                                     <li><span className='order-key'>Time : </span><span className='order-value'>{order?order.time_deadline:""}</span></li>
-                                    <li><span className='order-key'>Topic : </span><span className='order-value'></span></li>
+                                    <li><span className='order-key'>Topic : </span><span className='order-value'>{order?order.topic:""}</span></li>
                                     <li><span className='order-key'>Sources : </span><span className='order-value'>{order?order.sources:""} source(s) required</span></li>
                                     <li><span className='order-key'>Citation Style : </span><span className='order-value'>{order?order.ref_style:""}</span></li>
                                     <li id='instruction-details'><span className='order-key'>Instructions : </span><span className='order-value'>{order?order.instructions:""}</span></li>
