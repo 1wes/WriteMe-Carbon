@@ -98,6 +98,22 @@ input[type=number] {
     color: white;
 }
 
+.box-and-text{
+    display: flex;
+    align-items: center;
+}
+
+.box-and-text span{
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.checkbox{
+    width: 10%;
+    padding: 0 !important;
+    margin:0 -10px 0-20px;
+}
+
 @media only screen and (max-width:480px){
 
     .create-order{
@@ -135,5 +151,9 @@ input[type=number] {
     
     .phone-number{
         width: 70%;
+    }
+
+    .topic-options{
+        flex-direction: column;
     }
 }
