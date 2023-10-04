@@ -95,7 +95,7 @@ const ClientOrder=()=>{
 
     const changeOrderStatus=()=>{
 
-        let status={order}
+        let {status}=order
         
         if(status==="Active"){
 
