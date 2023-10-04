@@ -30,7 +30,7 @@ const initialState={
     gradeLevel:"",
     style:"",
     sources:"",
-    file:"",
+    files:[],
     instructions:"",
     topic:"",
     pagesOrwords:"",
@@ -72,10 +72,10 @@ const reducer=(state, action)=>{
             }
         }
 
-        case "newFile":{
+        case "newFiles":{
             return{
                 ...state,
-                file:action.newFile,
+                files:action.newFiles,
             }
         }
 
@@ -127,7 +127,7 @@ const reducer=(state, action)=>{
                 gradeLevel:"",
                 style:"",
                 sources:"",
-                file:"",
+                files:[],
                 instructions:"",
                 topic:"",
                 pagesOrwords:"",
@@ -406,12 +406,13 @@ const Dashboard=()=>{
 
     const handleFileChange=(e)=>{
 
-        const fileName=e.target.files[0];
+        const files=Array.prototype.slice.call(e.target.files)
 
         dispatch({
-            type:"newFile",
-            newFile:fileName
+            type:"newFiles",
+            newFiles:files
         })
+
     }
 
     const handleInstructionChange=(e)=>{
@@ -624,8 +625,12 @@ const Dashboard=()=>{
             assignmentDetails.append(key, state[key])
         }
 
-        if(state.file!==""){
-            assignmentDetails.append('fileName', state.file.name);
+        if(state.files.length!==0){
+            
+            for(var keys in state.files){
+                assignmentDetails.append("attachedFiles", state.files[keys])
+                assignmentDetails.append("fileNames", state.files[keys].name)
+            }
         }
         
         axios.post("api/orders/new", assignmentDetails, {
