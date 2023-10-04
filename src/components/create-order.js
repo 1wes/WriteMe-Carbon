@@ -56,12 +56,12 @@ const Select=({name, value, onChange, children, required})=>{
     )
 }
 
-const Input=({type, onChange, placeholder, onWheel, value, required})=>{
+const Input=({type, onChange, placeholder, onWheel, value, required, multiple, name})=>{
 
     return(
         <Fragment>
             <div>
-                <input type={type} onChange={onChange} placeholder={placeholder} onWheel={onWheel} value={value} required={required}></input>
+                <input type={type} name={name} onChange={onChange} placeholder={placeholder} onWheel={onWheel} value={value} required={required} multiple={multiple}></input>
             </div>
         </Fragment>
     )
@@ -154,7 +154,7 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
                         <Input type={`number`} onWheel={handleWheel} value={sourcesValue} onChange={onSourcesChange} required={true} />
                     </FormControl>
                     <FormControl label={`Attach File`}>
-                        <Input type={`file`} onChange={onFileChange} placeholder={`add file`} multiple/>
+                        <Input type={`file`} name={`fileAttachments`} onChange={onFileChange} placeholder={`add file`} multiple={true}/>
                         <FormAlerts message={`supports only common image, document, video, and audio formats.`} />
                     </FormControl>
                     <FormControl label={`Instructions`} labelClassName={`required`}>
