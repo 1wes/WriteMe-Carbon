@@ -191,7 +191,7 @@ const Admin=()=>{
     const pages=allOrders.length===0?"":(
         <Fragment>
             <PageNumbers paginate={paginate} ordersPerPage={ordersPerPage} totalOrders={data.allOrders.length} />
-            <span className='pagination-legend'>Showing {firstIndex+1}-{lastIndex} of {data.allOrders.length} orders</span>
+            <span className='pagination-legend'>Showing {firstIndex+1}-{firstIndex+allOrders.length} of {data.allOrders.length} orders</span>
         </Fragment>
     );
 

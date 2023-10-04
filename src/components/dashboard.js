@@ -727,7 +727,7 @@ const Dashboard=()=>{
         pages=orders.length===0?"":(
             <Fragment>
                 <PageNumbers paginate={paginate} ordersPerPage={ordersPerPage} totalOrders={userInfo.orders.length} />
-                <span className='pagination-legend'>Showing {firstIndex+1}-{lastIndex} of {userInfo.orders.length} orders</span>
+                <span className='pagination-legend'>Showing {firstIndex+1}-{firstIndex+orders.length} of {userInfo.orders.length} orders</span>
             </Fragment>
         )
     }
