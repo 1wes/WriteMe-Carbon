@@ -170,15 +170,15 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
                     <FormControl label={`Number of Pages/Words`} labelClassName={`required`}>
                         <Input type={`number`} value={pagesOrwordsValue} onChange={onPagesChange} onWheel={handleWheel} required={true} />
                     </FormControl>
-                    <FormControl label={`Expected Amount (USD)`} labelClassName={`required`}>
-                        <Input type={`number`} value={amountValue} onChange={onAmountChange} onWheel={handleWheel} required={true}/>
-                    </FormControl>
                     <FormControl label={`Date Deadline`} labelClassName={`required`}>
                         <Input type={`date`} value={deadlineValue} onChange={onDeadlineChange} required={true}/>
                         {deadlineErrorAlert}
                     </FormControl>
                     <FormControl label={`Time Deadline`} labelClassName={`required`}>
                         <Input type={`time`} value={timeValue} onChange={onTimeChange} required ={true} />
+                    </FormControl>
+                    <FormControl label={`Expected Amount (USD)`} labelClassName={`required`}>
+                        <Input type={`number`} value={amountValue} onChange={onAmountChange} onWheel={handleWheel} required={true}/>
                     </FormControl>
                 </div>
                 <FormLegend/>
