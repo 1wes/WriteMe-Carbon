@@ -2,7 +2,7 @@ import React , { Fragment, useState, useEffect } from 'react';
 
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
-import { DashSectionHeaders, DashboardNavbar } from './dashboard';
+import { DashSectionHeaders, DashboardNavbar, OrdersTable } from './dashboard';
 import './order.css';
 import useSWR from 'swr';
 import axios from '../utils.js/axios';
@@ -122,11 +122,11 @@ const ClientOrder=()=>{
 
     let fileAttachments;
 
-    const downloadFile=()=>{
+    const downloadFile=(event,param)=>{
 
         if(order.attachedFiles.length>0){
 
-            axios.get(`/api/orders/order/files/${order.attachedFiles[0]}`,{
+            axios.get(`/api/orders/order/files/${order.attachedFiles[0]}/${param}`,{
                 responseType:"blob"
             }).then(res=>{
 
@@ -142,7 +142,7 @@ const ClientOrder=()=>{
 
                 link.setAttribute(
                     "download", 
-                    `${order.attachedFiles[0]}`
+                    `${param}`
                 )
 
                 document.body.appendChild(link);
@@ -166,9 +166,15 @@ const ClientOrder=()=>{
             <Fragment>
                 {
                     order.attachedFiles.length>0?(
-                        <li className='attached-files'><span className='order-key'>{`${order.attachedFiles.length} attached file(s)`}</span>
-                            <span className='download-link' onClick={downloadFile}>
-                                {order.attachedFiles[0]}
+                        <li className='attached-files'><span className='order-key'>{`${order.fileNames.length} attached file(s)`}</span>
+                            <span className='download-link'>
+                                {
+                                    order.fileNames.map((file)=>{
+                                        return(
+                                            <span onClick={event=>downloadFile(event, file)} className='file-list' key={file}>{file}</span>
+                                        )
+                                    })
+                                }
                             </span>
                         </li>
                     ):""
