@@ -215,3 +215,49 @@
     margin: 0 !important;
     line-height: 20px;
 }
+
+.upload-to-client{
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.form-close-icon{
+    text-align: right;
+    border-top: 1px solid rgba(165, 42, 42, 0.1);
+    padding: 10px 0;
+}
+
+.form-close-icon i{
+    color: gray;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.uploaded-order-details{
+    padding-bottom: 20px;
+}
+
+.uploaded-order-details ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.uploaded-order-details, .form-close-icon{
+    border-bottom: 1px solid rgba(165, 42, 42, 0.1);
+
+}
+
+.upload-files form{
+    margin:20px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#send-to-client{
+    margin-top: -30px;
+    margin-right: 50%;
+}
