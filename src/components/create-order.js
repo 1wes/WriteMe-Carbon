@@ -194,6 +194,7 @@ export{
     FormLegend, 
     Error,
     FormAlerts,
-    Select
+    Select,
+    Input
 }
 export default SubmissionForm;
