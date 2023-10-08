@@ -67,11 +67,11 @@ const Input=({type, onChange, placeholder, onWheel, value, required, multiple, n
     )
 }
 
-const TextArea=({value, onChange})=>{
+const TextArea=({value, onChange, required})=>{
 
     return(
         <div>
-            <textarea value={value} onChange={onChange} required></textarea>
+            <textarea value={value} onChange={onChange} required={required}></textarea>
         </div>
     )
 }
