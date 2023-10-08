@@ -2,13 +2,14 @@ import React , { Fragment, useState, useEffect } from 'react';
 
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
-import { DashSectionHeaders, DashboardNavbar, OrdersTable } from './dashboard';
+import { DashSectionHeaders, DashboardNavbar } from './dashboard';
 import './order.css';
 import useSWR from 'swr';
 import axios from '../utils.js/axios';
 import checkToken from '../utils.js/check-token';
 import remainingDays from '../utils.js/dates';
 import { CtaButton } from './services';
+import { FormControl, Input, TextArea } from './create-order';
 
 import { MdClose } from 'react-icons/md';
 
@@ -23,6 +24,9 @@ const ClientOrder=()=>{
         display:false,
         error:false,
         message:""
+    });
+    const [showUploadForm, setShowUploadForm]=useState({
+        show:false
     });
 
     const id=useLocation().pathname.split("Order-")[1];
@@ -39,15 +43,6 @@ const ClientOrder=()=>{
             const days=remainingDays(date_deadline);
 
             setDaysToDeadline(days);
-
-            // console.log(data.attachedFiles[0].data);
-
-            // const blob=new Blob(data.attachedFiles[0].data);
-
-            // console.log(blob);
-
-            // console.log(data)
-
         }
 
         checkToken().then(res=>{
@@ -87,8 +82,12 @@ const ClientOrder=()=>{
 
             case 'Completed':
 
+                setShowUploadForm({
+                    show:true
+                });
+
                 break;
-            
+
             default:
         }
     }
@@ -202,72 +201,192 @@ const ClientOrder=()=>{
         </Fragment>
     )
 
-    return(
-        <Fragment>
-            <section className='section'>
-                <DashboardNavbar userName={order?order.username:""} onClick={logOutUser} />
-                <div className='order'>
-                    <section className='order-wrapper'>
-                        <DashSectionHeaders heading={`Order-${order?order.order_id:""} details`} />
-                        <div className='order-details'>
-                            <div className='order-specifics'>
-                                <ul className='order-specifics-list'>
-                                    <li>
-                                        <span className='order-key'>Client : </span><span className='order-value'>
-                                            <Link to={`mailto:${order?order.email:""}`} target="blank" className='link'>
-                                                {order?order.email:""}
-                                            </Link>
-                                        </span><span>{`${order?` ( ${order.first_name} ${order.last_name} )`:""}`}</span>
-                                    </li>
-                                    <li><span className='order-key'>Pages or Words : </span><span className='order-value'>{order?order.words_or_pages:""}</span></li>
-                                    <li><span className='order-key'>Education Level : </span><span className='order-value'>{order?order.level:""}</span></li>
-                                    <li><span className='order-key'>Deadline : </span><span className='order-value'>
-                                        </span>{order?order.date_deadline.split("T")[0]:""}
-                                        <span>{` (${daysToDeadline} days remaining )`}</span>
-                                    </li>
-                                    <li><span className='order-key'>Time : </span><span className='order-value'>{order?order.time_deadline:""}</span></li>
-                                    <li><span className='order-key'>Topic : </span><span className='order-value'>{order?order.topic:""}</span></li>
-                                    <li><span className='order-key'>Sources : </span><span className='order-value'>{order?order.sources:""} source(s) required</span></li>
-                                    <li><span className='order-key'>Citation Style : </span><span className='order-value'>{order?order.ref_style:""}</span></li>
-                                    <li id='instruction-details'><span className='order-key'>Instructions : </span><span className='order-value'>{order?order.instructions:""}</span></li>
-                                    {fileAttachments}
-                                </ul>
-                            </div>
-                            <div className='alerts'>
-                                <ul className='alerts-list'>
-                                    <li>
-                                        <div className='order-key' >Status</div>
-                                        <div className={order?order.status:""} id='status-indicator'></div>
-                                    </li>
-                                    <li>
-                                        <div className='order-key'>Deadline</div>
-                                        <div className={daysToDeadline?daysToDeadline>=2?"safe-deadline":daysToDeadline>0?"deadline-warning":daysToDeadline<=0?"missed-deadline":"":""}
-                                         id='deadline-indicator'></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-                    <section className='order-actions'>
-                        <DashSectionHeaders heading={`Order Actions`} />
-                        <div className='order-actions-wrapper'>
-                            {warning.display&&warningMessage}
-                            <div className='buttons-group'>
-                                <div className='admin-btn'>
-                                    <CtaButton id={`cancel-order-btn`} message={`Cancel Order`}/>
-                                </div>
-                                <div  className='admin-btn'>
-                                    <CtaButton id={`mark-complete-btn`} message={`Mark As Complete`} onClick={changeOrderStatus} />
-                                </div>
-                                <div className='admin-btn'>
-                                    <CtaButton id={`upload-btn`} message={`Upload Finished Work`} onClick={submitFinishedWork} />
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+    const closeUploadForm = () => {
+        
+        setShowUploadForm({
+            show: false
+        });
+    }
+
+    return (
+      <Fragment>
+        <section className="section">
+          <DashboardNavbar
+            userName={order ? order.username : ""}
+            onClick={logOutUser}
+          />
+          <div className="order">
+            <section className="order-wrapper">
+              <DashSectionHeaders
+                heading={`Order-${order ? order.order_id : ""} details`}
+              />
+              <div className="order-details">
+                <div className="order-specifics">
+                  <ul className="order-specifics-list">
+                    <li>
+                      <span className="order-key">Client : </span>
+                      <span className="order-value">
+                        <Link
+                          to={`mailto:${order ? order.email : ""}`}
+                          target="blank"
+                          className="link"
+                        >
+                          {order ? order.email : ""}
+                        </Link>
+                      </span>
+                      <span>{`${
+                        order
+                          ? ` ( ${order.first_name} ${order.last_name} )`
+                          : ""
+                      }`}</span>
+                    </li>
+                    <li>
+                      <span className="order-key">Pages or Words : </span>
+                      <span className="order-value">
+                        {order ? order.words_or_pages : ""}
+                      </span>
+                    </li>
+                    <li>
+                      <span className="order-key">Education Level : </span>
+                      <span className="order-value">
+                        {order ? order.level : ""}
+                      </span>
+                    </li>
+                    <li>
+                      <span className="order-key">Deadline : </span>
+                      <span className="order-value"></span>
+                      {order ? order.date_deadline.split("T")[0] : ""}
+                      <span>{` (${daysToDeadline} days remaining )`}</span>
+                    </li>
+                    <li>
+                      <span className="order-key">Time : </span>
+                      <span className="order-value">
+                        {order ? order.time_deadline : ""}
+                      </span>
+                    </li>
+                    <li>
+                      <span className="order-key">Topic : </span>
+                      <span className="order-value">
+                        {order ? order.topic : ""}
+                      </span>
+                    </li>
+                    <li>
+                      <span className="order-key">Sources : </span>
+                      <span className="order-value">
+                        {order ? order.sources : ""} source(s) required
+                      </span>
+                    </li>
+                    <li>
+                      <span className="order-key">Citation Style : </span>
+                      <span className="order-value">
+                        {order ? order.ref_style : ""}
+                      </span>
+                    </li>
+                    <li id="instruction-details">
+                      <span className="order-key">Instructions : </span>
+                      <span className="order-value">
+                        {order ? order.instructions : ""}
+                      </span>
+                    </li>
+                    {fileAttachments}
+                  </ul>
                 </div>
-            </section>            
-        </Fragment>
-    )
+                <div className="alerts">
+                  <ul className="alerts-list">
+                    <li>
+                      <div className="order-key">Status</div>
+                      <div
+                        className={order ? order.status : ""}
+                        id="status-indicator"
+                      ></div>
+                    </li>
+                    <li>
+                      <div className="order-key">Deadline</div>
+                      <div
+                        className={
+                          daysToDeadline
+                            ? daysToDeadline >= 2
+                              ? "safe-deadline"
+                              : daysToDeadline > 0
+                              ? "deadline-warning"
+                              : daysToDeadline <= 0
+                              ? "missed-deadline"
+                              : ""
+                            : ""
+                        }
+                        id="deadline-indicator"
+                      ></div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section className="order-actions">
+              <DashSectionHeaders heading={`Order Actions`} />
+              <div className="order-actions-wrapper">
+                {warning.display && warningMessage}
+                <div className="buttons-group">
+                  <div className="admin-btn">
+                    <CtaButton
+                      id={`cancel-order-btn`}
+                      message={`Cancel Order`}
+                    />
+                  </div>
+                  <div className="admin-btn">
+                    <CtaButton
+                      id={`mark-complete-btn`}
+                      message={`Mark As Complete`}
+                      onClick={changeOrderStatus}
+                    />
+                  </div>
+                  <div className="admin-btn">
+                    <CtaButton
+                      id={`upload-btn`}
+                      message={`Upload Finished Work`}
+                      onClick={submitFinishedWork}
+                    />
+                  </div>
+                </div>
+                {showUploadForm.show && (
+                  <div className="upload-to-client">
+                    <div className="form-close-icon">
+                      <i onClick={closeUploadForm}>
+                        <MdClose />
+                      </i>
+                    </div>
+                    <div className="upload-form">
+                      <div className="uploaded-order-details">
+                        <h4>Uploading Finished Work For This Order:</h4>
+                        <ul>
+                          <li>
+                            <span className='order-key'>Order ID : </span>
+                            <span className="order-value">{`Order-${order.order_id}`}</span>
+                          </li>
+                          <li>
+                            <span className='order-key'>Topic : </span>
+                            <span className='order-value'>{order.topic}</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className='upload-files'>
+                        <form>
+                            <FormControl label={`Attach Files`} labelClassName={`required`}>
+                               <Input type={`file`} multiple={true} required={true} /> 
+                            </FormControl>
+                            <FormControl label={`Additional information (If any)`} >
+                                <TextArea/>
+                            </FormControl>
+                            <CtaButton message={`Send To Client`} id={`send-to-client`} />
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </section>
+          </div>
+        </section>
+      </Fragment>
+    );
 }
 export default ClientOrder
