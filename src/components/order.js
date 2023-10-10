@@ -10,6 +10,7 @@ import checkToken from '../utils.js/check-token';
 import remainingDays from '../utils.js/dates';
 import { CtaButton } from './services';
 import { FormControl, Input, TextArea } from './create-order';
+import Modal from './modal';
 
 import { MdClose } from 'react-icons/md';
 
@@ -28,6 +29,13 @@ const ClientOrder=()=>{
     const [showUploadForm, setShowUploadForm]=useState({
         show:false
     });
+    const [uploadedOrder, setUploadedOrder] = useState({
+      files: [],
+      additionalInfo:"",
+    })
+    const [modal, setModal] = useState({
+      show:false
+    })
 
     const id=useLocation().pathname.split("Order-")[1];
 
@@ -50,7 +58,7 @@ const ClientOrder=()=>{
         }).catch(err=>{
             setLoggedIn(false)
         });
-
+      
     },[data]);
 
     const logOutUser=()=>{
@@ -118,8 +126,21 @@ const ClientOrder=()=>{
 
         }
     }
+  
+  const closeModal = () => {
+      
+    setModal({
+      show:false
+    })
+    
+    setShowUploadForm({
+      show:false
+    })
 
-    let fileAttachments;
+  }
+
+  let fileAttachments;
+  let successModal;
 
     const downloadFile=(event,param)=>{
 
@@ -160,6 +181,14 @@ const ClientOrder=()=>{
     !loggedIn && navigate("/login");
 
     if(order){
+
+      successModal = (
+        <Modal mainMessage={`Success`} supportingMessage={
+          `Order-${order.order_id} has been sent to ${order.email} (
+            ${order.first_name} ${order.last_name}
+         )` 
+        } onClick={closeModal} />
+        )
 
         fileAttachments=(
             <Fragment>
@@ -202,10 +231,69 @@ const ClientOrder=()=>{
     )
 
     const closeUploadForm = () => {
+
+      setUploadedOrder({
+        files: [],
+        additionalInfo:""
+      })
         
         setShowUploadForm({
             show: false
         });
+    }
+
+    const handleFileChange = (e) => {
+        
+        const files = Array.prototype.slice.call(e.target.files);
+
+        setUploadedOrder({
+            ...uploadedOrder,
+            files:files
+        })
+    }
+
+    const handleInfoChange = (e) => {
+                
+        setUploadedOrder({
+            ...uploadedOrder,
+            additionalInfo:e.target.value
+        })
+    }
+
+    const uploadToClient = (e) => {
+        
+        e.preventDefault();
+
+        const completedOrder = new FormData();
+
+        for (var key in uploadedOrder) {
+            completedOrder.append(key, uploadedOrder[key]);
+        }
+
+        for (var keys in uploadedOrder.files) {
+            completedOrder.append("documents", uploadedOrder.files[keys])
+            completedOrder.append("fileNames", uploadedOrder.files[keys].name)
+        }
+
+      completedOrder.append("firstName", order.first_name);
+      completedOrder.append("lastName", order.last_name);
+      completedOrder.append("email", order.email);
+      completedOrder.append("id", order.order_id);
+      completedOrder.append("topic", order.topic);
+
+      axios.post(`api/orders/order/send/${order.order_id}`, completedOrder, {
+        headers: {
+          "Content-Type":"multipart/form-data"
+        }
+      }).then(res => {
+          
+        setModal({
+          show: true
+        });
+        
+      }).catch(err => {
+        console.log(err);
+        })
     }
 
     return (
@@ -359,7 +447,7 @@ const ClientOrder=()=>{
                         <h4>Uploading Finished Work For This Order:</h4>
                         <ul>
                           <li>
-                            <span className='order-key'>Order ID : </span>
+                            <span className='order-key'>ID : </span>
                             <span className="order-value">{`Order-${order.order_id}`}</span>
                           </li>
                           <li>
@@ -369,15 +457,16 @@ const ClientOrder=()=>{
                         </ul>
                       </div>
                       <div className='upload-files'>
-                        <form>
+                        <form encType='multipart/form-data' onSubmit={uploadToClient}>
                             <FormControl label={`Attach Files`} labelClassName={`required`}>
-                               <Input type={`file`} multiple={true} required={true} /> 
+                               <Input type={`file`} onChange={handleFileChange} multiple={true} required={true} /> 
                             </FormControl>
                             <FormControl label={`Additional information (If any)`} >
-                                <TextArea/>
+                                <TextArea  value={uploadedOrder.additionalInfo} onChange={handleInfoChange} />
                             </FormControl>
-                            <CtaButton message={`Send To Client`} id={`send-to-client`} />
+                            <CtaButton message={`Send To Client`} id={`send-to-client`} type={`submit`} />
                         </form>
+                        {modal.show && successModal}
                       </div>
                     </div>
                   </div>
