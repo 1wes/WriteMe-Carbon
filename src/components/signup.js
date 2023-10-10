@@ -7,7 +7,6 @@ import {CtaButton} from './services';
 import { Error, FormAlerts } from "./create-order";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "./modal";
-import toggleModal from "../utils.js/toggle-modal";
 
 const reducer=(state, action)=>{
 
@@ -117,15 +116,11 @@ const RegistrationForm=()=>{
 
     const [match, setMatch]=useState(true);
     const [emailError, setEmailError]=useState(false);
-    const [modal, setModal]=useState(false);
+    const [modal, setModal] = useState({
+        show:false
+    });
 
     const navigate=useNavigate();
-
-    useEffect(()=>{
-
-        toggleModal(modal);
-
-    }, [modal])
 
     let countryCode=Countries.map(code=>{
         return <option key={code.code} value={code.dial_code}>{` ${code.emoji} ${code.name} (${code.dial_code})`}</option>
@@ -207,7 +202,9 @@ const RegistrationForm=()=>{
     }
 
     const closeModal=()=>{
-        setModal(false);
+        setModal({
+            show:false
+        })
 
         navigate("/login");
     }
@@ -240,7 +237,9 @@ const RegistrationForm=()=>{
 
         if(match){
             axios.post("/api/user/register", state).then(res=>{
-                setModal(true)
+                setModal({
+                    show:true
+                })
             }).catch(err=>{
                 if(err.response.status===403){
                     setEmailError(true);
@@ -305,9 +304,9 @@ const RegistrationForm=()=>{
                 </FormAlerts>
                 <CtaButton type={`submit`} message={`Sign Up`} id={`submit-btn`} />
             </form>
-            <Modal onClick={closeModal} mainMessage={`Success`} supportingMessage={
+            {modal.show && <Modal onClick={closeModal} mainMessage={`Success`} supportingMessage={
                 `Account created successfully. You can proceed to log in now.`
-            }/>
+            }/>}
         </React.Fragment>
     )
 }
