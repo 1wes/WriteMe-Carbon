@@ -213,7 +213,7 @@ const ClientOrder=()=>{
 
     const warningMessage=(
         <Fragment>
-            <div id='cta-warning' className={warning.error?"error":"success"}>
+            <div id='cta-warning' className={warning.error?"error":"no-error"}>
                 <div className='warning-close'>
                     <i onClick={()=>{setWarning({
                         display:false,

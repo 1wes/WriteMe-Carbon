@@ -192,9 +192,10 @@
     outline: 1px solid rgb(253, 81, 84);
 }
 
-.success{
+.no-error{
     color: rgb(33, 204, 64);
     outline: 1px solid rgb(33, 204, 64);
+    font-size: 12px;
 }
 
 .warning-close{
