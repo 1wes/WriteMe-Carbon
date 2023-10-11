@@ -19,7 +19,6 @@ import { Logo } from './navbar';
 import { Select } from './create-order';
 import {LuFilterX} from 'react-icons/lu';
 import Modal from './modal';
-import toggleModal from '../utils.js/toggle-modal';
 import PageNumbers from './paginate';
 import { ModalForm } from './modal';
 
@@ -304,8 +303,11 @@ const Dashboard=()=>{
     const [ordersPerPage]=useState(10);
     const [revision, setRevision]=useState();
     const [orderId, setOrderId]=useState();
-    const [create, setCreate]=useState(false);
+    // const [create, setCreate]=useState(false);
     const [revise, setRevise]=useState(false);
+    const [submissionForm, setSubmissionForm] = useState({
+        show:false
+    })
 
     const [state, dispatch]=useReducer(reducer, initialState);
 
@@ -341,11 +343,7 @@ const Dashboard=()=>{
             setloggedIn(false);
         });
 
-        if(revise || create){
-            toggleModal(modal);
-        }
-
-    },[userInfo, modal, currentPage, ordersPerPage, revise, create]);
+    },[userInfo, modal, currentPage, ordersPerPage, revise]);
 
     const logOutUser=()=>{
 
@@ -359,9 +357,9 @@ const Dashboard=()=>{
     }
 
     const displayForm=()=>{
-        let form=document.getElementById("assignment-form");
-
-        form.classList.toggle("toggle-form")
+        setSubmissionForm({
+            show: !submissionForm.show
+        })
     }
 
     !loggedIn && navigate("/login");
@@ -568,8 +566,8 @@ const Dashboard=()=>{
     const closeModal=()=>{
 
         setModal(false);
-        setCreate(false);
-        setRevise(false);
+        // setCreate(false);
+        // setRevise(false);
     }
 
     const clearFilters=()=>{
@@ -640,16 +638,15 @@ const Dashboard=()=>{
         }).then(res=>{
 
             dispatch({
-                type:"clearForm"
-            })
+                type: "clearForm"
+            });
 
-            let form=document.getElementById("assignment-form");
+            setSubmissionForm({
+                show: false
+            });
 
             setModal(true);
-
-            setCreate(true);
-
-            form.classList.remove("toggle-form");            
+            
         }).catch(err=>{
             console.log(err);
         });
@@ -759,16 +756,19 @@ const Dashboard=()=>{
                                     <NewOrderButton onClick={displayForm} />
                                 </div>
                             </div>
-                            <div className='new-submission' id='assignment-form'>
-                                <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
-                                    onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} 
-                                    onFileChange={handleFileChange} onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange} 
-                                    onAmountChange={handleAmountChange} onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} 
-                                    subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style} 
-                                    instructionsValue={state.instructions}pagesOrwordsValue={state.pagesOrwords} amountValue={state.amount} 
-                                    deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} topicValue={state.topic}
-                                    checkboxValue={state.topic} onTopicChange={handleTopicChange} onCheckBoxChange={handleCheckboxChange} />
-                            </div>
+                            {
+                                submissionForm.show &&
+                                <div className='new-submission' id='assignment-form'>
+                                    <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
+                                        onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} 
+                                        onFileChange={handleFileChange} onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange} 
+                                        onAmountChange={handleAmountChange} onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} 
+                                        subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style} 
+                                        instructionsValue={state.instructions}pagesOrwordsValue={state.pagesOrwords} amountValue={state.amount} 
+                                        deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} topicValue={state.topic}
+                                        checkboxValue={state.topic} onTopicChange={handleTopicChange} onCheckBoxChange={handleCheckboxChange} />
+                                </div>
+                            }
                         </div>
                     </section>
                     <section className='all-orders'>
@@ -786,8 +786,8 @@ const Dashboard=()=>{
                         </div>
                     </section>
                 </div>
-                {revise && submitRevisionModal}
-                {create && submitAssignmentModal}
+                {/* {revise && submitRevisionModal} */}
+                {modal && submitAssignmentModal}
             </section>
         </React.Fragment>
     )
