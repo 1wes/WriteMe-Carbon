@@ -26,7 +26,7 @@ const ModalForm=({formLabel,value, onChange, message, onSubmit, id, closeModal})
             <ModalWrapper id={id} >
                 <form onSubmit={onSubmit}>
                     <FormControl label={formLabel} labelClassName={`required`} >
-                        <TextArea value={value} onChange={onChange}>
+                        <TextArea value={value} onChange={onChange} required={true}>
                         </TextArea>
                     </FormControl>
                     <div className='modal-form-btn'>
