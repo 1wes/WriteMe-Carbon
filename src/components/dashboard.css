@@ -313,14 +313,6 @@ table tbody tr td:last-child{
     font-size: 14px;
 }
 
-.new-submission{
-    display: none;
-}
-
-.toggle-form{
-    display: block;
-}
-
 .generic-cta-btn{
     padding: 5px;
     border: none;
