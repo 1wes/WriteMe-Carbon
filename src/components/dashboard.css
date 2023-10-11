@@ -75,7 +75,7 @@
 
 ul{
     list-style: none;
-    padding: 5px;
+    padding: 3px;
 }
 
 .dropdown-item{
@@ -86,7 +86,7 @@ ul{
     gap: 10px;
     font-size: 14px;
     font-weight: 400;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 .dropdown-item:hover{
