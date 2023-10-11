@@ -298,12 +298,15 @@ const Dashboard=()=>{
     const [statusQuery, setStatusQuery]=useState('');
     const [sortQuery, setSortQuery]=useState('');
     const [filterMessage, setFilterMessage]=useState("");
-    const [modal, setModal]=useState(false);
+    const [modal, setModal] = useState({
+        show: false,
+        mainMessage: "", 
+        supportingMessage:""
+    });
     const [currentPage, setCurrentPage]=useState(1);
     const [ordersPerPage]=useState(10);
     const [revision, setRevision]=useState();
     const [orderId, setOrderId]=useState();
-    // const [create, setCreate]=useState(false);
     const [revise, setRevise]=useState(false);
     const [submissionForm, setSubmissionForm] = useState({
         show:false
@@ -565,9 +568,11 @@ const Dashboard=()=>{
 
     const closeModal=()=>{
 
-        setModal(false);
-        // setCreate(false);
-        // setRevise(false);
+        setModal({
+            show: false,
+            mainMessage: "",
+            supportingMessage:""
+        });
     }
 
     const clearFilters=()=>{
@@ -581,8 +586,7 @@ const Dashboard=()=>{
 
         setOrderId(null);
         setRevision("");
-
-        document.getElementById("rev-modal-form").style.display="none";
+        setRevise(false);
     }
 
     const handleRevision=(e)=>{
@@ -604,8 +608,12 @@ const Dashboard=()=>{
 
             closeModalForm();
 
-            setModal(true);
-            setRevise(true);
+            setModal({
+                show: true, 
+                mainMessage: "Success",
+                supportingMessage:`Your revision request has been successfully sent.`
+            });
+            setRevise(false);
 
         }).catch(err=>{
 
@@ -645,8 +653,13 @@ const Dashboard=()=>{
                 show: false
             });
 
-            setModal(true);
-            
+            setModal({
+                show: true,
+                mainMessage: "Success",
+                supportingMessage:`Your assignment has been submitted successfully. You will be 
+                updated on its progress.`
+            });
+
         }).catch(err=>{
             console.log(err);
         });
@@ -672,14 +685,9 @@ const Dashboard=()=>{
          onChange={handleRevision} onSubmit={submitRevision} closeModal={closeModalForm} />
     )
 
-    const submitAssignmentModal=(
-        <Modal mainMessage={`Success`} supportingMessage={`Your assignment has been submitted successfully. You will be 
-        updated on its progress.`} onClick={closeModal} />
+    const showModal=(
+        <Modal mainMessage={modal.mainMessage} supportingMessage={modal.supportingMessage} onClick={closeModal} />
     );
-
-    const submitRevisionModal=(
-        <Modal mainMessage={`Success`} supportingMessage={`Your revision request has been successfully sent.`} onClick={closeModal} />
-    )
 
     if(orders){
         username=userName;
@@ -711,7 +719,8 @@ const Dashboard=()=>{
 
                                     setOrderId(order.order_id);
 
-                                    document.getElementById("rev-modal-form").style.display="block";
+                                    setRevise(true)
+
                                 }} message={`Order Revision`}/>
                             </td>
                         </tr>
@@ -782,12 +791,11 @@ const Dashboard=()=>{
                             </OrdersTable>
                             {noOrders}
                             {pages}
-                            {revisionForm}
                         </div>
                     </section>
                 </div>
-                {/* {revise && submitRevisionModal} */}
-                {modal && submitAssignmentModal}
+                {revise && revisionForm}
+                {modal.show && showModal}
             </section>
         </React.Fragment>
     )
