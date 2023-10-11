@@ -90,10 +90,6 @@
     width: 100%;
 }
 
-#rev-modal-form, #cancel-modal-form{
-    display: none;
-}
-
 #modal-cancel-btn{
     outline: 1px solid brown;
     margin-top: -15px;
