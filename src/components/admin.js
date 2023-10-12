@@ -22,7 +22,7 @@ const Admin=()=>{
     const [cancelledOrders, setCancelledOrders]=useState(0);
     const [allOrders, setAllOrders]=useState([]);
     const [currentPage, setCurrentPage]=useState(1);
-    const [ordersPerPage]=useState(10);
+    const [ordersPerPage]=useState(8);
     const [searchQuery, setSearchQuery]=useState("");
     const [statusQuery, setStatusQuery]=useState('');
     const [sortQuery, setSortQuery]=useState('');
@@ -30,7 +30,7 @@ const Admin=()=>{
 
     const navigate=useNavigate();
 
-    const {data, isLoading}=useSWR(`/api/orders/admin`, fetcher);
+    const {data}=useSWR(`/api/orders/admin`, fetcher);
 
     useEffect(()=>{
         if(data){
