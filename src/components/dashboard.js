@@ -222,20 +222,22 @@ const OrdersTable=({children})=>{
 
     return(
         <Fragment>
-            <table className='orders-table'>
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Topic</th>
-                        <th>Status</th>
-                        <th>Deadline</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {children}
-                </tbody>
-            </table>                        
+            <div className='table'>
+                <table className='orders-table'>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Topic</th>
+                            <th>Status</th>
+                            <th>Deadline</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {children}
+                    </tbody>
+                </table> 
+            </div>                       
         </Fragment>
     )
 }
