@@ -111,7 +111,7 @@ input[type=number] {
 .checkbox{
     width: 10%;
     padding: 0 !important;
-    margin:0 -10px 0-20px;
+    margin:0 -10px 0 -20px;
 }
 
 @media only screen and (max-width:480px){
@@ -155,5 +155,13 @@ input[type=number] {
 
     .topic-options{
         flex-direction: column;
+    }
+
+    .checkbox{
+        margin: 0 0 0 -9px;
+    }
+
+    #submit-assignment-button{
+        width: 100%;
     }
 }
