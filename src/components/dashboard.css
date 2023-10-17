@@ -401,3 +401,42 @@ table tbody tr td:last-child{
     font-weight: 400;
     font-size: 13px;
 }
+
+@media only screen and (max-width:768px){
+
+    .dash-nav-content{
+        width: 95%;
+    }
+
+    .nav-logo, .profile-menu{
+        width: 50%;
+    }
+
+    .nav-logo img{
+        width: 20%;
+    }
+
+    .dashboard{
+        width: 95%;
+    }
+
+    .overview-metrics{
+        gap: 10px;
+    }
+
+    .metric-details{
+        width: 45%;
+        padding: 5px;
+        gap: 2px;
+    }
+
+    .metric-icon{
+        align-items: baseline;
+    }
+
+    .add-button{
+        width: 100%;
+    }
+
+
+}
