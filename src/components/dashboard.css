@@ -463,4 +463,12 @@ table tbody tr td:last-child{
         width: 100%;
     }
 
+    .table{
+        overflow-x: auto;
+    }
+
+    .orders-table{
+        width: 250%;
+    }
+
 }
