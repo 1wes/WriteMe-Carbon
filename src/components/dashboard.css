@@ -367,6 +367,7 @@ table tbody tr td:last-child{
     display: flex;
     gap:20px;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .filters{
@@ -374,6 +375,7 @@ table tbody tr td:last-child{
     display:flex;
     justify-content:flex-end;
     gap:20px;
+    flex-wrap: wrap;
 }
 
 .clear-filters{
@@ -387,6 +389,7 @@ table tbody tr td:last-child{
     color: brown;
     transition: all ease .5s;
     border-radius: 3px;  
+    justify-content: center;
 }
 
 .clear-filters:hover{
@@ -438,5 +441,26 @@ table tbody tr td:last-child{
         width: 100%;
     }
 
+    .search-section{
+        gap: 10px;
+    }
+
+    .filters div:first-child, .filters div:nth-child(2){
+        width: 48%;
+    }
+
+    .search-form, .filters div:last-child, .clear-filters{
+        width: 100%;
+    }
+
+    .filters{
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .filters div:last-child{
+        width: 100%;
+    }
 
 }
