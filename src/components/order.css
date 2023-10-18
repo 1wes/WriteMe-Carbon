@@ -43,7 +43,7 @@
 }
 
 .order-key{
-    font-weight: 450;
+    font-weight: 500;
 }
 
 .alerts-list{
@@ -261,4 +261,42 @@
 #send-to-client{
     margin-top: -30px;
     margin-right: 50%;
+    background-color: rgb(165,42,42);
+    color: whitesmoke;
+}
+
+@media only screen and (max-width:768px){
+
+    .order{
+        width: 95%;
+    }
+
+    .order-specifics ul{
+        gap: 15px;
+    }
+
+    #instruction-details, .attached-files{
+        gap: 20px;
+    }
+
+    #instruction-details .order-value{
+        line-height: 25px;
+    }
+
+    .buttons-group{
+        gap: 15px;
+    }
+
+    .admin-btn{
+        width: 100%;
+    }
+
+    #cta-warning{
+        line-height: 20px;
+    }
+
+    #send-to-client{
+        margin-right: 0;
+        width: 100%;
+    }
 }
