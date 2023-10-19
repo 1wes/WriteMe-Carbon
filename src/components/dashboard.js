@@ -18,9 +18,9 @@ import SubmissionForm ,{ Error } from './create-order';
 import { Logo } from './navbar';
 import { Select } from './create-order';
 import {LuFilterX} from 'react-icons/lu';
-import Modal from './modal';
+import Modal , {ModalForm, SuccessIcon, WarningIcon} from './modal';
 import PageNumbers from './paginate';
-import { ModalForm } from './modal';
+import { revisionGracePeriod } from '../utils.js/dates';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -302,6 +302,7 @@ const Dashboard=()=>{
     const [filterMessage, setFilterMessage]=useState("");
     const [modal, setModal] = useState({
         show: false,
+        warning:false,
         mainMessage: "", 
         supportingMessage:""
     });
@@ -348,7 +349,7 @@ const Dashboard=()=>{
             setloggedIn(false);
         });
 
-    },[userInfo, modal, currentPage, ordersPerPage, revise]);
+    },[userInfo, currentPage, ordersPerPage, revise]);
 
     const logOutUser=()=>{
 
@@ -572,6 +573,7 @@ const Dashboard=()=>{
 
         setModal({
             show: false,
+            warning:false,
             mainMessage: "",
             supportingMessage:""
         });
@@ -611,6 +613,7 @@ const Dashboard=()=>{
             closeModalForm();
 
             setModal({
+                ...modal,
                 show: true, 
                 mainMessage: "Success",
                 supportingMessage:`Your revision request has been successfully sent.`
@@ -688,10 +691,11 @@ const Dashboard=()=>{
     )
 
     const showModal=(
-        <Modal mainMessage={modal.mainMessage} supportingMessage={modal.supportingMessage} onClick={closeModal} />
+        <Modal modalIcon={modal.warning ? <WarningIcon /> : <SuccessIcon />} mainMessage={modal.mainMessage} supportingMessage={modal.supportingMessage}
+            onClick={closeModal} buttonColor={modal.warning ? "warning-btn-color" : "success-btn-color"} />
     );
 
-    if(orders){
+    if(orders){ 
         username=userName;
         all=allOrders;
         complete=completedOrders;
@@ -719,11 +723,42 @@ const Dashboard=()=>{
                             <td>
                                 <GenericCtaButton id={`revision-btn`} onClick={()=>{
 
-                                    setOrderId(order.order_id);
+                                    if (order.status === "Completed") {
+                                        
+                                        axios.get(`/api/orders/order/dispatchTime/${order.order_id}`).then(res => {
+                                            if (res.data.code === 200) {
 
-                                    setRevise(true)
+                                                let revisionGraceDaysLeft = revisionGracePeriod(res.data.message);
 
-                                }} message={`Order Revision`}/>
+                                                if (revisionGraceDaysLeft > 0) {
+                                                    
+                                                    setOrderId(order.order_id);
+
+                                                    setRevise(true)
+                                                } else {
+                                                    setModal({
+                                                        show: true,
+                                                        warning: true,
+                                                        mainMessage: "Unable To Request Revision",
+                                                        supportingMessage: `Dear client, you have unfortunately exhausted your allocated free revision request grace period of 7 days
+                                                        (since the delivery of the completed work). Kindly contact our support team for further instructions.`
+                                                    })
+                                                }
+                                                
+                                            } else {
+                                                setModal({
+                                                    show: true,
+                                                    warning:true,
+                                                    mainMessage: "Warning !!",
+                                                    supportingMessage:res.data.message
+                                                })
+                                            }
+                                        }).catch(err=>{
+                                            console.log(err);
+                                        })
+                                    }
+
+                                }} message={`Order Revision`} />
                             </td>
                         </tr>
                     )
