@@ -290,6 +290,11 @@ const ClientOrder=()=>{
         setModal({
           show: true
         });
+
+        setUploadedOrder({
+          files: [],
+          additionalInfo:""
+        })
         
       }).catch(err => {
         console.log(err);
