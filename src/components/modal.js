@@ -3,6 +3,7 @@ import './modal.css';
 import {BiCheck} from 'react-icons/bi';
 import { FormControl, TextArea } from './create-order';
 import { CtaButton } from './services';
+import { AiOutlineWarning } from 'react-icons/ai';
 
 const ModalWrapper=({children, className, id})=>{
 
@@ -39,13 +40,35 @@ const ModalForm=({formLabel,value, onChange, message, onSubmit, id, closeModal})
     )
 }
 
-const Modal=({onClick, mainMessage, supportingMessage})=>{
+const SuccessIcon = () => {
+
+    return (
+        <Fragment>
+            <div className='success-icon'>
+                <i className='success'><BiCheck/></i>
+            </div>
+        </Fragment>
+    )
+}
+
+const WarningIcon = () => {
+    
+    return (
+        <Fragment>
+            <div className='warning-icon'>
+                <i><AiOutlineWarning/></i>
+            </div>
+        </Fragment>
+    )
+}
+
+const Modal=({onClick, mainMessage, supportingMessage, modalIcon})=>{
 
     return(
         <Fragment>
             <ModalWrapper className={`modal-wrapper`} id={`modal-wrap`}>
-                <div className='success-icon'>
-                    <i className='success'><BiCheck/></i>
+                <div className='modal-icon'>
+                    {modalIcon}
                 </div>
                 <h2>
                     {mainMessage}
@@ -61,6 +84,8 @@ const Modal=({onClick, mainMessage, supportingMessage})=>{
     )
 }
 export{
-    ModalForm
+    ModalForm, 
+    WarningIcon,
+    SuccessIcon
 }
 export default Modal;
