@@ -6,7 +6,7 @@ import Footer from './footer';
 import {CtaButton} from './services';
 import { Error, FormAlerts } from "./create-order";
 import { Link, useNavigate } from "react-router-dom";
-import Modal from "./modal";
+import Modal, {SuccessIcon} from "./modal";
 
 const reducer=(state, action)=>{
 
@@ -304,9 +304,9 @@ const RegistrationForm=()=>{
                 </FormAlerts>
                 <CtaButton type={`submit`} message={`Sign Up`} id={`submit-btn`} />
             </form>
-            {modal.show && <Modal onClick={closeModal} mainMessage={`Success`} supportingMessage={
+            {modal.show && <Modal modalIcon={<SuccessIcon/>} onClick={closeModal} mainMessage={`Success`} supportingMessage={
                 `Account created successfully. You can proceed to log in now.`
-            }/>}
+            } buttonColor={'success-btn-color'} />}
         </React.Fragment>
     )
 }
