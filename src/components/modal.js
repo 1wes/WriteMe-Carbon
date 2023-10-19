@@ -62,7 +62,7 @@ const WarningIcon = () => {
     )
 }
 
-const Modal=({onClick, mainMessage, supportingMessage, modalIcon})=>{
+const Modal=({onClick, mainMessage, supportingMessage, modalIcon, buttonColor})=>{
 
     return(
         <Fragment>
@@ -76,7 +76,7 @@ const Modal=({onClick, mainMessage, supportingMessage, modalIcon})=>{
                 <p>
                     {supportingMessage}
                 </p>
-                <button onClick={onClick}>
+                <button onClick={onClick} className={buttonColor} >
                     OK
                 </button>
             </ModalWrapper>
