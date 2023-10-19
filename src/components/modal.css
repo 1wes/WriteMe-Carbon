@@ -29,15 +29,30 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
 }
 
-.success-icon{
+.success-icon, .warning-icon{
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: rgb(134,208,58);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: -45px;
+}
+
+.warning-icon{
+    background-color: rgb(253, 231, 191);
+}
+
+.warning-icon i{
+    color:rgb(255,193,87);
+}
+
+.modal-icon i{
+    font-size: 30px;
+}
+
+.success-icon{
+    background-color: rgb(134,208,58);
 }
 
 .success{
