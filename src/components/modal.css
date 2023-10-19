@@ -80,7 +80,6 @@
     border: none;
     padding: 10px 8px;
     color: white;
-    background-color: rgb(134,208,58);
     border-radius: 5px;
     width: 100%;
     transition: all ease .5s;
@@ -88,7 +87,22 @@
 
 .modal button:hover{
     cursor: pointer;
+}
+
+.success-btn-color{
+    background-color: rgb(134,208,58);
+}
+
+.success-btn-color:hover{
     background-color: rgb(122, 206, 38);
+}
+
+.warning-btn-color{
+    background-color: rgb(247, 195, 99);
+}
+
+.warning-btn-color:hover{
+    background-color: rgb(255, 189, 68);
 }
 
 .modal .input-group{
