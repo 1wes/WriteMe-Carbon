@@ -10,7 +10,7 @@ import checkToken from '../utils.js/check-token';
 import remainingDays from '../utils.js/dates';
 import { CtaButton } from './services';
 import { FormControl, Input, TextArea } from './create-order';
-import Modal from './modal';
+import Modal , {SuccessIcon} from './modal';
 
 import { MdClose } from 'react-icons/md';
 
@@ -187,7 +187,7 @@ const ClientOrder=()=>{
           `Order-${order.order_id} has been sent to ${order.email} (
             ${order.first_name} ${order.last_name}
          )` 
-        } onClick={closeModal} />
+        } modalIcon={<SuccessIcon/>} buttonColor={"success-btn-color"} onClick={closeModal} />
         )
 
         fileAttachments=(
