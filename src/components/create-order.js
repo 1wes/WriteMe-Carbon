@@ -80,7 +80,7 @@ const TextArea=({value, onChange, required})=>{
 
 const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGradeChange, onFileChange, instructionsValue, onInstructionChange,
     pagesOrwordsValue, onPagesChange, amountValue, onAmountChange, deadlineValue, onDeadlineChange,timeValue, onTimeChange, deadlineErrorAlert,
-    styleValue, onStyleChange, sourcesValue, onSourcesChange, topicValue, onTopicChange, onCheckBoxChange})=>{
+    styleValue, languageValue, onStyleChange, sourcesValue, onSourcesChange, topicValue, onTopicChange, onCheckBoxChange, onLanguageChange})=>{
 
 
     const handleWheel=e=>{
@@ -148,6 +148,15 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
                             <option value={`Strayer`}>Strayer</option>
                             <option value={`Any`}>Any</option>
                             <option value={`None`}>None</option>
+                        </Select>
+                    </FormControl>
+                    <FormControl label={`Language`} labelClassName={`required`} >
+                        <Select name={`language`} value={languageValue} onChange={onLanguageChange} required={true} >
+                            <option disabled value={``} hidden></option>
+                            <option value={`American English`} >American English</option>
+                            <option value={`British English`} >British English</option>
+                            <option value={`Australian English`} >Australian English</option>
+                            <option value={`Canadian English`} >Canadian English</option>
                         </Select>
                     </FormControl>
                     <FormControl label={`Number of Sources`} labelClassName={`required`}>
