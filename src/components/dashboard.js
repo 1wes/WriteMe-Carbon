@@ -27,7 +27,8 @@ const fetcher=url=>axios.get(url).then(res=>res.data);
 const initialState={
     subject:"",
     gradeLevel:"",
-    style:"",
+    style: "",
+    language:"",
     sources:"",
     files:[],
     instructions:"",
@@ -61,6 +62,13 @@ const reducer=(state, action)=>{
             return{
                 ...state,
                 style:action.newStyle,
+            }
+        }
+            
+        case "newLanguage": {
+            return {
+                ...state,
+                language:action.newLanguage
             }
         }
 
@@ -124,7 +132,8 @@ const reducer=(state, action)=>{
             return{
                 subject:"",
                 gradeLevel:"",
-                style:"",
+                style: "",
+                language:"",
                 sources:"",
                 files:[],
                 instructions:"",
@@ -401,6 +410,14 @@ const Dashboard=()=>{
         })
     }
 
+    const handleLanguage = (e) => {
+        
+        dispatch({
+            type: "newLanguage",
+            newLanguage:e.target.value
+        })
+    }
+
     const handleSourcesChange=(e)=>{
         dispatch({
             type:"newSources",
@@ -642,13 +659,15 @@ const Dashboard=()=>{
                 assignmentDetails.append("attachedFiles", state.files[keys])
                 assignmentDetails.append("fileNames", state.files[keys].name)
             }
-        }
+        }   
         
-        axios.post("api/orders/new", assignmentDetails, {
+        axios.post("api/orders/new", assignmentDetails,
+         {
             headers:{
                 "Content-Type":"multipart/form-data"
             }
-        }).then(res=>{
+            }
+        ).then(res => {
 
             dispatch({
                 type: "clearForm"
@@ -806,13 +825,14 @@ const Dashboard=()=>{
                                 submissionForm.show &&
                                 <div className='new-submission' id='assignment-form'>
                                     <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
-                                        onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} 
+                                        onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} onLanguageChange={handleLanguage}
                                         onFileChange={handleFileChange} onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange} 
                                         onAmountChange={handleAmountChange} onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} 
                                         subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style} 
                                         instructionsValue={state.instructions}pagesOrwordsValue={state.pagesOrwords} amountValue={state.amount} 
                                         deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} topicValue={state.topic}
-                                        checkboxValue={state.topic} onTopicChange={handleTopicChange} onCheckBoxChange={handleCheckboxChange} />
+                                        checkboxValue={state.topic} onTopicChange={handleTopicChange} onCheckBoxChange={handleCheckboxChange}
+                                        languageValue={state.language}/>
                                 </div>
                             }
                         </div>
