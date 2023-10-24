@@ -153,10 +153,10 @@ const SubmissionForm=({onSubmit, subjectValue, onSubjectChange, gradeValue, onGr
                     <FormControl label={`Language`} labelClassName={`required`} >
                         <Select name={`language`} value={languageValue} onChange={onLanguageChange} required={true} >
                             <option disabled value={``} hidden></option>
-                            <option value={`American English`} >American English</option>
-                            <option value={`British English`} >British English</option>
-                            <option value={`Australian English`} >Australian English</option>
-                            <option value={`Canadian English`} >Canadian English</option>
+                            <option value={`Eng (US)`} >🇺🇸  Eng (US)</option>
+                            <option value={`Eng (UK)`} >🇬🇧  Eng (UK)</option>
+                            <option value={`Eng (AUS)`} >🇦🇺  Eng (AUS)</option>
+                            <option value={`Eng (CAN)`} >🇨🇦  Eng (CAN)</option>
                         </Select>
                     </FormControl>
                     <FormControl label={`Number of Sources`} labelClassName={`required`}>
