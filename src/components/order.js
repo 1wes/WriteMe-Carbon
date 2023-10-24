@@ -346,6 +346,12 @@ const ClientOrder=()=>{
                       </span>
                     </li>
                     <li>
+                      <span className='order-key' >Language : </span>
+                      <span className='order-value'>
+                        {order?order.language:""} 
+                      </span>
+                    </li>
+                    <li>
                       <span className="order-key">Deadline : </span>
                       <span className="order-value"></span>
                       {order ? order.date_deadline.split("T")[0] : ""}
