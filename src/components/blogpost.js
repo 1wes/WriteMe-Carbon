@@ -85,9 +85,9 @@ const Blogpost=()=>{
     const breadcrumb=postData?(<BlogBreadcrumb title={postData.title} />):(<BlogBreadcrumb/>);
 
     const post=postData?<BlogLayout title={postData.title} tagline={postData.meta_description} author={`${postData.author.first_name} ${postData.author.last_name}`}
-        time={postData.published.split("T")[1]} tags={postData.tags.map((tag)=>{return(<Tags key={tag.slug} tagName={tag.name} />)})} authorTitle={postData.author.title}
+        time={new Date(postData.published).toLocaleTimeString()} tags={postData.tags.map((tag)=>{return(<Tags key={tag.slug} tagName={tag.name} />)})} authorTitle={postData.author.title}
         authorName={`${postData.author.first_name} ${postData.author.last_name}`} bio={postData.author.bio} avatar={postData.author.profile_image}
-        date={postData.published.split("T")[0]} alt={postData.featured_image_alt} src={postData.featured_image} body={postData.body}/>:<BlogPostLoader/>
+        date={new Date(postData.published).toLocaleDateString()} alt={postData.featured_image_alt} src={postData.featured_image} body={postData.body}/>:<BlogPostLoader/>
     
     useLayoutEffect(()=>{
         window.scrollTo(0,0)
