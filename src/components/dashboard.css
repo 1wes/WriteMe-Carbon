@@ -314,7 +314,7 @@ table tbody tr td:last-child{
 }
 
 .generic-cta-btn{
-    padding: 5px;
+    padding: 5px 15px;
     border: none;
     background-color: none;
     background: none;
@@ -402,6 +402,41 @@ table tbody tr td:last-child{
     justify-content: center;
     color: gray;
     font-weight: 400;
+    font-size: 13px;
+}
+
+.add-files{
+    width: 30%;
+}
+
+.label:hover{
+    cursor: pointer;
+}
+
+.label span{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-size: 13px;
+    justify-content: center;
+    padding: 5px 0;
+    border-radius: 3px;
+    transition: all ease .5s;
+}
+
+label span:hover{
+    background-color:rgba(165, 42, 42, 0.205);
+}
+
+.label span i{
+    font-size: 20px;
+    margin-top: 2px;
+}
+
+.selected-files{
+    display: flex;
+    align-items: center;
+    width: 30%;
     font-size: 13px;
 }
 
