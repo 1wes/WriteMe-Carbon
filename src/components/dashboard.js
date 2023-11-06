@@ -14,6 +14,7 @@ import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
 import { ImCancelCircle } from 'react-icons/im';
 import { FiPlus } from 'react-icons/fi';
+import { BiCloudUpload } from 'react-icons/bi';
 import SubmissionForm ,{ Error } from './create-order';
 import { Logo } from './navbar';
 import { Select } from './create-order';
@@ -778,6 +779,16 @@ const Dashboard=()=>{
                                     }
 
                                 }} message={`Order Revision`} />
+                                <form className='add-files'>
+                                    <label for='more-files' className='label'>
+                                        <span>
+                                            <i><BiCloudUpload /></i>
+                                            Add files
+                                        </span>
+                                    </label>
+                                    <input type='file' id='more-files' hidden required></input>
+                                </form>
+                                <span className='selected-files'>No file selected</span>
                             </td>
                         </tr>
                     )
