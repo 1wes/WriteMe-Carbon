@@ -783,7 +783,7 @@ const Dashboard=()=>{
                                     <label for='more-files' className='label'>
                                         <span>
                                             <i><BiCloudUpload /></i>
-                                            Add files
+                                            Upload Files
                                         </span>
                                     </label>
                                     <input type='file' id='more-files' hidden required></input>
