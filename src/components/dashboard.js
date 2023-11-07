@@ -322,7 +322,10 @@ const Dashboard=()=>{
     const [orderId, setOrderId]=useState();
     const [revise, setRevise]=useState(false);
     const [submissionForm, setSubmissionForm] = useState({
-        show:false
+        show: false
+    });
+    const [moreFiles, setMoreFiles] = useState({
+        extraFiles:[]
     })
 
     const [state, dispatch]=useReducer(reducer, initialState);
@@ -587,6 +590,18 @@ const Dashboard=()=>{
         }
     }
 
+    const addFiles=(event, param)=>{
+
+        setOrderId(param);
+
+        const additionalFiles = Array.prototype.slice.call(event.target.files);
+
+        setMoreFiles({
+            ...moreFiles,
+            extraFiles: additionalFiles
+        });
+    }
+
     const closeModal=()=>{
 
         setModal({
@@ -694,6 +709,14 @@ const Dashboard=()=>{
         setCurrentPage(pageNumber);
     }
 
+    let extraFilesNames = moreFiles.extraFiles.length ?
+        moreFiles.extraFiles.length < 2 ?
+        moreFiles.extraFiles[0].name.length>10?
+        `${moreFiles.extraFiles[0].name.substr(0, 10)}..${moreFiles.extraFiles[0].name.substr((moreFiles.extraFiles[0].name.length) - 5, moreFiles.extraFiles[0].name.length)}`
+        :moreFiles.extraFiles[0].name
+        : `${moreFiles.extraFiles.length} files selected`
+        : ""
+
     let username;
     let all;
     let complete;
@@ -780,15 +803,17 @@ const Dashboard=()=>{
 
                                 }} message={`Order Revision`} />
                                 <form className='add-files'>
-                                    <label for='more-files' className='label'>
+                                    <label htmlFor='more-files' className='label'>
                                         <span>
                                             <i><BiCloudUpload /></i>
                                             Upload Files
                                         </span>
                                     </label>
-                                    <input type='file' id='more-files' hidden required></input>
+                                    <input type='file' id='more-files' onChange={event=>addFiles(event, order.order_id)} multiple hidden required></input>
                                 </form>
-                                <span className='selected-files'>No file selected</span>
+                                {
+                                    moreFiles.extraFiles.length === 0 && orderId===order.order_id ? "" : <span className='selected-files'>{extraFilesNames}</span>
+                                }
                             </td>
                         </tr>
                     )
