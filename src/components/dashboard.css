@@ -407,7 +407,7 @@ table tbody tr td:last-child{
 }
 
 .add-files{
-    width: 30%;
+    width: 32%;
 }
 
 .label:hover{
@@ -420,7 +420,6 @@ table tbody tr td:last-child{
     align-items: center;
     font-size: 13px;
     justify-content: center;
-    padding: 5px 10px;
     border-radius: 3px;
     transition: all ease .5s;
 }
@@ -437,7 +436,7 @@ label span:hover{
 .selected-files{
     display: flex;
     align-items: center;
-    /* width: 35%; */
+    width: 24%;
     font-size: 13px;
 }
 
