@@ -304,8 +304,7 @@ table tbody tr:nth-child(odd){
 
 table tbody tr td:last-child{
     display: flex;
-    /* justify-content: space-between; */
-    gap:10px;
+    gap: 10px;
 }
 
 #dash-header{
@@ -315,7 +314,7 @@ table tbody tr td:last-child{
 }
 
 .generic-cta-btn{
-    padding: 5px 15px;
+    padding: 5px 10px;
     border: none;
     background-color: none;
     background: none;
@@ -330,6 +329,7 @@ table tbody tr td:last-child{
 #revision-btn{
     outline: 1px solid rgb(255, 212, 137);
     color: rgb(255, 193, 87);
+    width: 50%;
 }
 
 #cancel-btn{
@@ -407,7 +407,9 @@ table tbody tr td:last-child{
 }
 
 .add-files{
-    width: 33%;
+    width: 100%;
+    display: flex;
+    gap: 10px;
 }
 
 .label:hover{
@@ -421,6 +423,7 @@ table tbody tr td:last-child{
     font-size: 13px;
     justify-content: center;
     border-radius: 3px;
+    padding: 0 10px;
     transition: all ease .5s;
 }
 
@@ -436,9 +439,8 @@ label span:hover{
 .selected-files{
     display: flex;
     align-items: center;
-    width: 35%;
     font-size: 13px;
-    padding: 0px 2px;
+    padding: 0px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
