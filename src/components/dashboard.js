@@ -319,7 +319,7 @@ const Dashboard=()=>{
     const [currentPage, setCurrentPage]=useState(1);
     const [ordersPerPage]=useState(10);
     const [revision, setRevision]=useState();
-    const [orderId, setOrderId]=useState();
+    const [orderId, setOrderId]=useState("");
     const [revise, setRevise]=useState(false);
     const [submissionForm, setSubmissionForm] = useState({
         show: false
@@ -592,14 +592,17 @@ const Dashboard=()=>{
 
     const addFiles=(event, param)=>{
 
-        setOrderId(param);
-
         const additionalFiles = Array.prototype.slice.call(event.target.files);
 
         setMoreFiles({
             ...moreFiles,
             extraFiles: additionalFiles
         });
+    }
+
+    const setClickedOrderId = (event, param) => {
+        
+        setOrderId((prevState)=>prevState=param);
     }
 
     const closeModal=()=>{
@@ -621,7 +624,7 @@ const Dashboard=()=>{
 
     const closeModalForm=()=>{
 
-        setOrderId(null);
+        setOrderId("");
         setRevision("");
         setRevise(false);
     }
@@ -711,8 +714,8 @@ const Dashboard=()=>{
 
     let extraFilesNames = moreFiles.extraFiles.length ?
         moreFiles.extraFiles.length < 2 ?
-        moreFiles.extraFiles[0].name.length>10?
-        `${moreFiles.extraFiles[0].name.substr(0, 10)}..${moreFiles.extraFiles[0].name.substr((moreFiles.extraFiles[0].name.length) - 5, moreFiles.extraFiles[0].name.length)}`
+        moreFiles.extraFiles[0].name.length>15?
+        `${moreFiles.extraFiles[0].name.substr(0, 10)}..${moreFiles.extraFiles[0].name.substr((moreFiles.extraFiles[0].name.length) - 6, moreFiles.extraFiles[0].name.length)}`
         :moreFiles.extraFiles[0].name
         : `${moreFiles.extraFiles.length} files selected`
         : ""
@@ -803,7 +806,7 @@ const Dashboard=()=>{
 
                                 }} message={`Order Revision`} />
                                 <form className='add-files'>
-                                    <label htmlFor='more-files' className='label'>
+                                    <label htmlFor='more-files' className='label' onClick={event=>setClickedOrderId(event, order.order_id)}>
                                         <span>
                                             <i><BiCloudUpload /></i>
                                             Upload Files
@@ -812,7 +815,7 @@ const Dashboard=()=>{
                                     <input type='file' id='more-files' onChange={event=>addFiles(event, order.order_id)} multiple hidden required></input>
                                 </form>
                                 {
-                                    moreFiles.extraFiles.length === 0 && orderId===order.order_id ? "" : <span className='selected-files'>{extraFilesNames}</span>
+                                    moreFiles.extraFiles.length > 0 && orderId===order.order_id ?<span className='selected-files'>{extraFilesNames}</span>:""
                                 }
                             </td>
                         </tr>
