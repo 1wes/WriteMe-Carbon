@@ -629,6 +629,16 @@ const Dashboard=()=>{
         setRevise(false);
     }
 
+    const addMoreFiles = (e) => {
+        
+        e.preventDefault();
+
+        const extraFilesFormData = new FormData();
+
+        
+
+    }
+
     const handleRevision=(e)=>{
         
         setRevision(e.target.value)
@@ -715,9 +725,9 @@ const Dashboard=()=>{
     let extraFilesNames = moreFiles.extraFiles.length ?
         moreFiles.extraFiles.length < 2 ?
         moreFiles.extraFiles[0].name.length>15?
-        `${moreFiles.extraFiles[0].name.substr(0, 10)}..${moreFiles.extraFiles[0].name.substr((moreFiles.extraFiles[0].name.length) - 6, moreFiles.extraFiles[0].name.length)}`
+        `${moreFiles.extraFiles[0].name.substr(0, 8)}..${moreFiles.extraFiles[0].name.substr((moreFiles.extraFiles[0].name.length) - 6, moreFiles.extraFiles[0].name.length)}`
         :moreFiles.extraFiles[0].name
-        : `${moreFiles.extraFiles.length} files selected`
+        : `${moreFiles.extraFiles.length} Selected Files`
         : ""
 
     let username;
@@ -805,18 +815,21 @@ const Dashboard=()=>{
                                     }
 
                                 }} message={`Order Revision`} />
-                                <form className='add-files'>
+                                <form encType='multipart/form-data' onSubmit={addMoreFiles} className='add-files'>
                                     <label htmlFor='more-files' className='label' onClick={event=>setClickedOrderId(event, order.order_id)}>
                                         <span>
                                             <i><BiCloudUpload /></i>
                                             Upload Files
                                         </span>
                                     </label>
-                                    <input type='file' id='more-files' onChange={event=>addFiles(event, order.order_id)} multiple hidden required></input>
+                                    <input type='file' id='more-files' onChange={event => addFiles(event, order.order_id)} multiple hidden></input>
+                                    
+                                    {
+                                        moreFiles.extraFiles.length > 0 && orderId === order.order_id ? <button className='selected-files' type='submit'
+                                        >{`Submit ${extraFilesNames}`}</button> : ""
+                                    }
                                 </form>
-                                {
-                                    moreFiles.extraFiles.length > 0 && orderId===order.order_id ?<span className='selected-files'>{extraFilesNames}</span>:""
-                                }
+
                             </td>
                         </tr>
                     )
