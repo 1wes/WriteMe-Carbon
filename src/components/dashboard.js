@@ -629,13 +629,34 @@ const Dashboard=()=>{
         setRevise(false);
     }
 
-    const addMoreFiles = (e) => {
+    const addMoreFiles = (event, param) => {
         
-        e.preventDefault();
+        event.preventDefault();
 
         const extraFilesFormData = new FormData();
 
-        
+        for (var key in moreFiles.extraFiles) {
+            extraFilesFormData.append("additionalFiles", moreFiles.extraFiles[key]);
+        }
+
+        axios.put(`api/orders/order/update/files/${orderId}`, extraFilesFormData).then(res => {
+
+            setModal({
+                ...modal,
+                show: true,
+                mainMessage: "Files Successfully Uploaded",
+                supportingMessage: `File (s) uploaded for Order-${orderId} (${param})`
+            });
+
+            setOrderId("");
+
+            setMoreFiles({
+                extraFiles: []
+            });
+        }).catch(err => {
+            
+            console.log(err);
+        })
 
     }
 
@@ -815,7 +836,7 @@ const Dashboard=()=>{
                                     }
 
                                 }} message={`Order Revision`} />
-                                <form encType='multipart/form-data' onSubmit={addMoreFiles} className='add-files'>
+                                <form encType='multipart/form-data' onSubmit={event=>addMoreFiles(event, order.topic)} className='add-files'>
                                     <label htmlFor='more-files' className='label' onClick={event=>setClickedOrderId(event, order.order_id)}>
                                         <span>
                                             <i><BiCloudUpload /></i>
