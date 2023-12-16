@@ -26,7 +26,7 @@ const LogInButton=()=>{
     return(
 
         <React.Fragment>
-            <Link to={`login`} target="blank">
+            <Link to={`/login`} target="blank">
                 <button className="navbar-button" id="login-cta">
                     Log in
                 </button>
