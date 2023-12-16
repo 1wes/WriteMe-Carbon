@@ -189,12 +189,14 @@
 
 .error{
     color: rgb(255, 35, 39);
-    outline: 1px solid rgb(253, 81, 84);
+    border-left: 5px solid rgb(253, 81, 84);
+    background-color: rgba(253, 81, 84, 0.2);
 }
 
 .no-error{
     color: rgb(33, 204, 64);
-    outline: 1px solid rgb(33, 204, 64);
+    border-left: 5px solid rgb(33, 204, 64);
+    background-color: rgba(33, 204, 64, 0.1);
     font-size: 12px;
 }
 
