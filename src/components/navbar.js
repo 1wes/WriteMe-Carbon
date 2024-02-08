@@ -1,7 +1,7 @@
 import React from "react";
 import './navbar.css';
 import { Link } from "react-router-dom";
-import { goToSection } from "../utils.js/section";
+import { goToSection } from "../utils/section";
 import {CgMenuRight, CgClose} from 'react-icons/cg';
 import { BsPerson } from 'react-icons/bs';
 import { IoLogInOutline} from 'react-icons/io5';

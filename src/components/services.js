@@ -2,7 +2,7 @@ import React from 'react';
 import './services.css';
 import SectionHeader from './heading';
 import { GiFountainPen } from 'react-icons/gi';
-import { goToSection } from '../utils.js/section';
+import { goToSection } from '../utils/section';
 
 const ServicesList=({service})=>{
 

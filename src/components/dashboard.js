@@ -1,14 +1,14 @@
 import React, {Fragment, useState, useEffect, useReducer} from 'react';
 import './dashboard.css';
 import useSWR from 'swr';
-import axios from '../utils.js/axios';
+import axios from '../utils/axios';
 import { BiUser } from 'react-icons/bi'
 import { BsChevronDown } from 'react-icons/bs';
 import { MdOutlineManageAccounts } from 'react-icons/md';
 import { TbLogout } from 'react-icons/tb';
 import { IoNotificationsOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import checkToken from '../utils.js/check-token';
+import checkToken from '../utils/check-token';
 import SectionHeader from './heading';
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
@@ -21,7 +21,7 @@ import { Select } from './create-order';
 import {LuFilterX} from 'react-icons/lu';
 import Modal , {ModalForm, SuccessIcon, WarningIcon} from './modal';
 import PageNumbers from './paginate';
-import { revisionGracePeriod } from '../utils.js/dates';
+import { revisionGracePeriod } from '../utils/dates';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
