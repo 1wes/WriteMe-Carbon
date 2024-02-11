@@ -2,7 +2,7 @@
     height: 90vh;
     display: flex;
     align-items: center;
-    background-image: url('../background.png');
+    background-image: url('../assets/background.png');
     background-repeat: no-repeat;
     background-position: 90%;
     background-position-x: 90%;
