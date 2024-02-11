@@ -12,7 +12,7 @@ import { BlogPostLoader } from './loader';
 
 const fetcher=url=>axios.get(url).then(res=>res.data.data);
 
-const API=process.env.REACT_APP_BLOG_API_KEY;
+const API=import.meta.env.VITE_BLOG_API_KEY;
 
 const BlogLayout=({title, tagline, author, time, date, body, src, alt,tags, authorTitle, bio, authorName, avatar})=>{
 

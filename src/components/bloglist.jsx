@@ -8,7 +8,7 @@ import axios from 'axios';
 import useSWR from 'swr';
 import  OldContentLoader,{ NewContentLoader } from './loader';
 
-const API=process.env.REACT_APP_BLOG_API_KEY;
+const API= import.meta.env.VITE_BLOG_API_KEY;
 
 const fetcher=url=>axios.get(url).then(res=>res.data.data);
 
