@@ -1,6 +1,7 @@
 import React from 'react';
 import './loader.css';
 import { CiCamera } from 'react-icons/ci';
+import placeholder from '../assets/placeholder.png';
 
 const PlaceHolderAnimation=()=>{
 
@@ -43,7 +44,7 @@ const NewContentPlaceHolder=()=>{
             <div className='new-content-card' id='placeholder-card'>
                 <div className='blog-content-card'>
                     <div className='blog-image'>
-                        <img src={require('../placeholder.png')} alt='placeholder' />
+                        <img src={placeholder} alt='placeholder' />
                     </div>
                     <div className='blog-details'>
                         <PlaceHolderHeader/>
@@ -73,7 +74,7 @@ const OlderContentPlaceHolder=()=>{
             <div className='old-content-card'>
                 <div className='hr-blog-content-card' id='placeholder-hr-card'>
                     <div className='blog-image' id='hr-blog-image'>
-                        <img src={require('../placeholder.png')} alt='placeholder'/>
+                        <img src={placeholder} alt='placeholder'/>
                     </div>
                     <div className='hr-blog-details'>
                         <h3 className='hr-bloglist-header'>

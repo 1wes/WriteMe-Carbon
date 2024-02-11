@@ -6,6 +6,7 @@ import {CgMenuRight, CgClose} from 'react-icons/cg';
 import { BsPerson } from 'react-icons/bs';
 import { IoLogInOutline} from 'react-icons/io5';
 import { HashLink as Jumplink } from "react-router-hash-link";
+import Pen from '../assets/pen.png'
 
 const SignButton=()=>{
 
@@ -40,7 +41,7 @@ const Logo=()=>{
     return(
         <React.Fragment>
             <Link to={`/`} className="logo-image">
-                <img src={require('../pen.png')} alt="logo" /> <p><span>W</span>rite<span>M</span>e</p>
+                <img src={Pen} alt="logo" /> <p><span>W</span>rite<span>M</span>e</p>
             </Link>
         </React.Fragment>
     )
