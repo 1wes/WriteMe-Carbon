@@ -1,8 +1,6 @@
 import React from 'react';
 import './loader.css';
-import { CtaButton } from './services';
 import { CiCamera } from 'react-icons/ci';
-import { Tags } from './blogpost';
 
 const PlaceHolderAnimation=()=>{
 
