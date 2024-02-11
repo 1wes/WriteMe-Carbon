@@ -138,7 +138,7 @@ const BlogPostLoader=()=>{
                     <div className='metadata'><Paragraph/></div>
                 </div>
                 <div className='blog-cover'>
-                    <img src={require('../placeholder.png')} alt={`placeholder`} />
+                    <img src={placeholder} alt={`placeholder`} />
                 </div>
                 <p className='image-credit'><i><CiCamera/></i><span> Image credits </span>: via ButterCMS</p>
                 <article className='blog-article' id='article-placeholder'>
