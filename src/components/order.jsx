@@ -53,9 +53,9 @@ const ClientOrder=()=>{
             setDaysToDeadline(days);
         }
 
-        checkToken().then(res=>{
+        checkToken().then(()=>{
             setLoggedIn(true)
-        }).catch(err=>{
+        }).catch(()=>{
             setLoggedIn(false)
         });
       
@@ -63,10 +63,10 @@ const ClientOrder=()=>{
 
     const logOutUser=()=>{
 
-        axios.get("/api/user/logout").then(res=>{
+        axios.get("/api/user/logout").then(()=>{
 
             navigate("/login")
-        }).catch(err=>{
+        }).catch(()=>{
             setLoggedIn(false);
         })
     }
@@ -106,7 +106,7 @@ const ClientOrder=()=>{
         
         if(status==="Active"){
 
-            axios.put(`/api/orders/order/update/${order.order_id}`, {status:"Completed"}).then((res)=>{
+            axios.put(`/api/orders/order/update/${order.order_id}`, {status:"Completed"}).then(()=>{
 
                 setWarning({
                     display:true,
@@ -285,7 +285,7 @@ const ClientOrder=()=>{
         headers: {
           "Content-Type":"multipart/form-data"
         }
-      }).then(res => {
+      }).then(() => {
           
         setModal({
           show: true
