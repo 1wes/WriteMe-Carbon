@@ -27,7 +27,7 @@ const About=()=>{
                             WriteMe is an essay writing, research paper, term paper, dissertation, and thesis writing company with the 
                             friendliest prices in the market. We have been in operation for six years and have, over that period, mastered 
                             the art of writing, besides delivering thousands of papers for students that have trusted us with their services. 
-                            Our experts are PH. D and master's holders from numerous reputable universities in America, Europe, and Canada, amongst other nations. 
+                            Our experts are PH. D and masters holders from numerous reputable universities in America, Europe, and Canada, amongst other nations. 
                             </div>
                             <div className="analytics">
                                 <span className="years">6+ <span>Years</span></span>
