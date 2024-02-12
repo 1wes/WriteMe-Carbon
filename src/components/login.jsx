@@ -6,7 +6,6 @@ import { FormAlerts, Error } from "./create-order";
 import { Link, useNavigate } from "react-router-dom";
 import { CtaButton } from "./services";
 import axios from "../utils/axios";
-import ForgotPassword from "./forgot-password";
 
 const LoginForm=()=>{
 
@@ -46,7 +45,7 @@ const LoginForm=()=>{
 
                 role==='user'?navigate("/user-dashboard"):navigate("/admin-dashboard");
             }
-        }).catch(err=>{
+        }).catch(()=>{
 
             setError(true);
         })
