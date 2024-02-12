@@ -356,9 +356,9 @@ const Dashboard=()=>{
             setOrders(currentOrders);
         }
 
-        checkToken().then(res=>{
+        checkToken().then(()=>{
             setloggedIn(true);
-        }).catch(err=>{
+        }).catch(()=>{
             setloggedIn(false);
         });
 
@@ -366,11 +366,11 @@ const Dashboard=()=>{
 
     const logOutUser=()=>{
 
-        axios.get("/api/user/logout").then(res=>{
+        axios.get("/api/user/logout").then(()=>{
 
             navigate("/login");
 
-        }).catch(err=>{
+        }).catch(()=>{
             setloggedIn(false);
         });
     }
@@ -564,10 +564,13 @@ const Dashboard=()=>{
 
         setSortQuery(e.target.value);
 
+        let ascendingOrder;
+        let descendingOrder;
+
         switch(e.target.value){
 
             case "Ascending":
-                const ascendingOrder=orders.sort((a, b)=>{
+                ascendingOrder=orders.sort((a, b)=>{
 
                     return new Date(a.date_deadline)-new Date(b.date_deadline);
                 });
@@ -577,7 +580,7 @@ const Dashboard=()=>{
                 break;
 
             case "Descending":
-                const descendingOrder=orders.sort((a, b)=>{
+                descendingOrder=orders.sort((a, b)=>{
 
                     return new Date(b.date_deadline)-new Date(a.date_deadline);
                 });
@@ -590,7 +593,7 @@ const Dashboard=()=>{
         }
     }
 
-    const addFiles=(event, param)=>{
+    const addFiles=(event)=>{
 
         const additionalFiles = Array.prototype.slice.call(event.target.files);
 
@@ -602,7 +605,7 @@ const Dashboard=()=>{
 
     const setClickedOrderId = (event, param) => {
         
-        setOrderId((prevState)=>prevState=param);
+        setOrderId(()=>param);
     }
 
     const closeModal=()=>{
@@ -639,7 +642,7 @@ const Dashboard=()=>{
             extraFilesFormData.append("additionalFiles", moreFiles.extraFiles[key]);
         }
 
-        axios.put(`api/orders/order/update/files/${orderId}`, extraFilesFormData).then(res => {
+        axios.put(`api/orders/order/update/files/${orderId}`, extraFilesFormData).then(() => {
 
             setModal({
                 ...modal,
@@ -675,7 +678,7 @@ const Dashboard=()=>{
             modificationReason:revision
         }
 
-        axios.post("api/orders/revision", revisionDetails).then(res=>{
+        axios.post("api/orders/revision", revisionDetails).then(()=>{
 
             closeModalForm();
 
@@ -717,7 +720,7 @@ const Dashboard=()=>{
                 "Content-Type":"multipart/form-data"
             }
             }
-        ).then(res => {
+        ).then(() => {
 
             dispatch({
                 type: "clearForm"
