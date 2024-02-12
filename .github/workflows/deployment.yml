@@ -1,4 +1,4 @@
-name: Deploy to host
+name: Deploy to Host
 
 on:
     workflow_run:
