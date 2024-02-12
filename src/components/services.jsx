@@ -17,10 +17,6 @@ const ServicesList=({service})=>{
 
 const ServicesCard=()=>{
 
-    const goToContact=()=>{
-        goToSection('contact-form-section');
-    }
-
     return(
         <React.Fragment>
             <div className='services-card'>
