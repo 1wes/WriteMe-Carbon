@@ -53,9 +53,9 @@ const Admin=()=>{
             setAllOrders(currentOrders);
         }
 
-        checkToken().then(res=>{
+        checkToken().then(()=>{
             setLoggedIn(true)
-        }).catch(err=>{
+        }).catch(()=>{
             setLoggedIn(false)
         })
 
@@ -63,10 +63,10 @@ const Admin=()=>{
 
     const logoutUser=()=>{
 
-        axios.get("/api/user/logout").then(res=>{
+        axios.get("/api/user/logout").then(()=>{
 
             navigate("/login")
-        }).catch(err=>{
+        }).catch(()=>{
             setLoggedIn(false);
         })
     }
@@ -110,11 +110,14 @@ const Admin=()=>{
     
     const handleSort=(e)=>{
         setSortQuery(e.target.value);
+
+        let ascendingOrder;
+        let descendingOrder;
         
         switch(e.target.value){
 
             case "Ascending":
-                const ascendingOrder=allOrders.sort((a, b)=>{
+                ascendingOrder=allOrders.sort((a, b)=>{
 
                     return new Date(a.date_deadline)-new Date(b.date_deadline);
                 });
@@ -124,7 +127,7 @@ const Admin=()=>{
                 break;
 
             case "Descending":
-                const descendingOrder=allOrders.sort((a, b)=>{
+                descendingOrder=allOrders.sort((a, b)=>{
 
                     return new Date(b.date_deadline)-new Date(a.date_deadline);
                 });
