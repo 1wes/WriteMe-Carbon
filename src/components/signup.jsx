@@ -1,4 +1,4 @@
-import React , {useReducer, useState, useLayoutEffect, useEffect} from "react";
+import React, { useReducer, useState, useLayoutEffect } from "react";
 import './signup.css';
 import axios from "axios";
 import Countries from '../utils/countries.json';
@@ -236,7 +236,7 @@ const RegistrationForm=()=>{
         e.preventDefault();
 
         if(match){
-            axios.post("/api/user/register", state).then(res=>{
+            axios.post("/api/user/register", state).then(()=>{
                 setModal({
                     show:true
                 })
