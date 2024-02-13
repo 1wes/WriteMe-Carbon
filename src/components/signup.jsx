@@ -13,85 +13,50 @@ const reducer=(state, action)=>{
     switch(action.type){
 
         case "newFirstName":{
-            return{
-                firstName:action.newFirstName,
-                lastName:state.lastName,
-                email:state.email,
-                dialCode:state.dialCode,
-                phoneNumber:state.phoneNumber,
-                password:state.password,
-                confirmPassword:state.confirmPassword
+            return {
+                ...state,
+                firstName:action.newFirstName
             }
         }
 
         case "newLastName":{
-            return{
-                firstName:state.firstName,
-                lastName:action.newLastName,
-                email:state.email,
-                dialCode:state.dialCode,
-                phoneNumber:state.phoneNumber,
-                password:state.password,
-                confirmPassword:state.confirmPassword
+            return {
+                ...state,
+                lastName:action.newLastName
             }
         }
 
         case "newEmail":{
             return{
-                firstName:state.firstName,
-                lastName:state.lastName,
-                email:action.newEmail,
-                dialCode:state.dialCode,
-                phoneNumber:state.phoneNumber,
-                password:state.password,
-                confirmPassword:state.confirmPassword
+                ...state,
+                email:action.newEmail
             }
         }
 
         case "newDialCode":{
             return{
-                firstName:state.firstName,
-                lastName:state.lastName,
-                email:state.email,
-                dialCode:action.newDialCode,
-                phoneNumber:state.phoneNumber,
-                password:state.password,
-                confirmPassword:state.confirmPassword
+                ...state,
+                dialCode:action.newDialCode
             }
         }
 
         case "newPhoneNumber":{
-            return{
-                firstName:state.firstName,
-                lastName:state.lastName,
-                email:state.email,
-                dialCode:state.dialCode,
-                phoneNumber:action.newPhoneNumber,
-                password:state.password,
-                confirmPassword:state.confirmPassword
+            return {
+                ...state,
+                phoneNumber:action.newPhoneNumber
             }
         }
 
         case "newPassword":{
             return{
-                firstName:state.firstName,
-                lastName:state.lastName,
-                email:state.email,
-                dialCode:state.dialCode,
-                phoneNumber:state.phoneNumber,
-                password:action.newPassword,
-                confirmPassword:state.confirmPassword
+                ...state,
+                password:action.newPassword
             }
         }
 
         case "newConfirmPassword":{
             return{
-                firstName:state.firstName,
-                lastName:state.lastName,
-                email:state.email,
-                dialCode:state.dialCode,
-                phoneNumber:state.phoneNumber,
-                password:state.password,
+                ...state,
                 confirmPassword:action.newConfirmPassword
             }
         }
