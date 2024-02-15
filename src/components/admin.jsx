@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import './admin.css';
-import { DashSectionHeaders, Metrics, DashboardNavbar, OrdersTable, Search, GenericCtaButton } from './dashboard';
+import { DashSectionHeaders, Metrics, OrdersTable, Search, GenericCtaButton } from './dashboard';
+import DashboardNavbar from './dash-nav';
 import useSWR from 'swr';
 import axios from '../utils/axios';
 import { useNavigate, Link } from 'react-router-dom';

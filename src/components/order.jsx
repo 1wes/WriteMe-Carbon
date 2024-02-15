@@ -2,7 +2,8 @@ import React , { Fragment, useState, useEffect } from 'react';
 
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
-import { DashSectionHeaders, DashboardNavbar } from './dashboard';
+import { DashSectionHeaders } from './dashboard';
+import DashboardNavbar from './dash-nav';
 import './order.css';
 import useSWR from 'swr';
 import axios from '../utils/axios';
