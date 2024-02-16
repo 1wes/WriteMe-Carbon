@@ -2,13 +2,7 @@ import React, {Fragment, useState, useEffect, useReducer} from 'react';
 import './dashboard.css';
 import useSWR from 'swr';
 import axios from '../utils/axios';
-import { BiUser } from 'react-icons/bi'
-import { BsChevronDown } from 'react-icons/bs';
-import { MdOutlineManageAccounts } from 'react-icons/md';
-import { TbLogout } from 'react-icons/tb';
-import { IoNotificationsOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import checkToken from '../utils/check-token';
 import SectionHeader from './heading';
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
@@ -16,12 +10,12 @@ import { ImCancelCircle } from 'react-icons/im';
 import { FiPlus } from 'react-icons/fi';
 import { BiCloudUpload } from 'react-icons/bi';
 import SubmissionForm ,{ Error } from './create-order';
-import { Logo } from './navbar';
 import { Select } from './create-order';
 import {LuFilterX} from 'react-icons/lu';
-import Modal , {ModalForm, SuccessIcon, WarningIcon} from './modal';
+import Modal, { ModalForm, SuccessIcon, WarningIcon } from './modal';
 import PageNumbers from './paginate';
 import { revisionGracePeriod } from '../utils/dates';
+import DashboardNavbar from './dash-nav';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -161,48 +155,6 @@ const DashSectionHeaders=({heading})=>{
     )
 }
 
-const DashboardNavbar=({userName, onClick})=>{
-
-    const showDropdownMenu=()=>{
-
-        const dropdownMenu=document.getElementById("user-profile-dropdown");
-        const icon=document.getElementById("down-icon");
-
-        icon.classList.toggle("rotate-icon");
-        dropdownMenu.classList.toggle("show-profile-dropdown")
-    }
-
-    return(
-        <Fragment>
-            <nav className='dashboard-nav'>
-                <div className='dash-nav-content'>
-                    <div className='nav-logo'>
-                        <Logo/>
-                    </div>
-                    <ul className='profile-menu'>
-                        <li className='profile-section' onClick={showDropdownMenu}>
-                            <span className='user-profile-icon'>
-                                <i><BiUser/></i>
-                                <span className='username'>{userName}</span>
-                            </span>
-                            <span className='dropdown-icon' >
-                                <i><BsChevronDown id='down-icon' /></i>
-                            </span>
-                        </li>
-                        <div className='profile-dropdown' id='user-profile-dropdown'>
-                            <ul>
-                                <li className='dropdown-item'><span className='item-icon'><i><MdOutlineManageAccounts/></i></span> Account settings</li>
-                                <li className='dropdown-item'><span className='item-icon' ><i><IoNotificationsOutline/></i></span>Notifications</li>
-                                <li className='dropdown-item' onClick={onClick}><span className='item-icon'><i><TbLogout/></i></span> Sign out</li>
-                            </ul>
-                        </div>
-                    </ul>
-                </div>
-            </nav>
-        </Fragment>
-    )
-}
-
 const Metrics=({title, icon, number})=>{
 
     return(
@@ -303,7 +255,7 @@ const Dashboard=()=>{
     const [completedOrders, setCompletedOrders]=useState();
     const [cancelledOrders, setCancelledOrders]=useState();
     const [orders, setOrders]=useState();
-    const [loggedIn, setloggedIn]=useState(true);
+    // const [loggedIn, setloggedIn]=useState(true);
     const [error, setError]=useState(false);
     const [DeadlineErrorMessage, setDeadlineErrorMessage]=useState('');
     const [searchQuery, setSearchQuery]=useState("");
@@ -356,24 +308,24 @@ const Dashboard=()=>{
             setOrders(currentOrders);
         }
 
-        checkToken().then(()=>{
-            setloggedIn(true);
-        }).catch(()=>{
-            setloggedIn(false);
-        });
+        // checkToken().then(()=>{
+        //     setloggedIn(true);
+        // }).catch(()=>{
+        //     setloggedIn(false);
+        // });
 
     },[userInfo, currentPage, ordersPerPage, revise]);
 
-    const logOutUser=()=>{
+    // const logOutUser=()=>{
 
-        axios.get("/api/user/logout").then(()=>{
+    //     axios.get("/api/user/logout").then(()=>{
 
-            navigate("/login");
+    //         navigate("/login");
 
-        }).catch(()=>{
-            setloggedIn(false);
-        });
-    }
+    //     }).catch(()=>{
+    //         setloggedIn(false);
+    //     });
+    // }
 
     const displayForm=()=>{
         setSubmissionForm({
@@ -935,7 +887,6 @@ const Dashboard=()=>{
 }
 export{
     DashSectionHeaders,
-    DashboardNavbar,
     Metrics, 
     OrdersTable,
     Search,
