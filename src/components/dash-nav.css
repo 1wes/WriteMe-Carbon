@@ -1,0 +1,131 @@
+.dashboard-nav{
+    border-bottom: 1px solid rgba(165, 42, 42, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.dash-nav-content{
+    margin: 0 auto;
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo{
+    width: 80%;
+}
+
+.nav-logo img{
+    width:5%;
+    margin-left: -13px;
+}
+
+.profile-menu{
+    list-style: none;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 20%;
+    position: relative;
+}
+
+.show-profile-dropdown{
+    display: block;
+}
+
+.rotate-icon{
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.profile-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all ease 1s;
+}
+
+.profile-section:hover{
+    cursor: pointer;
+}
+
+.user-profile-icon{
+    display: flex;
+    align-items: center;
+}
+
+.user-profile-icon i{
+    margin-right: 5px;
+    margin-top: 3px;
+}
+
+.username{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#down-icon{
+    transform: all ease .5s
+}
+
+.profile-dropdown{
+    position: absolute;
+    top: 43px;
+    width: 100%;
+    border-radius: 5px;
+    outline: 1px solid rgba(165, 42, 42, 0.1);
+    background-color: whitesmoke;
+    z-index: 1000;
+    display: none;
+    transition: all ease 1s;
+}
+
+.show-profile-dropdown{
+    display: block;
+}
+
+.dropdown-item{
+    padding: 11px 5px;
+    transition: all ease .3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 3px;
+}
+
+.dropdown-item:hover{
+    background-color: rgba(165, 42, 42, 0.1);
+    cursor: pointer;
+    color: brown;
+}
+
+.dropdown-item span i {
+    color: brown;
+    margin-top: 3px;
+    font-size: 18px;
+}
+
+.item-icon{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@media only screen and (max-width:768px){
+
+    .dash-nav-content{
+        width: 95%;
+    }
+
+    .nav-logo, .profile-menu{
+        width: 50%;
+    }
+
+    .nav-logo img{
+        width: 20%;
+    }
+}
