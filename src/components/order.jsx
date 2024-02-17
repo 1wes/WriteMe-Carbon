@@ -7,7 +7,6 @@ import DashboardNavbar from './dash-nav';
 import './order.css';
 import useSWR from 'swr';
 import axios from '../utils/axios';
-import checkToken from '../utils/check-token';
 import remainingDays from '../utils/dates';
 import { CtaButton } from './services';
 import { FormControl, Input, TextArea } from './create-order';
@@ -19,7 +18,6 @@ const fetcher=url=>axios.get(url).then(res=>res.data);
 
 const ClientOrder=()=>{
 
-    const [loggedIn, setLoggedIn]=useState(true);
     const [order, setOrder]=useState();
     const [daysToDeadline, setDaysToDeadline]=useState(0);
     const [warning, setWarning]=useState({
@@ -54,11 +52,11 @@ const ClientOrder=()=>{
             setDaysToDeadline(days);
         }
 
-        checkToken().then(()=>{
-            setLoggedIn(true)
-        }).catch(()=>{
-            setLoggedIn(false)
-        });
+        // checkToken().then(()=>{
+        //     setLoggedIn(true)
+        // }).catch(()=>{
+        //     setLoggedIn(false)
+        // });
       
     },[data]);
 

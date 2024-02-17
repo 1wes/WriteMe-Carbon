@@ -5,7 +5,6 @@ import DashboardNavbar from './dash-nav';
 import useSWR from 'swr';
 import axios from '../utils/axios';
 import { useNavigate, Link } from 'react-router-dom';
-import checkToken from '../utils/check-token';
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
 import { ImCancelCircle } from 'react-icons/im';
@@ -16,7 +15,6 @@ const fetcher=url=>axios.get(url).then(res=>res.data);
 const Admin=()=>{
 
     const [adminName, setAdminName]=useState('');
-    const [loggedIn, setLoggedIn]=useState(true);
     const [totalOrders, settotalOrders]=useState(0);
     const [activeOrders, setActiveOrders]=useState(0);
     const [completedOrders, setCompletedOrders]=useState(0);
@@ -54,11 +52,11 @@ const Admin=()=>{
             setAllOrders(currentOrders);
         }
 
-        checkToken().then(()=>{
-            setLoggedIn(true)
-        }).catch(()=>{
-            setLoggedIn(false)
-        })
+        // checkToken().then(()=>{
+        //     setLoggedIn(true)
+        // }).catch(()=>{
+        //     setLoggedIn(false)
+        // })
 
     },[data, currentPage, ordersPerPage]);
 
@@ -149,7 +147,7 @@ const Admin=()=>{
         setAllOrders(data.allOrders)
     }
 
-    !loggedIn && navigate("/login");
+    // !loggedIn && navigate("/login");
 
     let name;
     let lastIndex=currentPage*ordersPerPage;
