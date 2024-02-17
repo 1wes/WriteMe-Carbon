@@ -282,7 +282,7 @@ const Dashboard=()=>{
 
     const [state, dispatch]=useReducer(reducer, initialState);
 
-    const navigate=useNavigate();
+    // const navigate=useNavigate();
 
     var {data}=useSWR(`/api/orders/all`, fetcher);
 
@@ -333,7 +333,7 @@ const Dashboard=()=>{
         })
     }
 
-    !loggedIn && navigate("/login");
+    // !loggedIn && navigate("/login");
 
     let DeadlineErrorAlert;
 
