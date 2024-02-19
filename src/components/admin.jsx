@@ -9,6 +9,7 @@ import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
 import { ImCancelCircle } from 'react-icons/im';
 import PageNumbers from './paginate';
+import useTokenChecker from '../hooks/useTokenChecker';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -27,7 +28,8 @@ const Admin=()=>{
     const [sortQuery, setSortQuery]=useState('');
     const [filterMessage, setFilterMessage]=useState("");
 
-    const navigate=useNavigate();
+    // const navigate=useNavigate();
+    useTokenChecker()
 
     const {data}=useSWR(`/api/orders/admin`, fetcher);
 
