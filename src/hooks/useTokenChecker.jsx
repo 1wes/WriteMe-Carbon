@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import AuthContext from '../context/Auth';
 
@@ -10,12 +10,21 @@ const useTokenChecker= () => {
 
     const navigate = useNavigate();
 
-    if (!loginStatus) {
+    const location = useLocation().pathname;
+
+    if (location === "/login") {
+
+        if (loginStatus) {
+            navigate("/home")
+        }
         
-        navigate("/login")
+    } else {
+        if (!loginStatus) {
+        
+            navigate("/login")
+        }
     }
 
     return loginStatus;
-
 }
 export default useTokenChecker
