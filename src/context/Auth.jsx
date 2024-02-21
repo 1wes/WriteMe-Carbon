@@ -13,9 +13,9 @@ const AuthContextProvider = ({children}) => {
     
     const [loggedIn, setLoggedIn] = useState(false);
 
-    useEffect(() => {
+    const { data, error } = useSWR(`/api/user/check-token`, fetcher);
 
-        const { data, error } = useSWR(`/api/user/check-token`, fetcher);
+    useEffect(() => {
 
         if (data) {
             setLoggedIn(true)
@@ -23,7 +23,7 @@ const AuthContextProvider = ({children}) => {
             setLoggedIn(false);
         }
         
-    },[])
+    },[data, error])
 
     return (
         <AuthContext.Provider value={{loggedIn,setLoggedIn}} >
