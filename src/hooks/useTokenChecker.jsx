@@ -1,18 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
 
-import useSWR from "swr";
+import { useNavigate } from 'react-router-dom';
 
-import axiosInstance from "../utils/axios";
-
-const fetcher = url => axiosInstance.get(url).then(response => response.data);
+import AuthContext from '../context/Auth';
 
 const useTokenChecker= () => {
 
-    const { data, error } = useSWR(`/api/user/check-token`, fetcher);
-    
-    useEffect(() => {
+    const loginStatus = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
+    if (!loginStatus) {
         
-    }, []);
+        navigate("/login")
+    }
+
+    return loginStatus;
+
 }
 export default useTokenChecker
