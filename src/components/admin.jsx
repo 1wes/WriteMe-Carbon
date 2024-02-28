@@ -1,15 +1,16 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+
 import './admin.css';
 import { DashSectionHeaders, Metrics, OrdersTable, Search, GenericCtaButton } from './dashboard';
 import DashboardNavbar from './dash-nav';
-import useSWR from 'swr';
 import axios from '../utils/axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
 import { ImCancelCircle } from 'react-icons/im';
 import PageNumbers from './paginate';
-import useTokenChecker from '../hooks/useTokenChecker';
+
+import useSWR from 'swr';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -27,9 +28,6 @@ const Admin=()=>{
     const [statusQuery, setStatusQuery]=useState('');
     const [sortQuery, setSortQuery]=useState('');
     const [filterMessage, setFilterMessage]=useState("");
-
-    // const navigate=useNavigate();
-    useTokenChecker()
 
     const {data}=useSWR(`/api/orders/admin`, fetcher);
 
@@ -54,23 +52,7 @@ const Admin=()=>{
             setAllOrders(currentOrders);
         }
 
-        // checkToken().then(()=>{
-        //     setLoggedIn(true)
-        // }).catch(()=>{
-        //     setLoggedIn(false)
-        // })
-
     },[data, currentPage, ordersPerPage]);
-
-    const logoutUser=()=>{
-
-        axios.get("/api/user/logout").then(()=>{
-
-            navigate("/login")
-        }).catch(()=>{
-            setLoggedIn(false);
-        })
-    }
 
     const handleSearch=(e)=>{
 
@@ -149,8 +131,6 @@ const Admin=()=>{
         setAllOrders(data.allOrders)
     }
 
-    // !loggedIn && navigate("/login");
-
     let name;
     let lastIndex=currentPage*ordersPerPage;
     let firstIndex=lastIndex-ordersPerPage;
@@ -206,7 +186,7 @@ const Admin=()=>{
     return(
         <Fragment>
             <section className='section' id='admin-dashboard'>
-                <DashboardNavbar userName={name} onClick={logoutUser} />
+                <DashboardNavbar userName={name}/>
                 <div className='dashboard' id='admin-dashboard'>
                     <section className='overview'>
                         <DashSectionHeaders heading={`Overview`}/>
