@@ -1,6 +1,6 @@
 import React , { Fragment, useState, useEffect } from 'react';
 
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 import { DashSectionHeaders } from './dashboard';
 import DashboardNavbar from './dash-nav';
@@ -16,31 +16,30 @@ import { MdClose } from 'react-icons/md';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
-const ClientOrder=()=>{
+const ClientOrder = () => {
 
-    const [order, setOrder]=useState();
-    const [daysToDeadline, setDaysToDeadline]=useState(0);
-    const [warning, setWarning]=useState({
-        display:false,
-        error:false,
-        message:""
-    });
-    const [showUploadForm, setShowUploadForm]=useState({
-        show:false
-    });
-    const [uploadedOrder, setUploadedOrder] = useState({
-      files: [],
-      additionalInfo:"",
-    })
-    const [modal, setModal] = useState({
-      show:false
-    })
+  const [order, setOrder] = useState();
+  const [daysToDeadline, setDaysToDeadline] = useState(0);
+  const [warning, setWarning] = useState({
+    display: false,
+    error: false,
+    message: ""   
+  });  
+  const [showUploadForm, setShowUploadForm] = useState({
+    show: false
+  });
+  const [uploadedOrder, setUploadedOrder] = useState({
+    files: [],
+    additionalInfo: "",  
+  })
+  const [modal, setModal] = useState({
+    show: false
+  })
 
-    const id=useLocation().pathname.split("Order-")[1];
-
-    const navigate=useNavigate();
-
-    const {data}=useSWR(`/api/orders/order/${id}`, fetcher);
+  const id = useLocation().pathname.split("Order-")[1];
+  
+  const { data } = useSWR(`/api/orders/order/${id}`, fetcher);
+  
 
     useEffect(()=>{
         if(data){
@@ -51,24 +50,8 @@ const ClientOrder=()=>{
 
             setDaysToDeadline(days);
         }
-
-        // checkToken().then(()=>{
-        //     setLoggedIn(true)
-        // }).catch(()=>{
-        //     setLoggedIn(false)
-        // });
       
     },[data]);
-
-    const logOutUser=()=>{
-
-        axios.get("/api/user/logout").then(()=>{
-
-            navigate("/login")
-        }).catch(()=>{
-            setLoggedIn(false);
-        })
-    }
 
     const submitFinishedWork=()=>{
 
@@ -176,8 +159,6 @@ const ClientOrder=()=>{
             })
         }
     }
-
-    !loggedIn && navigate("/login");
 
     if(order){
 
@@ -305,7 +286,6 @@ const ClientOrder=()=>{
         <section className="section">
           <DashboardNavbar
             userName={order ? order.username : ""}
-            onClick={logOutUser}
           />
           <div className="order">
             <section className="order-wrapper">
