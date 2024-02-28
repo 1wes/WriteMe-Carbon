@@ -17,16 +17,16 @@ const AuthContextProvider = ({children}) => {
 
     useEffect(() => {
 
-        if (data) {
+        if (data !==undefined && error===undefined) {
             setLoggedIn(true)
-        } else if (error){
+        } else {
             setLoggedIn(false);
         }
         
-    },[data, error])
+    },[data])
 
     return (
-        <AuthContext.Provider value={{loggedIn,setLoggedIn}} >
+        <AuthContext.Provider value={{ loggedIn, setLoggedIn }} >
             {children}
         </AuthContext.Provider>
     )
