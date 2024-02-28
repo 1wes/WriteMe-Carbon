@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { Logo } from './navbar';
+import useTokenChecker from '../hooks/useTokenChecker';
 
 import './dash-nav.css';
 
@@ -10,7 +11,11 @@ import { MdOutlineManageAccounts } from 'react-icons/md';
 import { IoNotificationsOutline } from 'react-icons/io5';
 import { TbLogout } from 'react-icons/tb';
 
-const DashboardNavbar=({userName, onClick})=>{
+import axiosInstance from '../utils/axios';
+
+const DashboardNavbar = ({ userName }) => {
+    
+    const { setLoggedIn } = useTokenChecker();
 
     const showDropdownMenu=()=>{
 
@@ -19,6 +24,16 @@ const DashboardNavbar=({userName, onClick})=>{
 
         icon.classList.toggle("rotate-icon");
         dropdownMenu.classList.toggle("show-profile-dropdown")
+    }
+
+    const logUserOut = () => {
+        
+        axiosInstance.get("/api/user/logout").then(() => {
+    
+            setLoggedIn(false);
+        }).catch(() => {
+            setLoggedIn(false);
+        });
     }
 
     return(
@@ -42,7 +57,7 @@ const DashboardNavbar=({userName, onClick})=>{
                             <ul>
                                 <li className='dropdown-item'><span className='item-icon'><i><MdOutlineManageAccounts/></i></span> Account settings</li>
                                 <li className='dropdown-item'><span className='item-icon' ><i><IoNotificationsOutline/></i></span>Notifications</li>
-                                <li className='dropdown-item' onClick={onClick}><span className='item-icon'><i><TbLogout/></i></span> Sign out</li>
+                                <li className='dropdown-item' onClick={logUserOut}><span className='item-icon'><i><TbLogout/></i></span> Sign out</li>
                             </ul>
                         </div>
                     </ul>
