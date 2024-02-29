@@ -1,14 +1,23 @@
-import React, {useState, useLayoutEffect, useEffect} from "react";
+import React, { useState, useLayoutEffect, useEffect } from "react";
+
 import './login.css';
+
 import Footer from './footer';
 import {Logo} from './navbar';
 import { FormAlerts, Error } from "./create-order";
-import { Link, useNavigate } from "react-router-dom";
 import { CtaButton } from "./services";
+import useTokenChecker from "../hooks/useTokenChecker";
+
+import { Link, useNavigate } from "react-router-dom";
+
 import axios from "../utils/axios";
 
-const LoginForm=()=>{
+const LoginForm = () => {
 
+    useTokenChecker(); 
+
+    const { setLoggedIn } = useTokenChecker();
+    
     const [email, setEmail]=useState('');
     const [password, setPassword]=useState('');
     const [error, setError]=useState(false);
@@ -35,11 +44,13 @@ const LoginForm=()=>{
         setEmail('');
         setPassword('');
 
-        axios.post("/api/user/login", loginInfo).then(res=>{
-
+        axios.post("/api/user/login", loginInfo).then(res => {
+            
             setError(false);
 
-            if(res.data.code==200){
+            if (res.data.code == 200) {
+                
+                setLoggedIn(true);
 
                 const role=res.data.role;
 
@@ -111,8 +122,8 @@ const LoginForm=()=>{
     )
 }
 
-const Login=()=>{
-
+const Login = () => {
+    
     useLayoutEffect(()=>{
 
         window.scrollTo(0, 0);
