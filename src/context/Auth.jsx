@@ -1,36 +1,21 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext } from 'react';
 
-import useSWR from 'swr';
-
-
-import axiosInstance from "../utils/axios";
-
-const fetcher = url => axiosInstance.get(url).then(response => response.data);
+import useTokenStatus from '../hooks/useTokenStatus';
 
 const AuthContext = createContext();
 
-const AuthContextProvider = ({children}) => {
-    
-    const [loggedIn, setLoggedIn] = useState(false);
+const AuthContextProvider = ({ children }) => {
 
-    const { data, error } = useSWR(`/api/user/check-token`, fetcher);
-
-    useEffect(() => {
-
-        if (data !==undefined && error===undefined) {
-            setLoggedIn(true)
-        } else {
-            setLoggedIn(false);
-        }
-        
-    },[data])
+    const { loggedIn, setLoggedIn } = useTokenStatus();
 
     return (
+        
         <AuthContext.Provider value={{ loggedIn, setLoggedIn }} >
             {children}
         </AuthContext.Provider>
     )
 }
+
 export {
     AuthContext
 }
