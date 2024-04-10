@@ -16,6 +16,12 @@ const useTokenStatus = () => {
 
     const isTokenValid = data ? true : false;
 
+    let userRole;
+
+    if (data) {
+        userRole=data.role
+    }
+
     useEffect(() => {
 
         if (isTokenValid) {
@@ -25,7 +31,7 @@ const useTokenStatus = () => {
         }
     },[data])
 
-    return { isTokenValid }
+    return { isTokenValid, userRole }
 }
 
 export default useTokenStatus;
