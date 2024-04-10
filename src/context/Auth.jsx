@@ -6,17 +6,19 @@ const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
 
-    const { isTokenValid } = useTokenStatus();
+    const { isTokenValid, userRole } = useTokenStatus();
 
     const [loggedIn, setLoggedIn] = useState(isTokenValid);
+    const [role, setRole] = useState();
 
     useEffect(() => {
-        setLoggedIn(isTokenValid)
-    }, [isTokenValid]);
+        setLoggedIn(isTokenValid);
+        setRole(userRole);
+    }, [isTokenValid, userRole]);
 
     return (
         
-        <AuthContext.Provider value={{ loggedIn, setLoggedIn }} >
+        <AuthContext.Provider value={{ loggedIn, setLoggedIn, role, setRole }}>
             {children}
         </AuthContext.Provider>
     )
