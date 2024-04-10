@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import axiosInstance from "../utils/axios";
 
@@ -9,13 +10,26 @@ const fetcher = url => axiosInstance.get(url).then(response => response.data);
 
 const useTokenStatus = () => {
 
+    const navigate = useNavigate();
+
     const { data, error } = useSWR(`/api/user/check-token`, fetcher);
 
-    const isTokenValid = data ? true : false;
-    
-    const [loggedIn, setLoggedIn] = useState(isTokenValid);
+    if (error) {
+        console.log(error);
+    }
 
-    return {loggedIn, setLoggedIn}
+    const isTokenValid = data ? true : false;
+
+    useEffect(() => {
+
+        if (isTokenValid) {
+            // remain in current location
+        } else {
+            navigate("/login")
+        }
+    },[data])
+
+    return { isTokenValid }
 }
 
 export default useTokenStatus;
