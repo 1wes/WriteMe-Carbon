@@ -1,39 +1,27 @@
 import React, { useContext, useEffect } from "react";
 
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../context/Auth';
 
-const useTokenChecker= (role) => {
+const useTokenChecker = () => {
 
-    const {loggedIn, setLoggedIn} = useContext(AuthContext);
+    const { loggedIn, setLoggedIn, role, setRole } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
-    const currentLocation = useLocation().pathname;
-
     useEffect(() => {
 
-        if (currentLocation === "/login") {
-            // console.log("at login page")
-            if (loggedIn) {
-                navigate("/admin-dashboard");
-                // navigate to appropriate page based on user role
-                // role==='user'?navigate("/user-dashboard"):navigate("/admin-dashboard");
-            } else {
-                // stay in login page is token is invalid
-            }
+        if (loggedIn) {
+
+            role === 'user' ? navigate("/user-dashboard") : navigate("/admin-dashboard");
         } else {
-            if (loggedIn) {
-                // console.log(currentLocation)
-                // stay in current page if token is valid
-            } else {
-                navigate("/login")
-            }
+
+            navigate("/login")
         }
 
-    }, [currentLocation, loggedIn])
+    }, [loggedIn])
 
-    return {loggedIn, setLoggedIn};
+    return {loggedIn, setLoggedIn, role, setRole};
 }
-export default useTokenChecker
+export default useTokenChecker;
