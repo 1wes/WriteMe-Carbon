@@ -14,10 +14,6 @@ const useTokenStatus = () => {
 
     const { data, error } = useSWR(`/api/user/check-token`, fetcher);
 
-    if (error) {
-        console.log(error);
-    }
-
     const isTokenValid = data ? true : false;
 
     useEffect(() => {
