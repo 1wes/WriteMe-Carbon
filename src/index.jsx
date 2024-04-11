@@ -18,7 +18,7 @@ import AuthContextProvider from './context/Auth';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <HashRouter future={{v7_startTransition:true}} >
-      <AuthContextProvider  hContextProvider>
+      <AuthContextProvider>
         <Routes>
           <Route path='/' element={<App/>}></Route>
           <Route path='/about' element={<About/>}></Route>
