@@ -2,7 +2,6 @@ import React, {Fragment, useState, useEffect, useReducer} from 'react';
 import './dashboard.css';
 import useSWR from 'swr';
 import axios from '../utils/axios';
-import { useNavigate } from 'react-router-dom';
 import SectionHeader from './heading';
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
@@ -255,7 +254,6 @@ const Dashboard=()=>{
     const [completedOrders, setCompletedOrders]=useState();
     const [cancelledOrders, setCancelledOrders]=useState();
     const [orders, setOrders]=useState();
-    // const [loggedIn, setloggedIn]=useState(true);
     const [error, setError]=useState(false);
     const [DeadlineErrorMessage, setDeadlineErrorMessage]=useState('');
     const [searchQuery, setSearchQuery]=useState("");
@@ -281,8 +279,6 @@ const Dashboard=()=>{
     })
 
     const [state, dispatch]=useReducer(reducer, initialState);
-
-    // const navigate=useNavigate();
 
     var {data}=useSWR(`/api/orders/all`, fetcher);
 
@@ -316,24 +312,11 @@ const Dashboard=()=>{
 
     },[userInfo, currentPage, ordersPerPage, revise]);
 
-    // const logOutUser=()=>{
-
-    //     axios.get("/api/user/logout").then(()=>{
-
-    //         navigate("/login");
-
-    //     }).catch(()=>{
-    //         setloggedIn(false);
-    //     });
-    // }
-
     const displayForm=()=>{
         setSubmissionForm({
             show: !submissionForm.show
         })
     }
-
-    // !loggedIn && navigate("/login");
 
     let DeadlineErrorAlert;
 
@@ -830,7 +813,7 @@ const Dashboard=()=>{
     return(
         <React.Fragment>
             <section className='section' id='dashboard-section'>
-                <DashboardNavbar userName={username} onClick={logOutUser}/>
+                <DashboardNavbar userName={username} />
                 <div className='dashboard'>
                     <section className='overview'>
                         <DashSectionHeaders heading={`Overview`}/>
