@@ -1,55 +1,25 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
 
-import axiosInstance from "../utils/axios";
+import { useNavigate, useLocation } from 'react-router-dom';
 
-import useSWR from 'swr';
+import { useAuth } from "../context/Auth";
 
-
-const fetcher = url => axiosInstance.get(url).then(response => response.data);
 
 const useTokenStatus = () => {
 
-    const [isTokenValid, setIsTokenValid] = useState(false);
-    const [userRole, setUserRole] = useState(null);
+    const navigate = useNavigate(); 
+    const currentLocation = useLocation().pathname;
 
-    const navigate = useNavigate();
+    const { loggedIn } = useAuth();
 
-    // rertrieve current validity on component mount
     useEffect(() => {
-        
-        const storedValidity = localStorage.getItem("tokenValidity");
 
-        if (storedValidity) {
-            setIstokenValid(JSON.parse(storedValidity));
-        }
-    }, []);
-
-    const { data, error } = useSWR(`/api/user/check-token`, fetcher);
-    
-    //update the validity with latest from server 
-    useEffect(() => {
-        
-        if (data) {
-            setIsTokenValid(true);
-            setUserRole(data.role);
-            localStorage.setItem('tokenValid', true);
+        if (loggedIn) {
+            navigate(currentLocation)
         } else {
-            setIsTokenValid(false);
-            setUserRole(null);
-            localStorage.setItem('tokenValid', false);
+            navigate("/login")
         }
-    }, [data]);
-
-    // log user out if token is invalid
-    useEffect(() => {
-
-        if (!isTokenValid) {
-            navigate("/login");
-        }
-    }, [isTokenValid, navigate]);
-
-    return { isTokenValid, userRole }
+    }, [currentLocation]);
 }
 
 export default useTokenStatus;
