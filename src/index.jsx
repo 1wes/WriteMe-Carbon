@@ -28,7 +28,7 @@ root.render(
           <Route path='/user-dashboard' element={<AuthContextProvider><Dashboard/></AuthContextProvider>} ></Route>
           <Route path='/forgot-password' element={<ForgotPassword/>} ></Route>
           <Route path='/admin-dashboard' element={<AuthContextProvider><Admin/></AuthContextProvider>} ></Route>
-          <Route path='/admin/:orderId' element={<ClientOrder/>} ></Route>
+          <Route path='/admin/:orderId' element={<AuthContextProvider><ClientOrder/></AuthContextProvider>} ></Route>
           <Route path='*' element={<NotFound />} ></Route>
         </Routes>
     </HashRouter>
