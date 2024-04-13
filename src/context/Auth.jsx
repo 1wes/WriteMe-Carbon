@@ -1,30 +1,70 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState, useContext } from 'react';
 
-import useTokenStatus from '../hooks/useTokenStatus';
+import axiosInstance from '../utils/axios';
+
+import useSWR from 'swr';
+
+import { useNavigate } from 'react-router-dom';
+
+
+const fetcher = url => axiosInstance.get(url).then(response => response.data);
 
 const AuthContext = createContext();
 
+const useAuth = () => {
+    
+    return useContext(AuthContext);
+}
+
+
 const AuthContextProvider = ({ children }) => {
 
-    const { isTokenValid, userRole } = useTokenStatus();
+    const { data, error, isLoading } = useSWR(`/api/user/check-token`, fetcher);
 
+    const isTokenValid = data && data.code === 200 ? true : false;
+
+    const navigate = useNavigate();
+    
     const [loggedIn, setLoggedIn] = useState(isTokenValid);
     const [role, setRole] = useState();
 
     useEffect(() => {
-        setLoggedIn(isTokenValid);
-        setRole(userRole);
-    }, [isTokenValid, userRole]);
+        if (error) {
+            setLoggedIn(false);
+        }
+
+        if (data) {
+            setRole(data.role);
+        }
+    }, [error, data, isLoading]);
+
+    useEffect(() => {
+        
+        if (loggedIn) {
+        
+            handleLogin(role)
+        } else {
+            navigate("/login")
+        }
+    }, [loggedIn, role])
+
+    const handleLogin = (UserRole) => {
+            
+        UserRole === 'user' ? navigate("/user-dashboard") : navigate("/admin-dashboard");
+    }
+
+    console.log(role, loggedIn)
 
     return (
         
-        <AuthContext.Provider value={{ loggedIn, setLoggedIn, role, setRole }}>
+        <AuthContext.Provider value={{ loggedIn, setLoggedIn, handleLogin, isTokenValid,isLoading, error, role, setRole}}>
             {children}
         </AuthContext.Provider>
     )
 }
 
 export {
-    AuthContext
+    useAuth
 }
+
 export default AuthContextProvider;
