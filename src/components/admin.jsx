@@ -14,8 +14,8 @@ import useSWR from 'swr';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
-const Admin=()=>{
-
+const Admin = () => {
+    
     const [adminName, setAdminName]=useState('');
     const [totalOrders, settotalOrders]=useState(0);
     const [activeOrders, setActiveOrders]=useState(0);
@@ -31,7 +31,8 @@ const Admin=()=>{
 
     const {data}=useSWR(`/api/orders/admin`, fetcher);
 
-    useEffect(()=>{
+    useEffect(() => {
+        
         if(data){
 
             let { username, totalOrders, allActiveOrders, allCancelledOrders, allCompletedOrders, allOrders }=data;
