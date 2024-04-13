@@ -1,27 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../context/Auth";
 
-import { AuthContext } from '../context/Auth';
 
-const useTokenChecker = () => {
+const useLoginStatus = () => {
 
-    const { loggedIn, setLoggedIn, role, setRole } = useContext(AuthContext);
-
-    const navigate = useNavigate();
+    const { loggedIn, handleLogin, role } = useAuth();
 
     useEffect(() => {
-
+        
         if (loggedIn) {
-
-            role === 'user' ? navigate("/user-dashboard") : navigate("/admin-dashboard");
-        } else {
-
-            navigate("/login")
+            handleLogin(role)
         }
+    },[])
 
-    }, [loggedIn])
-
-    return {loggedIn, setLoggedIn, role, setRole};
 }
-export default useTokenChecker;
+
+export default useLoginStatus;
