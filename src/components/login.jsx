@@ -6,23 +6,22 @@ import Footer from './footer';
 import {Logo} from './navbar';
 import { FormAlerts, Error } from "./create-order";
 import { CtaButton } from "./services";
-import useTokenChecker from "../hooks/useTokenChecker";
+import { useAuth } from "../context/Auth";
+import useLoginStatus from "../hooks/useLogInStatus";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import axios from "../utils/axios";
+import axiosInstance from "../utils/axios";
 
 const LoginForm = () => {
 
-    useTokenChecker(); 
-
-    const { setLoggedIn } = useTokenChecker();
+    useLoginStatus();
     
+    const { setLoggedIn, setRole } = useAuth();
+
     const [email, setEmail]=useState('');
     const [password, setPassword]=useState('');
     const [error, setError]=useState(false);
-
-    const navigate=useNavigate();
 
     const handleEmailChange=(e)=>{
         setEmail(e.target.value)
@@ -44,21 +43,18 @@ const LoginForm = () => {
         setEmail('');
         setPassword('');
 
-        axios.post("/api/user/login", loginInfo).then(res => {
+        axiosInstance.post("/api/user/login", loginInfo).then(res => {
             
             setError(false);
 
             if (res.data.code == 200) {
-                
                 setLoggedIn(true);
-
-                const role=res.data.role;
-
-                role==='user'?navigate("/user-dashboard"):navigate("/admin-dashboard");
+                setRole(res.data.role)
             }
-        }).catch(()=>{
+        }).catch((err)=>{
 
             setError(true);
+            setLoggedIn(false);
         })
     }
 
