@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 
 import { Logo } from './navbar';
-import useTokenChecker from '../hooks/useTokenChecker';
+import axiosInstance from '../utils/axios';
+import { useAuth } from '../context/Auth';
+import useTokenStatus from '../hooks/useTokenStatus';
 
 import './dash-nav.css';
 
@@ -11,11 +13,12 @@ import { MdOutlineManageAccounts } from 'react-icons/md';
 import { IoNotificationsOutline } from 'react-icons/io5';
 import { TbLogout } from 'react-icons/tb';
 
-import axiosInstance from '../utils/axios';
 
 const DashboardNavbar = ({ userName }) => {
-    
-    const { setLoggedIn } = useTokenChecker();
+
+    useTokenStatus();
+
+    const { setLoggedIn, setRole } = useAuth();
 
     const showDropdownMenu=()=>{
 
@@ -29,11 +32,13 @@ const DashboardNavbar = ({ userName }) => {
     const logUserOut = () => {
         
         axiosInstance.get("/api/user/logout").then(() => {
-    
+            setRole(null)
             setLoggedIn(false);
         }).catch(() => {
+            setRole(null);
             setLoggedIn(false);
         });
+
     }
 
     return(
