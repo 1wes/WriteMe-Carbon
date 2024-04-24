@@ -1,10 +1,10 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
+import React, { useState, useLayoutEffect, Fragment } from "react";
 
 import './login.css';
 
 import Footer from './footer';
-import {Logo} from './navbar';
-import { FormAlerts, Error } from "./create-order";
+import { Logo } from './navbar';
+import { FormAlerts } from "./create-order";
 import { CtaButton } from "./services";
 import { useAuth } from "../context/Auth";
 import useLoginStatus from "../hooks/useLogInStatus";
@@ -12,6 +12,9 @@ import useLoginStatus from "../hooks/useLogInStatus";
 import { Link } from "react-router-dom";
 
 import axiosInstance from "../utils/axios";
+
+import { IoIosCloseCircle } from "react-icons/io";
+
 
 const LoginForm = () => {
 
@@ -51,28 +54,11 @@ const LoginForm = () => {
                 setLoggedIn(true);
                 setRole(res.data.role)
             }
-        }).catch((err)=>{
+        }).catch(()=>{
 
             setError(true);
-            setLoggedIn(false);
         })
     }
-
-    const loginError=error?(
-        <Error id={`login-error`} errorMessage={`Incorrect email or password. Please check and try again.`} />
-    ):"";
-
-    useEffect(()=>{
-        if(error){
-            const loginForm=document.getElementById("user-login-form");
-    
-            loginForm.classList.add("login-animation")
-        }else{
-            const loginForm=document.getElementById("user-login-form");
-    
-            loginForm.classList.remove("login-animation")
-        }
-    },[error]);
 
     const removeError=()=>{
 
@@ -89,7 +75,7 @@ const LoginForm = () => {
                         </div>
                     </div>
                 </div>
-                {loginError}
+                {error && <LoginError/>}
                 <div className="input-group"> 
                     <label>Email</label>
                     <div>
@@ -134,6 +120,26 @@ const Login = () => {
             </section>
             <Footer/>
         </React.Fragment>
+    )
+}
+
+const LoginError = () => {
+    
+    return (
+        <Fragment>
+            <div className="loginError">
+                <div className="error-notification">
+                    <span className="error-icon">
+                        <i>
+                            <IoIosCloseCircle/>
+                        </i>
+                    </span>
+                    <span>
+                        Failed to log in. Check email or password !
+                    </span>
+                </div>
+            </div>
+        </Fragment>
     )
 }
 export default Login;
