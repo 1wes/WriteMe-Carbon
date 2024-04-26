@@ -4,7 +4,7 @@ import axiosInstance from '../utils/axios';
 
 import useSWR from 'swr';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 const fetcher = url => axiosInstance.get(url).then(response => response.data);
@@ -21,11 +21,22 @@ const AuthContextProvider = ({ children }) => {
 
     const { data, error, isLoading } = useSWR(`/api/user/check-token`, fetcher);
 
-    const isTokenValid = data && data.code === 200 ? true : false;
+    let isTokenValid;
+
+    const currentLocation = useLocation().pathname;
+
+    if (data) {
+        
+        if (data.code === 200) {
+            isTokenValid = true;
+        } else {
+            isTokenValid = false;
+        }
+    }
 
     const navigate = useNavigate();
     
-    const [loggedIn, setLoggedIn] = useState(isTokenValid);
+    const [loggedIn, setLoggedIn] = useState();
     const [role, setRole] = useState();
 
     useEffect(() => {
@@ -34,26 +45,29 @@ const AuthContextProvider = ({ children }) => {
         }
 
         if (data) {
+            setLoggedIn(isTokenValid);
             setRole(data.role);
         }
-    }, [error, data, isLoading]);
+    }, [error, data]);
 
     useEffect(() => {
-        
+
         if (loggedIn) {
-        
-            handleLogin(role)
+
+                if (currentLocation === "/login") {
+                    handleLogin(role)
+                } else {
+                    navigate(currentLocation);
+                }
         } else {
             navigate("/login")
-        }
-    }, [loggedIn, role])
+        }    
+    }, [loggedIn, role, currentLocation]);
 
     const handleLogin = (UserRole) => {
             
         UserRole === 'user' ? navigate("/user-dashboard") : navigate("/admin-dashboard");
     }
-
-    console.log(role, loggedIn)
 
     return (
         
