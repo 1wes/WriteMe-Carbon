@@ -75,6 +75,7 @@ ul{
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    font-size: 18px;
 }
 
 .overview-metrics .metric-details:first-child .metric-icon i{
@@ -108,8 +109,9 @@ ul{
 
 .add-order{
     display: flex;
-    justify-content: flex-start;
-    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
 }
 
 .orders-wrapper{
@@ -119,23 +121,21 @@ ul{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.btn{
-    width: 100%;
-}
-
 .add-button{
-    width: 50%;
     padding: 15px;
     color: brown;
     border: none;
     font-size: 14px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     color: white;
-    font-weight: 700;
     background-image: linear-gradient(to right, rgb(161, 114, 114), rgb(165, 78, 78), rgb(165, 56, 56));
-    border-radius: 5px;
+    border-radius: 50%; 
     transition: all ease 1s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 50px;
+    height: 50px;
 }
 
 .add-button:hover{
@@ -363,10 +363,6 @@ label span:hover{
 
     .metric-icon{
         align-items: baseline;
-    }
-
-    .add-button{
-        width: 100%;
     }
 
     .search-section{
