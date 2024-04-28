@@ -2,6 +2,7 @@
     border-bottom: 1px solid rgba(165, 42, 42, 0.1);
     display: flex;
     align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dash-nav-content{
@@ -80,6 +81,7 @@
     z-index: 1000;
     display: none;
     transition: all ease 1s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .show-profile-dropdown{
