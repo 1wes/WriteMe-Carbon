@@ -172,7 +172,6 @@ const NewOrderButton=({onClick})=>{
     return (
         <Fragment>
             <button type='button' className='add-button' onClick={onClick} >
-                <span>Create New Order</span>
                 <span className='button-icon'><i><FiPlus/></i></span>
             </button>
         </Fragment>
@@ -828,6 +827,7 @@ const Dashboard=()=>{
                         <DashSectionHeaders heading={`New Order`} />
                         <div className="new-order">
                             <div className='add-order'>
+                                <div>Create New Order</div>
                                 <div className='btn'>
                                     <NewOrderButton onClick={displayForm} />
                                 </div>
