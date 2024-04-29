@@ -51,7 +51,9 @@ const DashboardNavbar = ({ userName }) => {
                     <ul className='profile-menu'>
                         <li className='profile-section' onClick={showDropdownMenu}>
                             <span className='user-profile-icon'>
-                                <i><BiUser/></i>
+                                <div className='user-pfp'>
+                                    <img   alt='profile-picture' />
+                                </div>
                                 <span className='username'>{userName}</span>
                             </span>
                             <span className='dropdown-icon' >
