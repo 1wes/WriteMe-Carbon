@@ -34,6 +34,16 @@
     display: block;
 }
 
+.user-pfp{
+    padding: 10px;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    margin: 0 10px 0 0;
+    outline: 1px solid rgba(168, 65, 65, 0.2);
+    outline-offset: 1px;
+}
+
 .rotate-icon{
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
@@ -73,7 +83,7 @@
 
 .profile-dropdown{
     position: absolute;
-    top: 43px;
+    top: 50px;
     width: 100%;
     border-radius: 5px;
     outline: 1px solid rgba(165, 42, 42, 0.1);
