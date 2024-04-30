@@ -74,18 +74,16 @@
     align-items: center;
 }
 
-.user-profile-icon i{
-    margin-right: 5px;
-    margin-top: 3px;
-}
-
 .username{
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
+    color: brown;
+    text-transform:uppercase;
 }
 
 #down-icon{
-    transform: all ease .5s
+    transform: all ease .5s;
+    color: brown;
 }
 
 .profile-dropdown{
