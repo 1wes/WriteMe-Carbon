@@ -38,6 +38,10 @@ const AuthContextProvider = ({ children }) => {
     
     const [loggedIn, setLoggedIn] = useState();
     const [role, setRole] = useState();
+    const [names, setNames] = useState({
+        firstName: '', 
+        lastName:''
+    })
 
     useEffect(() => {
         if (error) {
@@ -47,6 +51,10 @@ const AuthContextProvider = ({ children }) => {
         if (data) {
             setLoggedIn(isTokenValid);
             setRole(data.role);
+            setNames({
+                firstName: data.firstName,
+                lastName:data.lastName
+            })
         }
     }, [error, data]);
 
@@ -71,7 +79,7 @@ const AuthContextProvider = ({ children }) => {
 
     return (
         
-        <AuthContext.Provider value={{ loggedIn, setLoggedIn, handleLogin, isTokenValid,isLoading, role, setRole}}>
+        <AuthContext.Provider value={{ loggedIn, setLoggedIn, handleLogin, isTokenValid,isLoading, role, setRole, names, setNames}}>
             {children}
         </AuthContext.Provider>
     )
