@@ -4,7 +4,7 @@
     padding-bottom: 100px;
 }
 
-.order-details, .order-actions-wrapper{
+.order-details, .order-actions-wrapper, .cancel-order{
     border:1px solid rgba(165, 42, 42, 0.1);
     padding: 10px;
     border-radius: 5px;
@@ -140,7 +140,7 @@
     justify-content: space-between;
 }
 
-#cancel-order-btn, #mark-complete-btn, #upload-btn{
+#mark-complete-btn, #upload-btn{
     width: 100%;
     margin-top: -30px;
     border: none;
@@ -149,6 +149,8 @@
 #cancel-order-btn{
     color: rgb(253, 135, 137);
     outline: 1px solid rgba(248, 157, 159, 0.8);
+    border: none;
+    width: 50%;
 }
 
 #cancel-order-btn:hover{
@@ -277,6 +279,17 @@
     color: whitesmoke;
 }
 
+.cancel-warning h2{
+    color: red;
+    font-size: 14px;
+}
+
+.cancel-warning p{
+    color: rgba(255, 0, 0, 0.801);
+    font-size: 13px;
+    line-height: 20px;
+}
+
 @media only screen and (max-width:768px){
 
     .order{
@@ -309,6 +322,10 @@
 
     #send-to-client{
         margin-right: 0;
+        width: 100%;
+    }
+
+    #cancel-order-btn{
         width: 100%;
     }
 }
