@@ -328,8 +328,6 @@
     }
 
     #cancel-order-btn, #mark-complete-btn, #upload-btn{
-        width: 50%;
-        border: none;
         width: 100%;
     }
 }
