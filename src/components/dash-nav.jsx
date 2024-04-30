@@ -14,11 +14,11 @@ import { IoNotificationsOutline } from 'react-icons/io5';
 import { TbLogout } from 'react-icons/tb';
 
 
-const DashboardNavbar = ({ userName }) => {
+const DashboardNavbar = () => {
 
     useTokenStatus();
 
-    const { setLoggedIn, setRole } = useAuth();
+    const { setLoggedIn, setRole, names } = useAuth();
 
     const showDropdownMenu=()=>{
 
@@ -54,7 +54,7 @@ const DashboardNavbar = ({ userName }) => {
                                 <div className='user-pfp'>
                                     <img src={pfp}  alt='profile-picture' />
                                 </div>
-                                <span className='username'>{userName}</span>
+                                <span className='username'>{`${names.lastName} ${names.firstName.substring(0, 1)}.`}</span>
                             </span>
                             <span className='dropdown-icon' >
                                 <i><BsChevronDown id='down-icon' /></i>
