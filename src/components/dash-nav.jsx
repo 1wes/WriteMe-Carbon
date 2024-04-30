@@ -4,10 +4,10 @@ import { Logo } from './navbar';
 import axiosInstance from '../utils/axios';
 import { useAuth } from '../context/Auth';
 import useTokenStatus from '../hooks/useTokenStatus';
+import pfp from '../assets/pfp/dp.jpeg';
 
 import './dash-nav.css';
 
-import { BiUser } from 'react-icons/bi';
 import { BsChevronDown } from 'react-icons/bs';
 import { MdOutlineManageAccounts } from 'react-icons/md';
 import { IoNotificationsOutline } from 'react-icons/io5';
@@ -52,7 +52,7 @@ const DashboardNavbar = ({ userName }) => {
                         <li className='profile-section' onClick={showDropdownMenu}>
                             <span className='user-profile-icon'>
                                 <div className='user-pfp'>
-                                    <img   alt='profile-picture' />
+                                    <img src={pfp}  alt='profile-picture' />
                                 </div>
                                 <span className='username'>{userName}</span>
                             </span>
