@@ -133,16 +133,19 @@
     padding-top: 20px;
 }
 
-.buttons-group{
+.actions-group{
     display: flex;
-    gap:20px;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.action:first-child{
+    border-bottom:1px solid rgba(165, 42, 42, 0.1);
+    padding: 0 0 10px 0;
 }
 
 #mark-complete-btn, #upload-btn{
-    width: 100%;
-    margin-top: -30px;
+    width: 50%;
     border: none;
 }
 
@@ -151,6 +154,11 @@
     outline: 1px solid rgba(248, 157, 159, 0.8);
     border: none;
     width: 50%;
+}
+
+.action-description{
+    font-size: 13px;
+    line-height: 20px;
 }
 
 #cancel-order-btn:hover{
@@ -176,10 +184,6 @@
 
 #upload-btn:hover{
     background-color: rgb(18, 163, 45)
-}
-
-.admin-btn{
-    width: 32%;
 }
 
 #cta-warning{
@@ -279,6 +283,12 @@
     color: whitesmoke;
 }
 
+.action-heading{
+    margin: 0;
+    font-size: 14px;
+    margin: 0;
+}
+
 .cancel-warning h2{
     color: red;
     font-size: 14px;
@@ -306,14 +316,6 @@
 
     #instruction-details .order-value{
         line-height: 25px;
-    }
-
-    .buttons-group{
-        gap: 15px;
-    }
-
-    .admin-btn{
-        width: 100%;
     }
 
     #cta-warning{
