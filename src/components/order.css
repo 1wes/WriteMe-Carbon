@@ -168,26 +168,26 @@
 }
 
 #mark-complete-btn{
-    color: rgba(128, 128, 128);
-    background-color: rgba(128, 128, 128, 0.199);
+    border: 1px solid rgb(33,204,64);
+    color:rgb(33,204,64);
 }
 
 #mark-complete-btn:hover{
     color: white;
-    background-color: gray;
+    background-color:rgb(33,204,64)
 }
 
 #upload-btn{
     color: white;
-    background-color: rgb(33, 204, 64);
+    background-color: rgb(0,85,204)
 }
 
 #upload-btn:hover{
-    background-color: rgb(18, 163, 45)
+    background-color: rgb(0, 48, 116)
 }
 
 #cta-warning{
-    font-size: 14px;
+    font-size: 13px;
     padding: 10px;
     border-radius: 5px;
     text-align: center;
@@ -327,7 +327,9 @@
         width: 100%;
     }
 
-    #cancel-order-btn{
+    #cancel-order-btn, #mark-complete-btn, #upload-btn{
+        width: 50%;
+        border: none;
         width: 100%;
     }
 }
