@@ -20,7 +20,7 @@ const LoginForm = () => {
 
     useLoginStatus();
     
-    const { setLoggedIn, setRole } = useAuth();
+    const { setLoggedIn, setRole, setNames } = useAuth();
 
     const [email, setEmail]=useState('');
     const [password, setPassword]=useState('');
@@ -52,7 +52,11 @@ const LoginForm = () => {
 
             if (res.data.code == 200) {
                 setLoggedIn(true);
-                setRole(res.data.role)
+                setRole(res.data.role);
+                setNames({
+                    firstName: res.data.firstName,
+                    lastName: res.data.lastName
+                })
             }
         }).catch(()=>{
 

@@ -284,9 +284,7 @@ const ClientOrder = () => {
     return (
       <Fragment>
         <section className="section">
-          <DashboardNavbar
-            userName={order ? order.username : ""}
-          />
+          <DashboardNavbar/>
           <div className="order">
             <section className="order-wrapper">
               <DashSectionHeaders

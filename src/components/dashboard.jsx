@@ -251,7 +251,6 @@ const Search=({searchValue, onSearchChange, statusValue, onStatusChange, sortVal
 
 const Dashboard=()=>{
 
-    const [userName, setUserName]=useState();
     const [allOrders, setAllOrders]=useState();
     const [activeOrders, setActiveOrders]=useState();
     const [completedOrders, setCompletedOrders]=useState();
@@ -290,9 +289,8 @@ const Dashboard=()=>{
     useEffect(()=>{
         if(userInfo){
 
-            let{name, activeOrders, allOrders, cancelledOrders, completedOrders, orders}=userInfo;
+            let { activeOrders, allOrders, cancelledOrders, completedOrders, orders } = userInfo;
 
-            setUserName(name)
             setActiveOrders(activeOrders)
             setAllOrders(allOrders)
             setCancelledOrders(cancelledOrders)
@@ -692,7 +690,6 @@ const Dashboard=()=>{
         : `${moreFiles.extraFiles.length} Selected Files`
         : ""
 
-    let username;
     let all;
     let complete;
     let cancelled;
@@ -714,7 +711,6 @@ const Dashboard=()=>{
     );
 
     if(orders){ 
-        username=userName;
         all=allOrders;
         complete=completedOrders;
         cancelled=cancelledOrders;
@@ -816,7 +812,7 @@ const Dashboard=()=>{
     return(
         <React.Fragment>
             <section className='section' id='dashboard-section'>
-                <DashboardNavbar userName={username} />
+                <DashboardNavbar/>
                 <div className='dashboard'>
                     <section className='overview'>
                         <DashSectionHeaders heading={`Overview`}/>
