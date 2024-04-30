@@ -401,21 +401,38 @@ const ClientOrder = () => {
               <DashSectionHeaders heading={`Order Actions`} />
               <div className="order-actions-wrapper">
                 {warning.display && warningMessage}
-                <div className="buttons-group">
-                  <div className="admin-btn">
-                    <CtaButton
-                      id={`mark-complete-btn`}
-                      message={`Mark As Complete`}
-                      onClick={changeOrderStatus}
-                    />
+                <div className="actions-group">
+                  <div className="action">
+                    <h2 className='action-heading'>                      
+                      Mark this order complete                      
+                    </h2>
+                    <p className='action-description'>
+                      This action will change the order status from in-progress to complete. 
+                    </p>
+                    <div className="">                      
+                      <CtaButton                        
+                        id={`mark-complete-btn`}                        
+                        message={`Mark As Complete`}                        
+                        onClick={changeOrderStatus}                        
+                      />                      
+                    </div>                    
                   </div>
-                  <div className="admin-btn">
-                    <CtaButton
-                      id={`upload-btn`}
-                      message={`Upload Finished Work`}
-                      onClick={submitFinishedWork}
-                    />
-                  </div>
+                  <div className='action'>
+                    <h2 className='action-heading'>                      
+                      Send order to client
+                    </h2>
+                    <p className='action-description'>
+                      This action will enable you to send the completed work to the client. To send the order, it has to be 
+                      marked complete.
+                    </p>
+                    <div className="">                      
+                      <CtaButton                        
+                        id={`upload-btn`}                        
+                        message={`Upload Finished Work`}                        
+                        onClick={submitFinishedWork}                        
+                      />                      
+                    </div>                    
+                  </div>                  
                 </div>
                 {showUploadForm.show && (
                   <div className="upload-to-client">
@@ -464,7 +481,7 @@ const ClientOrder = () => {
                   </h2>    
                   <p>
                     Cancelling this order is non-reversible. To enable its continued processing
-                    , the owner will have to create a new order.
+                    , the client will have to create a new order.
                   </p>
                   <div>
                     <CtaButton
