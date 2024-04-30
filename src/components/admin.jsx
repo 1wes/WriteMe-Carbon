@@ -16,7 +16,6 @@ const fetcher=url=>axios.get(url).then(res=>res.data);
 
 const Admin = () => {
     
-    const [adminName, setAdminName]=useState('');
     const [totalOrders, settotalOrders]=useState(0);
     const [activeOrders, setActiveOrders]=useState(0);
     const [completedOrders, setCompletedOrders]=useState(0);
@@ -35,9 +34,8 @@ const Admin = () => {
         
         if(data){
 
-            let { username, totalOrders, allActiveOrders, allCancelledOrders, allCompletedOrders, allOrders }=data;
-
-            setAdminName(username);
+            let { totalOrders, allActiveOrders, allCancelledOrders, allCompletedOrders, allOrders } = data;
+            
             settotalOrders(totalOrders);
             setActiveOrders(allActiveOrders);
             setCompletedOrders(allCompletedOrders);
@@ -132,13 +130,8 @@ const Admin = () => {
         setAllOrders(data.allOrders)
     }
 
-    let name;
     let lastIndex=currentPage*ordersPerPage;
     let firstIndex=lastIndex-ordersPerPage;
-
-    if(adminName){
-        name=adminName
-    }
 
     const tableRows=(
         <Fragment>
@@ -187,7 +180,7 @@ const Admin = () => {
     return(
         <Fragment>
             <section className='section' id='admin-dashboard'>
-                <DashboardNavbar userName={name}/>
+                <DashboardNavbar />
                 <div className='dashboard' id='admin-dashboard'>
                     <section className='overview'>
                         <DashSectionHeaders heading={`Overview`}/>
