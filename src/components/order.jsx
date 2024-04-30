@@ -404,12 +404,6 @@ const ClientOrder = () => {
                 <div className="buttons-group">
                   <div className="admin-btn">
                     <CtaButton
-                      id={`cancel-order-btn`}
-                      message={`Cancel Order`}
-                    />
-                  </div>
-                  <div className="admin-btn">
-                    <CtaButton
                       id={`mark-complete-btn`}
                       message={`Mark As Complete`}
                       onClick={changeOrderStatus}
@@ -459,6 +453,26 @@ const ClientOrder = () => {
                     </div>
                   </div>
                 )}
+              </div>
+            </section>
+            <section className='cancel-section'>
+              <DashSectionHeaders heading={`More Actions`} />
+              <div className='cancel-order'>
+                <div className='cancel-warning'>
+                  <h2>
+                    Cancel this order
+                  </h2>    
+                  <p>
+                    Cancelling this order is non-reversible. To enable its continued processing
+                    , the owner will have to create a new order.
+                  </p>
+                  <div>
+                    <CtaButton
+                      id={`cancel-order-btn`}
+                      message={`Cancel this order`}
+                    />
+                  </div>
+                </div>
               </div>
             </section>
           </div>
