@@ -407,7 +407,7 @@ const ClientOrder = () => {
                       Mark this order complete                      
                     </h2>
                     <p className='action-description'>
-                      This action will change the order status from in-progress to complete. 
+                      This action will change the order status from active to complete. 
                     </p>
                     <div className="">                      
                       <CtaButton                        
@@ -462,8 +462,10 @@ const ClientOrder = () => {
                             </FormControl>
                             <FormControl label={`Additional information (If any)`} >
                                 <TextArea  value={uploadedOrder.additionalInfo} onChange={handleInfoChange} />
-                            </FormControl>
-                            <CtaButton message={`Send To Client`} id={`send-to-client`} type={`submit`} />
+                          </FormControl>
+                          <div className='send-order-btn'>
+                            <CtaButton message={`Send To Client`} id={`send-to-client`} type={`submit`} />                            
+                          </div>
                         </form>
                         {modal.show && successModal}
                       </div>
