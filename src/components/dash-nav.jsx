@@ -10,7 +10,7 @@ import './dash-nav.css';
 
 import { BsChevronDown } from 'react-icons/bs';
 import { MdOutlineManageAccounts } from 'react-icons/md';
-import { IoNotificationsOutline } from 'react-icons/io5';
+import { IoNotificationsOutline, IoHome } from 'react-icons/io5';
 import { TbLogout } from 'react-icons/tb';
 
 import { Link } from 'react-router-dom';
@@ -20,7 +20,7 @@ const DashboardNavbar = () => {
 
     useTokenStatus();
 
-    const { setLoggedIn, setRole, names } = useAuth();
+    const { setLoggedIn, setRole, names, role } = useAuth();
 
     const showDropdownMenu=()=>{
 
@@ -64,8 +64,8 @@ const DashboardNavbar = () => {
                         </li>
                         <div className='profile-dropdown' id='user-profile-dropdown'>
                             <ul>
-                                <Link className='dash-nav-link'>
-                                    
+                                <Link className='dash-nav-link' to={role==='Admin'?"/admin-dashboard":"/user-dashboard"} >
+                                    <li className='dropdown-item'><span className='item-icon'><i><IoHome/></i></span> Dashboard </li>
                                 </Link>
                                 <Link className='dash-nav-link'>
                                     <li className='dropdown-item'><span className='item-icon'><i><MdOutlineManageAccounts /></i></span> Account settings</li>                                    
