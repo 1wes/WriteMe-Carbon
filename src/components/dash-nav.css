@@ -89,7 +89,7 @@
 .profile-dropdown{
     position: absolute;
     top: 50px;
-    width: 100%;
+    width: 96%;
     border-radius: 5px;
     outline: 1px solid rgba(165, 42, 42, 0.1);
     background-color: whitesmoke;
@@ -97,6 +97,7 @@
     display: none;
     transition: all ease 1s;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 4px;
 }
 
 .show-profile-dropdown{
