@@ -75,8 +75,8 @@
     align-items: center;
 }
 
-#login-error{
-    font-size: 14px;
+.login-error{
+    font-size: 13px;
 }
 
 .loginError{
