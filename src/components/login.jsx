@@ -138,7 +138,7 @@ const LoginError = () => {
                             <IoIosCloseCircle/>
                         </i>
                     </span>
-                    <span>
+                    <span className="login-error" >
                         Failed to log in. Check email or password !
                     </span>
                 </div>
