@@ -73,9 +73,7 @@ const DashboardNavbar = () => {
                                 <Link className='dash-nav-link'>
                                     <li className='dropdown-item'><span className='item-icon' ><i><IoNotificationsOutline /></i></span>Notifications</li>                                    
                                 </Link>
-                                <Link className='dash-nav-link'>
-                                    <li className='dropdown-item' onClick={logUserOut}><span className='item-icon'><i><TbLogout /></i></span> Sign out</li>                                
-                                </Link>
+                                <li className='dropdown-item' onClick={logUserOut}><span className='item-icon'><i><TbLogout /></i></span> Sign out</li>                                
                             </ul>
                         </div>
                     </ul>
