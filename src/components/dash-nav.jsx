@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 
 import { Logo } from './navbar';
 import axiosInstance from '../utils/axios';
@@ -12,6 +12,8 @@ import { BsChevronDown } from 'react-icons/bs';
 import { MdOutlineManageAccounts } from 'react-icons/md';
 import { IoNotificationsOutline } from 'react-icons/io5';
 import { TbLogout } from 'react-icons/tb';
+
+import { Link } from 'react-router-dom';
 
 
 const DashboardNavbar = () => {
@@ -62,9 +64,18 @@ const DashboardNavbar = () => {
                         </li>
                         <div className='profile-dropdown' id='user-profile-dropdown'>
                             <ul>
-                                <li className='dropdown-item'><span className='item-icon'><i><MdOutlineManageAccounts/></i></span> Account settings</li>
-                                <li className='dropdown-item'><span className='item-icon' ><i><IoNotificationsOutline/></i></span>Notifications</li>
-                                <li className='dropdown-item' onClick={logUserOut}><span className='item-icon'><i><TbLogout/></i></span> Sign out</li>
+                                <Link className='dash-nav-link'>
+                                    
+                                </Link>
+                                <Link className='dash-nav-link'>
+                                    <li className='dropdown-item'><span className='item-icon'><i><MdOutlineManageAccounts /></i></span> Account settings</li>                                    
+                                </Link>
+                                <Link className='dash-nav-link'>
+                                    <li className='dropdown-item'><span className='item-icon' ><i><IoNotificationsOutline /></i></span>Notifications</li>                                    
+                                </Link>
+                                <Link className='dash-nav-link'>
+                                    <li className='dropdown-item' onClick={logUserOut}><span className='item-icon'><i><TbLogout /></i></span> Sign out</li>                                
+                                </Link>
                             </ul>
                         </div>
                     </ul>
