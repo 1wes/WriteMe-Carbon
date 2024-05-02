@@ -16,7 +16,7 @@ import PageNumbers from './paginate';
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
 import { ImCancelCircle } from 'react-icons/im';
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus, FiMinus } from 'react-icons/fi';
 import { BiCloudUpload } from 'react-icons/bi';
 import {LuFilterX} from 'react-icons/lu';
 
@@ -171,12 +171,12 @@ const Metrics=({title, icon, number})=>{
     )
 }
 
-const NewOrderButton=({onClick})=>{
+const NewOrderButton=({onClick, formStatus})=>{
 
     return (
         <Fragment>
             <button type='button' className='add-button' onClick={onClick} >
-                <span className='button-icon'><i><FiPlus/></i></span>
+                <span className='button-icon'><i>{formStatus?<FiMinus/>:<FiPlus/>}</i></span>
             </button>
         </Fragment>
     )
@@ -821,11 +821,14 @@ const Dashboard=()=>{
                         <DashSectionHeaders heading={`New Order`} />
                         <div className="new-order">
                             <div className='add-order'>
-                                <div>Create New Order</div>
+                                <div>Place a new order</div>
                                 <div className='btn'>
-                                    <NewOrderButton onClick={displayForm} />
+                                    <NewOrderButton onClick={displayForm} formStatus={submissionForm.show} />
                                 </div>
                             </div>
+                            <p className='new-order-description'>
+                                A fast, four-step, secure and confidential process to to submit your work.
+                            </p>    
                             {
                                 submissionForm.show &&
                                 <div className='new-submission' id='assignment-form'>
