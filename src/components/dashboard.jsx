@@ -305,12 +305,6 @@ const Dashboard=()=>{
             setOrders(currentOrders);
         }
 
-        // checkToken().then(()=>{
-        //     setloggedIn(true);
-        // }).catch(()=>{
-        //     setloggedIn(false);
-        // });
-
     },[userInfo, currentPage, ordersPerPage, revise]);
 
     const displayForm=()=>{
