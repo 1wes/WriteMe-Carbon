@@ -138,6 +138,11 @@ ul{
     height: 50px;
 }
 
+.new-order-description{
+    font-size: 13px;
+    line-height: 20px;
+}
+
 .add-button:hover{
     cursor: pointer;
     background-image: linear-gradient(to right, rgb(160, 102, 102), rgb(161, 62, 62), rgb(167, 50, 50));
