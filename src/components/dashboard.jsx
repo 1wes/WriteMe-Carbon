@@ -6,7 +6,7 @@ import useSWR from 'swr';
 
 import axios from '../utils/axios';
 import SectionHeader from './heading';
-import SubmissionForm ,{ Error, MandatoryFields } from './create-order';
+import SubmissionForm ,{ Error, MandatoryFields, Files } from './create-order';
 import { Select } from './create-order';
 import Modal, { ModalForm, SuccessIcon, WarningIcon } from './modal';
 import { revisionGracePeriod } from '../utils/dates';
@@ -830,19 +830,12 @@ const Dashboard=()=>{
 
                                             onCheckBoxChange={handleCheckboxChange}
                                                 
-                                            languageValue={state.language} />} />                                          
+                                            languageValue={state.language} />}
+
+                                            step2={<Files onFileChange={handleFileChange} files={state.files} />}
+                                        />                                          
                                         {/* <div className='new-submission' id='assignment-form'>
                                             <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
-                                                
-                                                onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} onLanguageChange={handleLanguage}
-                                                
-                                                onFileChange={handleFileChange} onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange} 
-                                                
-                                                onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} 
-                                                
-                                                subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style} 
-                                                
-                                                instructionsValue={state.instructions} pagesOrwordsValue={state.pagesOrwords}
                                                 
                                                 deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} topicValue={state.topic}
                                                    
