@@ -1,6 +1,7 @@
 import React , {Fragment} from "react";
 import './create-order.css';
 import { CtaButton } from "./services";
+import { BiCloudUpload } from "react-icons/bi";
 
 const FormLegend=()=>{
 
@@ -29,12 +30,12 @@ const Error=({errorMessage, id})=>{
     )
 }
 
-const FormControl=({labelClassName, children, label})=>{
+const FormControl=({labelClassName, children, label, htmlFor})=>{
 
     return(
         <Fragment>
             <div className="input-group">
-                <label className={labelClassName}>
+                <label className={labelClassName} htmlFor={htmlFor} >
                     {label}
                 </label>
                 {children}
@@ -56,12 +57,13 @@ const Select=({name, value, onChange, children, required})=>{
     )
 }
 
-const Input=({type, onChange, placeholder, onWheel, value, required, multiple, name})=>{
+const Input=({type, onChange, placeholder, onWheel, value, required, multiple, name, id, hidden})=>{
 
     return(
         <Fragment>
             <div>
-                <input type={type} name={name} onChange={onChange} placeholder={placeholder} onWheel={onWheel} value={value} required={required} multiple={multiple}></input>
+                <input id={id} type={type} name={name} onChange={onChange} placeholder={placeholder} onWheel={onWheel} value={value} required={required} multiple={multiple}
+                hidden={hidden}></input>
             </div>
         </Fragment>
     )
@@ -76,10 +78,10 @@ const TextArea=({value, onChange, required})=>{
     )
 }
 
-const FieldsLayout = ({className, id, children}) => {
+const FieldsLayout = ({ id, children }) => {
     
     return (
-        <div className={className} id={id} >
+        <div className='fields-layout' id={id} >
             {children}
         </div>
     )
@@ -133,7 +135,7 @@ const MandatoryFields = ({subjectValue, onSubjectChange, gradeValue, onGradeChan
     return (
         <Fragment>
             <StepDescriptor description={`Tell us the kind of paper you want us to help you with.`} />
-            <FieldsLayout className={`fields-layout`}>
+            <FieldsLayout>
                 <FormControl label={`Subject`} labelClassName={`required`}>
                     <Select name={`subject`} value={subjectValue} onChange={onSubjectChange} required={true}>
                         {subjectOptions}
@@ -194,6 +196,31 @@ const MandatoryFields = ({subjectValue, onSubjectChange, gradeValue, onGradeChan
     )
 }
 
+const Files = ({ onFileChange, files }) => {
+
+    const fileCounter = files.length ? files.length > 1 ? `${files.length} files` : `${files[0].name}` : "";
+
+    return (
+        <Fragment>
+            <StepDescriptor description={`Upload files, if any and necessary. This step is optional, and you can add files even after submission by clicking
+            on "Upload Files" in the All Orders section.`} />
+            <FieldsLayout id={`files-layout`} >
+                <div className="input-group" id="files-input-group">
+                    <label htmlFor="new-files" className="new-files" >
+                        <span className="add-file-icon"><i><BiCloudUpload /></i>Attach Files</span>
+                    </label>
+                    <Input type={`file`} name={`fileAttachments`} id={`new-files`} onChange={onFileChange} placeholder={`add file`} multiple={true} hidden={true} />
+                    {files.length>0 &&
+                        <div className="number-of-files">
+                            <span className="file-counter"> {fileCounter} </span> selected.                        
+                        </div>
+                    }
+                </div>
+            </FieldsLayout>
+        </Fragment>
+    )
+}
+
 const SubmissionForm=({onSubmit, onFileChange,  deadlineValue, onDeadlineChange,timeValue, onTimeChange, deadlineErrorAlert,
     })=>{
 
@@ -203,10 +230,7 @@ const SubmissionForm=({onSubmit, onFileChange,  deadlineValue, onDeadlineChange,
             <form className="assignment-form" encType="multipart/form-data" onSubmit={onSubmit}>
                 <div className="assignment-details">
 
-                    <FormControl label={`Attach File`}>
-                        <Input type={`file`} name={`fileAttachments`} onChange={onFileChange} placeholder={`add file`} multiple={true}/>
-                        <FormAlerts message={`supports only common image, document, video, and audio formats.`} />
-                    </FormControl>
+
                     <FormControl label={`Date Deadline`} labelClassName={`required`}>
                         <Input type={`date`} value={deadlineValue} onChange={onDeadlineChange} required={true}/>
                         {deadlineErrorAlert}
@@ -230,6 +254,7 @@ export{
     FormAlerts,
     Select,
     Input,
-    MandatoryFields
+    MandatoryFields,
+    Files
 }
 export default SubmissionForm;
