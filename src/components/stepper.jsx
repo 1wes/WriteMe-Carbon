@@ -53,7 +53,7 @@ const FormStepper = ({step1, step2, step3, step4}) => {
                     {
                         activeStep!==0 && <CtaButton id={`previous`} message={activeStep === 0 ? `Back` : `Back to ${steps[activeStep - 1].title}`} onClick={goToPreviousStep} />                        
                     }
-                    <CtaButton id={`next`} message={activeStep===steps.length?`Make Payment`:`Go to ${steps[activeStep+1].title}`} onClick={gotToNextStep} />
+                    <CtaButton id={`next`} message={activeStep===steps.length-1?`Make Payment`:`Go to ${steps[activeStep+1].title}`} onClick={gotToNextStep} />
                 </div>
 
             </Fragment>
