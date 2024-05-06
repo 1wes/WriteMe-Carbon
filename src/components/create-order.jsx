@@ -221,7 +221,25 @@ const Files = ({ onFileChange, files }) => {
     )
 }
 
-const SubmissionForm=({onSubmit, onFileChange,  deadlineValue, onDeadlineChange,timeValue, onTimeChange, deadlineErrorAlert,
+const Deadline = ({deadlineValue, onDeadlineChange,timeValue, onTimeChange, deadlineErrorAlert}) => {
+    
+    return (
+        <Fragment>
+            <StepDescriptor description={`Select date and time within which the work should be completed.`} />
+            <FieldsLayout>
+                <FormControl label={`Date`} labelClassName={`required`}>                    
+                    <Input type={`date`} value={deadlineValue} onChange={onDeadlineChange} required={true} />                          
+                    {deadlineErrorAlert}                    
+                </FormControl>                
+                <FormControl label={`Time`} labelClassName={`required`}>                    
+                    <Input type={`time`} value={timeValue} onChange={onTimeChange} required={true} />                    
+                </FormControl>                
+            </FieldsLayout>            
+        </Fragment>
+    )
+}
+
+const SubmissionForm=({onSubmit, onFileChange,  
     })=>{
 
     return(
@@ -231,13 +249,7 @@ const SubmissionForm=({onSubmit, onFileChange,  deadlineValue, onDeadlineChange,
                 <div className="assignment-details">
 
 
-                    <FormControl label={`Date Deadline`} labelClassName={`required`}>
-                        <Input type={`date`} value={deadlineValue} onChange={onDeadlineChange} required={true}/>
-                        {deadlineErrorAlert}
-                    </FormControl>
-                    <FormControl label={`Time Deadline`} labelClassName={`required`}>
-                        <Input type={`time`} value={timeValue} onChange={onTimeChange} required ={true} />
-                    </FormControl>
+
                 </div>
                 <FormLegend/>
                 <CtaButton type={`submit`} message={`Submit Assignment`} id={`submit-assignment-button`} />
@@ -255,6 +267,7 @@ export{
     Select,
     Input,
     MandatoryFields,
-    Files
+    Files, 
+    Deadline
 }
 export default SubmissionForm;
