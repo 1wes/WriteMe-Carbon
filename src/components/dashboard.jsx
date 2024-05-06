@@ -6,12 +6,13 @@ import useSWR from 'swr';
 
 import axios from '../utils/axios';
 import SectionHeader from './heading';
-import SubmissionForm ,{ Error } from './create-order';
+import SubmissionForm ,{ Error, MandatoryFields } from './create-order';
 import { Select } from './create-order';
 import Modal, { ModalForm, SuccessIcon, WarningIcon } from './modal';
 import { revisionGracePeriod } from '../utils/dates';
 import DashboardNavbar from './dash-nav';
 import PageNumbers from './paginate';
+import FormStepper from './stepper';
 
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
@@ -32,7 +33,6 @@ const initialState={
     instructions:"",
     topic:"",
     pagesOrwords:"",
-    amount:"",
     deadline:"",
     time:"",
 }
@@ -105,13 +105,6 @@ const reducer=(state, action)=>{
             }
         }
 
-        case "newAmount":{
-            return{
-                ...state,
-                amount:action.newAmount,
-            }
-        }
-
         case "newDeadline":{
             return{
                 ...state,
@@ -137,7 +130,6 @@ const reducer=(state, action)=>{
                 instructions:"",
                 topic:"",
                 pagesOrwords:"",
-                amount:"",
                 deadline:"",
                 time:"",
             }
@@ -406,14 +398,6 @@ const Dashboard=()=>{
         dispatch({
             type:"newPagesOrWords",
             newPages:e.target.value
-        })
-    }
-
-    const handleAmountChange=(e)=>{
-
-        dispatch({
-            type:"newAmount",
-            newAmount:e.target.value
         })
     }
 
@@ -821,7 +805,7 @@ const Dashboard=()=>{
                         <DashSectionHeaders heading={`New Order`} />
                         <div className="new-order">
                             <div className='add-order'>
-                                <div>Place a new order</div>
+                                <h2 className='new-order-heading'>Place a new order</h2>
                                 <div className='btn'>
                                     <NewOrderButton onClick={displayForm} formStatus={submissionForm.show} />
                                 </div>
@@ -831,17 +815,42 @@ const Dashboard=()=>{
                             </p>    
                             {
                                 submissionForm.show &&
-                                <div className='new-submission' id='assignment-form'>
-                                    <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
-                                        onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} onLanguageChange={handleLanguage}
-                                        onFileChange={handleFileChange} onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange} 
-                                        onAmountChange={handleAmountChange} onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} 
-                                        subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style} 
-                                        instructionsValue={state.instructions}pagesOrwordsValue={state.pagesOrwords} amountValue={state.amount} 
-                                        deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} topicValue={state.topic}
-                                        checkboxValue={state.topic} onTopicChange={handleTopicChange} onCheckBoxChange={handleCheckboxChange}
-                                        languageValue={state.language}/>
-                                </div>
+                                <Fragment>
+                                    <FormStepper step1={<MandatoryFields onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
+                                                
+                                            onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} onLanguageChange={handleLanguage}                                            
+                                                
+                                            onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange}                                                                                     
+                                                
+                                            subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style}                                             
+                                                
+                                            instructionsValue={state.instructions} pagesOrwordsValue={state.pagesOrwords}                                            
+                                                
+                                            topicValue={state.topic} checkboxValue={state.topic} onTopicChange={handleTopicChange}
+
+                                            onCheckBoxChange={handleCheckboxChange}
+                                                
+                                            languageValue={state.language} />} />                                          
+                                        {/* <div className='new-submission' id='assignment-form'>
+                                            <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
+                                                
+                                                onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} onLanguageChange={handleLanguage}
+                                                
+                                                onFileChange={handleFileChange} onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange} 
+                                                
+                                                onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} 
+                                                
+                                                subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style} 
+                                                
+                                                instructionsValue={state.instructions} pagesOrwordsValue={state.pagesOrwords}
+                                                
+                                                deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} topicValue={state.topic}
+                                                   
+                                                checkboxValue={state.topic} onTopicChange={handleTopicChange} onCheckBoxChange={handleCheckboxChange}
+                                                
+                                                languageValue={state.language} />                                            
+                                        </div>                                         */}
+                                </Fragment>
                             }
                         </div>
                     </section>
