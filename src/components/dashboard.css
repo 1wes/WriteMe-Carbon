@@ -121,6 +121,10 @@ ul{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.new-order-heading{
+    font-size: 14px;
+}
+
 .add-button{
     padding: 15px;
     color: brown;
