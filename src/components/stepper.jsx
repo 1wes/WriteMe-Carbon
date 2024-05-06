@@ -29,11 +29,11 @@ const FormStepper = ({step1, step2, step3, step4}) => {
     }
     
     const goToPreviousStep = () => {
-        
+        setActiveStep((prevActiveStep)=>prevActiveStep-1)
     }
 
     const gotToNextStep = () => {
-        
+        setActiveStep((prevActiveStep)=>prevActiveStep+1)
     }
     
     return (
