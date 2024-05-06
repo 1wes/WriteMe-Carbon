@@ -1,21 +1,13 @@
-.assignment-form{
+/* .assignment-form{
     margin-top: 50px !important;
     border-radius: 5px;
-}
-
-.assignment-details{
-    width: 100% !important;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
+} */
 
 .input-group{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 48%;
+    width: 48.5%;
 }
 
 .input-group div{
@@ -112,6 +104,30 @@ input[type=number] {
     width: 10%;
     padding: 0 !important;
     margin:0 -10px 0 -20px;
+}
+
+.fields-layout{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    outline: 1px solid rgba(165, 42, 42, 0.1);
+    padding: 30px 10px;
+    gap: 20px;
+}
+
+.fields-layout input, textarea, select{
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.input-group label{
+    font-size: 12px;
+    font-weight: 500;
+    color: black;
+}
+
+.step-description{
+    font-size: 14px;    
 }
 
 @media only screen and (max-width:480px){
