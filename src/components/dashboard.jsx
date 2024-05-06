@@ -6,7 +6,7 @@ import useSWR from 'swr';
 
 import axios from '../utils/axios';
 import SectionHeader from './heading';
-import SubmissionForm ,{ Error, MandatoryFields, Files } from './create-order';
+import SubmissionForm ,{ Error, MandatoryFields, Files, Deadline } from './create-order';
 import { Select } from './create-order';
 import Modal, { ModalForm, SuccessIcon, WarningIcon } from './modal';
 import { revisionGracePeriod } from '../utils/dates';
@@ -833,16 +833,10 @@ const Dashboard=()=>{
                                             languageValue={state.language} />}
 
                                             step2={<Files onFileChange={handleFileChange} files={state.files} />}
+                                            
+                                            step3={<Deadline onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} deadlineValue={state.deadline}
+                                                timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />}
                                         />                                          
-                                        {/* <div className='new-submission' id='assignment-form'>
-                                            <SubmissionForm onSubmit={submitAssignment} onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
-                                                
-                                                deadlineValue={state.deadline} timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} topicValue={state.topic}
-                                                   
-                                                checkboxValue={state.topic} onTopicChange={handleTopicChange} onCheckBoxChange={handleCheckboxChange}
-                                                
-                                                languageValue={state.language} />                                            
-                                        </div>                                         */}
                                 </Fragment>
                             }
                         </div>
