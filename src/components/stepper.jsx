@@ -14,10 +14,10 @@ const FormStepper = ({step1, step2, step3, step4}) => {
     const [activeStep, setActiveStep] = useState(0);
 
     const steps = [
-        { title: "Order specifics" },
-        { title: "Files" },
-        { title: "Deadline" },
-        { title: "Payment" }
+        { title: "Structure your paper" },
+        { title: "Add files" },
+        { title: "Specify deadline" },
+        { title: "Make payment" }
     ];
 
     // determine component to be displayed per step
