@@ -13,6 +13,7 @@ import { FormControl, Input, TextArea } from './create-order';
 import Modal , {SuccessIcon} from './modal';
 
 import { MdClose } from 'react-icons/md';
+import { BiCloud, BiCloudUpload, BiUpload } from 'react-icons/bi';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
@@ -457,15 +458,29 @@ const ClientOrder = () => {
                       </div>
                       <div className='upload-files'>
                         <form encType='multipart/form-data' onSubmit={uploadToClient}>
-                            <FormControl label={`Attach Files`} labelClassName={`required`}>
-                               <Input type={`file`} onChange={handleFileChange} multiple={true} required={true} /> 
-                            </FormControl>
-                            <FormControl label={`Additional information (If any)`} >
+                            <div className='input-group' id='upload-input-group'>
+                              <label htmlFor='upload-work' className='completed-files'>
+                                <span className='add-file-icon' id='admin-upload-icon'>
+                                  <i><BiCloudUpload/></i> Attach completed work files
+                                </span>       
+                              </label>
+                              <Input type={`file`} id={`upload-work`} onChange={handleFileChange} multiple={true} required={true} hidden={true} />     
+                              {uploadedOrder.files.length>0 &&
+                              <div className="number-of-files">                                
+                                <span className="file-counter">{
+                                  uploadedOrder.files.length ?
+                                    uploadedOrder.files.length > 1 ?
+                                      `${uploadedOrder.files.length} files`:uploadedOrder.files[0].name:""
+                                }</span> selected.                        
+                              </div>  
+                              }                          
+                              </div>
+                              <FormControl  ormControl label={`Additional information (If any)`} >
                                 <TextArea  value={uploadedOrder.additionalInfo} onChange={handleInfoChange} />
-                          </FormControl>
-                          <div className='send-order-btn'>
-                            <CtaButton message={`Send To Client`} id={`send-to-client`} type={`submit`} />                            
-                          </div>
+                              </FormControl>
+                              <div className='send-order-btn'>
+                                <CtaButton message={`Send To Client`} id={`send-to-client`} type={`submit`} />                            
+                              </div>
                         </form>
                         {modal.show && successModal}
                       </div>
