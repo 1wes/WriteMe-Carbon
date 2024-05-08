@@ -306,6 +306,21 @@
     line-height: 20px;
 }
 
+#upload-input-group{
+    background-color: rgba(165, 42, 42, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    border-radius: 2px;
+}
+
+.completed-files{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
 @media only screen and (max-width:768px){
 
     .order{
@@ -335,5 +350,9 @@
 
     #cancel-order-btn, #mark-complete-btn, #upload-btn{
         width: 100%;
+    }
+
+    .completed-files{
+        width: 70%;
     }
 }
