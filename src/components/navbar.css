@@ -4,11 +4,12 @@
 
 #navbar-section{
     height: 10vh;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
     position: sticky;
     top: 0;
     background-color: rgba(245, 245, 245, 0.98);
     z-index: 100000000;
+    font-size: 14px;
 }
 
 #mobile-navbar-section{
@@ -116,12 +117,13 @@
     #mobile-navbar-section{
         display: flex;
         height: 10vh;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
         position: sticky !important;
         top: 0 !important;
         background-color: rgba(245, 245, 245, 0.98);
         z-index: 100000000;
         overflow: visible;
+        font-size: 14px;
     }
 
 

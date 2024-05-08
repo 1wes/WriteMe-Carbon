@@ -70,13 +70,13 @@
     width: 47%;
     padding: 10px;
     background-color: whitesmoke;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
     transition: all ease 1s;
 }
 
 .values li:hover{
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 29px 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); 
 }
 
 .value-header{

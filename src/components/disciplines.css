@@ -24,6 +24,7 @@
     margin: 0 0 20px 0;
     border: 1px solid rgba(165, 42, 42, 0.2);
     transition: all ease .5s;
+    font-size: 14px;
 }
 
 .sector-list:hover{

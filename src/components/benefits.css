@@ -28,11 +28,12 @@
     padding: 30px 7px;
     background-color: white;
     transition: all ease 1s;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    font-size: 14px;
 }
 
 .list:hover{
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 29px 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); 
     cursor: pointer;
 
 }
