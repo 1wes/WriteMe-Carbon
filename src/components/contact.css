@@ -142,7 +142,7 @@ input, textarea, select{
     color:rgba(0, 0, 0, 0.664);
     transition: all .5 s ease;
     letter-spacing: .5px;
-    border: 1px solid rgba(165, 42, 42, 0.1);
+    border: 1px solid rgba(165, 42, 42, 0.25);
     font-size: 14px;
     font-family: -apple-system, blinkmacsystemfont, "segoe ui", 
     roboto, oxygen-sans, ubuntu, cantarell, "helvetica neue", 
@@ -151,7 +151,7 @@ input, textarea, select{
 
 input:focus, textarea:focus, select:focus{
     outline: none;
-    border: 1px solid rgba(165, 42, 42, 0.4);
+    border: 1px solid rgba(165, 42, 42, 0.5);
 }
 
 input::placeholder, textarea::placeholder, select::placeholder{
