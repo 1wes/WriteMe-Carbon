@@ -145,7 +145,7 @@
 }
 
 #mark-complete-btn, #upload-btn{
-    width: 50%;
+    width: 30%;
     border: none;
 }
 
@@ -153,7 +153,7 @@
     color: rgb(253, 135, 137);
     outline: 1px solid rgba(248, 157, 159, 0.8);
     border: none;
-    width: 50%;
+    width: 30%;
 }
 
 .action-description{
@@ -286,7 +286,7 @@
     margin-top: -30px;
     background-color: rgb(165,42,42);
     color: whitesmoke;
-    width: 50%;
+    width: 30%;
 }
 
 .action-heading{
