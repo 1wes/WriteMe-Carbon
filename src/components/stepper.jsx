@@ -6,7 +6,7 @@ import './stepper.css';
 
 import { CtaButton } from './services';
 
-import { IoArrowBackSharp, IoArrowForward  } from "react-icons/io5";
+import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 
 
 const FormStepper = ({step1, step2, step3, step4}) => {
@@ -55,9 +55,20 @@ const FormStepper = ({step1, step2, step3, step4}) => {
                 {displayStepComponent()}
                 <div className='step-navigation'>
                     {
-                        activeStep!==0 && <CtaButton id={`previous`} message={`Back`} onClick={goToPreviousStep} />                        
+                        activeStep !== 0 && <CtaButton id={`previous`} message={`Back`} onClick={goToPreviousStep}>
+                            <span className='inline-icon'>
+                                <IoMdArrowRoundBack />                                
+                            </span>
+                        </CtaButton>                      
                     }
-                    <CtaButton id={`next`} message={activeStep===steps.length-1?`Make Payment`:`Next`} onClick={gotToNextStep} />
+                    <CtaButton id={`next`} message={activeStep === steps.length - 1 ? `Finish` : `Next`} onClick={gotToNextStep}>
+                        {
+                            activeStep !== steps.length - 1 && 
+                            <span className='inline-icon'>                                    
+                                <IoMdArrowRoundForward />                                       
+                            </span>                            
+                        }
+                    </CtaButton>
                 </div>
 
             </Fragment>
