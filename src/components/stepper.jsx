@@ -27,7 +27,7 @@ const FormStepper = ({step1, step2, step3, step4}) => {
             case 0: return step1;
             case 1: return step2;
             case 2: return step3;
-            case 4: return step4;
+            case 3: return step4;
             default: return null;
         }
     }
