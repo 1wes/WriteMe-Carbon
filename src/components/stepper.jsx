@@ -75,5 +75,4 @@ const FormStepper = ({step1, step2, step3, step4}) => {
         </Fragment>
     )
 }
-export {}
 export default FormStepper;
