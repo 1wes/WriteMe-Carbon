@@ -6,7 +6,7 @@ import useSWR from 'swr';
 
 import axios from '../utils/axios';
 import SectionHeader from './heading';
-import SubmissionForm ,{ Error, MandatoryFields, Files, Deadline } from './create-order';
+import SubmissionForm ,{ Error, MandatoryFields, Files, Deadline, Payment } from './create-order';
 import { Select } from './create-order';
 import Modal, { ModalForm, SuccessIcon, WarningIcon } from './modal';
 import { revisionGracePeriod } from '../utils/dates';
@@ -836,6 +836,8 @@ const Dashboard=()=>{
                                             
                                             step3={<Deadline onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} deadlineValue={state.deadline}
                                                 timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />}
+                                            
+                                            step4={<Payment />}                                            
                                         />                                          
                                 </Fragment>
                             }
