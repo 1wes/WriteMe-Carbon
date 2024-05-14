@@ -1,6 +1,13 @@
-import React , {Fragment} from "react";
+import React, { Fragment } from "react";
+
 import './create-order.css';
+
 import { CtaButton } from "./services";
+
+import visa from '../assets/payment/visa.png';
+import mastercard from '../assets/payment/mastercard.png';
+import paypal from '../assets/payment/paypal.png';
+
 import { BiCloudUpload } from "react-icons/bi";
 
 const FormLegend=()=>{
@@ -239,6 +246,38 @@ const Deadline = ({deadlineValue, onDeadlineChange,timeValue, onTimeChange, dead
     )
 }
 
+const Payment = () => {
+    
+    return (
+        <Fragment>
+            <StepDescriptor description={`Please enter your card payment details`} />
+            <FieldsLayout>
+                <div className="payment-options">
+                    <PaymentOption logo={visa} method={`credit card`} >
+                        <img src={mastercard} />
+                    </PaymentOption>
+                    <PaymentOption logo={paypal} method={`PayPal`} />
+                </div>
+            </FieldsLayout>
+        </Fragment>
+    )
+}
+
+const PaymentOption = ({children, logo, method, paymentMethod}) => {
+    
+    return (
+        <label htmlFor="payment-method" className="payment-option">
+            <div className="option-logo">
+                <img src={logo} />
+                {children}
+            </div>
+            <div className="payment-selection">
+                <Input type={`radio`} value={paymentMethod} /> <span>Pay $34 with { method }</span>
+            </div>
+        </label>
+    )
+}
+
 const SubmissionForm=({onSubmit, onFileChange,  
     })=>{
 
@@ -268,6 +307,7 @@ export{
     Input,
     MandatoryFields,
     Files, 
-    Deadline
+    Deadline,
+    Payment
 }
 export default SubmissionForm;
