@@ -253,7 +253,7 @@ const Payment = ({handlePaymentChange, selectedOption}) => {
             <StepDescriptor description={`Please enter your card payment details`} />
             <FieldsLayout>
                 <div className="payment-options">
-                    <PaymentOption logo={visa} method={`credit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={selectedOption} >
+                    <PaymentOption logo={visa}  method={`credit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={selectedOption} >
                         <img src={mastercard} />
                     </PaymentOption>
                     <PaymentOption logo={paypal} method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={selectedOption} />
@@ -263,16 +263,16 @@ const Payment = ({handlePaymentChange, selectedOption}) => {
     )
 }
 
-const PaymentOption = ({children, logo, method, paymentMethod, onChange, selectedOption}) => {
+const PaymentOption = ({children, logo, method, paymentMethod, onChange, selectedOption }) => {
     
     return (
-        <label htmlFor="payment-method" className="payment-option">
+        <label htmlFor={paymentMethod} className="payment-option">
             <div className="option-logo">
                 <img src={logo} />
                 {children}
             </div>
             <div className="payment-selection">
-                <Input type={`radio`} value={paymentMethod} onChange={onChange} checked={selectedOption===paymentMethod} /> <span>Pay $34 with { method }</span>
+                <Input type={`radio`} id={paymentMethod} value={paymentMethod} onChange={onChange} checked={selectedOption===paymentMethod} /> <span>Pay $34 with { method }</span>
             </div>
         </label>
     )
