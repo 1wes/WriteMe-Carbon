@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 
 import './create-order.css';
 
@@ -64,13 +64,13 @@ const Select=({name, value, onChange, children, required})=>{
     )
 }
 
-const Input=({type, onChange, placeholder, onWheel, value, required, multiple, name, id, hidden})=>{
+const Input=({type, onChange, placeholder, onWheel, value, required, multiple, name, id, hidden, checked})=>{
 
     return(
         <Fragment>
             <div>
                 <input id={id} type={type} name={name} onChange={onChange} placeholder={placeholder} onWheel={onWheel} value={value} required={required} multiple={multiple}
-                hidden={hidden}></input>
+                hidden={hidden} checked={checked} ></input>
             </div>
         </Fragment>
     )
@@ -246,24 +246,24 @@ const Deadline = ({deadlineValue, onDeadlineChange,timeValue, onTimeChange, dead
     )
 }
 
-const Payment = () => {
+const Payment = ({handlePaymentChange, selectedOption}) => {
     
     return (
         <Fragment>
             <StepDescriptor description={`Please enter your card payment details`} />
             <FieldsLayout>
                 <div className="payment-options">
-                    <PaymentOption logo={visa} method={`credit card`} >
+                    <PaymentOption logo={visa} method={`credit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={selectedOption} >
                         <img src={mastercard} />
                     </PaymentOption>
-                    <PaymentOption logo={paypal} method={`PayPal`} />
+                    <PaymentOption logo={paypal} method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={selectedOption} />
                 </div>
             </FieldsLayout>
         </Fragment>
     )
 }
 
-const PaymentOption = ({children, logo, method, paymentMethod}) => {
+const PaymentOption = ({children, logo, method, paymentMethod, onChange, selectedOption}) => {
     
     return (
         <label htmlFor="payment-method" className="payment-option">
@@ -272,7 +272,7 @@ const PaymentOption = ({children, logo, method, paymentMethod}) => {
                 {children}
             </div>
             <div className="payment-selection">
-                <Input type={`radio`} value={paymentMethod} /> <span>Pay $34 with { method }</span>
+                <Input type={`radio`} value={paymentMethod} onChange={onChange} checked={selectedOption===paymentMethod} /> <span>Pay $34 with { method }</span>
             </div>
         </label>
     )
