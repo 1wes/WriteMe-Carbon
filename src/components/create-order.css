@@ -199,7 +199,7 @@ input[type=number] {
     transition: all ease 1s;
 }
 
-.payment-option{
+#payment-option{
     flex: 1;
     background-color:  rgba(165, 42, 42, 0.1);
     padding: 10px;
@@ -208,6 +208,15 @@ input[type=number] {
     justify-content: center;
     gap: 15px;
     border-radius: 2px;
+}
+
+#payment-option:hover{
+    cursor: pointer;
+}
+
+.active-card{
+    outline: 1px solid rgba(165, 42, 42, 0.5);
+
 }
 
 .option-logo{
@@ -231,6 +240,10 @@ input[type=number] {
     align-items: center;
     justify-content: center;
     gap: 10px;
+}
+
+.payment-selection span:hover{
+    background: none;
 }
 
 @media only screen and (max-width:480px){
