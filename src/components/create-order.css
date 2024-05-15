@@ -300,4 +300,12 @@ input[type=number] {
     .new-files{
         width: 50%;
     }
+
+    .payment-options{
+        gap: 10px;
+    }
+
+    #payment-option{
+        flex: 1 1 100%;
+    }
 }
