@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 
 import './create-order.css';
 
@@ -247,25 +247,22 @@ const Deadline = ({deadlineValue, onDeadlineChange,timeValue, onTimeChange, dead
 }
 
 const Payment = ({ handlePaymentChange, selectedOption }) => {
-    
-    const [selectedCard, setSelectedCard] = useState();
 
-    const selectActiveCard = (event, param) => {
-        
-        setSelectedCard(param)
-    }
-    
     return (
         <Fragment>
             <StepDescriptor description={`Please enter your payment details`} />
             <FieldsLayout>
                 <div className="payment-options">
-                    <PaymentOption logo={visa} onClick={event => selectActiveCard(event, "credit-card")} activeCard={selectedCard==="credit-card"?"active-card":""}
+                    <PaymentOption logo={visa} onClick={event => selectActiveCard(event, "credit-card")} activeCard={selectedOption==="Credit Card"?"active-card":""}
                         method={`credit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={selectedOption} >
                         <img src={mastercard} />
                     </PaymentOption>
-                    <PaymentOption logo={paypal} onClick={event => selectActiveCard(event, "paypal")} activeCard={selectedCard==="paypal"?"active-card":""}
+                    <PaymentOption logo={paypal} onClick={event => selectActiveCard(event, "paypal")} activeCard={selectedOption==="PayPal"?"active-card":""}
                         method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={selectedOption} />
+                </div>
+                <div className="cost-payment-section">
+                    <OrderCostCalculator />
+                    <PaymentDetails/>
                 </div>
             </FieldsLayout>
         </Fragment>
@@ -284,6 +281,31 @@ const PaymentOption = ({children, logo, method, paymentMethod, onChange, selecte
                 <Input type={`radio`} id={paymentMethod} value={paymentMethod} onChange={onChange} checked={selectedOption===paymentMethod} /> <span>Pay $34 with { method }</span>
             </div>
         </label>
+    )
+}
+
+const OrderCostCalculator = () => {
+    
+    return (
+        <Fragment>
+            <div className="cost-calculator">
+                <StepDescriptor description={`Here is a breakdown of your order cost. If you would like to adjust it, just navigate back to 
+                a specific cost determinant and edit it.`} />
+                <div className="calculator">
+
+                </div>
+            </div>
+        </Fragment>
+    )
+}
+
+const PaymentDetails = () => {
+    
+    return (
+        <Fragment>
+            <div className="payment-details">
+            </div>
+        </Fragment>
     )
 }
 
