@@ -246,27 +246,36 @@ const Deadline = ({deadlineValue, onDeadlineChange,timeValue, onTimeChange, dead
     )
 }
 
-const Payment = ({handlePaymentChange, selectedOption}) => {
+const Payment = ({ handlePaymentChange, selectedOption }) => {
+    
+    const [selectedCard, setSelectedCard] = useState();
+
+    const selectActiveCard = (event, param) => {
+        
+        setSelectedCard(param)
+    }
     
     return (
         <Fragment>
-            <StepDescriptor description={`Please enter your card payment details`} />
+            <StepDescriptor description={`Please enter your payment details`} />
             <FieldsLayout>
                 <div className="payment-options">
-                    <PaymentOption logo={visa}  method={`credit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={selectedOption} >
+                    <PaymentOption logo={visa} onClick={event => selectActiveCard(event, "credit-card")} activeCard={selectedCard==="credit-card"?"active-card":""}
+                        method={`credit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={selectedOption} >
                         <img src={mastercard} />
                     </PaymentOption>
-                    <PaymentOption logo={paypal} method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={selectedOption} />
+                    <PaymentOption logo={paypal} onClick={event => selectActiveCard(event, "paypal")} activeCard={selectedCard==="paypal"?"active-card":""}
+                        method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={selectedOption} />
                 </div>
             </FieldsLayout>
         </Fragment>
     )
 }
 
-const PaymentOption = ({children, logo, method, paymentMethod, onChange, selectedOption }) => {
+const PaymentOption = ({children, logo, method, paymentMethod, onChange, selectedOption, onClick, activeCard }) => {
     
     return (
-        <label htmlFor={paymentMethod} className="payment-option">
+        <label htmlFor={paymentMethod} className={activeCard} id="payment-option" onClick={onClick} >
             <div className="option-logo">
                 <img src={logo} />
                 {children}
