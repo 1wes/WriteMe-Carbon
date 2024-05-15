@@ -34,7 +34,8 @@ const initialState={
     topic:"",
     pagesOrwords:"",
     deadline:"",
-    time:"",
+    time: "",
+    paymentOption:""
 }
 
 const reducer=(state, action)=>{
@@ -118,20 +119,17 @@ const reducer=(state, action)=>{
                 time:action.newTime,
             }
         }
+            
+        case "newPaymentOption": {
+            return {
+                ...state,
+                paymentOption:action.newPaymentOption
+            }
+        }
 
         case "clearForm":
-            return{
-                subject:"",
-                gradeLevel:"",
-                style: "",
-                language:"",
-                sources:"",
-                files:[],
-                instructions:"",
-                topic:"",
-                pagesOrwords:"",
-                deadline:"",
-                time:"",
+            return {
+                ...initialState
             }
 
         default:
@@ -391,6 +389,14 @@ const Dashboard=()=>{
                 newTopic:""
             })
         }
+    }
+
+    const handlePaymentChange = (e) => {
+        
+        dispatch({
+            type: "newPaymentOption",
+            newPaymentOption:e.target.value
+        })
     }
 
     const handlePagesChange=(e)=>{
@@ -837,7 +843,7 @@ const Dashboard=()=>{
                                             step3={<Deadline onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} deadlineValue={state.deadline}
                                                 timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />}
                                             
-                                            step4={<Payment />}                                            
+                                            step4={<Payment handlePaymentChange={handlePaymentChange} selectedOption={state.paymentOption} />}                                            
                                         />                                          
                                 </Fragment>
                             }
