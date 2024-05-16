@@ -16,11 +16,11 @@
     cursor: pointer;
     background-color: rgba(165, 42, 42, 0.1);
     color: brown;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .active-page{
     background-color: rgba(165, 42, 42, 0.1) !important;
     color: brown;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 7px 29px 0px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
