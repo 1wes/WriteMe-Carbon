@@ -246,7 +246,7 @@ const Deadline = ({deadlineValue, onDeadlineChange,timeValue, onTimeChange, dead
     )
 }
 
-const Payment = ({ handlePaymentChange, selectedOption }) => {
+const Payment = ({ handlePaymentChange, selectedOption, level, service, deadline, pages }) => {
 
     return (
         <Fragment>
@@ -261,7 +261,7 @@ const Payment = ({ handlePaymentChange, selectedOption }) => {
                         method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={selectedOption} />
                 </div>
                 <div className="cost-payment-section">
-                    <OrderCostCalculator />
+                    <OrderCostCalculator level={level} service={service} deadline={deadline} pages={pages} />
                     <PaymentDetails/>
                 </div>
             </FieldsLayout>
