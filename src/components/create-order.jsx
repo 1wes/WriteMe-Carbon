@@ -284,17 +284,38 @@ const PaymentOption = ({children, logo, method, paymentMethod, onChange, selecte
     )
 }
 
-const OrderCostCalculator = () => {
+const OrderCostCalculator = ({ level, service, deadline, pages, cost }) => {    
     
     return (
         <Fragment>
             <div className="cost-calculator">
                 <StepDescriptor description={`Here is a breakdown of your order cost. If you would like to adjust it, just navigate back to 
                 a specific cost determinant and edit it.`} />
-                <div className="calculator">
-
-                </div>
+                <ul className="calculator">
+                    <ItemsList id={`items-heading`} item1={`Item`} item2={`Quantity`} item3={`Cost`} />
+                    <ItemsList item1={`Level`} item2={level} />                
+                    <ItemsList item1={`Service`} item2={service} />
+                    <ItemsList item1={`Deadline`} item2={deadline} />
+                    <ItemsList item1={`Pages`} item2={pages} item3={cost} />
+                </ul>
+                <div className="total-cost">
+                    <span>Total Cost</span>          
+                    <span>{ cost }</span>
+                </div>                
             </div>
+        </Fragment>
+    )
+}
+
+const ItemsList = ({id, item1, item2, item3}) => {
+    
+    return (
+        <Fragment>
+            <li className="cost-item" id={id} >
+                <span>{ item1 }</span>
+                <span>{ item2 }</span>
+                <span>{ item3}</span>                
+            </li>
         </Fragment>
     )
 }
@@ -304,6 +325,7 @@ const PaymentDetails = () => {
     return (
         <Fragment>
             <div className="payment-details">
+                
             </div>
         </Fragment>
     )
