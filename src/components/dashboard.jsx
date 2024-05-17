@@ -843,7 +843,8 @@ const Dashboard=()=>{
                                             step3={<Deadline onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} deadlineValue={state.deadline}
                                                 timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />}
                                             
-                                            step4={<Payment handlePaymentChange={handlePaymentChange} selectedOption={state.paymentOption} />}                                            
+                                            step4={<Payment handlePaymentChange={handlePaymentChange} selectedOption={state.paymentOption}
+                                            level={state.gradeLevel} deadline={state.deadline} pages={`X${state.pagesOrwords}`} />}                                            
                                         />                                          
                                 </Fragment>
                             }
