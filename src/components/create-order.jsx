@@ -254,7 +254,7 @@ const Payment = ({ handlePaymentChange, selectedOption, level, service, deadline
             <FieldsLayout>
                 <div className="payment-options">
                     <PaymentOption logo={visa} onClick={event => selectActiveCard(event, "credit-card")} activeCard={selectedOption==="Credit Card"?"active-card":""}
-                        method={`credit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={selectedOption} >
+                        method={`credit or debit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={selectedOption} >
                         <img src={mastercard} />
                     </PaymentOption>
                     <PaymentOption logo={paypal} onClick={event => selectActiveCard(event, "paypal")} activeCard={selectedOption==="PayPal"?"active-card":""}
