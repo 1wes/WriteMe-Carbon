@@ -118,6 +118,16 @@ const subjectOptions=(
     </Fragment>
 )
 
+const serviceOptions = (
+    <Fragment>
+        <option disabled value={``} hidden></option>
+        <option value="Writing">Writing</option>
+        <option value="Re-writing">Rewriting</option>
+        <option value="Paraphrasing">Paraphrasing</option>
+        <option value="Editing">Editing</option>
+    </Fragment>
+)
+
 const handleWheel=e=>{
 
     e.target.blur();
@@ -135,58 +145,60 @@ const StepDescriptor = ({description}) => {
 }
 
 const MandatoryFields = ({subjectValue, onSubjectChange, gradeValue, onGradeChange,instructionsValue, onInstructionChange,
-    pagesOrwordsValue, onPagesChange, styleValue, languageValue, onStyleChange, sourcesValue, onSourcesChange, topicValue,
-    onTopicChange, onCheckBoxChange, onLanguageChange }) => {
+    pagesOrwordsValue, serviceValue, onPagesChange, styleValue, languageValue, onStyleChange, sourcesValue, onSourcesChange, topicValue,
+    onTopicChange, onCheckBoxChange, onLanguageChange, onServiceChange }) => {
     
     return (
         <Fragment>
             <StepDescriptor description={`Tell us the kind of paper you want us to help you with.`} />
             <FieldsLayout>
+                <FormControl label={`Service`} labelClassName={`required`} >
+                    <Select name={`service`} value={serviceValue} onChange={onServiceChange} required={true} >
+                        {serviceOptions}
+                    </Select>
+                </FormControl>
                 <FormControl label={`Subject`} labelClassName={`required`}>
                     <Select name={`subject`} value={subjectValue} onChange={onSubjectChange} required={true}>
                         {subjectOptions}
                     </Select>
                 </FormControl>
                 <FormControl label={`Grade Level`} labelClassName={`required`}>
-                        <Select name={`grade-level`} value={gradeValue} onChange={onGradeChange} required={true}>
-                            <option disabled value={``} hidden></option>
-                            <option value="School" >School</option>
-                            <option value="College">College</option>
-                            <option value="Undergraduate">Undergraduate</option>
-                            <option value="Postgraduate">Postgraduate</option>
+                    <Select name={`grade-level`} value={gradeValue} onChange={onGradeChange} required={true}>
+                        <option disabled value={``} hidden></option>
+                        <option value="School" >School</option>
+                        <option value="College">College</option>
+                        <option value="Undergraduate">Undergraduate</option>
+                        <option value="Postgraduate">Postgraduate</option>
                             <option value="Doctorate">Doctorate</option>
-                        </Select>
+                    </Select>
                 </FormControl>
                 <FormControl label={`Reference Style`} labelClassName={`required`}>
-                        <Select name={`reference-style`} value={styleValue} onChange={onStyleChange} required={true}>
-                            <option disabled value={``} hidden></option>
-                            <option value={`APA-7th`}>APA-7th Edition</option>
-                            <option value={`APA-6th`}>APA-6th Edition</option>
-                            <option value={`MLA`}>MLA</option>
-                            <option value={`Chicago/Turabian`}>Chicago/Turabian</option>
-                            <option value={`Harvard`}>Harvard</option>
-                            <option value={`ASA`}>ASA</option>
-                            <option value={`Oscolar`}>Oscolar</option>
-                            <option value={`Strayer`}>Strayer</option>
-                            <option value={`Any`}>Any</option>
-                            <option value={`None`}>None</option>
-                        </Select>
+                    <Select name={`reference-style`} value={styleValue} onChange={onStyleChange} required={true}>
+                        <option disabled value={``} hidden></option>
+                        <option value={`APA-7th`}>APA-7th Edition</option>
+                        <option value={`APA-6th`}>APA-6th Edition</option>
+                        <option value={`MLA`}>MLA</option>
+                        <option value={`Chicago/Turabian`}>Chicago/Turabian</option>
+                        <option value={`Harvard`}>Harvard</option>
+                        <option value={`ASA`}>ASA</option>
+                        <option value={`Oscolar`}>Oscolar</option>
+                        <option value={`Strayer`}>Strayer</option>
+                        <option value={`Any`}>Any</option>
+                        <option value={`None`}>None</option>
+                    </Select>
                 </FormControl>
                 <FormControl label={`Language`} labelClassName={`required`} >
-                        <Select name={`language`} value={languageValue} onChange={onLanguageChange} required={true} >
-                            <option disabled value={``} hidden></option>
-                            <option value={`Eng (US)`} >🇺🇸  Eng (US)</option>
-                            <option value={`Eng (UK)`} >🇬🇧  Eng (UK)</option>
-                            <option value={`Eng (AUS)`} >🇦🇺  Eng (AUS)</option>
-                            <option value={`Eng (CAN)`} >🇨🇦  Eng (CAN)</option>
-                        </Select>
+                    <Select name={`language`} value={languageValue} onChange={onLanguageChange} required={true} >
+                        <option disabled value={``} hidden></option>
+                        <option value={`Eng (US)`} >🇺🇸  Eng (US)</option>
+                        <option value={`Eng (UK)`} >🇬🇧  Eng (UK)</option>
+                        <option value={`Eng (AUS)`} >🇦🇺  Eng (AUS)</option>
+                        <option value={`Eng (CAN)`} >🇨🇦  Eng (CAN)</option>
+                    </Select>
                 </FormControl>   
                 <FormControl label={`Number of Sources`} labelClassName={`required`}>
-                        <Input type={`number`} onWheel={handleWheel} value={sourcesValue} onChange={onSourcesChange} required={true} />
+                    <Input type={`number`} onWheel={handleWheel} value={sourcesValue} onChange={onSourcesChange} required={true} />                    
                 </FormControl>  
-                <FormControl label={`Instructions`} labelClassName={`required`}>
-                        <TextArea value={instructionsValue} onChange={onInstructionChange} required={true} />
-                </FormControl>
                 <FormControl label={`Assignment Topic`} labelClassName={'required'}>
                         <Input type={`text`} value={topicValue} onChange={onTopicChange} required={true}/>
                         <div className="box-and-text"> 
@@ -196,7 +208,10 @@ const MandatoryFields = ({subjectValue, onSubjectChange, gradeValue, onGradeChan
                 </FormControl> 
                 <FormControl label={`Number of Pages/Words`} labelClassName={`required`}>
                         <Input type={`number`} value={pagesOrwordsValue} onChange={onPagesChange} onWheel={handleWheel} required={true} />
-                </FormControl>            
+                </FormControl>   
+                <FormControl label={`Instructions`} labelClassName={`required`}>
+                    <TextArea value={instructionsValue} onChange={onInstructionChange} required={true} />                    
+                </FormControl>
             </FieldsLayout>
         </Fragment>
     )
