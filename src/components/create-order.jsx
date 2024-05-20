@@ -343,4 +343,3 @@ export{
     Deadline,
     Payment
 }
-export default SubmissionForm;
