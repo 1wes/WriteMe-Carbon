@@ -103,7 +103,7 @@ const Contact=()=>{
                             <SectionHeader tagline={`Get in touch with us.`}/>
 
                             <div className='form-section'>
-                                <form onSubmit={submitForm}> 
+                                <form className='contact-us-form' onSubmit={submitForm}> 
                                     <label className='required'>
                                         Name
                                     </label>
