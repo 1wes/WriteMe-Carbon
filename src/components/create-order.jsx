@@ -122,7 +122,7 @@ const serviceOptions = (
     <Fragment>
         <option disabled value={``} hidden></option>
         <option value="Writing">Writing</option>
-        <option value="Re-writing">Rewriting</option>
+        <option value="Rewriting">Rewriting</option>
         <option value="Paraphrasing">Paraphrasing</option>
         <option value="Editing">Editing</option>
     </Fragment>
