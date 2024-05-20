@@ -12,6 +12,9 @@
 #environment_variables
 .env
 
+#private_config
+/src/config
+
 # misc
 .DS_Store
 .env.local
