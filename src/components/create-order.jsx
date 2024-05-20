@@ -2,13 +2,12 @@ import React, { Fragment } from "react";
 
 import './create-order.css';
 
-import { CtaButton } from "./services";
-
 import visa from '../assets/payment/visa.png';
 import mastercard from '../assets/payment/mastercard.png';
 import paypal from '../assets/payment/paypal.png';
 
 import { BiCloudUpload } from "react-icons/bi";
+
 
 const FormLegend=()=>{
 
@@ -328,25 +327,6 @@ const PaymentDetails = () => {
                 
             </div>
         </Fragment>
-    )
-}
-
-const SubmissionForm=({onSubmit, onFileChange,  
-    })=>{
-
-    return(
-
-        <React.Fragment>
-            <form className="assignment-form" encType="multipart/form-data" onSubmit={onSubmit}>
-                <div className="assignment-details">
-
-
-
-                </div>
-                <FormLegend/>
-                <CtaButton type={`submit`} message={`Submit Assignment`} id={`submit-assignment-button`} />
-            </form>
-        </React.Fragment>
     )
 }
 
