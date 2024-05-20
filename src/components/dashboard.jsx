@@ -23,7 +23,8 @@ import {LuFilterX} from 'react-icons/lu';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
-const initialState={
+const initialState = {
+    service:"",
     subject:"",
     gradeLevel:"",
     style: "",
@@ -35,18 +36,24 @@ const initialState={
     pagesOrwords:"",
     deadline:"",
     time: "",
-    paymentOption:""
+    paymentOption: ""
 }
 
 const reducer=(state, action)=>{
 
-    switch(action.type){
+    switch (action.type) {
+        
+        case "newService": {
+            return {
+                ...state,
+                service:action.newService
+            }
+        }
 
         case "newSubject":{
             return{
                 ...state,
                 subject:action.newSubject,
-
             }
         }
 
@@ -309,6 +316,14 @@ const Dashboard=()=>{
         DeadlineErrorAlert=(
             <Error errorMessage={DeadlineErrorMessage} />
         )
+    }
+
+    const handleServiceChange = (e) => {
+        
+        dispatch({
+            type: "newService",
+            newService:e.target.value
+        })
     }
 
     const handleSubjectChange=(e)=>{
@@ -824,30 +839,33 @@ const Dashboard=()=>{
                             {
                                 submissionForm.show &&
                                 <Fragment>
-                                    <FormStepper onSubmit={submitAssignment} step1={<MandatoryFields onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
+                                    <FormStepper onSubmit={submitAssignment}
+                                        step1={<MandatoryFields onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
                                                 
-                                            onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} onLanguageChange={handleLanguage}                                            
+                                        onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} onLanguageChange={handleLanguage}                                            
                                                 
-                                            onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange}                                                                                     
-                                                
-                                            subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style}                                             
-                                                
-                                            instructionsValue={state.instructions} pagesOrwordsValue={state.pagesOrwords}                                            
-                                                
-                                            topicValue={state.topic} checkboxValue={state.topic} onTopicChange={handleTopicChange}
-
-                                            onCheckBoxChange={handleCheckboxChange}
-                                                
-                                            languageValue={state.language} />}
-
-                                            step2={<Files onFileChange={handleFileChange} files={state.files} />}
+                                        onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange}   
                                             
-                                            step3={<Deadline onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} deadlineValue={state.deadline}
-                                                timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />}
+                                        onServiceChange={handleServiceChange}
                                             
-                                            step4={<Payment handlePaymentChange={handlePaymentChange} selectedOption={state.paymentOption}
-                                            level={state.gradeLevel} deadline={state.deadline} pages={`X${state.pagesOrwords}`} />}                                            
-                                        />                                          
+                                        subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style}                                             
+                                                
+                                        instructionsValue={state.instructions} pagesOrwordsValue={state.pagesOrwords}                                            
+                                                
+                                        topicValue={state.topic} checkboxValue={state.topic} onTopicChange={handleTopicChange}
+
+                                        onCheckBoxChange={handleCheckboxChange} serviceValue={state.service}
+                                                
+                                        languageValue={state.language} />}
+
+                                        step2={<Files onFileChange={handleFileChange} files={state.files} />}
+                                            
+                                        step3={<Deadline onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} deadlineValue={state.deadline}
+                                        timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />}
+                                            
+                                        step4={<Payment handlePaymentChange={handlePaymentChange} selectedOption={state.paymentOption}
+                                        level={state.gradeLevel} deadline={state.deadline} pages={`X${state.pagesOrwords}`} />}                                            
+                                    />                                          
                                 </Fragment>
                             }
                         </div>
