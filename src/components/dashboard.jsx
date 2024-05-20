@@ -6,7 +6,7 @@ import useSWR from 'swr';
 
 import axios from '../utils/axios';
 import SectionHeader from './heading';
-import SubmissionForm ,{ Error, MandatoryFields, Files, Deadline, Payment } from './create-order';
+import { Error, MandatoryFields, Files, Deadline, Payment } from './create-order';
 import { Select } from './create-order';
 import Modal, { ModalForm, SuccessIcon, WarningIcon } from './modal';
 import { revisionGracePeriod } from '../utils/dates';
@@ -620,46 +620,48 @@ const Dashboard=()=>{
 
         e.preventDefault();
 
-        let assignmentDetails= new FormData();
-
-        for (var key in state){
-            assignmentDetails.append(key, state[key])
-        }
-
-        if(state.files.length!==0){
-            
-            for(var keys in state.files){
-                assignmentDetails.append("attachedFiles", state.files[keys])
-                assignmentDetails.append("fileNames", state.files[keys].name)
-            }
-        }   
+        let assignmentDetails = new FormData();
         
-        axios.post("api/orders/new", assignmentDetails,
-         {
-            headers:{
-                "Content-Type":"multipart/form-data"
-            }
-            }
-        ).then(() => {
+        alert(JSON.stringify(state));
 
-            dispatch({
-                type: "clearForm"
-            });
+        // for (var key in state){
+        //     assignmentDetails.append(key, state[key])
+        // }
 
-            setSubmissionForm({
-                show: false
-            });
+        // if(state.files.length!==0){
+            
+        //     for(var keys in state.files){
+        //         assignmentDetails.append("attachedFiles", state.files[keys])
+        //         assignmentDetails.append("fileNames", state.files[keys].name)
+        //     }
+        // }   
+        
+        // axios.post("api/orders/new", assignmentDetails,
+        //  {
+        //     headers:{
+        //         "Content-Type":"multipart/form-data"
+        //     }
+        //     }
+        // ).then(() => {
 
-            setModal({
-                show: true,
-                mainMessage: "Success",
-                supportingMessage:`Your assignment has been submitted successfully. You will be 
-                updated on its progress.`
-            });
+        //     dispatch({
+        //         type: "clearForm"
+        //     });
 
-        }).catch(err=>{
-            console.log(err);
-        });
+        //     setSubmissionForm({
+        //         show: false
+        //     });
+
+        //     setModal({
+        //         show: true,
+        //         mainMessage: "Success",
+        //         supportingMessage:`Your assignment has been submitted successfully. You will be 
+        //         updated on its progress.`
+        //     });
+
+        // }).catch(err=>{
+        //     console.log(err);
+        // });
     });
 
     const paginate=(pageNumber)=>{
@@ -822,7 +824,7 @@ const Dashboard=()=>{
                             {
                                 submissionForm.show &&
                                 <Fragment>
-                                    <FormStepper step1={<MandatoryFields onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
+                                    <FormStepper onSubmit={submitAssignment} step1={<MandatoryFields onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
                                                 
                                             onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} onLanguageChange={handleLanguage}                                            
                                                 
