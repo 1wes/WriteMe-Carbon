@@ -864,7 +864,7 @@ const Dashboard=()=>{
                                         timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />}
                                             
                                         step4={<Payment handlePaymentChange={handlePaymentChange} selectedOption={state.paymentOption}
-                                        level={state.gradeLevel} deadline={state.deadline} pages={`X${state.pagesOrwords}`} />}                                            
+                                        level={state.gradeLevel} deadline={state.deadline} pages={`X${state.pagesOrwords}`} service={state.service} />}                                            
                                     />                                          
                                 </Fragment>
                             }
