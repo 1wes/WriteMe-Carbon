@@ -13,7 +13,7 @@
 .env
 
 #private_config
-/src/config
+/src/__config
 
 # misc
 .DS_Store
