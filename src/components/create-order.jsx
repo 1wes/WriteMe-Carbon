@@ -217,20 +217,21 @@ const MandatoryFields = ({subjectValue, onSubjectChange, gradeValue, onGradeChan
     )
 }
 
-const Files = ({ onFileChange, files }) => {
+const Files = ({ onFileChange, files, service }) => {
 
     const fileCounter = files.length ? files.length > 1 ? `${files.length} files` : `${files[0].name}` : "";
 
     return (
         <Fragment>
-            <StepDescriptor description={`Upload files, if any and necessary. This step is optional, and you can add files even after submission by clicking
-            on "Upload Files" in the All Orders section.`} />
+            <StepDescriptor description={service==="Writing"?`Upload files, if any and necessary. This step is optional, and you can add files even after submission by clicking
+            on "Upload Files" in the All Orders section.`:`Since this order requires ${service.toLowerCase()}, you need to attach the files of the work you have already done.`} />
             <FieldsLayout id={`files-layout`} >
                 <div className="input-group" id="files-input-group">
-                    <label htmlFor="new-files" className="new-files" >
+                    <label htmlFor="new-files" className="new-files"  >
                         <span className="add-file-icon"><i><BiCloudUpload /></i>Attach Files</span>
                     </label>
-                    <Input type={`file`} name={`fileAttachments`} id={`new-files`} onChange={onFileChange} placeholder={`add file`} multiple={true} hidden={true} />
+                    <Input type={`file`} name={`fileAttachments`} id={`new-files`} onChange={onFileChange} placeholder={`add file`} multiple={true} hidden={true}
+                    required={service==='Writing'?false:true}/>
                     {files.length>0 &&
                         <div className="number-of-files">
                             <span className="file-counter"> {fileCounter} </span> selected.                        
