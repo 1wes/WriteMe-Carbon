@@ -6,7 +6,7 @@ import useSWR from 'swr';
 
 import axios from '../utils/axios';
 import SectionHeader from './heading';
-import { Error, MandatoryFields, Files, Deadline, Payment } from './create-order';
+import MandatoryFields, { Error, Files, Deadline, Payment } from './create-order';
 import { Select } from './create-order';
 import Modal, { ModalForm, SuccessIcon, WarningIcon } from './modal';
 import { revisionGracePeriod } from '../utils/dates';
