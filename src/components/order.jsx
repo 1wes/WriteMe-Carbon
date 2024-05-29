@@ -13,7 +13,7 @@ import { FormControl, Input, TextArea } from './create-order';
 import Modal , {SuccessIcon} from './modal';
 
 import { MdClose } from 'react-icons/md';
-import { BiCloud, BiCloudUpload, BiUpload } from 'react-icons/bi';
+import { BiCloudUpload } from 'react-icons/bi';
 
 const fetcher=url=>axios.get(url).then(res=>res.data);
 
