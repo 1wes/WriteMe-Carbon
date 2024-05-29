@@ -22,7 +22,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    font-size: 14px;
+    font-size: 13.5px;
 }
 
 #instruction-details, .attached-files{
