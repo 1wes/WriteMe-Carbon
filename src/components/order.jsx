@@ -333,7 +333,7 @@ const ClientOrder = () => {
                       <span className="order-key">Deadline : </span>
                       <span className="order-value"></span>
                       {order ? order.date_deadline.split("T")[0] : ""}
-                      <span>{` (${daysToDeadline>0?daysToDeadline:0} days remaining )`}</span>
+                      <span>{` (${daysToDeadline>0?`${daysToDeadline} remaining`:'Past deadline'})`}</span>
                     </li>
                     <li>
                       <span className="order-key">Time : </span>
