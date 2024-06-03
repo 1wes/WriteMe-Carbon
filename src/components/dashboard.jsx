@@ -13,6 +13,7 @@ import { revisionGracePeriod } from '../utils/dates';
 import DashboardNavbar from './dash-nav';
 import PageNumbers from './paginate';
 import FormStepper from './stepper';
+import cost from '../__config/cost-criteria.json';
 
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
