@@ -1,7 +1,7 @@
 import React, { useReducer, useState, useLayoutEffect } from "react";
 import './signup.css';
 import axios from "axios";
-import Countries from '../utils/countries.json';
+import Countries from '../__config/countries.json';
 import Footer from './footer';
 import {CtaButton} from './services';
 import { Error, FormAlerts } from "./create-order";
