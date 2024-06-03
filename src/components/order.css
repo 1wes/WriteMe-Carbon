@@ -98,12 +98,20 @@
 }
 
 .download-link{
-    text-decoration: underline;
-    color: rgb(55, 55, 236);
-    cursor: pointer;
+    color: rgb(8, 8, 236);
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.file-list{
+    cursor: pointer;
+    display: inline-block;
+    align-self: flex-start;
+}
+
+.file-list:hover{
+    text-decoration: underline;
 }
 
 @keyframes toggleExpand{
