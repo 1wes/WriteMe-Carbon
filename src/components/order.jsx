@@ -312,6 +312,12 @@ const ClientOrder = () => {
                       }`}</span>
                     </li>
                     <li>
+                      <span className="order-key">Service : </span>
+                      <span className="order-value">
+                        {order ? order.service : ""}                        
+                      </span>
+                    </li>
+                    <li>
                       <span className="order-key">Pages or Words : </span>
                       <span className="order-value">
                         {order ? order.words_or_pages : ""}
