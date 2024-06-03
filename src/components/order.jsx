@@ -520,4 +520,4 @@ const ClientOrder = () => {
       </Fragment>
     );
 }
-export default ClientOrder
+export default ClientOrder;
