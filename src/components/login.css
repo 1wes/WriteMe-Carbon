@@ -85,6 +85,7 @@
     font-size: 14px;
     border-radius: 5px;
     color: rgb(190, 12, 12);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .error-icon{
