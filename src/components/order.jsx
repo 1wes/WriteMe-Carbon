@@ -1,4 +1,4 @@
-import React , { Fragment, useState, useEffect } from 'react';
+import React , { Fragment, useState, useEffect, useLayoutEffect } from 'react';
 
 import { useLocation, Link } from 'react-router-dom';
 
@@ -41,6 +41,10 @@ const ClientOrder = () => {
   
   const { data } = useSWR(`/api/orders/order/${id}`, fetcher);
   
+  // scroll to top when page is opened
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
     useEffect(()=>{
         if(data){
