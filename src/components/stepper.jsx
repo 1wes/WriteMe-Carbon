@@ -42,39 +42,36 @@ const FormStepper = ({step1, step2, step3, step4, onSubmit}) => {
     
     return (
         <Fragment>
-            <Fragment>
-                <Stepper className='form-stepper' activeStep={activeStep} alternativeLabel sx={{mt:6, mb:8,fontSize:5, width:'100%'}}>
-                    {steps.map((step, index) => {
-                        return (
-                            <Step key={index}>
-                                <StepLabel className='step-label' ><div  className='step-title'>{ step.title }</div></StepLabel>
-                            </Step>
-                        )
-                    })}
-                </Stepper>
-                <form  encType='multipart/form-data'>
-                    {displayStepComponent()}                    
-                </form>
-                <div className='step-navigation'>
-                    {
-                        activeStep !== 0 && <CtaButton id={`previous`} message={`Back`} onClick={goToPreviousStep}>
-                            <span className='inline-icon'>
-                                <IoMdArrowRoundBack />                                
-                            </span>
-                        </CtaButton>                      
-                    }
-                    <CtaButton id={`next`} message={activeStep === steps.length - 1 ? `Finish` : `Next`}
-                        onClick={ activeStep===steps.length-1?onSubmit:gotToNextStep}>
-                        {
-                            activeStep !== steps.length - 1 && 
-                            <span className='inline-icon'>                                    
-                                <IoMdArrowRoundForward />                                       
-                            </span>                            
-                        }
-                    </CtaButton>
-                </div>
-
-            </Fragment>
+            <Stepper className='form-stepper' activeStep={activeStep} alternativeLabel sx={{mt:6, mb:8,fontSize:5, width:'100%'}}>
+                {steps.map((step, index) => {
+                    return (
+                        <Step key={index}>
+                            <StepLabel className='step-label' ><div  className='step-title'>{ step.title }</div></StepLabel>
+                        </Step>
+                    )
+                })}                
+            </Stepper>            
+            <form encType='multipart/form-data'>                
+                {displayStepComponent()}                   
+            </form>            
+            <div className='step-navigation'>                
+                {                    
+                    activeStep !== 0 && <CtaButton id={`previous`} message={`Back`} onClick={goToPreviousStep}>                        
+                        <span className='inline-icon'>                            
+                            <IoMdArrowRoundBack />                                
+                        </span>                        
+                    </CtaButton>                      
+                }                
+                <CtaButton id={`next`} message={activeStep === steps.length - 1 ? `Finish` : `Next`}                    
+                    onClick={activeStep === steps.length - 1 ? onSubmit : gotToNextStep}>                    
+                    {                        
+                        activeStep !== steps.length - 1 &&                         
+                        <span className='inline-icon'>                                      
+                            <IoMdArrowRoundForward />                                                                 
+                        </span>                             
+                    }                    
+                </CtaButton>                
+            </div>            
         </Fragment>
     )
 }
