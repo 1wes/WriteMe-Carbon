@@ -99,13 +99,13 @@ const Bloglist=()=>{
 
     newerContent=blogPosts?blogPosts.slice(0, 2).map((post)=>{
         return(
-            <NewerContent key={post.slug} title={post.title} summary={post.summary.substring(0, 322)+"..."} published={post.published.split("T")[0]} 
+            <NewerContent key={post.slug} title={post.title} summary={post.summary.substring(0, 322)+"..."} published={new Date(post.published).toLocaleDateString()} 
              alt={post.featured_image_alt}
              src={post.featured_image} link={`/blog/${post.slug}`} />)}):(<NewContentLoader/>)
 
     oldContent=blogPosts?blogPosts.slice(2, blogPosts.length).map((post)=>{
         return(
-            <OlderContent key={post.slug} title={post.title} image={post.featured_image} link={`/blog/${post.slug}`} date={post.published.split("T")[0]}
+            <OlderContent key={post.slug} title={post.title} image={post.featured_image} link={`/blog/${post.slug}`} date={new Date(post.published).toLocaleDateString()}
             alt={post.featured_image_alt} summary={post.summary.substring(0, 110)+"..."} />
         )
     }):(<OldContentLoader/>)
