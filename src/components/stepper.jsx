@@ -9,7 +9,7 @@ import { CtaButton } from './services';
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 
 
-const FormStepper = ({step1, step2, step3, step4, onSubmit}) => {
+const FormStepper = ({ step1, step2, step3, step4, onSubmit }) => {    
 
     const [activeStep, setActiveStep] = useState(0);
 
@@ -33,10 +33,12 @@ const FormStepper = ({step1, step2, step3, step4, onSubmit}) => {
     }
     
     const goToPreviousStep = () => {
+
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     }
 
-    const gotToNextStep = () => {
+    const gotToNextStep = () => {        
+
         setActiveStep((prevActiveStep) => activeStep === steps.length - 1 ? prevActiveStep : prevActiveStep + 1);
     }
     
