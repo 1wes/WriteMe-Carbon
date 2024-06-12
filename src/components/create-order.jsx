@@ -218,22 +218,22 @@ const MandatoryFields = ({ onSubjectChange, onGradeChange, onInstructionChange,
     )
 }
 
-const Files = ({ onFileChange, files, service }) => {
+const Files = ({ onFileChange, formData }) => {
 
-    const fileCounter = files.length ? files.length > 1 ? `${files.length} files` : `${files[0].name}` : "";
+    const fileCounter = formData.files.length ? formData.files.length > 1 ? `${formData.files.length} files` : `${formData.files[0].name}` : "";
 
     return (
         <Fragment>
-            <StepDescriptor description={service==="Writing"?`Upload files, if any and necessary. This step is optional, and you can add files even after submission by clicking
-            on "Upload Files" in the All Orders section.`:`Since this order requires ${service.toLowerCase()}, you need to attach the files of the work you have already done.`} />
+            <StepDescriptor description={formData.service==="Writing"?`Upload files, if any and necessary. This step is optional, and you can add files even after submission by clicking
+            on "Upload Files" in the All Orders section.`:`Since this order requires ${formData.service.toLowerCase()}, you need to attach the files of the work you have already done.`} />
             <FieldsLayout id={`files-layout`} >
                 <div className="input-group" id="files-input-group">
                     <label htmlFor="new-files" className="new-files"  >
                         <span className="add-file-icon"><i><BiCloudUpload /></i>Attach Files</span>
                     </label>
                     <Input type={`file`} name={`fileAttachments`} id={`new-files`} onChange={onFileChange} placeholder={`add file`} multiple={true} hidden={true}
-                    required={service==='Writing'?false:true}/>
-                    {files.length>0 &&
+                    required={formData.service==='Writing'?false:true}/>
+                    {formData.files.length>0 &&
                         <div className="number-of-files">
                             <span className="file-counter"> {fileCounter} </span> selected.                        
                         </div>
