@@ -244,7 +244,7 @@ const Files = ({ onFileChange, formData }) => {
     ) 
 }
 
-const Deadline = ({formData, deadlineValue, onDeadlineChange,timeValue, onTimeChange, deadlineErrorAlert}) => {
+const Deadline = ({formData, onDeadlineChange, onTimeChange, errorAlert}) => {
     
     return (
         <Fragment>
@@ -252,7 +252,7 @@ const Deadline = ({formData, deadlineValue, onDeadlineChange,timeValue, onTimeCh
             <FieldsLayout>
                 <FormControl label={`Date`} labelClassName={`required`}>                    
                     <Input type={`date`} value={formData.deadline} onChange={onDeadlineChange} required={true} />                          
-                    {deadlineErrorAlert}                    
+                    {errorAlert}                    
                 </FormControl>                
                 <FormControl label={`Time`} labelClassName={`required`}>                    
                     <Input type={`time`} value={formData.time} onChange={onTimeChange} required={true} />                    
@@ -262,22 +262,22 @@ const Deadline = ({formData, deadlineValue, onDeadlineChange,timeValue, onTimeCh
     )
 }
 
-const Payment = ({ handlePaymentChange, selectedOption, level, service, deadline, pages }) => {
+const Payment = ({ handlePaymentChange, formData }) => {
 
     return (
         <Fragment>
             <StepDescriptor description={`Please enter your payment details`} />
             <FieldsLayout>
                 <div className="payment-options">
-                    <PaymentOption logo={visa} onClick={event => selectActiveCard(event, "credit-card")} activeCard={selectedOption==="Credit Card"?"active-card":""}
-                        method={`credit or debit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={selectedOption} >
+                    <PaymentOption logo={visa} onClick={event => selectActiveCard(event, "credit-card")} activeCard={formData.PaymentOption==="Credit Card"?"active-card":""}
+                        method={`credit or debit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={formData.PaymentOption} >
                         <img src={mastercard} />
                     </PaymentOption>
-                    <PaymentOption logo={paypal} onClick={event => selectActiveCard(event, "paypal")} activeCard={selectedOption==="PayPal"?"active-card":""}
-                        method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={selectedOption} />
+                    <PaymentOption logo={paypal} onClick={event => selectActiveCard(event, "paypal")} activeCard={formData.paymentOption==="PayPal"?"active-card":""}
+                        method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={formData.paymentOption} />
                 </div>
                 <div className="cost-payment-section">
-                    <OrderCostCalculator level={level} service={service} deadline={deadline} pages={pages} />
+                    <OrderCostCalculator level={formData.gradeLevel} service={formData.service} deadline={formData.deadline} pages={`x${formData.pagesOrwords}`} />
                     <PaymentDetails/>
                 </div>
             </FieldsLayout>
