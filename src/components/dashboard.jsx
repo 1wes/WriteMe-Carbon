@@ -311,14 +311,6 @@ const Dashboard=()=>{
         })
     }
 
-    let DeadlineErrorAlert;
-
-    if(error){
-        DeadlineErrorAlert=(
-            <Error errorMessage={DeadlineErrorMessage} />
-        )
-    }
-
     const handleServiceChange = (e) => {
         
         dispatch({
@@ -843,24 +835,20 @@ const Dashboard=()=>{
                                     <FormStepper onSubmit={submitAssignment}
                                         step1={<MandatoryFields onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
                                                 
-                                        onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} onLanguageChange={handleLanguage}                                            
+                                            onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} onLanguageChange={handleLanguage}                                                  
                                                 
-                                        onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange}   
+                                            onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange}                                               
                                             
-                                        onServiceChange={handleServiceChange}
-                                                
-                                        onTopicChange={handleTopicChange}
+                                            onServiceChange={handleServiceChange} onTopicChange={handleTopicChange}                                            
 
-                                        onCheckBoxChange={handleCheckboxChange} serviceValue={state.service}
-                                            
-                                        formData={state}                                                                            
+                                            onCheckBoxChange={handleCheckboxChange} formData={state}                                                               
 
                                         />}                                            
 
-                                        step2={<Files onFileChange={handleFileChange} formData={state} />}
+                                        step2={<Files onFileChange={handleFileChange} formData={state} />}                                        
                                             
                                         step3={<Deadline onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange}
-                                        deadlineErrorAlert={DeadlineErrorAlert} formData={state} />}
+                                        errorAlert={error && <Error errorMessage={DeadlineErrorMessage} />} formData={state} />}
                                             
                                         step4={<Payment handlePaymentChange={handlePaymentChange} selectedOption={state.paymentOption}
                                         level={state.gradeLevel} deadline={state.deadline} pages={`X${state.pagesOrwords}`} service={state.service} />}                                            
