@@ -7,7 +7,6 @@ import mastercard from '../assets/payment/mastercard.png';
 import paypal from '../assets/payment/paypal.png';
 
 import { BiCloudUpload } from "react-icons/bi";
-import { MdDragIndicator } from "react-icons/md";
 
 
 const FormLegend=()=>{
