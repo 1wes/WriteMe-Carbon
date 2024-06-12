@@ -244,18 +244,18 @@ const Files = ({ onFileChange, formData }) => {
     ) 
 }
 
-const Deadline = ({deadlineValue, onDeadlineChange,timeValue, onTimeChange, deadlineErrorAlert}) => {
+const Deadline = ({formData, deadlineValue, onDeadlineChange,timeValue, onTimeChange, deadlineErrorAlert}) => {
     
     return (
         <Fragment>
             <StepDescriptor description={`Select date and time within which the work should be completed.`} />
             <FieldsLayout>
                 <FormControl label={`Date`} labelClassName={`required`}>                    
-                    <Input type={`date`} value={deadlineValue} onChange={onDeadlineChange} required={true} />                          
+                    <Input type={`date`} value={formData.deadline} onChange={onDeadlineChange} required={true} />                          
                     {deadlineErrorAlert}                    
                 </FormControl>                
                 <FormControl label={`Time`} labelClassName={`required`}>                    
-                    <Input type={`time`} value={timeValue} onChange={onTimeChange} required={true} />                    
+                    <Input type={`time`} value={formData.time} onChange={onTimeChange} required={true} />                    
                 </FormControl>                
             </FieldsLayout>            
         </Fragment>

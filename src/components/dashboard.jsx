@@ -859,8 +859,8 @@ const Dashboard=()=>{
 
                                         step2={<Files onFileChange={handleFileChange} formData={state} />}
                                             
-                                        step3={<Deadline onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange} deadlineValue={state.deadline}
-                                        timeValue={state.time} deadlineErrorAlert={DeadlineErrorAlert} />}
+                                        step3={<Deadline onDeadlineChange={handleDeadlineChange} onTimeChange={handleTimeChange}
+                                        deadlineErrorAlert={DeadlineErrorAlert} formData={state} />}
                                             
                                         step4={<Payment handlePaymentChange={handlePaymentChange} selectedOption={state.paymentOption}
                                         level={state.gradeLevel} deadline={state.deadline} pages={`X${state.pagesOrwords}`} service={state.service} />}                                            
