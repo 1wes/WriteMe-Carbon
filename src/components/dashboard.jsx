@@ -848,16 +848,14 @@ const Dashboard=()=>{
                                         onInstructionChange={handleInstructionChange} onPagesChange={handlePagesChange}   
                                             
                                         onServiceChange={handleServiceChange}
-                                            
-                                        subjectValue={state.subject} gradeValue={state.gradeLevel} sourcesValue={state.sources} styleValue={state.style}                                             
                                                 
-                                        instructionsValue={state.instructions} pagesOrwordsValue={state.pagesOrwords}                                            
-                                                
-                                        topicValue={state.topic} checkboxValue={state.topic} onTopicChange={handleTopicChange}
+                                        onTopicChange={handleTopicChange}
 
                                         onCheckBoxChange={handleCheckboxChange} serviceValue={state.service}
-                                                
-                                        languageValue={state.language} />}
+                                            
+                                        formData={state}                                                                            
+
+                                        />}                                            
 
                                         step2={<Files onFileChange={handleFileChange} files={state.files} service={state.service} />}
                                             

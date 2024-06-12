@@ -145,26 +145,26 @@ const StepDescriptor = ({description}) => {
     )
 }
 
-const MandatoryFields = ({subjectValue, onSubjectChange, gradeValue, onGradeChange,instructionsValue, onInstructionChange,
-    pagesOrwordsValue, serviceValue, onPagesChange, styleValue, languageValue, onStyleChange, sourcesValue, onSourcesChange, topicValue,
-    onTopicChange, onCheckBoxChange, onLanguageChange, onServiceChange }) => {
+const MandatoryFields = ({ onSubjectChange, onGradeChange, onInstructionChange,
+    onPagesChange, onStyleChange, onSourcesChange, onTopicChange, onCheckBoxChange,
+     onLanguageChange, onServiceChange, formData }) => {
     
     return (
         <Fragment>
             <StepDescriptor description={`Tell us the kind of paper you want us to help you with.`} />
             <FieldsLayout>
                 <FormControl label={`Service`} labelClassName={`required`} >
-                    <Select name={`service`} value={serviceValue} onChange={onServiceChange} required={true} >
+                    <Select name={`service`} value={formData.service} onChange={onServiceChange} required={true} >
                         {serviceOptions}
                     </Select>
                 </FormControl>
                 <FormControl label={`Subject`} labelClassName={`required`}>
-                    <Select name={`subject`} value={subjectValue} onChange={onSubjectChange} required={true}>
+                    <Select name={`subject`} value={formData.subject} onChange={onSubjectChange} required={true}>
                         {subjectOptions}
                     </Select>
                 </FormControl>
                 <FormControl label={`Grade Level`} labelClassName={`required`}>
-                    <Select name={`grade-level`} value={gradeValue} onChange={onGradeChange} required={true}>
+                    <Select name={`grade-level`} value={formData.gradeLevel} onChange={onGradeChange} required={true}>
                         <option disabled value={``} hidden></option>
                         <option value="School" >School</option>
                         <option value="College">College</option>
@@ -174,7 +174,7 @@ const MandatoryFields = ({subjectValue, onSubjectChange, gradeValue, onGradeChan
                     </Select>
                 </FormControl>
                 <FormControl label={`Reference Style`} labelClassName={`required`}>
-                    <Select name={`reference-style`} value={styleValue} onChange={onStyleChange} required={true}>
+                    <Select name={`reference-style`} value={formData.style} onChange={onStyleChange} required={true}>
                         <option disabled value={``} hidden></option>
                         <option value={`APA-7th`}>APA-7th Edition</option>
                         <option value={`APA-6th`}>APA-6th Edition</option>
@@ -189,7 +189,7 @@ const MandatoryFields = ({subjectValue, onSubjectChange, gradeValue, onGradeChan
                     </Select>
                 </FormControl>
                 <FormControl label={`Language`} labelClassName={`required`} >
-                    <Select name={`language`} value={languageValue} onChange={onLanguageChange} required={true} >
+                    <Select name={`language`} value={formData.language} onChange={onLanguageChange} required={true} >
                         <option disabled value={``} hidden></option>
                         <option value={`Eng (US)`} >🇺🇸  Eng (US)</option>
                         <option value={`Eng (UK)`} >🇬🇧  Eng (UK)</option>
@@ -198,20 +198,20 @@ const MandatoryFields = ({subjectValue, onSubjectChange, gradeValue, onGradeChan
                     </Select>
                 </FormControl>   
                 <FormControl label={`Number of Sources`} labelClassName={`required`}>
-                    <Input type={`number`} onWheel={handleWheel} value={sourcesValue} onChange={onSourcesChange} required={true} />                    
+                    <Input type={`number`} onWheel={handleWheel} value={formData.sources} onChange={onSourcesChange} required={true} />                    
                 </FormControl>  
                 <FormControl label={`Assignment Topic`} labelClassName={'required'}>
-                        <Input type={`text`} value={topicValue} onChange={onTopicChange} required={true}/>
+                        <Input type={`text`} value={formData.topic} onChange={onTopicChange} required={true}/>
                         <div className="box-and-text"> 
                             <input className="checkbox" type="checkbox" onChange={onCheckBoxChange}  ></input>
                             <span>Use Any or Other.</span>
                         </div>
                 </FormControl> 
                 <FormControl label={`Number of Pages/Words`} labelClassName={`required`}>
-                        <Input type={`number`} value={pagesOrwordsValue} onChange={onPagesChange} onWheel={handleWheel} required={true} />
+                        <Input type={`number`} value={formData.pagesOrwords} onChange={onPagesChange} onWheel={handleWheel} required={true} />
                 </FormControl>   
                 <FormControl label={`Instructions`} labelClassName={`required`}>
-                    <TextArea value={instructionsValue} onChange={onInstructionChange} required={true} />                    
+                    <TextArea value={formData.instructions} onChange={onInstructionChange} required={true} />                    
                 </FormControl>
             </FieldsLayout>
         </Fragment>
@@ -241,7 +241,7 @@ const Files = ({ onFileChange, files, service }) => {
                 </div>
             </FieldsLayout>
         </Fragment>
-    )
+    ) 
 }
 
 const Deadline = ({deadlineValue, onDeadlineChange,timeValue, onTimeChange, deadlineErrorAlert}) => {
