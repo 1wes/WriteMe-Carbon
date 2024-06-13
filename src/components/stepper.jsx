@@ -5,11 +5,12 @@ import { Stepper, Step, StepLabel } from '@mui/material';
 import './stepper.css';
 
 import { CtaButton } from './services';
+import validateForm from './validation/validation';
 
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 
 
-const FormStepper = ({ step1, step2, step3, step4, onSubmit }) => {    
+const FormStepper = ({ step1, step2, step3, step4, onSubmit, formData }) => {    
 
     const [activeStep, setActiveStep] = useState(0);
 
@@ -37,7 +38,12 @@ const FormStepper = ({ step1, step2, step3, step4, onSubmit }) => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     }
 
-    const gotToNextStep = () => {        
+    const gotToNextStep = () => {   
+        
+        // extract validation status and conditionally navigate to next step
+        const isValid = validateForm(activeStep, formData);
+
+        if (!isValid) return;
 
         setActiveStep((prevActiveStep) => activeStep === steps.length - 1 ? prevActiveStep : prevActiveStep + 1);
     }
