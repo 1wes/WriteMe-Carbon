@@ -1,8 +1,8 @@
 // check whether the mandatroy fields in step 1 are filled
 export const validateStep1 = ( formData ) => {
     
-    if (!formData.service || !formData.subject || !formData.gradeLevel || !formData.style || !formData.language 
-        || !formData.sources || !formData.topic || !formData.pagesOrWords || !formData.instructions
+    if (formData.service==='' || formData.subject==='' || formData.gradeLevel==='' || formData.style==='' || formData.language==='' 
+        || formData.sources==='' || formData.topic==='' || formData.pagesOrWords==='' || formData.instructions===''
     ) {
         return false;
     }
@@ -13,7 +13,7 @@ export const validateStep1 = ( formData ) => {
 // check whether service is anything other than writing and if it has files
 export const validateStep2 = ( formData ) => {
     
-    if (formData.service !== 'writing' && formData.files.lenght == 0) {
+    if (formData.service !== 'Writing' && formData.files.length == 0) {
         return false;
     }
 
@@ -23,7 +23,7 @@ export const validateStep2 = ( formData ) => {
 // check whether deadlines are filled
 export const validateStep3 = (formData) => {
     
-    if (!formData.deadline || !formData.time) {
+    if (formData.deadline==='' || formData.time==='') {
         return false;
     }
 
