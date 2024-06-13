@@ -832,7 +832,7 @@ const Dashboard=()=>{
                             {
                                 submissionForm.show &&
                                 <Fragment>
-                                    <FormStepper onSubmit={submitAssignment}
+                                    <FormStepper onSubmit={submitAssignment} formData={state}
                                         step1={<MandatoryFields onSubjectChange={handleSubjectChange} onGradeChange={handleGradeChange}
                                                 
                                             onStyleChange={handleStyleChange} onSourcesChange={handleSourcesChange} onLanguageChange={handleLanguage}                                                  
