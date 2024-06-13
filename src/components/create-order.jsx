@@ -268,8 +268,8 @@ const Payment = ({ handlePaymentChange, formData }) => {
             <StepDescriptor description={`Please enter your payment details`} />
             <FieldsLayout>
                 <div className="payment-options">
-                    <PaymentOption logo={visa} onClick={event => selectActiveCard(event, "credit-card")} activeCard={formData.PaymentOption==="Credit Card"?"active-card":""}
-                        method={`credit or debit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={formData.PaymentOption} >
+                    <PaymentOption logo={visa} onClick={event => selectActiveCard(event, "credit-card")} activeCard={formData.paymentOption==="Credit Card"?"active-card":""}
+                        method={`credit or debit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={formData.paymentOption} >
                         <img src={mastercard} />
                     </PaymentOption>
                     <PaymentOption logo={paypal} onClick={event => selectActiveCard(event, "paypal")} activeCard={formData.paymentOption==="PayPal"?"active-card":""}
