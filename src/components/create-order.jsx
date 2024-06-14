@@ -308,14 +308,14 @@ const OrderCostCalculator = ({ level, service, deadline, pages, cost }) => {
                 a specific cost determinant and edit it.`} />
                 <ul className="calculator">
                     <ItemsList id={`items-heading`} item1={`Item`} item2={`Quantity`} item3={`Cost`} />
-                    <ItemsList item1={`Level`} item2={level} />                
                     <ItemsList item1={`Service`} item2={service} />
+                    <ItemsList item1={`Level`} item2={level} />                
                     <ItemsList item1={`Deadline`} item2={deadline} />
                     <ItemsList item1={`Pages`} item2={pages} item3={cost} />
                 </ul>
                 <div className="total-cost">
-                    <span>Total Cost</span>          
-                    <span>{ cost }</span>
+                    <span>Total Cost :</span>          
+                    <span> ${ cost }</span>
                 </div>                
             </div>
         </Fragment>
