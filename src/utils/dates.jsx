@@ -24,7 +24,30 @@ const revisionGracePeriod = (dispatchDate) => {
     return daysDifference;
 }
 
+const categorizeDeadline = (formData) => {
+    
+    const { deadline } = formData;
+    
+    const daysToDeadline = remainingDays(deadline);
+
+    if (daysToDeadline > 5) {
+        return "long";
+    } else if (daysToDeadline >= 3 && daysToDeadline <= 5) {
+        return "standard";
+    } else if (daysToDeadline >= 2 && daysToDeadline < 3) {
+        return "tight";
+    } else if (daysToDeadline >= 1 && daysToDeadline < 2) {
+        return "urgent";
+    } else if (daysToDeadline >= 0.5 && daysToDeadline < 1) {
+        return "very-urgent";
+    } else if (daysToDeadline < 0.5) {
+        return "extremely-urgent";
+    } else {
+        return "not found";
+    }
+}
+
 export {
-    revisionGracePeriod
+    revisionGracePeriod, categorizeDeadline
 }
 export default remainingDays;
