@@ -24,10 +24,8 @@ const revisionGracePeriod = (dispatchDate) => {
     return daysDifference;
 }
 
-const categorizeDeadline = (formData) => {
-    
-    const { deadline } = formData;
-    
+const categorizeDeadline = (deadline) => {
+        
     const daysToDeadline = remainingDays(deadline);
 
     if (daysToDeadline > 5) {
