@@ -13,7 +13,7 @@ import { revisionGracePeriod } from '../utils/dates';
 import DashboardNavbar from './dash-nav';
 import PageNumbers from './paginate';
 import FormStepper from './stepper';
-import cost from '../__config/cost-criteria.json';
+import { categorizeDeadline } from '../utils/dates';
 
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
@@ -37,6 +37,7 @@ const initialState = {
     pagesOrwords:"",
     deadline:"",
     time: "",
+    deadlineCategory:"",
     paymentOption: ""
 }
 
@@ -125,6 +126,13 @@ const reducer=(state, action)=>{
             return{
                 ...state,
                 time:action.newTime,
+            }
+        }
+            
+        case "newDeadlineCategory": {
+            return {
+                ...state,
+                deadlineCategory:action.newDeadlineCategory
             }
         }
             
@@ -432,21 +440,29 @@ const Dashboard=()=>{
             setError(false);
 
             dispatch({
-                type:"newDeadline",
-                newDeadline:e.target.value
+                type: "newDeadline",
+                newDeadline: e.target.value
+            });
+
+            let deadlineCategory = categorizeDeadline(e.target.value);
+    
+            dispatch({
+                type: "newDeadlineCategory",
+                newDeadlineCategory: deadlineCategory  
             })
+            
         }else{
             setError(!error);
             setDeadlineErrorMessage("deadline cannot be in the past !!");
         }
     }
 
-    const handleTimeChange=(e)=>{
+    const handleTimeChange = (e) => {
 
         dispatch({
-            type:"newTime",
-            newTime:e.target.value
-        })
+            type: "newTime",
+            newTime: e.target.value
+        });
     }
 
     const handleSearch=(e)=>{
