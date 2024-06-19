@@ -7,6 +7,7 @@ import mastercard from '../assets/payment/mastercard.png';
 import paypal from '../assets/payment/paypal.png';
 
 import { BiCloudUpload } from "react-icons/bi";
+import calculateTotalOrderCost from "../utils/cost-calculator";
 
 
 const FormLegend=()=>{
@@ -263,6 +264,8 @@ const Deadline = ({formData, onDeadlineChange, onTimeChange, errorAlert}) => {
 
 const Payment = ({ handlePaymentChange, formData }) => {
 
+    const totalOrderCost = calculateTotalOrderCost(formData);
+
     return (
         <Fragment>
             <StepDescriptor description={`Please enter your payment details`} />
@@ -276,7 +279,8 @@ const Payment = ({ handlePaymentChange, formData }) => {
                         method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={formData.paymentOption} />
                 </div>
                 <div className="cost-payment-section">
-                    <OrderCostCalculator level={formData.gradeLevel} service={formData.service} deadline={formData.deadline} pages={`x${formData.pagesOrwords}`} />
+                    <OrderCostCalculator level={formData.gradeLevel} service={formData.service} deadline={formData.deadline} pages={`x${formData.pagesOrwords}`}
+                    cost={totalOrderCost}/>
                     <PaymentDetails/>
                 </div>
             </FieldsLayout>
@@ -315,7 +319,7 @@ const OrderCostCalculator = ({ level, service, deadline, pages, cost }) => {
                 </ul>
                 <div className="total-cost">
                     <span>Total Cost :</span>          
-                    <span> ${ cost }</span>
+                    <span> $ { cost }</span>
                 </div>                
             </div>
         </Fragment>
