@@ -38,7 +38,8 @@ const initialState = {
     deadline:"",
     time: "",
     deadlineCategory:"",
-    paymentOption: ""
+    paymentOption: "",
+    totalCost: 0
 }
 
 const reducer=(state, action)=>{
