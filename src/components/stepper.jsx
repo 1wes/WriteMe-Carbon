@@ -41,7 +41,7 @@ const FormStepper = ({ step1, step2, step3, step4, onSubmit, formData }) => {
     const gotToNextStep = () => {   
         
         // extract validation status and conditionally navigate to next step
-        const isValid = validateForm(activeStep, formData);
+        const { isValid, message } = validateForm(activeStep, formData);
 
         if (!isValid) return;
 
