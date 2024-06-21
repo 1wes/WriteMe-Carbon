@@ -6,10 +6,10 @@ export const validateStep1 = (formData) => {
     if (service==='' || subject==='' || gradeLevel==='' || style==='' || language==='' 
         || sources==='' || topic==='' || pagesOrWords==='' || instructions===''
     ) {
-        return false;
+        return { isValid: false, message: 'Please fill in all fields as they are required before proceeding to the next step.' };        
     }
 
-    return true;
+    return { isValid: true, message: '' };    
 }
 
 // check whether service is anything other than writing and if it has files
@@ -18,10 +18,10 @@ export const validateStep2 = (formData) => {
     const { service, files } = formData;
     
     if (service !== 'Writing' && files.length == 0) {
-        return false;
+        return { isValid: false, message: 'Any other service other than writing requires files to be attached before proceeding to the next step.' };    
     }
 
-    return true;
+    return { isValid: true, message: '' };
 }
 
 // check whether deadlines are filled
@@ -30,10 +30,10 @@ export const validateStep3 = (formData) => {
     const { deadline, time } = formData;
     
     if (deadline === '' || time === '') {
-        return false;
+        return { isValid: false, message: 'Please fill in deadline date and time before proceeding to the next step' };
     }
 
-    return true;
+    return { isValid: true, message: '' };
 }
 
 
