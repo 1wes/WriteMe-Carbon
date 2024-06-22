@@ -149,22 +149,24 @@ const MandatoryFields = ({ onSubjectChange, onGradeChange, onInstructionChange,
     onPagesChange, onStyleChange, onSourcesChange, onTopicChange, onCheckBoxChange,
      onLanguageChange, onServiceChange, formData }) => {
     
+    const { service, subject, gradeLevel, style, sources, pagesOrwords, topic, language, instructions } = formData;
+
     return (
         <Fragment>
             <StepDescriptor description={`Tell us the kind of paper you want us to help you with.`} />
             <FieldsLayout>
                 <FormControl label={`Service`} labelClassName={`required`} >
-                    <Select name={`service`} value={formData.service} onChange={onServiceChange} required={true} >
+                    <Select name={`service`} value={service} onChange={onServiceChange} required={true} >
                         {serviceOptions}
                     </Select>
                 </FormControl>
                 <FormControl label={`Subject`} labelClassName={`required`}>
-                    <Select name={`subject`} value={formData.subject} onChange={onSubjectChange} required={true}>
+                    <Select name={`subject`} value={subject} onChange={onSubjectChange} required={true}>
                         {subjectOptions}
                     </Select>
                 </FormControl>
                 <FormControl label={`Grade Level`} labelClassName={`required`}>
-                    <Select name={`grade-level`} value={formData.gradeLevel} onChange={onGradeChange} required={true}>
+                    <Select name={`grade-level`} value={gradeLevel} onChange={onGradeChange} required={true}>
                         <option disabled value={``} hidden></option>
                         <option value="School" >School</option>
                         <option value="College">College</option>
@@ -174,7 +176,7 @@ const MandatoryFields = ({ onSubjectChange, onGradeChange, onInstructionChange,
                     </Select>
                 </FormControl>
                 <FormControl label={`Reference Style`} labelClassName={`required`}>
-                    <Select name={`reference-style`} value={formData.style} onChange={onStyleChange} required={true}>
+                    <Select name={`reference-style`} value={style} onChange={onStyleChange} required={true}>
                         <option disabled value={``} hidden></option>
                         <option value={`APA-7th`}>APA-7th Edition</option>
                         <option value={`APA-6th`}>APA-6th Edition</option>
@@ -189,7 +191,7 @@ const MandatoryFields = ({ onSubjectChange, onGradeChange, onInstructionChange,
                     </Select>
                 </FormControl>
                 <FormControl label={`Language`} labelClassName={`required`} >
-                    <Select name={`language`} value={formData.language} onChange={onLanguageChange} required={true} >
+                    <Select name={`language`} value={language} onChange={onLanguageChange} required={true} >
                         <option disabled value={``} hidden></option>
                         <option value={`Eng (US)`} >🇺🇸  Eng (US)</option>
                         <option value={`Eng (UK)`} >🇬🇧  Eng (UK)</option>
@@ -198,20 +200,20 @@ const MandatoryFields = ({ onSubjectChange, onGradeChange, onInstructionChange,
                     </Select>
                 </FormControl>   
                 <FormControl label={`Number of Sources`} labelClassName={`required`}>
-                    <Input type={`number`} onWheel={handleWheel} value={formData.sources} onChange={onSourcesChange} required={true} />                    
+                    <Input type={`number`} onWheel={handleWheel} value={sources} onChange={onSourcesChange} required={true} />                    
                 </FormControl>  
                 <FormControl label={`Assignment Topic`} labelClassName={'required'}>
-                        <Input type={`text`} value={formData.topic} onChange={onTopicChange} required={true}/>
+                        <Input type={`text`} value={topic} onChange={onTopicChange} required={true}/>
                         <div className="box-and-text"> 
                             <input className="checkbox" type="checkbox" onChange={onCheckBoxChange}  ></input>
                             <span>Use Any or Other.</span>
                         </div>
                 </FormControl> 
                 <FormControl label={`Number of Pages/Words`} labelClassName={`required`}>
-                        <Input type={`number`} value={formData.pagesOrwords} onChange={onPagesChange} onWheel={handleWheel} required={true} />
+                        <Input type={`number`} value={pagesOrwords} onChange={onPagesChange} onWheel={handleWheel} required={true} />
                 </FormControl>   
                 <FormControl label={`Instructions`} labelClassName={`required`}>
-                    <TextArea value={formData.instructions} onChange={onInstructionChange} required={true} />                    
+                    <TextArea value={instructions} onChange={onInstructionChange} required={true} />                    
                 </FormControl>
             </FieldsLayout>
         </Fragment>
@@ -220,20 +222,22 @@ const MandatoryFields = ({ onSubjectChange, onGradeChange, onInstructionChange,
 
 const Files = ({ onFileChange, formData }) => {
 
-    const fileCounter = formData.files.length ? formData.files.length > 1 ? `${formData.files.length} files` : `${formData.files[0].name}` : "";
+    const { service, files } = formData;
+
+    const fileCounter = files.length ? files.length > 1 ? `${files.length} files` : `${files[0].name}` : "";
 
     return (
         <Fragment>
-            <StepDescriptor description={formData.service==="Writing"?`Upload files, if any and necessary. This step is optional, and you can add files even after submission by clicking
-            on "Upload Files" in the All Orders section.`:`Since this order requires ${formData.service.toLowerCase()}, you need to attach the files of the work you have already done.`} />
+            <StepDescriptor description={service==="Writing"?`Upload files, if any and necessary. This step is optional, and you can add files even after submission by clicking
+            on "Upload Files" in the All Orders section.`:`Since this order requires ${service.toLowerCase()}, you need to attach the files of the work you have already done.`} />
             <FieldsLayout id={`files-layout`} >
                 <div className="input-group" id="files-input-group">
                     <label htmlFor="new-files" className="new-files"  >
                         <span className="add-file-icon"><i><BiCloudUpload /></i>Attach Files</span>
                     </label>
                     <Input type={`file`} name={`fileAttachments`} id={`new-files`} onChange={onFileChange} placeholder={`add file`} multiple={true} hidden={true}
-                    required={formData.service==='Writing'?false:true}/>
-                    {formData.files.length>0 &&
+                    required={service==='Writing'?false:true}/>
+                    {files.length>0 &&
                         <div className="number-of-files">
                             <span className="file-counter"> {fileCounter} </span> selected.                        
                         </div>
@@ -244,18 +248,20 @@ const Files = ({ onFileChange, formData }) => {
     ) 
 }
 
-const Deadline = ({formData, onDeadlineChange, onTimeChange, errorAlert}) => {
+const Deadline = ({ formData, onDeadlineChange, onTimeChange, errorAlert }) => {
+    
+    const { deadline, time } = formData;
     
     return (
         <Fragment>
             <StepDescriptor description={`Select date and time within which the work should be completed.`} />
             <FieldsLayout>
                 <FormControl label={`Date`} labelClassName={`required`}>                    
-                    <Input type={`date`} value={formData.deadline} onChange={onDeadlineChange} required={true} />                          
+                    <Input type={`date`} value={deadline} onChange={onDeadlineChange} required={true} />                          
                     {errorAlert}                    
                 </FormControl>                
                 <FormControl label={`Time`} labelClassName={`required`}>                    
-                    <Input type={`time`} value={formData.time} onChange={onTimeChange} required={true} />                    
+                    <Input type={`time`} value={time} onChange={onTimeChange} required={true} />                    
                 </FormControl>                
             </FieldsLayout>            
         </Fragment>
@@ -264,6 +270,8 @@ const Deadline = ({formData, onDeadlineChange, onTimeChange, errorAlert}) => {
 
 const Payment = ({ handlePaymentChange, formData }) => {
 
+    const { paymentOption, gradeLevel, service, deadline, pagesOrwords } = formData;
+
     const totalOrderCost = calculateTotalOrderCost(formData);
 
     return (
@@ -271,15 +279,15 @@ const Payment = ({ handlePaymentChange, formData }) => {
             <StepDescriptor description={`Please enter your payment details`} />
             <FieldsLayout>
                 <div className="payment-options">
-                    <PaymentOption logo={visa} activeCard={formData.paymentOption==="Credit Card"?"active-card":""}
-                        method={`credit or debit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={formData.paymentOption} >
+                    <PaymentOption logo={visa} activeCard={paymentOption==="Credit Card"?"active-card":""}
+                        method={`credit or debit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={paymentOption} >
                         <img src={mastercard} />
                     </PaymentOption>
-                    <PaymentOption logo={paypal} activeCard={formData.paymentOption==="PayPal"?"active-card":""}
-                        method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={formData.paymentOption} />
+                    <PaymentOption logo={paypal} activeCard={paymentOption==="PayPal"?"active-card":""}
+                        method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={paymentOption} />
                 </div>
                 <div className="cost-payment-section">
-                    <OrderCostCalculator level={formData.gradeLevel} service={formData.service} deadline={formData.deadline} pages={`x${formData.pagesOrwords}`}
+                    <OrderCostCalculator level={gradeLevel} service={service} deadline={deadline} pages={`x${pagesOrwords}`}
                     cost={totalOrderCost}/>
                     <PaymentDetails/>
                 </div>
