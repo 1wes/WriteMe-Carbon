@@ -1,7 +1,5 @@
 .dashboard-nav{
     border-bottom: 1px solid rgba(165, 42, 42, 0.1);
-    display: flex;
-    align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -13,13 +11,9 @@
     align-items: center;
 }
 
-.nav-logo{
-    width: 80%;
-}
-
 .nav-logo img{
-    width:5%;
-    margin-left: -13px;
+    width:10%;
+    margin-left: -17px;
 }
 
 .profile-menu{
