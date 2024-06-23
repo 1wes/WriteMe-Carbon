@@ -11,8 +11,12 @@
     align-items: center;
 }
 
+.nav-logo{
+    width: 20%;
+}
+
 .nav-logo img{
-    width:10%;
+    width:30%;
     margin-left: -17px;
 }
 
