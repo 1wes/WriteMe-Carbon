@@ -8,7 +8,7 @@ import paypal from '../assets/payment/paypal.png';
 
 import { BiCloudUpload } from "react-icons/bi";
 import calculateTotalOrderCost from "../utils/cost-calculator";
-
+import { useStepsValidationContext } from "../context/stepValidation";
 
 const FormLegend=()=>{
 
@@ -150,10 +150,18 @@ const MandatoryFields = ({ onSubjectChange, onGradeChange, onInstructionChange,
      onLanguageChange, onServiceChange, formData }) => {
     
     const { service, subject, gradeLevel, style, sources, pagesOrwords, topic, language, instructions } = formData;
+    
+    // get the validity status and message from the custom hook
+    const { isValid, message } = useStepsValidationContext();
+
+    console.log(message)
 
     return (
         <Fragment>
             <StepDescriptor description={`Tell us the kind of paper you want us to help you with.`} />
+            <div>
+                {!isValid && <p>{ message }</p>}
+            </div>
             <FieldsLayout>
                 <FormControl label={`Service`} labelClassName={`required`} >
                     <Select name={`service`} value={service} onChange={onServiceChange} required={true} >
