@@ -14,6 +14,7 @@ import ForgotPassword from './components/forgot-password';
 import Admin from './components/admin';
 import ClientOrder from './components/order';
 import AuthContextProvider from './context/Auth';
+import StepsValidation from './context/stepValidation';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,7 +26,7 @@ root.render(
           <Route path='/blog/:slug' element={<Blogpost/>}></Route>
           <Route path='register' element={<SignUp/>} ></Route>
           <Route path='/login' element={<AuthContextProvider><Login/></AuthContextProvider>}></Route>
-          <Route path='/user-dashboard' element={<AuthContextProvider><Dashboard/></AuthContextProvider>} ></Route>
+          <Route path='/user-dashboard' element={<AuthContextProvider><StepsValidation><Dashboard/></StepsValidation></AuthContextProvider>} ></Route>
           <Route path='/forgot-password' element={<ForgotPassword/>} ></Route>
           <Route path='/admin-dashboard' element={<AuthContextProvider><Admin/></AuthContextProvider>} ></Route>
           <Route path='/admin/:orderId' element={<AuthContextProvider><ClientOrder/></AuthContextProvider>} ></Route>
