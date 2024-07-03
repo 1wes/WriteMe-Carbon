@@ -6,6 +6,7 @@ import './stepper.css';
 
 import { CtaButton } from './services';
 import validateForm from './validation/validation';
+import { useStepsValidationContext } from '../context/stepValidation';
 
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 
@@ -13,6 +14,8 @@ import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 const FormStepper = ({ step1, step2, step3, step4, onSubmit, formData }) => {    
 
     const [activeStep, setActiveStep] = useState(0);
+
+    const { updateValidation } = useStepsValidationContext();
 
     const steps = [
         { title: "Structure your paper" },
@@ -43,7 +46,12 @@ const FormStepper = ({ step1, step2, step3, step4, onSubmit, formData }) => {
         // extract validation status and conditionally navigate to next step
         const { isValid, message } = validateForm(activeStep, formData);
 
-        if (!isValid) return;
+        updateValidation(isValid, message)
+
+        if (!isValid) {
+
+            return;
+        };
 
         setActiveStep((prevActiveStep) => activeStep === steps.length - 1 ? prevActiveStep : prevActiveStep + 1);
     }
