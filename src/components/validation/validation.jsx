@@ -1,10 +1,10 @@
 // check whether the mandatroy fields in step 1 are filled
 export const validateStep1 = (formData) => {
     
-    const { service, subject, gradeLevel, style, language, sources, topic, pagesOrWords, instructions } = formData;
+    const { service, subject, gradeLevel, style, language, sources, topic, pagesOrwords, instructions } = formData;
     
     if (service==='' || subject==='' || gradeLevel==='' || style==='' || language==='' 
-        || sources==='' || topic==='' || pagesOrWords==='' || instructions===''
+        || sources==='' || topic==='' || pagesOrwords==='' || instructions===''
     ) {
         return { isValid: false, message: 'Please fill in all fields as they are required before proceeding to the next step.' };        
     }
