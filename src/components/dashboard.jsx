@@ -14,6 +14,7 @@ import DashboardNavbar from './dash-nav';
 import PageNumbers from './paginate';
 import FormStepper from './stepper';
 import { categorizeDeadline } from '../utils/dates';
+import { useModalContext } from '../context/modal';
 
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
@@ -269,12 +270,6 @@ const Dashboard=()=>{
     const [statusQuery, setStatusQuery]=useState('');
     const [sortQuery, setSortQuery]=useState('');
     const [filterMessage, setFilterMessage]=useState("");
-    const [modal, setModal] = useState({
-        show: false,
-        warning:false,
-        mainMessage: "", 
-        supportingMessage:""
-    });
     const [currentPage, setCurrentPage]=useState(1);
     const [ordersPerPage]=useState(10);
     const [revision, setRevision]=useState();
@@ -284,8 +279,31 @@ const Dashboard=()=>{
         show: false
     });
     const [moreFiles, setMoreFiles] = useState({
-        extraFiles:[]
-    })
+        extraFiles: []
+    });
+    const [stepsValidation, setStepsValidation] = useState({
+        message: '',
+        isValid: true
+    });
+
+    // pass the message and validity status to handleValidation function
+    const handleStepsValidation = (validationMessage, validationStatus) => {
+
+        setStepsValidation({
+            ...stepsValidation,
+            message: validationMessage
+        });
+
+        setStepsValidation({
+            ...stepsValidation,            
+            isValid: validationStatus
+        })
+    }
+
+    // get the modal state
+    const { displayModal, modal } = useModalContext();
+    
+    const { showModal, mainMessage, supportingMessage, warning } = modal;
 
     const [state, dispatch]=useReducer(reducer, initialState);
 
@@ -553,16 +571,6 @@ const Dashboard=()=>{
         setOrderId(()=>param);
     }
 
-    const closeModal=()=>{
-
-        setModal({
-            show: false,
-            warning:false,
-            mainMessage: "",
-            supportingMessage:""
-        });
-    }
-
     const clearFilters=()=>{
         setFilterMessage("");
         setStatusQuery("");
@@ -589,12 +597,7 @@ const Dashboard=()=>{
 
         axios.put(`api/orders/order/update/files/${orderId}`, extraFilesFormData).then(() => {
 
-            setModal({
-                ...modal,
-                show: true,
-                mainMessage: "Files Successfully Uploaded",
-                supportingMessage: `File (s) uploaded for Order-${orderId} (${param})`
-            });
+            displayModal(false, 'Files Successfully Uploaded', `File (s) uploaded for Order-${orderId} (${param})`)
 
             setOrderId("");
 
@@ -627,12 +630,8 @@ const Dashboard=()=>{
 
             closeModalForm();
 
-            setModal({
-                ...modal,
-                show: true, 
-                mainMessage: "Success",
-                supportingMessage:`Your revision request has been successfully sent.`
-            });
+            displayModal(false, 'Success', 'Your revision request has been successfully sent.')
+
             setRevise(false);
 
         }).catch(err=>{
@@ -659,7 +658,7 @@ const Dashboard=()=>{
         //         assignmentDetails.append("attachedFiles", state.files[keys])
         //         assignmentDetails.append("fileNames", state.files[keys].name)
         //     }
-        // }   
+        // }
         
         // axios.post("api/orders/new", assignmentDetails,
         //  {
@@ -677,12 +676,8 @@ const Dashboard=()=>{
         //         show: false
         //     });
 
-        //     setModal({
-        //         show: true,
-        //         mainMessage: "Success",
-        //         supportingMessage:`Your assignment has been submitted successfully. You will be 
-        //         updated on its progress.`
-        //     });
+        // displayModal(false, 'Success', `Your assignment has been submitted successfully. You will be 
+        //          updated on its progress.`)
 
         // }).catch(err=>{
         //     console.log(err);
@@ -716,9 +711,9 @@ const Dashboard=()=>{
          onChange={handleRevision} onSubmit={submitRevision} closeModal={closeModalForm} />
     )
 
-    const showModal=(
-        <Modal modalIcon={modal.warning ? <WarningIcon /> : <SuccessIcon />} mainMessage={modal.mainMessage} supportingMessage={modal.supportingMessage}
-            onClick={closeModal} buttonColor={modal.warning ? "warning-btn-color" : "success-btn-color"} />
+    const feedbackModal=(
+        <Modal modalIcon={warning ? <WarningIcon /> : <SuccessIcon />} mainMessage={mainMessage} supportingMessage={supportingMessage}
+           buttonColor={warning ? "warning-btn-color" : "success-btn-color"} />
     );
 
     if(orders){ 
@@ -761,22 +756,12 @@ const Dashboard=()=>{
 
                                                     setRevise(true)
                                                 } else {
-                                                    setModal({
-                                                        show: true,
-                                                        warning: true,
-                                                        mainMessage: "Unable To Request Revision",
-                                                        supportingMessage: `Dear client, you have unfortunately exhausted your allocated free revision request grace period of 7 days
-                                                        (since the delivery of the completed work). Kindly contact our support team for further instructions.`
-                                                    })
+                                                    displayModal(true, "Unable To Request Revision", `Dear client, you have unfortunately exhausted your allocated free revision request grace period of 7 days
+                                                    (since the delivery of the completed work). Kindly contact our support team for further instructions.`)
                                                 }
                                                 
-                                            } else {
-                                                setModal({
-                                                    show: true,
-                                                    warning:true,
-                                                    mainMessage: "Warning !!",
-                                                    supportingMessage:res.data.message
-                                                })
+                                            } else {                            
+                                                displayModal(true, 'Warning !!', res.data.message);        
                                             }
                                         }).catch(err=>{
                                             console.log(err);
@@ -858,7 +843,7 @@ const Dashboard=()=>{
                                             
                                             onServiceChange={handleServiceChange} onTopicChange={handleTopicChange}                                            
 
-                                            onCheckBoxChange={handleCheckboxChange} formData={state}                                                               
+                                            onCheckBoxChange={handleCheckboxChange} formData={state} onValidation={handleStepsValidation}                                                            
 
                                         />}                                            
 
@@ -888,7 +873,7 @@ const Dashboard=()=>{
                     </section>
                 </div>
                 {revise && revisionForm}
-                {modal.show && showModal}
+                {showModal && feedbackModal}
             </section>
         </React.Fragment>
     )
