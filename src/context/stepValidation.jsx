@@ -8,7 +8,7 @@ const useStepsValidationContext = () => {
     return useContext(StepsValidationContext);
 }
 
-const StepsValidation = ({ children }) => {
+const StepsValidationProvider = ({ children }) => {
     
     const [navigateToNextStep, setNavigateToNextStep] = useState({
         isValid: true,
@@ -36,4 +36,4 @@ const StepsValidation = ({ children }) => {
 export {
     useStepsValidationContext
 }
-export default StepsValidation;
+export default StepsValidationProvider;
