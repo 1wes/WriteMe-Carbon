@@ -27,10 +27,12 @@ root.render(
           <Route path='/blog/:slug' element={<Blogpost/>}></Route>
           <Route path='register' element={<SignUp/>} ></Route>
           <Route path='/login' element={<AuthContextProvider><Login/></AuthContextProvider>}></Route>
-          <Route path='/user-dashboard' element={<AuthContextProvider><StepsValidationProvider><Dashboard/></StepsValidationProvider></AuthContextProvider>} ></Route>
+          <Route path='/user-dashboard' element={
+            <AuthContextProvider><StepsValidationProvider><ModalContextProvider><Dashboard /></ModalContextProvider></StepsValidationProvider></AuthContextProvider>} >        
+          </Route>
           <Route path='/forgot-password' element={<ForgotPassword/>} ></Route>
-          <Route path='/admin-dashboard' element={<AuthContextProvider><Admin/></AuthContextProvider>} ></Route>
-          <Route path='/admin/:orderId' element={<AuthContextProvider><ClientOrder/></AuthContextProvider>} ></Route>
+          <Route path='/admin-dashboard' element={<AuthContextProvider><ModalContextProvider><Admin/></ModalContextProvider></AuthContextProvider>} ></Route>
+          <Route path='/admin/:orderId' element={<AuthContextProvider><ModalContextProvider><ClientOrder/></ModalContextProvider></AuthContextProvider>} ></Route>
           <Route path='*' element={<NotFound />} ></Route>
         </Routes>
     </HashRouter>
