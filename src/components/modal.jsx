@@ -1,9 +1,14 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
+
 import './modal.css';
-import {BiCheck} from 'react-icons/bi';
-import { FormControl, TextArea } from './create-order';
-import { CtaButton } from './services';
+
 import { AiOutlineWarning } from 'react-icons/ai';
+import { BiCheck } from 'react-icons/bi';
+
+import { FormControl, TextArea } from './create-order'; 
+import { CtaButton } from './services';
+import { useModalContext } from '../context/modal';
+
 
 const ModalWrapper=({children, className, id})=>{
 
@@ -20,7 +25,7 @@ const ModalWrapper=({children, className, id})=>{
     )
 }
 
-const ModalForm=({formLabel,value, onChange, message, onSubmit, id, closeModal})=>{
+const ModalForm = ({ formLabel, value, onChange, message, onSubmit, id, closeModal }) => {
 
     return(
         <Fragment>
@@ -62,7 +67,14 @@ const WarningIcon = () => {
     )
 }
 
-const Modal=({onClick, mainMessage, supportingMessage, modalIcon, buttonColor})=>{
+const Modal = ({ mainMessage, supportingMessage, modalIcon, buttonColor }) => {
+
+    const { hideModal } = useModalContext();
+    
+    const closeModal=()=>{
+
+        hideModal()
+    }
 
     return(
         <Fragment>
@@ -76,7 +88,7 @@ const Modal=({onClick, mainMessage, supportingMessage, modalIcon, buttonColor})=
                 <p>
                     {supportingMessage}
                 </p>
-                <button onClick={onClick} className={buttonColor} >
+                <button onClick={closeModal} className={buttonColor} >
                     OK
                 </button>
             </ModalWrapper>
