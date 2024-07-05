@@ -14,7 +14,8 @@ import ForgotPassword from './components/forgot-password';
 import Admin from './components/admin';
 import ClientOrder from './components/order';
 import AuthContextProvider from './context/Auth';
-import StepsValidation from './context/stepValidation';
+import StepsValidationProvider from './context/stepValidation';
+import ModalContextProvider from './context/modal';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
