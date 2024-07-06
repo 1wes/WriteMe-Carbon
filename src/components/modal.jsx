@@ -8,6 +8,7 @@ import { BiCheck } from 'react-icons/bi';
 import { FormControl, TextArea } from './create-order'; 
 import { CtaButton } from './services';
 import { useModalContext } from '../context/modal';
+import { useStepsValidationContext } from '../context/stepValidation';
 
 
 const ModalWrapper=({children, className, id})=>{
@@ -70,8 +71,11 @@ const WarningIcon = () => {
 const Modal = ({ mainMessage, supportingMessage, modalIcon, buttonColor }) => {
 
     const { hideModal } = useModalContext();
+    const { updateValidation } = useStepsValidationContext();
     
-    const closeModal=()=>{
+    const closeModal = () => {
+        
+        updateValidation(true);
 
         hideModal()
     }
