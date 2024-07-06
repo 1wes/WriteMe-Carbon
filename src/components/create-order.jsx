@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 
 import './create-order.css';
 
@@ -9,6 +9,9 @@ import paypal from '../assets/payment/paypal.png';
 import { BiCloudUpload } from "react-icons/bi";
 import calculateTotalOrderCost from "../utils/cost-calculator";
 import { useStepsValidationContext } from "../context/stepValidation";
+import { useModalContext } from "../context/modal";
+import Modal, { WarningIcon, SuccessIcon } from "./modal";
+
 
 const FormLegend=()=>{
 
@@ -147,20 +150,32 @@ const StepDescriptor = ({description}) => {
 
 const MandatoryFields = ({ onSubjectChange, onGradeChange, onInstructionChange,
     onPagesChange, onStyleChange, onSourcesChange, onTopicChange, onCheckBoxChange,
-     onLanguageChange, onServiceChange, formData }) => {
+    onLanguageChange, onServiceChange, formData }) => {
+        
+    // get the validity status and message from the custom hook
+    const { isValid, message } = useStepsValidationContext();
+    const { displayModal, modal } = useModalContext();
     
     const { service, subject, gradeLevel, style, sources, pagesOrwords, topic, language, instructions } = formData;
     
-    // get the validity status and message from the custom hook
-    const { isValid, message } = useStepsValidationContext();
+    const { showModal, mainMessage, supportingMessage, warning } = modal;
+    
 
-    console.log(message)
+    useEffect(() => {
+        
+        if (!isValid) {
+            displayModal(true, 'Warning', message);
+        }
+    }, [isValid, message]);
 
     return (
         <Fragment>
             <StepDescriptor description={`Tell us the kind of paper you want us to help you with.`} />
             <div>
-                {!isValid && <p>{ message }</p>}
+                {
+                    showModal && <Modal modalIcon={warning ? <WarningIcon /> : <SuccessIcon />} mainMessage={mainMessage} supportingMessage={supportingMessage}
+                    buttonColor={warning ? "warning-btn-color" : "success-btn-color"} />
+                }
             </div>
             <FieldsLayout>
                 <FormControl label={`Service`} labelClassName={`required`} >
@@ -230,14 +245,32 @@ const MandatoryFields = ({ onSubjectChange, onGradeChange, onInstructionChange,
 
 const Files = ({ onFileChange, formData }) => {
 
+    const { isValid, message } = useStepsValidationContext();
+    const { displayModal, modal } = useModalContext();
+
+    const { showModal, mainMessage, supportingMessage, warning } = modal;
+
     const { service, files } = formData;
 
     const fileCounter = files.length ? files.length > 1 ? `${files.length} files` : `${files[0].name}` : "";
 
+    useEffect(() => {
+        
+        if (!isValid) {
+            displayModal(true, 'Warning', message);
+        }
+    }, [isValid, message]);
+
     return (
         <Fragment>
             <StepDescriptor description={service==="Writing"?`Upload files, if any and necessary. This step is optional, and you can add files even after submission by clicking
-            on "Upload Files" in the All Orders section.`:`Since this order requires ${service.toLowerCase()}, you need to attach the files of the work you have already done.`} />
+            on "Upload Files" in the All Orders section.`: `Since this order requires ${service.toLowerCase()}, you need to attach the files of the work you have already done.`} />
+            <div>
+                {
+                    showModal && <Modal modalIcon={warning ? <WarningIcon /> : <SuccessIcon />} mainMessage={mainMessage} supportingMessage={supportingMessage}
+                    buttonColor={warning ? "warning-btn-color" : "success-btn-color"} />
+                }
+            </div>
             <FieldsLayout id={`files-layout`} >
                 <div className="input-group" id="files-input-group">
                     <label htmlFor="new-files" className="new-files"  >
@@ -257,12 +290,28 @@ const Files = ({ onFileChange, formData }) => {
 }
 
 const Deadline = ({ formData, onDeadlineChange, onTimeChange, errorAlert }) => {
+
+    const { isValid, message } = useStepsValidationContext();
+    const { displayModal, modal } = useModalContext();
+
+    const { showModal, mainMessage, supportingMessage, warning } = modal;
     
     const { deadline, time } = formData;
+
+    useEffect(() => {
+        
+        if (!isValid) {
+            displayModal(true, 'Warning', message);
+        }
+    }, [isValid, message]);
     
     return (
         <Fragment>
             <StepDescriptor description={`Select date and time within which the work should be completed.`} />
+            {
+                showModal && <Modal modalIcon={warning ? <WarningIcon /> : <SuccessIcon />} mainMessage={mainMessage} supportingMessage={supportingMessage}
+                buttonColor={warning ? "warning-btn-color" : "success-btn-color"} />
+            }
             <FieldsLayout>
                 <FormControl label={`Date`} labelClassName={`required`}>                    
                     <Input type={`date`} value={deadline} onChange={onDeadlineChange} required={true} />                          
