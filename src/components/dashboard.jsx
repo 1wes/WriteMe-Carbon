@@ -15,6 +15,7 @@ import PageNumbers from './paginate';
 import FormStepper from './stepper';
 import { categorizeDeadline } from '../utils/dates';
 import { useModalContext } from '../context/modal';
+import calculateTotalOrderCost from '../utils/cost-calculator';
 
 import { BsFileEarmarkBarGraph, BsFileEarmarkCheck } from 'react-icons/bs';
 import { GiSandsOfTime } from 'react-icons/gi';
@@ -142,6 +143,13 @@ const reducer=(state, action)=>{
             return {
                 ...state,
                 paymentOption:action.newPaymentOption
+            }
+        }
+            
+        case "newCost": {
+            return {
+                ...state,
+                totalCost:action.newCost
             }
         }
 
@@ -309,7 +317,7 @@ const Dashboard=()=>{
 
     var {data}=useSWR(`/api/orders/all`, fetcher);
 
-    const userInfo=data
+    const userInfo = data;
 
     useEffect(()=>{
         if(userInfo){
@@ -330,7 +338,26 @@ const Dashboard=()=>{
             setOrders(currentOrders);
         }
 
-    },[userInfo, currentPage, ordersPerPage, revise]);
+    }, [userInfo, currentPage, ordersPerPage, revise]);
+    
+    // update total cost everytime it changes based on criteria
+    const areFieldsFilled = (state) => {
+        return state.service && state.gradeLevel && state.pagesOrwords > 0 && state.deadlineCategory;
+    };
+
+    useEffect(() => {
+
+        if (areFieldsFilled(state)) {
+            
+            const newCost = calculateTotalOrderCost(state);
+
+            dispatch({
+                type: "newCost",
+                newCost: newCost
+            })
+        }
+    }, [state.service, state.gradeLevel, state.pagesOrwords, state.deadlineCategory]);
+    //  end of cost update
 
     const displayForm=()=>{
         setSubmissionForm({
