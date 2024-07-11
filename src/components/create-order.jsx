@@ -327,25 +327,23 @@ const Deadline = ({ formData, onDeadlineChange, onTimeChange, errorAlert }) => {
 
 const Payment = ({ handlePaymentChange, formData }) => {
 
-    const { paymentOption, gradeLevel, service, deadline, pagesOrwords } = formData;
-
-    const totalOrderCost = calculateTotalOrderCost(formData);
+    const { paymentOption, gradeLevel, service, deadline, pagesOrwords, totalCost } = formData;    
 
     return (
         <Fragment>
             <StepDescriptor description={`Please enter your payment details`} />
             <FieldsLayout>
                 <div className="payment-options">
-                    <PaymentOption logo={visa} activeCard={paymentOption==="Credit Card"?"active-card":""}
+                    <PaymentOption logo={visa} activeCard={paymentOption==="Credit Card"?"active-card":""} cost={totalCost}
                         method={`credit or debit card`} paymentMethod={`Credit Card`} onChange={handlePaymentChange} selectedOption={paymentOption} >
                         <img src={mastercard} />
                     </PaymentOption>
-                    <PaymentOption logo={paypal} activeCard={paymentOption==="PayPal"?"active-card":""}
+                    <PaymentOption logo={paypal} activeCard={paymentOption==="PayPal"?"active-card":""} cost={totalCost}
                         method={`PayPal`} paymentMethod={`PayPal`} onChange={handlePaymentChange} selectedOption={paymentOption} />
                 </div>
                 <div className="cost-payment-section">
                     <OrderCostCalculator level={gradeLevel} service={service} deadline={deadline} pages={`x${pagesOrwords}`}
-                    cost={totalOrderCost}/>
+                    cost={totalCost}/>
                     <PaymentDetails/>
                 </div>
             </FieldsLayout>
@@ -353,7 +351,7 @@ const Payment = ({ handlePaymentChange, formData }) => {
     )
 }
 
-const PaymentOption = ({children, logo, method, paymentMethod, onChange, selectedOption, onClick, activeCard }) => {
+const PaymentOption = ({children, logo, method, paymentMethod, cost, onChange, selectedOption, onClick, activeCard }) => {
     
     return (
         <label htmlFor={paymentMethod} className={activeCard} id="payment-option" onClick={onClick} >
@@ -362,7 +360,7 @@ const PaymentOption = ({children, logo, method, paymentMethod, onChange, selecte
                 {children}
             </div>
             <div className="payment-selection">
-                <Input type={`radio`} id={paymentMethod} value={paymentMethod} onChange={onChange} checked={selectedOption===paymentMethod} /> <span>Pay $34 with { method }</span>
+                <Input type={`radio`} id={paymentMethod} value={paymentMethod} onChange={onChange} checked={selectedOption===paymentMethod} /> <span>{`Pay $${cost} with ${method}`}</span>
             </div>
         </label>
     )
