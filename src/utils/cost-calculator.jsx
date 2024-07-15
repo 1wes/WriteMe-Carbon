@@ -1,4 +1,4 @@
-import costCriteria from '../__config/cost-criteria.json';
+import costCriteria from '../data/cost-criteria.json';
 
 const calculateTotalOrderCost = (formData) => {
     
