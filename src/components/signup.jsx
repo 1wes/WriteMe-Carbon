@@ -1,6 +1,6 @@
 import React, { useReducer, useState, useLayoutEffect } from "react";
 import './signup.css';
-import axios from "axios";
+import axios from "../utils/axios";
 import Countries from '../data/countries.json';
 import Footer from './footer';
 import {CtaButton} from './services';
