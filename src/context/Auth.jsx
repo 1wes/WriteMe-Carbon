@@ -74,7 +74,7 @@ const AuthContextProvider = ({ children }) => {
 
     const handleLogin = (UserRole) => {
             
-        UserRole === 'user' ? navigate("/user-dashboard") : navigate("/admin-dashboard");
+        UserRole === 'User' ? navigate("/user-dashboard") : navigate("/admin-dashboard");
     }
 
     return (
