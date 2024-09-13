@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-const axiosInstance=axios.create({
-    baseURL:"https://j498q3sl-5000.inc1.devtunnels.ms", 
-})
+const SERVER_BASE_URL = import.meta.env.VITE_SERVER_BASE_URL;
+
+const axiosInstance = axios.create({
+    baseURL: SERVER_BASE_URL,
+});
 
 axiosInstance.interceptors.request.use(
 
