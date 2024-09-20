@@ -5,8 +5,9 @@ import Countries from '../data/countries.json';
 import Footer from './footer';
 import {CtaButton} from './services';
 import { Error, FormAlerts } from "./create-order";
-import { Link, useNavigate } from "react-router-dom";
-import Modal, {SuccessIcon} from "./modal";
+import { Link } from "react-router-dom";
+import Modal from "./modal";
+import { useModalContext } from "../context/modal";
 
 const reducer=(state, action)=>{
 
@@ -65,7 +66,10 @@ const reducer=(state, action)=>{
     }
 }
 
-const RegistrationForm=()=>{
+const RegistrationForm = () => {
+    
+    const { displayModal, modal } = useModalContext();
+    const { showModal, mainMessage, supportingMessage, warning } = modal;
     
     const initialState={
         firstName:"",
@@ -81,11 +85,6 @@ const RegistrationForm=()=>{
 
     const [match, setMatch]=useState(true);
     const [emailError, setEmailError]=useState(false);
-    const [modal, setModal] = useState({
-        show:false
-    });
-
-    const navigate=useNavigate();
 
     let countryCode=Countries.map(code=>{
         return <option key={code.code} value={code.dial_code}>{` ${code.emoji} ${code.name} (${code.dial_code})`}</option>
@@ -166,14 +165,6 @@ const RegistrationForm=()=>{
         setEmailError(false);
     }
 
-    const closeModal=()=>{
-        setModal({
-            show:false
-        })
-
-        navigate("/login");
-    }
-
     let phoneConfirmation;
     let passwordAlert;
     let duplicateEmail;
@@ -201,14 +192,15 @@ const RegistrationForm=()=>{
         e.preventDefault();
 
         if(match){
-            axios.post("/api/user/register", state).then(()=>{
-                setModal({
-                    show:true
-                })
+            axios.post("/api/user/register", state).then(() => {
+                displayModal(false, "Success", "Account created successfully. You can proceed to log in now.")
             }).catch(err=>{
                 if(err.response.status===403){
                     setEmailError(true);
+                    return;
                 }
+
+                displayModal(true, "Warning", "Account registration failed. Please try again.")
             });
         }
     }
@@ -269,9 +261,7 @@ const RegistrationForm=()=>{
                 </FormAlerts>
                 <CtaButton type={`submit`} message={`Sign Up`} id={`submit-btn`} />
             </form>
-            {modal.show && <Modal modalIcon={<SuccessIcon/>} onClick={closeModal} mainMessage={`Success`} supportingMessage={
-                `Account created successfully. You can proceed to log in now.`
-            } buttonColor={'success-btn-color'} />}
+            {showModal && <Modal mainMessage={mainMessage} supportingMessage={supportingMessage}/>}
         </React.Fragment>
     )
 }
@@ -291,7 +281,7 @@ const SignUp=()=>{
                     </div>
                     <div className="reg-form">
                         <div className="form-wrapper">
-                            <RegistrationForm/>
+                            <RegistrationForm />                                
                         </div>
                     </div>
                 </div>
