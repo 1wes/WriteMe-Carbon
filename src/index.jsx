@@ -25,7 +25,7 @@ root.render(
           <Route path='/about' element={<About/>}></Route>
           <Route path='/faq' element={<FAQ/>}/>
           <Route path='/blog/:slug' element={<Blogpost/>}></Route>
-          <Route path='register' element={<ModalContextProvider><StepsValidationProvider><SignUp/></StepsValidationProvider></ModalContextProvider>} ></Route>
+          <Route path='/register' element={<ModalContextProvider><StepsValidationProvider><SignUp/></StepsValidationProvider></ModalContextProvider>} ></Route>
           <Route path='/login' element={<AuthContextProvider><Login/></AuthContextProvider>}></Route>
           <Route path='/user-dashboard' element={
             <AuthContextProvider><StepsValidationProvider><ModalContextProvider><Dashboard /></ModalContextProvider></StepsValidationProvider></AuthContextProvider>} >        
