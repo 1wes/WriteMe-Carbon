@@ -70,7 +70,8 @@ const WarningIcon = () => {
 
 const Modal = ({ mainMessage, supportingMessage, modalIcon, buttonColor }) => {
 
-    const { hideModal } = useModalContext();
+    const { hideModal, modal } = useModalContext();
+    const { warning } = modal;
     const { updateValidation } = useStepsValidationContext();
     
     const closeModal = () => {
@@ -84,7 +85,7 @@ const Modal = ({ mainMessage, supportingMessage, modalIcon, buttonColor }) => {
         <Fragment>
             <ModalWrapper className={`modal-wrapper`} id={`modal-wrap`}>
                 <div className='modal-icon'>
-                    {modalIcon}
+                    {warning?<WarningIcon/>:<SuccessIcon/>}
                 </div>
                 <h2>
                     {mainMessage}
@@ -92,7 +93,7 @@ const Modal = ({ mainMessage, supportingMessage, modalIcon, buttonColor }) => {
                 <p>
                     {supportingMessage}
                 </p>
-                <button onClick={closeModal} className={buttonColor} >
+                <button onClick={closeModal} className={warning?"warning-btn-color":"success-btn-color"} >
                     OK
                 </button>
             </ModalWrapper>
