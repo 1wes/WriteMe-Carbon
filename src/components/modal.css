@@ -68,16 +68,16 @@
 .modal h2{
     padding: 0 !important;
     margin: 0 !important;
-    font-weight: 400;
-    font-size: 30px;
+    font-weight: 500;
+    font-size: 20px;
 }
 
 .modal p{
     padding: 0 !important;
     margin: 0 !important;
     text-align: center;
-    font-size: 14px;
-    line-height: 25px;
+    font-size: 13px;
+    line-height: 20px;
 }
 
 .modal button{
@@ -86,6 +86,7 @@
     color: white;
     border-radius: 5px;
     width: 100%;
+    font-weight: bold;
     transition: all ease .5s;
 }
 
