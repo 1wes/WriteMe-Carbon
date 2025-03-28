@@ -7,6 +7,8 @@ import { BsPerson } from "react-icons/bs";
 import { IoLogInOutline } from "react-icons/io5";
 import { HashLink as Jumplink } from "react-router-hash-link";
 import Pen from "../assets/pen.png";
+import { Grid, Column, Button } from "@carbon/react";
+import Header from "@carbon/react";
 
 const SignButton: FunctionComponent = () => {
   return (
@@ -152,7 +154,15 @@ let MobileNavbar: FunctionComponent = () => {
 const Navbar = () => {
   return (
     <React.Fragment>
-      <nav className="section" id="navbar-section">
+      <Grid>
+        <Column>
+          <h2>Responseive column</h2>
+          <Button size="2xl">
+            Button
+          </Button>
+        </Column>
+      </Grid>
+      {/* <nav className="section" id="navbar-section">
         <div className="desktop-nav">
           <div className="logo">
             <Logo />
@@ -184,7 +194,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-      </nav>
+      </nav> */}
     </React.Fragment>
   );
 };

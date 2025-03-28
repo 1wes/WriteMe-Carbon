@@ -246,7 +246,7 @@ const OrdersTable: React.FunctionComponent<{ children: ReactNode }> = ({
 
 const GenericCtaButton: React.FunctionComponent<{
   id: any;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   message: string;
 }> = ({ id, onClick, message }) => {
   return (

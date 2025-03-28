@@ -1,0 +1,9 @@
+@use "@carbon/react/scss/themes" as *;
+@use "@carbon/react/scss/components/button" as *;
+
+// custom primary button colors (background and text)
+:root{
+    --cds-button-primary:brown;
+    --cds-button-primary-text:whitesmoke;
+    --cds-button-font-size:
+}

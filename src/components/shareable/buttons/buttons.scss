@@ -1,0 +1,9 @@
+@use "carbon/react/scss/themes" as *;
+@use "@carbon/react/scss/components/button" as *;
+@use "@carbon/react/scss/utilities/spacing" as *;
+
+.customButton{
+    margin: $spacing-05;
+    padding: $spacing-03 $spacing-05;
+    
+}
